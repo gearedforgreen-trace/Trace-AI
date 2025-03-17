@@ -1,12 +1,12 @@
-import { NextRequest, NextResponse } from 'next/server';
-import { PrismaClient } from '@prisma/client';
 import { auth } from '@/lib/auth';
+import { PrismaClient } from '@prisma/client';
 import { headers } from 'next/headers';
+import { NextResponse } from 'next/server';
 
 const prisma = new PrismaClient();
 
 // GET the current user's total points
-export async function GET(req: NextRequest) {
+export async function GET() {
   try {
     // Authenticate the request
     const session = await auth.api.getSession({

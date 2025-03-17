@@ -6,7 +6,7 @@ import { headers } from 'next/headers';
 const prisma = new PrismaClient();
 
 // GET all stores
-export async function GET(req: NextRequest) {
+export async function GET() {
   try {
     // Authenticate the request
     const session = await auth.api.getSession({
