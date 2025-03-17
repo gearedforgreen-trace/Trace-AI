@@ -1,0 +1,696 @@
+{
+  "info": {
+    "name": "Geared for Green API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Authentication Endpoints",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/[...all]",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "auth", "[...all]"]
+            },
+            "description": "Authentication endpoints for all auth providers"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Bins",
+      "item": [
+        {
+          "name": "Get All Bins",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/bins",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "bins"]
+            },
+            "description": "Fetch all bins for organization, filtered by optional parameters"
+          }
+        },
+        {
+          "name": "Create Bin",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Example Bin\",\n  \"materialId\": \"material-id\",\n  \"storeId\": \"store-id\",\n  \"organizationId\": \"organization-id\",\n  \"points\": 10\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/bins",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "bins"]
+            },
+            "description": "Create a new bin"
+          }
+        },
+        {
+          "name": "Get Bin by ID",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/bins/{{binId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "bins", "{{binId}}"]
+            },
+            "description": "Get a specific bin by ID"
+          }
+        },
+        {
+          "name": "Update Bin",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Updated Bin\",\n  \"materialId\": \"material-id\",\n  \"storeId\": \"store-id\",\n  \"points\": 15\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/bins/{{binId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "bins", "{{binId}}"]
+            },
+            "description": "Update a specific bin"
+          }
+        },
+        {
+          "name": "Delete Bin",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/bins/{{binId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "bins", "{{binId}}"]
+            },
+            "description": "Delete a specific bin"
+          }
+        },
+        {
+          "name": "Get Bins by Material",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/bins/material/{{materialId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "bins", "material", "{{materialId}}"]
+            },
+            "description": "Get bins for a specific material"
+          }
+        },
+        {
+          "name": "Get Bins by Organization",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/bins/organization/{{organizationId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "bins", "organization", "{{organizationId}}"]
+            },
+            "description": "Get bins for a specific organization"
+          }
+        },
+        {
+          "name": "Get Bins by Store",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/bins/store/{{storeId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "bins", "store", "{{storeId}}"]
+            },
+            "description": "Get bins for a specific store"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Materials",
+      "item": [
+        {
+          "name": "Get All Materials",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/materials",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "materials"]
+            },
+            "description": "Get all materials"
+          }
+        },
+        {
+          "name": "Create Material",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Example Material\",\n  \"description\": \"Material description\",\n  \"organizationId\": \"organization-id\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/materials",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "materials"]
+            },
+            "description": "Create a new material"
+          }
+        },
+        {
+          "name": "Get Material by ID",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/materials/{{materialId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "materials", "{{materialId}}"]
+            },
+            "description": "Get a specific material by ID"
+          }
+        },
+        {
+          "name": "Update Material",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Updated Material\",\n  \"description\": \"Updated description\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/materials/{{materialId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "materials", "{{materialId}}"]
+            },
+            "description": "Update a specific material"
+          }
+        },
+        {
+          "name": "Delete Material",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/materials/{{materialId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "materials", "{{materialId}}"]
+            },
+            "description": "Delete a specific material"
+          }
+        },
+        {
+          "name": "Get Materials by Organization",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/materials/organization/{{organizationId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "materials", "organization", "{{organizationId}}"]
+            },
+            "description": "Get materials for a specific organization"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Points",
+      "item": [
+        {
+          "name": "Get User Points",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/points",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "points"]
+            },
+            "description": "Get points for current user"
+          }
+        },
+        {
+          "name": "Create Points Entry",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"points\": 10,\n  \"binId\": \"bin-id\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/points",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "points"]
+            },
+            "description": "Create a new points entry"
+          }
+        },
+        {
+          "name": "Get Points by ID",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/points/{{pointsId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "points", "{{pointsId}}"]
+            },
+            "description": "Get a specific points entry by ID"
+          }
+        },
+        {
+          "name": "Update Points",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"points\": 15\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/points/{{pointsId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "points", "{{pointsId}}"]
+            },
+            "description": "Update a specific points entry"
+          }
+        },
+        {
+          "name": "Delete Points",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/points/{{pointsId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "points", "{{pointsId}}"]
+            },
+            "description": "Delete a specific points entry"
+          }
+        },
+        {
+          "name": "Admin - Get All Points",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/points/admin",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "points", "admin"]
+            },
+            "description": "Admin endpoint to get all points for all users"
+          }
+        },
+        {
+          "name": "Admin - Create Points",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"userId\": \"user-id\",\n  \"points\": 10,\n  \"binId\": \"bin-id\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/points/admin",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "points", "admin"]
+            },
+            "description": "Admin endpoint to create points for any user"
+          }
+        },
+        {
+          "name": "Get Total Points",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/points/total",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "points", "total"]
+            },
+            "description": "Get total points for current user"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Stores",
+      "item": [
+        {
+          "name": "Get All Stores",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/stores",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "stores"]
+            },
+            "description": "Get all stores"
+          }
+        },
+        {
+          "name": "Create Store",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Example Store\",\n  \"address\": \"123 Main St\",\n  \"organizationId\": \"organization-id\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/stores",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "stores"]
+            },
+            "description": "Create a new store"
+          }
+        },
+        {
+          "name": "Get Store by ID",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/stores/{{storeId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "stores", "{{storeId}}"]
+            },
+            "description": "Get a specific store by ID"
+          }
+        },
+        {
+          "name": "Update Store",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Updated Store\",\n  \"address\": \"456 New St\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/stores/{{storeId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "stores", "{{storeId}}"]
+            },
+            "description": "Update a specific store"
+          }
+        },
+        {
+          "name": "Delete Store",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/stores/{{storeId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "stores", "{{storeId}}"]
+            },
+            "description": "Delete a specific store"
+          }
+        },
+        {
+          "name": "Get Stores by Organization",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/stores/organization/{{organizationId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "stores", "organization", "{{organizationId}}"]
+            },
+            "description": "Get stores for a specific organization"
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3000",
+      "type": "string"
+    },
+    {
+      "key": "token",
+      "value": "your-jwt-token",
+      "type": "string"
+    },
+    {
+      "key": "binId",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "materialId",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "storeId",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "organizationId",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "pointsId",
+      "value": "",
+      "type": "string"
+    }
+  ]
+}
