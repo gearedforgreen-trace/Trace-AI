@@ -3,14 +3,24 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
+    "dev": "prisma generate && next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "prisma-generate": "npx prisma generate",
+    "prisma-format": "npx prisma format",
+    "prisma-migrate-dev": "npx prisma migrate dev",
+    "prisma-studio": "npx prisma studio",
+    "prisma-seed": "npx prisma db seed",
+    "vercel-build": "prisma generate && prisma migrate deploy && next build"
   },
   "dependencies": {
     "@neondatabase/serverless": "^0.10.4",
+    "@prisma/client": "^6.5.0",
+    "better-auth": "^1.2.4",
+    "kysely": "^0.27.6",
     "next": "15.2.2",
+    "prisma-extension-kysely": "^3.0.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
@@ -23,6 +33,7 @@
     "eslint": "^9",
     "eslint-config-next": "15.2.2",
     "prisma": "^6.5.0",
+    "prisma-kysely": "^1.8.0",
     "tailwindcss": "^4",
     "typescript": "^5"
   }
