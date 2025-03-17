@@ -6,7 +6,7 @@ import { headers } from 'next/headers';
 const prisma = new PrismaClient();
 
 // GET material by ID
-export async function GET(req: NextRequest, context: { params: { id: string } }) {
+export async function GET(req: NextRequest, context: { params: Promise<{ id: string }> }) {
   try {
     const session = await auth.api.getSession({
       headers: await headers(),
@@ -22,7 +22,7 @@ export async function GET(req: NextRequest, context: { params: { id: string } })
       return NextResponse.json({ error: 'No active organization' }, { status: 400 });
     }
 
-    const { id } = context.params;
+    const { id } = await context.params;
 
     const material = await prisma.material.findUnique({
       where: {
@@ -43,7 +43,7 @@ export async function GET(req: NextRequest, context: { params: { id: string } })
 }
 
 // PUT (update) material by ID
-export async function PUT(req: NextRequest, context: { params: { id: string } }) {
+export async function PUT(req: NextRequest, context: { params: Promise<{ id: string }> }) {
   try {
     const session = await auth.api.getSession({
       headers: await headers(),
@@ -60,7 +60,7 @@ export async function PUT(req: NextRequest, context: { params: { id: string } })
       return NextResponse.json({ error: 'No active organization' }, { status: 400 });
     }
 
-    const { id } = context.params;
+    const { id } = await context.params;
     const { name, description, imageUrl, status } = await req.json();
 
     // Validate request body
@@ -99,7 +99,7 @@ export async function PUT(req: NextRequest, context: { params: { id: string } })
 }
 
 // DELETE material by ID
-export async function DELETE(req: NextRequest, context: { params: { id: string } }) {
+export async function DELETE(req: NextRequest, context: { params: Promise<{ id: string }> }) {
   try {
     const session = await auth.api.getSession({
       headers: await headers(),
@@ -115,7 +115,7 @@ export async function DELETE(req: NextRequest, context: { params: { id: string }
       return NextResponse.json({ error: 'No active organization' }, { status: 400 });
     }
 
-    const { id } = context.params;
+    const { id } = await context.params;
 
     // Check if the material exists and belongs to the organization
     const existingMaterial = await prisma.material.findUnique({
