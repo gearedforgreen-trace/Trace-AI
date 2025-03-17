@@ -19,6 +19,30 @@ export type Account = {
     createdAt: Timestamp;
     updatedAt: Timestamp;
 };
+export type Invitation = {
+    id: string;
+    organizationId: string;
+    email: string;
+    role: string | null;
+    status: string;
+    expiresAt: Timestamp;
+    inviterId: string;
+};
+export type Member = {
+    id: string;
+    organizationId: string;
+    userId: string;
+    role: string;
+    createdAt: Timestamp;
+};
+export type Organization = {
+    id: string;
+    name: string;
+    slug: string | null;
+    logo: string | null;
+    createdAt: Timestamp;
+    metadata: string | null;
+};
 export type Session = {
     id: string;
     expiresAt: Timestamp;
@@ -28,6 +52,8 @@ export type Session = {
     ipAddress: string | null;
     userAgent: string | null;
     userId: string;
+    impersonatedBy: string | null;
+    activeOrganizationId: string | null;
 };
 export type Test = {
     id: Generated<number>;
@@ -40,6 +66,10 @@ export type User = {
     image: string | null;
     createdAt: Timestamp;
     updatedAt: Timestamp;
+    role: string | null;
+    banned: boolean | null;
+    banReason: string | null;
+    banExpires: Timestamp | null;
 };
 export type Verification = {
     id: string;
@@ -51,6 +81,9 @@ export type Verification = {
 };
 export type DB = {
     account: Account;
+    invitation: Invitation;
+    member: Member;
+    organization: Organization;
     session: Session;
     Test: Test;
     user: User;
