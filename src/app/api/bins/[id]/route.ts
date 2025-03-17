@@ -6,7 +6,7 @@ import { headers } from 'next/headers';
 const prisma = new PrismaClient();
 
 // GET bin by ID
-export async function GET(req: NextRequest, { params }: { params: { id: string } }) {
+export async function GET(req: NextRequest, context: { params: { id: string } }) {
   try {
     const session = await auth.api.getSession({
       headers: await headers(),
@@ -22,7 +22,7 @@ export async function GET(req: NextRequest, { params }: { params: { id: string }
       return NextResponse.json({ error: 'No active organization' }, { status: 400 });
     }
 
-    const { id } = params;
+    const { id } = context.params;
 
     const bin = await prisma.bin.findUnique({
       where: {
@@ -47,7 +47,7 @@ export async function GET(req: NextRequest, { params }: { params: { id: string }
 }
 
 // PUT (update) bin by ID
-export async function PUT(req: NextRequest, { params }: { params: { id: string } }) {
+export async function PUT(req: NextRequest, context: { params: { id: string } }) {
   try {
     const session = await auth.api.getSession({
       headers: await headers(),
@@ -64,7 +64,7 @@ export async function PUT(req: NextRequest, { params }: { params: { id: string }
       return NextResponse.json({ error: 'No active organization' }, { status: 400 });
     }
 
-    const { id } = params;
+    const { id } = context.params;
     const { 
       number, 
       typeOfMaterialId, 
@@ -159,7 +159,7 @@ export async function PUT(req: NextRequest, { params }: { params: { id: string }
 }
 
 // DELETE bin by ID
-export async function DELETE(req: NextRequest, { params }: { params: { id: string } }) {
+export async function DELETE(req: NextRequest, context: { params: { id: string } }) {
   try {
     const session = await auth.api.getSession({
       headers: await headers(),
@@ -175,7 +175,7 @@ export async function DELETE(req: NextRequest, { params }: { params: { id: strin
       return NextResponse.json({ error: 'No active organization' }, { status: 400 });
     }
 
-    const { id } = params;
+    const { id } = context.params;
 
     // Check if the bin exists and belongs to the organization
     const existingBin = await prisma.bin.findUnique({

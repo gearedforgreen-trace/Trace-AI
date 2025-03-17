@@ -6,7 +6,7 @@ import { headers } from 'next/headers';
 const prisma = new PrismaClient();
 
 // GET bins by material ID
-export async function GET(req: NextRequest, { params }: { params: { id: string } }) {
+export async function GET(req: NextRequest, context: { params: { id: string } }) {
   try {
     // Authenticate the request
     const session = await auth.api.getSession({
@@ -23,7 +23,7 @@ export async function GET(req: NextRequest, { params }: { params: { id: string }
       return NextResponse.json({ error: 'No active organization' }, { status: 400 });
     }
 
-    const { id: materialId } = params;
+    const { id: materialId } = context.params;
     
     // Verify that material exists and belongs to organization
     const material = await prisma.material.findUnique({

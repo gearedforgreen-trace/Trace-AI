@@ -6,7 +6,7 @@ import { headers } from 'next/headers';
 const prisma = new PrismaClient();
 
 // GET materials by organization ID
-export async function GET(req: NextRequest, { params }: { params: { id: string } }) {
+export async function GET(req: NextRequest, context: { params: { id: string } }) {
   try {
     // Authenticate the request
     const session = await auth.api.getSession({
@@ -17,11 +17,9 @@ export async function GET(req: NextRequest, { params }: { params: { id: string }
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
     
-    const { id: organizationId } = params;
+    const { id: organizationId } = context.params;
     
     // Check if user has permission to access this organization
-    // This would depend on your app's authorization logic
-    // Here we're using a simple check that the user is a member of the organization
     const membership = await prisma.member.findFirst({
       where: {
         organizationId,
