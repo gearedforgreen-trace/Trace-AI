@@ -6,7 +6,7 @@ import { headers } from 'next/headers';
 const prisma = new PrismaClient();
 
 // GET stores by organization ID
-export async function GET(req: NextRequest, context: { params: { id: string } }) {
+export async function GET(req: NextRequest, context: { params: Promise<{ id: string }> }) {
   try {
     // Authenticate the request
     const session = await auth.api.getSession({
@@ -17,7 +17,7 @@ export async function GET(req: NextRequest, context: { params: { id: string } })
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
     
-    const { id: organizationId } = context.params;
+    const { id: organizationId } = await context.params;
     
     // Check if user has permission to access this organization
     const membership = await prisma.member.findFirst({

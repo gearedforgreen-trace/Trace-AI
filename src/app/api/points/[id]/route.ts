@@ -6,7 +6,7 @@ import { headers } from 'next/headers';
 const prisma = new PrismaClient();
 
 // GET a specific points entry
-export async function GET(req: NextRequest, { params }: { params: { id: string } }) {
+export async function GET(req: NextRequest,context: { params: Promise<{ id: string }> }) {
   try {
     const session = await auth.api.getSession({
       headers: await headers(),
@@ -17,7 +17,7 @@ export async function GET(req: NextRequest, { params }: { params: { id: string }
     }
     
     const userId = session.user.id;
-    const { id } = params;
+    const { id } = await context.params;
 
     const pointsEntry = await prisma.points.findUnique({
       where: {
@@ -38,7 +38,7 @@ export async function GET(req: NextRequest, { params }: { params: { id: string }
 }
 
 // PUT (update) a points entry
-export async function PUT(req: NextRequest, { params }: { params: { id: string } }) {
+export async function PUT(req: NextRequest, context: { params: Promise<{ id: string }> }) {
   try {
     const session = await auth.api.getSession({
       headers: await headers(),
@@ -49,7 +49,7 @@ export async function PUT(req: NextRequest, { params }: { params: { id: string }
     }
     
     const userId = session.user.id;
-    const { id } = params;
+    const { id } = await context.params;
     const { points, description } = await req.json();
 
     // Validate request body
@@ -99,7 +99,7 @@ export async function PUT(req: NextRequest, { params }: { params: { id: string }
 }
 
 // DELETE a points entry
-export async function DELETE(req: NextRequest, { params }: { params: { id: string } }) {
+export async function DELETE(req: NextRequest, context: { params: Promise<{ id: string }> }) {
   try {
     const session = await auth.api.getSession({
       headers: await headers(),
@@ -110,7 +110,7 @@ export async function DELETE(req: NextRequest, { params }: { params: { id: strin
     }
     
     const userId = session.user.id;
-    const { id } = params;
+    const { id } = await context.params;
 
     // Find the existing points entry
     const existingPointsEntry = await prisma.points.findUnique({
