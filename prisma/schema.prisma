@@ -37,8 +37,15 @@ model User {
   banReason  String?
   banExpires DateTime?
 
+  currentPoints Int @default(0)
+
   members     Member[]
   invitations Invitation[]
+  Coupon      Coupon[]
+  Points      Points[]
+  Material    Material[]
+  Store       Store[]
+  Bin         Bin[]
 
   @@unique([email])
   @@map("user")
@@ -102,6 +109,10 @@ model Organization {
   metadata    String?
   members     Member[]
   invitations Invitation[]
+  Coupon      Coupon[]
+  Material    Material[]
+  Store       Store[]
+  Bin         Bin[]
 
   @@unique([slug])
   @@map("organization")
@@ -131,4 +142,95 @@ model Invitation {
   user           User         @relation(fields: [inviterId], references: [id], onDelete: Cascade)
 
   @@map("invitation")
+}
+
+model Coupon {
+  id             String       @id @default(uuid()) // Unique identifier
+  name           String
+  description    String?
+  imageUrl       String // URL of the image
+  status         Status       @default(ACTIVE) // Enum for status
+  couponType     CouponType
+  couponCode     String
+  pointsToRedeem Int
+  createdAt      DateTime     @default(now()) // Timestamp for record creation
+  updatedAt      DateTime     @updatedAt // Auto-updated timestamp
+  userId         String
+  User           User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  organizationId String
+  Organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+}
+
+model Points {
+  id          String   @id @default(uuid()) // Unique identifier
+  userId      String
+  points      Int
+  description String?
+  createdAt   DateTime @default(now()) // Timestamp for record creation
+  updatedAt   DateTime @updatedAt // Auto-updated timestamp
+  User        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Material {
+  id             String       @id @default(uuid()) // Unique identifier
+  name           String
+  description    String?
+  imageUrl       String
+  status         Status       @default(ACTIVE)
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+  userId         String
+  User           User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  organizationId String
+  Organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  Bin            Bin[]
+}
+
+model Store {
+  id             String       @id @default(uuid()) // Unique identifier
+  name           String
+  description    String?
+  imageUrl       String
+  status         Status       @default(ACTIVE)
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+  userId         String
+  User           User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  organizationId String
+  Organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  Bin            Bin[]
+}
+
+model Bin {
+  id               String       @id @default(uuid()) // Unique identifier
+  number           String
+  typeOfMaterialId String
+  Material         Material     @relation(fields: [typeOfMaterialId], references: [id], onDelete: Cascade)
+  storeId          String
+  Store            Store        @relation(fields: [storeId], references: [id], onDelete: Cascade)
+  description      String?
+  imageUrl         String
+  status           Status       @default(ACTIVE)
+  createdAt        DateTime     @default(now())
+  updatedAt        DateTime     @updatedAt
+  userId           String
+  User             User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  organizationId   String
+  Organization     Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  address1         String
+  address2         String?
+  city             String
+  state            String
+  zip              String
+  country          String
+}
+
+enum Status {
+  ACTIVE
+  INACTIVE
+}
+
+enum CouponType {
+  FIXED
+  PERCENTAGE
 }
