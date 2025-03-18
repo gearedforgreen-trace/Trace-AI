@@ -23,6 +23,269 @@
       ]
     },
     {
+      "name": "Organizations",
+      "item": [
+        {
+          "name": "Search Organizations",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/organization?search=&page=1&limit=20",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "organization"],
+              "query": [
+                {
+                  "key": "search",
+                  "value": ""
+                },
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "20"
+                }
+              ]
+            },
+            "description": "Search organizations the user is a member of with optional search and pagination"
+          }
+        },
+        {
+          "name": "Create Organization",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Example Organization\",\n  \"description\": \"This is an example organization\",\n  \"logoUrl\": \"https://example.com/logo.png\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/organization",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "organization"]
+            },
+            "description": "Create a new organization"
+          }
+        },
+        {
+          "name": "Get Organization by ID",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/organization/{{organizationId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "organization", "{{organizationId}}"]
+            },
+            "description": "Get organization details by ID"
+          }
+        },
+        {
+          "name": "Update Organization",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Updated Organization\",\n  \"description\": \"This is an updated organization description\",\n  \"logoUrl\": \"https://example.com/updated-logo.png\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/organization/{{organizationId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "organization", "{{organizationId}}"]
+            },
+            "description": "Update organization details"
+          }
+        },
+        {
+          "name": "Delete Organization",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/organization/{{organizationId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "organization", "{{organizationId}}"]
+            },
+            "description": "Delete an organization (only works if there are no associated resources)"
+          }
+        },
+        {
+          "name": "Get Organization Members",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/organization/{{organizationId}}/members?search=&role=&page=1&limit=20",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "organization", "{{organizationId}}", "members"],
+              "query": [
+                {
+                  "key": "search",
+                  "value": ""
+                },
+                {
+                  "key": "role",
+                  "value": ""
+                },
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "20"
+                }
+              ]
+            },
+            "description": "Get members of an organization with optional search, filtering, and pagination"
+          }
+        },
+        {
+          "name": "Add Organization Member",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"newmember@example.com\",\n  \"role\": \"MEMBER\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/organization/{{organizationId}}/members",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "organization", "{{organizationId}}", "members"]
+            },
+            "description": "Add a new member to an organization by email"
+          }
+        },
+        {
+          "name": "Get Organization Member",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/organization/{{organizationId}}/members/{{userId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "organization", "{{organizationId}}", "members", "{{userId}}"]
+            },
+            "description": "Get a specific member of an organization"
+          }
+        },
+        {
+          "name": "Update Organization Member",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"role\": \"ADMIN\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/organization/{{organizationId}}/members/{{userId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "organization", "{{organizationId}}", "members", "{{userId}}"]
+            },
+            "description": "Update a member's role in an organization"
+          }
+        },
+        {
+          "name": "Remove Organization Member",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/organization/{{organizationId}}/members/{{userId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "organization", "{{organizationId}}", "members", "{{userId}}"]
+            },
+            "description": "Remove a member from an organization"
+          }
+        }
+      ]
+    },
+    {
       "name": "Bins",
       "item": [
         {
@@ -37,9 +300,9 @@
               }
             ],
             "url": {
-              "raw": "{{baseUrl}}/api/bins",
+              "raw": "{{baseUrl}}/api/organization/{{organizationId}}/bins",
               "host": ["{{baseUrl}}"],
-              "path": ["api", "bins"]
+              "path": ["api", "organization", "{{organizationId}}", "bins"]
             },
             "description": "Fetch all bins for organization, filtered by optional parameters"
           }
@@ -62,12 +325,12 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"name\": \"Example Bin\",\n  \"materialId\": \"material-id\",\n  \"storeId\": \"store-id\",\n  \"organizationId\": \"organization-id\",\n  \"points\": 10\n}"
+              "raw": "{\n  \"name\": \"Example Bin\",\n  \"typeOfMaterialId\": \"material-id\",\n  \"storeId\": \"store-id\",\n  \"points\": 10,\n  \"imageUrl\": \"https://example.com/image.jpg\",\n  \"address1\": \"123 Main St\",\n  \"address2\": \"Suite 100\",\n  \"city\": \"Anytown\",\n  \"state\": \"CA\",\n  \"zip\": \"12345\",\n  \"country\": \"USA\"\n}"
             },
             "url": {
-              "raw": "{{baseUrl}}/api/bins",
+              "raw": "{{baseUrl}}/api/organization/{{organizationId}}/bins",
               "host": ["{{baseUrl}}"],
-              "path": ["api", "bins"]
+              "path": ["api", "organization", "{{organizationId}}", "bins"]
             },
             "description": "Create a new bin"
           }
@@ -84,9 +347,9 @@
               }
             ],
             "url": {
-              "raw": "{{baseUrl}}/api/bins/{{binId}}",
+              "raw": "{{baseUrl}}/api/organization/{{organizationId}}/bins/{{binId}}",
               "host": ["{{baseUrl}}"],
-              "path": ["api", "bins", "{{binId}}"]
+              "path": ["api", "organization", "{{organizationId}}", "bins", "{{binId}}"]
             },
             "description": "Get a specific bin by ID"
           }
@@ -109,12 +372,12 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"name\": \"Updated Bin\",\n  \"materialId\": \"material-id\",\n  \"storeId\": \"store-id\",\n  \"points\": 15\n}"
+              "raw": "{\n  \"number\": \"Updated Bin\",\n  \"typeOfMaterialId\": \"material-id\",\n  \"storeId\": \"store-id\",\n  \"imageUrl\": \"https://example.com/image.jpg\",\n  \"address1\": \"123 Main St\",\n  \"address2\": \"Suite 100\",\n  \"city\": \"Anytown\",\n  \"state\": \"CA\",\n  \"zip\": \"12345\",\n  \"country\": \"USA\"\n}"
             },
             "url": {
-              "raw": "{{baseUrl}}/api/bins/{{binId}}",
+              "raw": "{{baseUrl}}/api/organization/{{organizationId}}/bins/{{binId}}",
               "host": ["{{baseUrl}}"],
-              "path": ["api", "bins", "{{binId}}"]
+              "path": ["api", "organization", "{{organizationId}}", "bins", "{{binId}}"]
             },
             "description": "Update a specific bin"
           }
@@ -131,9 +394,9 @@
               }
             ],
             "url": {
-              "raw": "{{baseUrl}}/api/bins/{{binId}}",
+              "raw": "{{baseUrl}}/api/organization/{{organizationId}}/bins/{{binId}}",
               "host": ["{{baseUrl}}"],
-              "path": ["api", "bins", "{{binId}}"]
+              "path": ["api", "organization", "{{organizationId}}", "bins", "{{binId}}"]
             },
             "description": "Delete a specific bin"
           }
@@ -150,9 +413,9 @@
               }
             ],
             "url": {
-              "raw": "{{baseUrl}}/api/bins/material/{{materialId}}",
+              "raw": "{{baseUrl}}/api/organization/{{organizationId}}/bins/material/{{materialId}}",
               "host": ["{{baseUrl}}"],
-              "path": ["api", "bins", "material", "{{materialId}}"]
+              "path": ["api", "organization", "{{organizationId}}", "bins", "material", "{{materialId}}"]
             },
             "description": "Get bins for a specific material"
           }
@@ -188,9 +451,9 @@
               }
             ],
             "url": {
-              "raw": "{{baseUrl}}/api/bins/store/{{storeId}}",
+              "raw": "{{baseUrl}}/api/organization/{{organizationId}}/bins/store/{{storeId}}",
               "host": ["{{baseUrl}}"],
-              "path": ["api", "bins", "store", "{{storeId}}"]
+              "path": ["api", "organization", "{{organizationId}}", "bins", "store", "{{storeId}}"]
             },
             "description": "Get bins for a specific store"
           }
@@ -212,9 +475,15 @@
               }
             ],
             "url": {
-              "raw": "{{baseUrl}}/api/materials",
+              "raw": "{{baseUrl}}/api/materials?organizationId={{organizationId}}",
               "host": ["{{baseUrl}}"],
-              "path": ["api", "materials"]
+              "path": ["api", "materials"],
+              "query": [
+                {
+                  "key": "organizationId",
+                  "value": "{{organizationId}}"
+                }
+              ]
             },
             "description": "Get all materials"
           }
@@ -259,9 +528,15 @@
               }
             ],
             "url": {
-              "raw": "{{baseUrl}}/api/materials/{{materialId}}",
+              "raw": "{{baseUrl}}/api/materials/{{materialId}}?organizationId={{organizationId}}",
               "host": ["{{baseUrl}}"],
-              "path": ["api", "materials", "{{materialId}}"]
+              "path": ["api", "materials", "{{materialId}}"],
+              "query": [
+                {
+                  "key": "organizationId",
+                  "value": "{{organizationId}}"
+                }
+              ]
             },
             "description": "Get a specific material by ID"
           }
@@ -284,12 +559,18 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"name\": \"Updated Material\",\n  \"description\": \"Updated description\"\n}"
+              "raw": "{\n  \"name\": \"Updated Material\",\n  \"description\": \"Updated description\",\n  \"organizationId\": \"{{organizationId}}\"\n}"
             },
             "url": {
-              "raw": "{{baseUrl}}/api/materials/{{materialId}}",
+              "raw": "{{baseUrl}}/api/materials/{{materialId}}?organizationId={{organizationId}}",
               "host": ["{{baseUrl}}"],
-              "path": ["api", "materials", "{{materialId}}"]
+              "path": ["api", "materials", "{{materialId}}"],
+              "query": [
+                {
+                  "key": "organizationId",
+                  "value": "{{organizationId}}"
+                }
+              ]
             },
             "description": "Update a specific material"
           }
@@ -306,9 +587,15 @@
               }
             ],
             "url": {
-              "raw": "{{baseUrl}}/api/materials/{{materialId}}",
+              "raw": "{{baseUrl}}/api/materials/{{materialId}}?organizationId={{organizationId}}",
               "host": ["{{baseUrl}}"],
-              "path": ["api", "materials", "{{materialId}}"]
+              "path": ["api", "materials", "{{materialId}}"],
+              "query": [
+                {
+                  "key": "organizationId",
+                  "value": "{{organizationId}}"
+                }
+              ]
             },
             "description": "Delete a specific material"
           }
@@ -533,9 +820,9 @@
               }
             ],
             "url": {
-              "raw": "{{baseUrl}}/api/stores",
+              "raw": "{{baseUrl}}/api/organization/{{organizationId}}/stores",
               "host": ["{{baseUrl}}"],
-              "path": ["api", "stores"]
+              "path": ["api", "organization", "{{organizationId}}", "stores"]
             },
             "description": "Get all stores"
           }
@@ -558,12 +845,12 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"name\": \"Example Store\",\n  \"address\": \"123 Main St\",\n  \"organizationId\": \"organization-id\"\n}"
+              "raw": "{\n  \"name\": \"Example Store\",\n  \"description\": \"A sample store\",\n  \"imageUrl\": \"https://example.com/store.jpg\"\n}"
             },
             "url": {
-              "raw": "{{baseUrl}}/api/stores",
+              "raw": "{{baseUrl}}/api/organization/{{organizationId}}/stores",
               "host": ["{{baseUrl}}"],
-              "path": ["api", "stores"]
+              "path": ["api", "organization", "{{organizationId}}", "stores"]
             },
             "description": "Create a new store"
           }
@@ -580,9 +867,9 @@
               }
             ],
             "url": {
-              "raw": "{{baseUrl}}/api/stores/{{storeId}}",
+              "raw": "{{baseUrl}}/api/organization/{{organizationId}}/stores/{{storeId}}",
               "host": ["{{baseUrl}}"],
-              "path": ["api", "stores", "{{storeId}}"]
+              "path": ["api", "organization", "{{organizationId}}", "stores", "{{storeId}}"]
             },
             "description": "Get a specific store by ID"
           }
@@ -605,12 +892,12 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"name\": \"Updated Store\",\n  \"address\": \"456 New St\"\n}"
+              "raw": "{\n  \"name\": \"Updated Store\",\n  \"description\": \"An updated store\",\n  \"imageUrl\": \"https://example.com/updated-store.jpg\"\n}"
             },
             "url": {
-              "raw": "{{baseUrl}}/api/stores/{{storeId}}",
+              "raw": "{{baseUrl}}/api/organization/{{organizationId}}/stores/{{storeId}}",
               "host": ["{{baseUrl}}"],
-              "path": ["api", "stores", "{{storeId}}"]
+              "path": ["api", "organization", "{{organizationId}}", "stores", "{{storeId}}"]
             },
             "description": "Update a specific store"
           }
@@ -627,9 +914,9 @@
               }
             ],
             "url": {
-              "raw": "{{baseUrl}}/api/stores/{{storeId}}",
+              "raw": "{{baseUrl}}/api/organization/{{organizationId}}/stores/{{storeId}}",
               "host": ["{{baseUrl}}"],
-              "path": ["api", "stores", "{{storeId}}"]
+              "path": ["api", "organization", "{{organizationId}}", "stores", "{{storeId}}"]
             },
             "description": "Delete a specific store"
           }
@@ -646,9 +933,9 @@
               }
             ],
             "url": {
-              "raw": "{{baseUrl}}/api/stores/organization/{{organizationId}}",
+              "raw": "{{baseUrl}}/api/organization/{{organizationId}}/stores",
               "host": ["{{baseUrl}}"],
-              "path": ["api", "stores", "organization", "{{organizationId}}"]
+              "path": ["api", "organization", "{{organizationId}}", "stores"]
             },
             "description": "Get stores for a specific organization"
           }
