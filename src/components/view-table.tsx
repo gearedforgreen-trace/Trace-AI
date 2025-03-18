@@ -52,7 +52,7 @@ export default function ViewTable({ columns, data, className = '' }: ViewTablePr
                 <td 
                   key={colIndex} 
                   className={cn(
-                    "px-3 py-9 text-base font-semibold border-r border-t border-primary [&:last-child]:border-r-0 font-bold",
+                    "px-3 py-9 text-base  border-r border-t border-primary [&:last-child]:border-r-0 font-bold",
                     column.tdClassName
                   )}
                 >
