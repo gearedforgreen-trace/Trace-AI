@@ -39,13 +39,9 @@ model User {
 
   currentPoints Int @default(0)
 
-  members     Member[]
-  invitations Invitation[]
-  Coupon      Coupon[]
-  Points      Points[]
-  Material    Material[]
-  Store       Store[]
-  Bin         Bin[]
+  members      Member[]
+  invitations  Invitation[]
+  Points       UserTotalPoints
 
   @@unique([email])
   @@map("user")
@@ -110,7 +106,6 @@ model Organization {
   members     Member[]
   invitations Invitation[]
   Coupon      Coupon[]
-  Material    Material[]
   Store       Store[]
   Bin         Bin[]
 
@@ -153,15 +148,15 @@ model Coupon {
   couponType     CouponType
   couponCode     String
   pointsToRedeem Int
+  startDate
+  endDate
   createdAt      DateTime     @default(now()) // Timestamp for record creation
   updatedAt      DateTime     @updatedAt // Auto-updated timestamp
-  userId         String
-  User           User         @relation(fields: [userId], references: [id], onDelete: Cascade)
   organizationId String
   Organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
 }
 
-model Points {
+model UserTotalPoints {
   id          String   @id @default(uuid()) // Unique identifier
   userId      String
   points      Int
@@ -171,19 +166,43 @@ model Points {
   User        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
+model RedeemHistory {
+  id          String   @id @default(uuid()) // Unique identifier
+  couponId  // kon coupon use korese?
+  userId      String
+  points      Int
+  description String?
+  createdAt   DateTime @default(now()) // Timestamp for record creation
+  updatedAt   DateTime @updatedAt // Auto-updated timestamp
+  User        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+model RecycleHistory {
+  id          String   @id @default(uuid()) // Unique identifier
+  userId      String
+  points      Int
+  description String?
+  createdAt   DateTime @default(now()) // Timestamp for record creation
+  updatedAt   DateTime @updatedAt // Auto-updated timestamp
+  User        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+model RewardRules{
+  id          String  @id @default(uuid())
+  description String?
+  material    String // relation
+  unit        Int
+  point       Int
+  createdAt   DateTime @default(now()) // Timestamp for record creation
+  updatedAt   DateTime @updatedAt // Auto-updated timestamp
+}
+
 model Material {
-  id             String       @id @default(uuid()) // Unique identifier
-  name           String
-  description    String?
-  imageUrl       String
-  status         Status       @default(ACTIVE)
-  createdAt      DateTime     @default(now())
-  updatedAt      DateTime     @updatedAt
-  userId         String
-  User           User         @relation(fields: [userId], references: [id], onDelete: Cascade)
-  organizationId String
-  Organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
-  Bin            Bin[]
+  id          String   @id @default(uuid()) // Unique identifier
+  name        String
+  description String?
+  status      Status   @default(ACTIVE)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  Bin         Bin[]
 }
 
 model Store {
@@ -194,36 +213,42 @@ model Store {
   status         Status       @default(ACTIVE)
   createdAt      DateTime     @default(now())
   updatedAt      DateTime     @updatedAt
-  userId         String
-  User           User         @relation(fields: [userId], references: [id], onDelete: Cascade)
   organizationId String
   Organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
   Bin            Bin[]
+  address1       String
+  address2       String?
+  city           String
+  state          String
+  zip            String
+  country        String
+  lat            Float
+  lng            Float
 }
 
 model Bin {
-  id               String       @id @default(uuid()) // Unique identifier
-  number           String
-  typeOfMaterialId String
-  Material         Material     @relation(fields: [typeOfMaterialId], references: [id], onDelete: Cascade)
-  storeId          String
-  Store            Store        @relation(fields: [storeId], references: [id], onDelete: Cascade)
-  description      String?
-  imageUrl         String
-  status           Status       @default(ACTIVE)
-  createdAt        DateTime     @default(now())
-  updatedAt        DateTime     @updatedAt
-  userId           String
-  User             User         @relation(fields: [userId], references: [id], onDelete: Cascade)
-  organizationId   String
-  Organization     Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
-  address1         String
-  address2         String?
-  city             String
-  state            String
-  zip              String
-  country          String
+  id             String       @id @default(uuid()) // Unique identifier
+  number         String
+  materialId     String
+  Material       Material     @relation(fields: [materialId], references: [id])
+  storeId        String
+  Store          Store        @relation(fields: [storeId], references: [id], onDelete: Cascade)
+  description    String?
+  imageUrl       String
+  status         Status       @default(ACTIVE)
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+  organizationId String
+  Organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
 }
+
+model FavoriteList {
+  id          Int @id @default()
+  userId
+  coupon
+}
+
+
 
 enum Status {
   ACTIVE
