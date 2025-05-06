@@ -9,7 +9,7 @@ import { ac, admin, user } from '@/auth/user-permissions';
 import { auth } from '@/lib/auth';
 
 export const authClient = createAuthClient({
-  baseURL: process.env.NEXT_PUBLIC_BASE_URL ?? 'https://trace-backend-xi.vercel.app',
+  baseURL: process.env.NEXT_PUBLIC_BASE_URL ?? 'http://localhost:3000',
   plugins: [
     adminClient({
       ac,

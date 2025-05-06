@@ -137,7 +137,8 @@ exports.Prisma.UserScalarFieldEnum = {
   phoneNumber: 'phoneNumber',
   address: 'address',
   postalCode: 'postalCode',
-  status: 'status'
+  status: 'status',
+  state: 'state'
 };
 
 exports.Prisma.SessionScalarFieldEnum = {
@@ -205,6 +206,56 @@ exports.Prisma.InvitationScalarFieldEnum = {
   inviterId: 'inviterId'
 };
 
+exports.Prisma.StoreScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  description: 'description',
+  imageUrl: 'imageUrl',
+  status: 'status',
+  organizationId: 'organizationId',
+  address1: 'address1',
+  address2: 'address2',
+  city: 'city',
+  state: 'state',
+  zip: 'zip',
+  country: 'country',
+  lat: 'lat',
+  lng: 'lng',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.MaterialScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  description: 'description',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  rewardRuleId: 'rewardRuleId'
+};
+
+exports.Prisma.RewardRulesScalarFieldEnum = {
+  id: 'id',
+  description: 'description',
+  unitType: 'unitType',
+  unit: 'unit',
+  point: 'point',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.BinScalarFieldEnum = {
+  id: 'id',
+  number: 'number',
+  materialId: 'materialId',
+  storeId: 'storeId',
+  description: 'description',
+  imageUrl: 'imageUrl',
+  status: 'status',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -219,7 +270,15 @@ exports.Prisma.NullsOrder = {
   first: 'first',
   last: 'last'
 };
+exports.StoreStatus = exports.$Enums.StoreStatus = {
+  ACTIVE: 'ACTIVE',
+  INACTIVE: 'INACTIVE'
+};
 
+exports.BinStatus = exports.$Enums.BinStatus = {
+  ACTIVE: 'ACTIVE',
+  INACTIVE: 'INACTIVE'
+};
 
 exports.Prisma.ModelName = {
   User: 'User',
@@ -228,7 +287,11 @@ exports.Prisma.ModelName = {
   Verification: 'Verification',
   Organization: 'Organization',
   Member: 'Member',
-  Invitation: 'Invitation'
+  Invitation: 'Invitation',
+  Store: 'Store',
+  Material: 'Material',
+  RewardRules: 'RewardRules',
+  Bin: 'Bin'
 };
 
 /**

@@ -1,4 +1,3 @@
-
 generator client {
   provider = "prisma-client-js"
   output   = "./generated/client"
@@ -37,9 +36,11 @@ model User {
   postalCode      String?
   status          String
 
+  state String?
+
   @@unique([email])
-  @@map("user")
   @@unique([username])
+  @@map("user")
 }
 
 model Session {
@@ -98,6 +99,7 @@ model Organization {
   metadata    String?
   members     Member[]
   invitations Invitation[]
+  stores      Store[]
 
   @@unique([slug])
   @@map("organization")
@@ -127,4 +129,88 @@ model Invitation {
   user           User         @relation(fields: [inviterId], references: [id], onDelete: Cascade)
 
   @@map("invitation")
+}
+
+enum StoreStatus {
+  ACTIVE
+  INACTIVE
+
+  @@map("store_status")
+}
+
+model Store {
+  id          String      @id @default(ulid())
+  name        String
+  description String?
+  imageUrl    String?
+  status      StoreStatus @default(ACTIVE)
+
+  organizationId String?
+  organization   Organization? @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+
+  bins Bin[]
+
+  address1 String
+  address2 String?
+  city     String
+  state    String
+  zip      String
+  country  String
+  lat      Float
+  lng      Float
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("store")
+}
+
+model Material {
+  id           String       @id @default(ulid())
+  name         String
+  description  String?
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+  bins         Bin[]
+  rewardRuleId String?
+  rewardRule   RewardRules? @relation(fields: [rewardRuleId], references: [id])
+
+  @@map("material")
+}
+
+model RewardRules {
+  id          String   @id @default(ulid())
+  description String?
+  unitType    String
+  unit        Int
+  point       Int
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  materials Material[]
+
+  @@map("reward_rules")
+}
+
+enum BinStatus {
+  ACTIVE
+  INACTIVE
+
+  @@map("bin_status")
+}
+
+model Bin {
+  id          String    @id @default(ulid())
+  number      String
+  materialId  String
+  material    Material  @relation(fields: [materialId], references: [id])
+  storeId     String
+  store       Store     @relation(fields: [storeId], references: [id], onDelete: Cascade)
+  description String?
+  imageUrl    String?
+  status      BinStatus @default(ACTIVE)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@map("bin")
 }

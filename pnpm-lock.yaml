@@ -95,6 +95,9 @@ importers:
       prisma-extension-kysely:
         specifier: ^3.0.0
         version: 3.0.0(@prisma/client@6.7.0(prisma@6.7.0(typescript@5.8.2))(typescript@5.8.2))
+      prisma-pagination:
+        specifier: ^0.2.3
+        version: 0.2.3
       react:
         specifier: ^19.0.0
         version: 19.0.0
@@ -3109,6 +3112,9 @@ packages:
   prisma-kysely@1.8.0:
     resolution: {integrity: sha512-VpNpolZ8RXRgfU+j4R+fPZmX8EE95w3vJ2tt7+FwuiQc0leNTfLK5QLf3KbbPDes2rfjh3g20AjDxefQIo5GIA==}
     hasBin: true
+
+  prisma-pagination@0.2.3:
+    resolution: {integrity: sha512-KVKCGz5BVTYK64dpqCo7ITNFN02UN5hSzBYyR4vqNF7I4BetUeO/q7B7FECmCOPIyCBWYf2Zte68pD9S2khD3g==}
 
   prisma@6.7.0:
     resolution: {integrity: sha512-vArg+4UqnQ13CVhc2WUosemwh6hr6cr6FY2uzDvCIFwH8pu8BXVv38PktoMLVjtX7sbYThxbnZF5YiR8sN2clw==}
@@ -6866,6 +6872,8 @@ snapshots:
     transitivePeerDependencies:
       - encoding
       - supports-color
+
+  prisma-pagination@0.2.3: {}
 
   prisma@6.7.0(typescript@5.8.2):
     dependencies:

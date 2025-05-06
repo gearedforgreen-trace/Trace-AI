@@ -4,6 +4,16 @@ export type Generated<T> = T extends ColumnType<infer S, infer I, infer U>
   : ColumnType<T, T | undefined, T>;
 export type Timestamp = ColumnType<Date, Date | string, Date | string>;
 
+export const StoreStatus = {
+    ACTIVE: "ACTIVE",
+    INACTIVE: "INACTIVE"
+} as const;
+export type StoreStatus = (typeof StoreStatus)[keyof typeof StoreStatus];
+export const BinStatus = {
+    ACTIVE: "ACTIVE",
+    INACTIVE: "INACTIVE"
+} as const;
+export type BinStatus = (typeof BinStatus)[keyof typeof BinStatus];
 export type Account = {
     id: string;
     accountId: string;
@@ -19,6 +29,17 @@ export type Account = {
     createdAt: Timestamp;
     updatedAt: Timestamp;
 };
+export type Bin = {
+    id: Generated<string>;
+    number: string;
+    materialId: string;
+    storeId: string;
+    description: string | null;
+    imageUrl: string | null;
+    status: Generated<BinStatus>;
+    createdAt: Generated<Timestamp>;
+    updatedAt: Timestamp;
+};
 export type Invitation = {
     id: string;
     organizationId: string;
@@ -27,6 +48,14 @@ export type Invitation = {
     status: string;
     expiresAt: Timestamp;
     inviterId: string;
+};
+export type Material = {
+    id: Generated<string>;
+    name: string;
+    description: string | null;
+    createdAt: Generated<Timestamp>;
+    updatedAt: Timestamp;
+    rewardRuleId: string | null;
 };
 export type Member = {
     id: string;
@@ -43,6 +72,15 @@ export type Organization = {
     createdAt: Timestamp;
     metadata: string | null;
 };
+export type RewardRules = {
+    id: Generated<string>;
+    description: string | null;
+    unitType: string;
+    unit: number;
+    point: number;
+    createdAt: Generated<Timestamp>;
+    updatedAt: Timestamp;
+};
 export type Session = {
     id: string;
     expiresAt: Timestamp;
@@ -54,6 +92,24 @@ export type Session = {
     userId: string;
     impersonatedBy: string | null;
     activeOrganizationId: string | null;
+};
+export type Store = {
+    id: Generated<string>;
+    name: string;
+    description: string | null;
+    imageUrl: string | null;
+    status: Generated<StoreStatus>;
+    organizationId: string | null;
+    address1: string;
+    address2: string | null;
+    city: string;
+    state: string;
+    zip: string;
+    country: string;
+    lat: number;
+    lng: number;
+    createdAt: Generated<Timestamp>;
+    updatedAt: Timestamp;
 };
 export type User = {
     id: string;
@@ -73,6 +129,7 @@ export type User = {
     address: string | null;
     postalCode: string | null;
     status: string;
+    state: string | null;
 };
 export type Verification = {
     id: string;
@@ -84,10 +141,14 @@ export type Verification = {
 };
 export type DB = {
     account: Account;
+    bin: Bin;
     invitation: Invitation;
+    material: Material;
     member: Member;
     organization: Organization;
+    reward_rules: RewardRules;
     session: Session;
+    store: Store;
     user: User;
     verification: Verification;
 };

@@ -1,6 +1,6 @@
 import { betterAuth } from 'better-auth';
 import { prismaAdapter } from 'better-auth/adapters/prisma';
-import { PrismaClient } from '../../prisma/generated/client';
+
 import { z } from 'zod';
 import {
   admin as adminPlugin,
@@ -10,17 +10,18 @@ import {
   username,
 } from 'better-auth/plugins';
 
-import { admin, ac } from '@/auth/user-permissions';
+import { admin, ac, user } from '@/auth/user-permissions';
+import prisma from "./prisma";
 
-const prisma = new PrismaClient();
 
 export const auth = betterAuth({
   database: prismaAdapter(prisma, {
     provider: 'postgresql',
   }),
-  baseURL: process.env.NEXT_PUBLIC_BASE_URL ?? 'https://trace-backend-xi.vercel.app',
-    user: {
-        additionalFields: {
+  baseURL: process.env.NEXT_PUBLIC_BASE_URL ?? 'http://localhost:3000',
+  trustedOrigins: [process.env.NEXT_PUBLIC_BASE_URL ?? 'http://localhost:3000'],
+  user: {
+    additionalFields: {
       phoneNumber: {
         type: 'string',
         required: false,
@@ -45,6 +46,13 @@ export const auth = betterAuth({
             .optional(),
         },
       },
+      state: {
+        type: 'string',
+        required: false,
+        validator: {
+          input: z.string().optional(),
+        },
+      },
       status: {
         type: ['pending', 'active', 'suspended', 'banned'],
         required: true,
@@ -65,6 +73,7 @@ export const auth = betterAuth({
       ac,
       roles: {
         admin,
+        user,
       },
     }),
     organization({
