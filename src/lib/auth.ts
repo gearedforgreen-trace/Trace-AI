@@ -67,8 +67,9 @@ export const auth = betterAuth({
       },
     }),
     organization({
-      allowUserToCreateOrganization: (user: any) => {
-        return user.role === 'admin';
+      allowUserToCreateOrganization: () => {
+        return false;
+        // return user.role === 'admin';
       },
     }),
     openAPI(),

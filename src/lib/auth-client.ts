@@ -9,7 +9,6 @@ import { ac, admin, user } from '@/auth/user-permissions';
 import { auth } from '@/lib/auth';
 
 export const authClient = createAuthClient({
-  baseURL: 'http://localhost:3000',
   plugins: [
     adminClient({
       ac,
