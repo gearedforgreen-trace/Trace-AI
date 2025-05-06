@@ -8,6 +8,7 @@ export async function middleware(request: NextRequest) {
 
   return NextResponse.json({
     headers: Object.fromEntries(request.headers.entries()),
+    sessionCookie: sessionCookie
   });
 
   if (authRoutes.includes(request.nextUrl.pathname) && !sessionCookie) {
