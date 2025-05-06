@@ -1,11 +1,7 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 generator client {
   provider = "prisma-client-js"
+  output   = "./generated/client"
 }
 
 generator kysely {
@@ -17,49 +13,46 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Test {
-  id Int @id @default(autoincrement())
-}
-
 model User {
-  id            String    @id
+  id            String       @id
   name          String
   email         String
   emailVerified Boolean
   image         String?
   createdAt     DateTime
   updatedAt     DateTime
+  role          String?
+  banned        Boolean?
+  banReason     String?
+  banExpires    DateTime?
   sessions      Session[]
   accounts      Account[]
+  members       Member[]
+  invitations   Invitation[]
 
-  role       String?
-  banned     Boolean?
-  banReason  String?
-  banExpires DateTime?
-
-  currentPoints Int @default(0)
-
-  members      Member[]
-  invitations  Invitation[]
-  Points       UserTotalPoints
+  username        String?
+  displayUsername String?
+  phoneNumber     String?
+  address         String?
+  postalCode      String?
+  status          String
 
   @@unique([email])
   @@map("user")
+  @@unique([username])
 }
 
 model Session {
-  id        String   @id
-  expiresAt DateTime
-  token     String
-  createdAt DateTime
-  updatedAt DateTime
-  ipAddress String?
-  userAgent String?
-  userId    String
-  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  impersonatedBy String?
-
+  id                   String   @id
+  expiresAt            DateTime
+  token                String
+  createdAt            DateTime
+  updatedAt            DateTime
+  ipAddress            String?
+  userAgent            String?
+  userId               String
+  user                 User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  impersonatedBy       String?
   activeOrganizationId String?
 
   @@unique([token])
@@ -105,9 +98,6 @@ model Organization {
   metadata    String?
   members     Member[]
   invitations Invitation[]
-  Coupon      Coupon[]
-  Store       Store[]
-  Bin         Bin[]
 
   @@unique([slug])
   @@map("organization")
@@ -137,125 +127,4 @@ model Invitation {
   user           User         @relation(fields: [inviterId], references: [id], onDelete: Cascade)
 
   @@map("invitation")
-}
-
-model Coupon {
-  id             String       @id @default(uuid()) // Unique identifier
-  name           String
-  description    String?
-  imageUrl       String // URL of the image
-  status         Status       @default(ACTIVE) // Enum for status
-  couponType     CouponType
-  couponCode     String
-  pointsToRedeem Int
-  startDate
-  endDate
-  createdAt      DateTime     @default(now()) // Timestamp for record creation
-  updatedAt      DateTime     @updatedAt // Auto-updated timestamp
-  organizationId String
-  Organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
-}
-
-model UserTotalPoints {
-  id          String   @id @default(uuid()) // Unique identifier
-  userId      String
-  points      Int
-  description String?
-  createdAt   DateTime @default(now()) // Timestamp for record creation
-  updatedAt   DateTime @updatedAt // Auto-updated timestamp
-  User        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-}
-
-model RedeemHistory {
-  id          String   @id @default(uuid()) // Unique identifier
-  couponId  // kon coupon use korese?
-  userId      String
-  points      Int
-  description String?
-  createdAt   DateTime @default(now()) // Timestamp for record creation
-  updatedAt   DateTime @updatedAt // Auto-updated timestamp
-  User        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-}
-model RecycleHistory {
-  id          String   @id @default(uuid()) // Unique identifier
-  userId      String
-  points      Int
-  description String?
-  createdAt   DateTime @default(now()) // Timestamp for record creation
-  updatedAt   DateTime @updatedAt // Auto-updated timestamp
-  User        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-}
-model RewardRules{
-  id          String  @id @default(uuid())
-  description String?
-  material    String // relation
-  unit        Int
-  point       Int
-  createdAt   DateTime @default(now()) // Timestamp for record creation
-  updatedAt   DateTime @updatedAt // Auto-updated timestamp
-}
-
-model Material {
-  id          String   @id @default(uuid()) // Unique identifier
-  name        String
-  description String?
-  status      Status   @default(ACTIVE)
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-  Bin         Bin[]
-}
-
-model Store {
-  id             String       @id @default(uuid()) // Unique identifier
-  name           String
-  description    String?
-  imageUrl       String
-  status         Status       @default(ACTIVE)
-  createdAt      DateTime     @default(now())
-  updatedAt      DateTime     @updatedAt
-  organizationId String
-  Organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
-  Bin            Bin[]
-  address1       String
-  address2       String?
-  city           String
-  state          String
-  zip            String
-  country        String
-  lat            Float
-  lng            Float
-}
-
-model Bin {
-  id             String       @id @default(uuid()) // Unique identifier
-  number         String
-  materialId     String
-  Material       Material     @relation(fields: [materialId], references: [id])
-  storeId        String
-  Store          Store        @relation(fields: [storeId], references: [id], onDelete: Cascade)
-  description    String?
-  imageUrl       String
-  status         Status       @default(ACTIVE)
-  createdAt      DateTime     @default(now())
-  updatedAt      DateTime     @updatedAt
-  organizationId String
-  Organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
-}
-
-model FavoriteList {
-  id          Int @id @default()
-  userId
-  coupon
-}
-
-
-
-enum Status {
-  ACTIVE
-  INACTIVE
-}
-
-enum CouponType {
-  FIXED
-  PERCENTAGE
 }

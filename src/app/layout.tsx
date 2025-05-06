@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Nunito, Mulish } from 'next/font/google';
 import './globals.css';
+import { Toaster } from "@/components/ui/sonner"
 import { ThemeProvider } from '@/providers/theme-provider';
 import ProgressLoader from '@/providers/progress-loader';
 
@@ -41,6 +42,7 @@ export default function RootLayout({
           <ProgressLoader>
             {children}
           </ProgressLoader>
+          <Toaster />
         </ThemeProvider>
       </body>
     </html>

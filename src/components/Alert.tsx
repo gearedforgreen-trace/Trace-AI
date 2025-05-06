@@ -68,7 +68,7 @@ export default function Alert({
       {title && (
         <div className="flex items-center gap-2">
           <Icon className="size-5" icon={icon} />
-          <h3 className="font-medium">{title}</h3>
+          <h4 className="font-medium text-base capitalize">{title}</h4>
         </div>
       )}
       {title ? (

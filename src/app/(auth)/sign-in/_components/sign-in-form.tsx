@@ -3,6 +3,7 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { Loader2 } from 'lucide-react';
 import { z } from 'zod';
 
 import Alert from '@/components/Alert';
@@ -17,8 +18,8 @@ import {
 import { InputIcon } from '@/components/ui/input-icon';
 
 import { InputPassword } from '@/components/ui/input-password';
-import { SiteButton } from "@/components/ui/site-button";
-import { useRouter } from 'next/navigation';
+import { SiteButton } from '@/components/ui/site-button';
+import { authClient } from '@/lib/auth-client';
 const loginSchema = z.object({
   email: z
     .string()
@@ -32,10 +33,12 @@ const loginSchema = z.object({
 });
 
 export default function SignInForm() {
-  const [invalidCred, setInvalidCred] = useState<string | null>(null);
+  const [error, setError] = useState<{
+    title: string;
+    description: string;
+    type: 'error' | 'info' | 'warning' | 'success';
+  } | null>(null);
   const [loading, setLoading] = useState(false);
-
-  const router = useRouter()
 
   const form = useForm<z.infer<typeof loginSchema>>({
     resolver: zodResolver(loginSchema),
@@ -47,11 +50,24 @@ export default function SignInForm() {
   });
 
   async function onSubmit(values: z.infer<typeof loginSchema>) {
-
     console.log(values);
     setLoading(true);
 
-    router.push('/')
+    const { error } = await authClient.signIn.email({
+      email: values.email,
+      password: values.password,
+      rememberMe: true,
+      callbackURL: '/',
+    });
+
+    if (error) {
+      setError({
+        title: error.statusText ?? 'Something went wrong',
+        description: error.message ?? 'Please try again.',
+        type: 'error',
+      });
+    }
+
     setLoading(false);
   }
 
@@ -100,21 +116,26 @@ export default function SignInForm() {
             )}
           />
         </div>
-        {invalidCred && (
+        {error && (
           <Alert
             close={true}
             handleClose={() => {
-              setInvalidCred(null);
+              setError(null);
             }}
-            title="Invalid credentials"
-            message={invalidCred}
-            type="error"
+            title={error?.title}
+            message={error?.description}
+            type={error?.type}
           />
         )}
 
         <div className="mt-3 flex flex-col sm:mt-4">
-          <SiteButton type="submit" color="gradient" size="sm" disabled={loading}>
-            Login
+          <SiteButton
+            type="submit"
+            color="gradient"
+            size="sm"
+            disabled={loading}
+          >
+            {loading ? <Loader2 className="size-4 animate-spin" /> : 'Login'}
           </SiteButton>
         </div>
       </form>

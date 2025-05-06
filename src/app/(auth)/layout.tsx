@@ -1,24 +1,14 @@
-
 import { ModeToggle } from '@/components/mode-toggle';
-import { Button } from '@/components/ui/button';
-import Link from 'next/link';
 import SiteBrandCentered from '@/components/site-brand-centerd';
-import { ArrowLeftIcon } from 'lucide-react';
-export default function AuthLayout({ children }: { children: React.ReactNode }) {
+
+export default function AuthLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <div className="relative flex min-h-screen flex-col bg-neutral-50 dark:bg-background">
-      <div className="absolute right-0 flex h-[60px] w-full items-center justify-between sm:fixed">
-        <div>
-          <Link href="/">
-            <Button
-              variant="ghost"
-              className="text-foreground hover:bg-transparent hover:underline "
-            >
-              <ArrowLeftIcon className="size-4 mr-1 -mt-[1.5px]" />
-              Back to the website
-            </Button>
-          </Link>
-        </div>
+      <div className="absolute right-0 flex h-[60px] w-full items-center justify-end sm:fixed">
         <div className="mt-6 pr-4">
           <ModeToggle />
         </div>
@@ -44,7 +34,6 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
             >
               Privacy Policy
             </a>
-            .
           </div>
         </div>
       </div>

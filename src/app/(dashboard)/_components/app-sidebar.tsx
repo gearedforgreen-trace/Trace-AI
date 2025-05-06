@@ -21,15 +21,15 @@ import {
   RewardPointsIcon,
   DashboardIcon,
 } from '@/components/icons/sidebar-icons';
-import { cn } from "@/lib/utils";
-import { Separator } from "@/components/ui/separator";
+import { cn } from '@/lib/utils';
+import { Separator } from '@/components/ui/separator';
 
 // This is sample data.
 const data = {
   user: {
-    name: 'Syed',
-    email: 'syed@example.com',
-    avatar: 'https://avatars.githubusercontent.com/u/18189873?v=4',
+    name: 'John Doe',
+    email: 'john@example.com',
+    avatar: 'https://avatars.githubusercontent.com/u/124599?v=4',
   },
   navMain: [
     {
@@ -73,12 +73,13 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
     <Sidebar collapsible="icon" {...props} variant="floating">
       <SidebarHeader className="pb-0">
-        <SiteBrand className={cn({
-          'p-2': !isCollapsed,
-          'p-0.5': isCollapsed,
-          'justify-center': isCollapsed
-        })} 
-        hideWordmark={isCollapsed}
+        <SiteBrand
+          className={cn({
+            'p-2': !isCollapsed,
+            'p-0.5': isCollapsed,
+            'justify-center': isCollapsed,
+          })}
+          hideWordmark={isCollapsed}
         />
       </SidebarHeader>
       <Separator className="mt-3 " />
@@ -86,7 +87,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <NavMain items={data.navMain} />
       </SidebarContent>
       <SidebarFooter>
-        <NavUser user={data.user} />
+        <NavUser />
       </SidebarFooter>
       <SidebarRail />
     </Sidebar>
