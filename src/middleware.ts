@@ -6,11 +6,12 @@ export const authRoutes = ['/sign-in'];
 export async function middleware(request: NextRequest) {
   const sessionCookie = getSessionCookie(request);
 
-  return NextResponse.json({
-    headers: Object.fromEntries(request.headers.entries()),
-    sessionCookie: sessionCookie,
-    vercelUrl: process.env.VERCEL_URL,
-  });
+  // return NextResponse.json({
+  //   headers: Object.fromEntries(request.headers.entries()),
+  //   sessionCookie: sessionCookie,
+  //   vercelUrl: process.env.VERCEL_URL,
+  //   NEXT_PUBLIC_BASE_URL: process.env.NEXT_PUBLIC_BASE_URL,
+  // });
 
   if (authRoutes.includes(request.nextUrl.pathname) && !sessionCookie) {
     return NextResponse.next();

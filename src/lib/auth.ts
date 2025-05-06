@@ -18,8 +18,9 @@ export const auth = betterAuth({
   database: prismaAdapter(prisma, {
     provider: 'postgresql',
   }),
-  user: {
-    additionalFields: {
+  baseURL: process.env.NEXT_PUBLIC_BASE_URL ?? 'https://trace-backend-xi.vercel.app',
+    user: {
+        additionalFields: {
       phoneNumber: {
         type: 'string',
         required: false,
