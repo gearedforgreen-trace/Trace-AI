@@ -6,11 +6,6 @@ export const authRoutes = ['/sign-in'];
 export async function middleware(request: NextRequest) {
   const sessionCookie = getSessionCookie(request);
 
-
-  return NextResponse.json({
-    sessionCookie,
-  });
-
   if (authRoutes.includes(request.nextUrl.pathname) && !sessionCookie) {
     return NextResponse.next();
   }
@@ -28,6 +23,7 @@ export async function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
+    '/sign-in',
     '/',
     '/dashboard',
     '/analytics',

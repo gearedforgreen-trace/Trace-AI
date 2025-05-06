@@ -58,9 +58,6 @@ export const auth = betterAuth({
   emailAndPassword: {
     enabled: true,
   },
-  advanced: {
-    cookiePrefix: 'trace_auth',
-  },
   plugins: [
     username(),
     adminPlugin({
