@@ -8,7 +8,8 @@ export async function middleware(request: NextRequest) {
 
   return NextResponse.json({
     headers: Object.fromEntries(request.headers.entries()),
-    sessionCookie: sessionCookie
+    sessionCookie: sessionCookie,
+    vercelUrl: process.env.VERCEL_URL,
   });
 
   if (authRoutes.includes(request.nextUrl.pathname) && !sessionCookie) {
