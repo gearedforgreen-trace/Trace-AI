@@ -1,0 +1,144 @@
+import { validateSessionAndPermission } from '@/lib/permissions';
+import prisma from '@/lib/prisma';
+import {couponSchema} from '@/schemas/schema';
+import { NextRequest, NextResponse } from 'next/server';
+
+export async function GET(
+  _request: NextRequest,
+  { params }: { params: { couponId: string } }
+) {
+  try {
+    const { couponId } = await params;
+
+    if (!couponId) {
+      return NextResponse.json(
+        { error: 'Material ID is required' },
+        { status: 400 }
+      );
+    }
+
+    const validation = await validateSessionAndPermission({
+      coupon: ['detail'],
+    });
+
+    if (!validation.success) {
+      return validation.response;
+    }
+
+    const coupon = await prisma.coupon.findUnique({
+      where: { id: couponId }
+    });
+
+    if (!coupon) {
+      return NextResponse.json(
+        { error: 'Material not found' },
+        { status: 404 }
+      );
+    }
+
+    return NextResponse.json(
+      {
+        data: coupon,
+      },
+      { status: 200 }
+    );
+  } catch (error) {
+    console.error(error);
+    return NextResponse.json(
+      { error: 'Internal Server Error' },
+      { status: 500 }
+    );
+  }
+}
+
+export async function PUT(
+  request: NextRequest,
+  { params }: { params: { couponId: string } }
+) {
+  try {
+    const { couponId } = await params;
+
+    if (!couponId) {
+      return NextResponse.json(
+        { error: 'Material ID is required' },
+        { status: 400 }
+      );
+    }
+
+    const validation = await validateSessionAndPermission({
+      coupon: ['update'],
+    });
+
+    if (!validation.success) {
+      return validation.response;
+    }
+
+    const body = await request.json();
+
+    const validatedBody = couponSchema.safeParse(body);
+
+    if (!validatedBody.success) {
+      return NextResponse.json(
+        {
+          error: 'Unprocessable Content',
+          details: validatedBody.error.flatten().fieldErrors,
+        },
+        { status: 422 }
+      );
+    }
+
+    const material = await prisma.coupon.update({
+      where: { id: couponId },
+      data: validatedBody.data,
+    });
+
+    return NextResponse.json({ data: material }, { status: 200 });
+  } catch (error) {
+    console.error(error);
+    return NextResponse.json(
+      { error: 'Internal Server Error' },
+      { status: 500 }
+    );
+  }
+}
+
+  export async function DELETE(
+  _request: NextRequest,
+  { params }: { params: { couponId: string } }
+) {
+  try {
+    const { couponId } = await params;
+
+    if (!couponId) {
+      return NextResponse.json(
+        { error: 'Material ID is required' },
+        { status: 400 }
+      );
+    }
+
+    const validation = await validateSessionAndPermission({
+      coupon: ['delete'],
+    });
+
+    if (!validation.success) {
+      return validation.response;
+    }
+
+    const deletedCoupon = await prisma.coupon.delete({
+      where: { id: couponId },
+    });
+
+    return NextResponse.json(
+      { data: deletedCoupon, message: 'Material deleted successfully' },
+      { status: 200 }
+    );
+
+    //
+  } catch (error) {
+    console.error(error);
+    return NextResponse.json(
+      { error: 'Internal Server Error' },
+      { status: 500 }
+    );
+  }
+}

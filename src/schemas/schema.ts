@@ -136,6 +136,71 @@ export const materialSchema = z.object({
   }),
 });
 
+export const couponSchema = z.object({
+    id: z.string().uuid(),
+    name: z
+        .string({
+            required_error: 'Coupon name is required',
+        })
+        .min(1, 'Coupon name cannot be empty')
+        .max(255, 'Coupon name cannot exceed 255 characters')
+        .trim(),
+    description: z
+        .string()
+        .max(500, 'Description cannot exceed 500 characters')
+        .optional()
+        .nullable(),
+    imageUrl: z
+        .string({
+            required_error: 'Image URL is required',
+        })
+        .url('Please provide a valid image URL')
+        .max(2048, 'Image URL cannot exceed 2048 characters'),
+    status: z.enum(['ACTIVE', 'INACTIVE']),
+    couponType: z.enum(['FIXED', 'PERCENTAGE']),
+    dealType: z.enum(['NOPOINTS', 'POINTS']),
+    isFeatured: z.boolean(),
+    couponCode: z
+        .string({
+            required_error: 'Coupon code is required',
+        })
+        .min(1, 'Coupon code cannot be empty')
+        .max(255, 'Coupon code cannot exceed 255 characters')
+        .trim(),
+    pointsToRedeem: z
+        .number({
+            required_error: 'Points to redeem is required',
+            invalid_type_error: 'Points to redeem must be a number',
+        })
+        .int('Points to redeem must be an integer')
+        .min(0, 'Points to redeem cannot be negative'),
+    startDate: z
+        .date({
+            required_error: 'Start date is required',
+            invalid_type_error: 'Start date must be a valid date',
+        }),
+    endDate: z
+        .date({
+            required_error: 'End date is required',
+            invalid_type_error: 'End date must be a valid date',
+        }),
+    createdAt: z
+        .date({
+            required_error: 'Created at is required',
+            invalid_type_error: 'Created at must be a valid date',
+        }),
+    updatedAt: z
+        .date({
+            required_error: 'Updated at is required',
+            invalid_type_error: 'Updated at must be a valid date',
+        }),
+    organizationId: z
+        .string({
+            required_error: 'Organization ID is required',
+        })
+        .uuid('Organization ID must be a valid UUID'),
+});
+
 export const materialUpdateSchema = materialSchema.partial();
 
 export const binSchema = z.object({

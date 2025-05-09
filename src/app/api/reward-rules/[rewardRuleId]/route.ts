@@ -1,5 +1,5 @@
 import { auth } from '@/lib/auth';
-import { prisma } from '@/lib/prisma';
+import prisma from '@/lib/prisma';
 import { getSession } from '@/lib/servers/sessions';
 import { rewardRuleUpdateSchema } from '@/schemas/schema';
 import { NextRequest, NextResponse } from 'next/server';

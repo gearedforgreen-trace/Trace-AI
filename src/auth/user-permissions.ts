@@ -19,6 +19,13 @@ export const material = [
   'list',
   'detail',
 ] as const;
+export const coupon = [
+  'create',
+  'update',
+  'delete',
+  'list',
+  'detail',
+] as const;
 
 export const bin = ['create', 'update', 'delete', 'list', 'detail'] as const;
 
@@ -32,6 +39,7 @@ export const statement = {
   store,
   rewardRule,
   material,
+  coupon,
   bin,
 } as const;
 
@@ -43,12 +51,14 @@ export const admin = ac.newRole({
   store: [...statement.store],
   rewardRule: [...statement.rewardRule],
   material: [...statement.material],
+  coupon: [...statement.coupon],
   bin: [...statement.bin],
 });
 
 export const user = ac.newRole({
-  store: [],
+  store: ['list', 'detail'],
   rewardRule: [],
-  material: [],
-  bin: [],
+  material: ['list', 'detail'],
+  bin: ['list', 'detail'],
+  coupon: ['list', 'detail'],
 });

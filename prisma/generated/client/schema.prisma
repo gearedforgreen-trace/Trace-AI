@@ -274,8 +274,8 @@ model Coupon {
 
 model FavoriteCouponList {
   id        String   @id @default(ulid()) // Unique identifier
+  user      User     @relation(fields: [userId], references: [id])
   userId    String
-  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   couponId  String
   coupon    Coupon   @relation(fields: [couponId], references: [id], onDelete: Cascade)
   createdAt DateTime @default(now()) // Timestamp for when the favorite was added
