@@ -36,7 +36,11 @@ model User {
   postalCode      String?
   status          String
 
-  state String?
+  state              String?
+  FavoriteCouponList FavoriteCouponList[]
+  RedeemHistory      RedeemHistory[]
+  RecycleHistory     RecycleHistory[]
+  UserTotalPoint     UserTotalPoint[]
 
   @@unique([email])
   @@unique([username])
@@ -100,6 +104,7 @@ model Organization {
   members     Member[]
   invitations Invitation[]
   stores      Store[]
+  Coupon      Coupon[]
 
   @@unique([slug])
   @@map("organization")
@@ -192,6 +197,36 @@ model RewardRules {
   @@map("reward_rules")
 }
 
+model RedeemHistory {
+  id          String   @id @default(uuid()) // Unique identifier
+  couponId    String
+  userId      String
+  points      Int
+  description String?
+  createdAt   DateTime @default(now()) // Timestamp for record creation
+  updatedAt   DateTime @updatedAt // Auto-updated timestamp
+  User        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model RecycleHistory {
+  id        String   @id @default(uuid()) // Unique identifier
+  userId    String
+  points    Int
+  mediaUrl  String?
+  createdAt DateTime @default(now()) // Timestamp for record creation
+  updatedAt DateTime @updatedAt // Auto-updated timestamp
+  User      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model UserTotalPoint {
+  id          String @id @default(ulid()) // Unique identifier
+  userId      String @unique
+  user        User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  totalPoints Int    @default(0) // Tracks the user's total points
+
+  @@map("user_total_point")
+}
+
 enum BinStatus {
   ACTIVE
   INACTIVE
@@ -213,4 +248,59 @@ model Bin {
   updatedAt   DateTime  @updatedAt
 
   @@map("bin")
+}
+
+model Coupon {
+  id                 String               @id @default(ulid()) // Unique identifier
+  name               String
+  description        String?
+  imageUrl           String // URL of the image
+  status             Status               @default(ACTIVE) // Enum for status
+  couponType         CouponType // Enum for coupon type
+  dealType           DealType // Enum for deal type
+  isFeatured         Boolean // Flag to mark as featured
+  couponCode         String
+  pointsToRedeem     Int
+  startDate          DateTime
+  endDate            DateTime
+  createdAt          DateTime             @default(now()) // Timestamp for record creation
+  updatedAt          DateTime             @updatedAt // Auto-updated timestamp
+  organizationId     String
+  organization       Organization         @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  FavoriteCouponList FavoriteCouponList[]
+
+  @@map("coupon")
+}
+
+model FavoriteCouponList {
+  id        String   @id @default(ulid()) // Unique identifier
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  couponId  String
+  coupon    Coupon   @relation(fields: [couponId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now()) // Timestamp for when the favorite was added
+
+  @@unique([userId, couponId]) // Ensures a user cannot favorite the same coupon multiple times
+  @@map("favorite_coupon_list")
+}
+
+enum Status {
+  ACTIVE
+  INACTIVE
+
+  @@map("status")
+}
+
+enum CouponType {
+  FIXED
+  PERCENTAGE
+
+  @@map("coupon_type")
+}
+
+enum DealType {
+  NOPOINTS
+  POINTS
+
+  @@map("deal_type")
 }

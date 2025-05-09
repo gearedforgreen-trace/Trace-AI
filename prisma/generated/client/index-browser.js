@@ -244,6 +244,31 @@ exports.Prisma.RewardRulesScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.RedeemHistoryScalarFieldEnum = {
+  id: 'id',
+  couponId: 'couponId',
+  userId: 'userId',
+  points: 'points',
+  description: 'description',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.RecycleHistoryScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  points: 'points',
+  mediaUrl: 'mediaUrl',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.UserTotalPointScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  totalPoints: 'totalPoints'
+};
+
 exports.Prisma.BinScalarFieldEnum = {
   id: 'id',
   number: 'number',
@@ -254,6 +279,31 @@ exports.Prisma.BinScalarFieldEnum = {
   status: 'status',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
+};
+
+exports.Prisma.CouponScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  description: 'description',
+  imageUrl: 'imageUrl',
+  status: 'status',
+  couponType: 'couponType',
+  dealType: 'dealType',
+  isFeatured: 'isFeatured',
+  couponCode: 'couponCode',
+  pointsToRedeem: 'pointsToRedeem',
+  startDate: 'startDate',
+  endDate: 'endDate',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  organizationId: 'organizationId'
+};
+
+exports.Prisma.FavoriteCouponListScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  couponId: 'couponId',
+  createdAt: 'createdAt'
 };
 
 exports.Prisma.SortOrder = {
@@ -280,6 +330,21 @@ exports.BinStatus = exports.$Enums.BinStatus = {
   INACTIVE: 'INACTIVE'
 };
 
+exports.Status = exports.$Enums.Status = {
+  ACTIVE: 'ACTIVE',
+  INACTIVE: 'INACTIVE'
+};
+
+exports.CouponType = exports.$Enums.CouponType = {
+  FIXED: 'FIXED',
+  PERCENTAGE: 'PERCENTAGE'
+};
+
+exports.DealType = exports.$Enums.DealType = {
+  NOPOINTS: 'NOPOINTS',
+  POINTS: 'POINTS'
+};
+
 exports.Prisma.ModelName = {
   User: 'User',
   Session: 'Session',
@@ -291,7 +356,12 @@ exports.Prisma.ModelName = {
   Store: 'Store',
   Material: 'Material',
   RewardRules: 'RewardRules',
-  Bin: 'Bin'
+  RedeemHistory: 'RedeemHistory',
+  RecycleHistory: 'RecycleHistory',
+  UserTotalPoint: 'UserTotalPoint',
+  Bin: 'Bin',
+  Coupon: 'Coupon',
+  FavoriteCouponList: 'FavoriteCouponList'
 };
 
 /**

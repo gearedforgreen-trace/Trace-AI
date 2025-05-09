@@ -64,10 +64,35 @@ export type Material = $Result.DefaultSelection<Prisma.$MaterialPayload>
  */
 export type RewardRules = $Result.DefaultSelection<Prisma.$RewardRulesPayload>
 /**
+ * Model RedeemHistory
+ * 
+ */
+export type RedeemHistory = $Result.DefaultSelection<Prisma.$RedeemHistoryPayload>
+/**
+ * Model RecycleHistory
+ * 
+ */
+export type RecycleHistory = $Result.DefaultSelection<Prisma.$RecycleHistoryPayload>
+/**
+ * Model UserTotalPoint
+ * 
+ */
+export type UserTotalPoint = $Result.DefaultSelection<Prisma.$UserTotalPointPayload>
+/**
  * Model Bin
  * 
  */
 export type Bin = $Result.DefaultSelection<Prisma.$BinPayload>
+/**
+ * Model Coupon
+ * 
+ */
+export type Coupon = $Result.DefaultSelection<Prisma.$CouponPayload>
+/**
+ * Model FavoriteCouponList
+ * 
+ */
+export type FavoriteCouponList = $Result.DefaultSelection<Prisma.$FavoriteCouponListPayload>
 
 /**
  * Enums
@@ -88,6 +113,30 @@ export const BinStatus: {
 
 export type BinStatus = (typeof BinStatus)[keyof typeof BinStatus]
 
+
+export const Status: {
+  ACTIVE: 'ACTIVE',
+  INACTIVE: 'INACTIVE'
+};
+
+export type Status = (typeof Status)[keyof typeof Status]
+
+
+export const CouponType: {
+  FIXED: 'FIXED',
+  PERCENTAGE: 'PERCENTAGE'
+};
+
+export type CouponType = (typeof CouponType)[keyof typeof CouponType]
+
+
+export const DealType: {
+  NOPOINTS: 'NOPOINTS',
+  POINTS: 'POINTS'
+};
+
+export type DealType = (typeof DealType)[keyof typeof DealType]
+
 }
 
 export type StoreStatus = $Enums.StoreStatus
@@ -97,6 +146,18 @@ export const StoreStatus: typeof $Enums.StoreStatus
 export type BinStatus = $Enums.BinStatus
 
 export const BinStatus: typeof $Enums.BinStatus
+
+export type Status = $Enums.Status
+
+export const Status: typeof $Enums.Status
+
+export type CouponType = $Enums.CouponType
+
+export const CouponType: typeof $Enums.CouponType
+
+export type DealType = $Enums.DealType
+
+export const DealType: typeof $Enums.DealType
 
 /**
  * ##  Prisma Client ʲˢ
@@ -324,6 +385,36 @@ export class PrismaClient<
   get rewardRules(): Prisma.RewardRulesDelegate<ExtArgs, ClientOptions>;
 
   /**
+   * `prisma.redeemHistory`: Exposes CRUD operations for the **RedeemHistory** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more RedeemHistories
+    * const redeemHistories = await prisma.redeemHistory.findMany()
+    * ```
+    */
+  get redeemHistory(): Prisma.RedeemHistoryDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.recycleHistory`: Exposes CRUD operations for the **RecycleHistory** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more RecycleHistories
+    * const recycleHistories = await prisma.recycleHistory.findMany()
+    * ```
+    */
+  get recycleHistory(): Prisma.RecycleHistoryDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.userTotalPoint`: Exposes CRUD operations for the **UserTotalPoint** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more UserTotalPoints
+    * const userTotalPoints = await prisma.userTotalPoint.findMany()
+    * ```
+    */
+  get userTotalPoint(): Prisma.UserTotalPointDelegate<ExtArgs, ClientOptions>;
+
+  /**
    * `prisma.bin`: Exposes CRUD operations for the **Bin** model.
     * Example usage:
     * ```ts
@@ -332,6 +423,26 @@ export class PrismaClient<
     * ```
     */
   get bin(): Prisma.BinDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.coupon`: Exposes CRUD operations for the **Coupon** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Coupons
+    * const coupons = await prisma.coupon.findMany()
+    * ```
+    */
+  get coupon(): Prisma.CouponDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.favoriteCouponList`: Exposes CRUD operations for the **FavoriteCouponList** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more FavoriteCouponLists
+    * const favoriteCouponLists = await prisma.favoriteCouponList.findMany()
+    * ```
+    */
+  get favoriteCouponList(): Prisma.FavoriteCouponListDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -782,7 +893,12 @@ export namespace Prisma {
     Store: 'Store',
     Material: 'Material',
     RewardRules: 'RewardRules',
-    Bin: 'Bin'
+    RedeemHistory: 'RedeemHistory',
+    RecycleHistory: 'RecycleHistory',
+    UserTotalPoint: 'UserTotalPoint',
+    Bin: 'Bin',
+    Coupon: 'Coupon',
+    FavoriteCouponList: 'FavoriteCouponList'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -801,7 +917,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "session" | "account" | "verification" | "organization" | "member" | "invitation" | "store" | "material" | "rewardRules" | "bin"
+      modelProps: "user" | "session" | "account" | "verification" | "organization" | "member" | "invitation" | "store" | "material" | "rewardRules" | "redeemHistory" | "recycleHistory" | "userTotalPoint" | "bin" | "coupon" | "favoriteCouponList"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1545,6 +1661,228 @@ export namespace Prisma {
           }
         }
       }
+      RedeemHistory: {
+        payload: Prisma.$RedeemHistoryPayload<ExtArgs>
+        fields: Prisma.RedeemHistoryFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.RedeemHistoryFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RedeemHistoryPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.RedeemHistoryFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RedeemHistoryPayload>
+          }
+          findFirst: {
+            args: Prisma.RedeemHistoryFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RedeemHistoryPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.RedeemHistoryFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RedeemHistoryPayload>
+          }
+          findMany: {
+            args: Prisma.RedeemHistoryFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RedeemHistoryPayload>[]
+          }
+          create: {
+            args: Prisma.RedeemHistoryCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RedeemHistoryPayload>
+          }
+          createMany: {
+            args: Prisma.RedeemHistoryCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.RedeemHistoryCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RedeemHistoryPayload>[]
+          }
+          delete: {
+            args: Prisma.RedeemHistoryDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RedeemHistoryPayload>
+          }
+          update: {
+            args: Prisma.RedeemHistoryUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RedeemHistoryPayload>
+          }
+          deleteMany: {
+            args: Prisma.RedeemHistoryDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.RedeemHistoryUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.RedeemHistoryUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RedeemHistoryPayload>[]
+          }
+          upsert: {
+            args: Prisma.RedeemHistoryUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RedeemHistoryPayload>
+          }
+          aggregate: {
+            args: Prisma.RedeemHistoryAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateRedeemHistory>
+          }
+          groupBy: {
+            args: Prisma.RedeemHistoryGroupByArgs<ExtArgs>
+            result: $Utils.Optional<RedeemHistoryGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.RedeemHistoryCountArgs<ExtArgs>
+            result: $Utils.Optional<RedeemHistoryCountAggregateOutputType> | number
+          }
+        }
+      }
+      RecycleHistory: {
+        payload: Prisma.$RecycleHistoryPayload<ExtArgs>
+        fields: Prisma.RecycleHistoryFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.RecycleHistoryFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RecycleHistoryPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.RecycleHistoryFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RecycleHistoryPayload>
+          }
+          findFirst: {
+            args: Prisma.RecycleHistoryFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RecycleHistoryPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.RecycleHistoryFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RecycleHistoryPayload>
+          }
+          findMany: {
+            args: Prisma.RecycleHistoryFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RecycleHistoryPayload>[]
+          }
+          create: {
+            args: Prisma.RecycleHistoryCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RecycleHistoryPayload>
+          }
+          createMany: {
+            args: Prisma.RecycleHistoryCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.RecycleHistoryCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RecycleHistoryPayload>[]
+          }
+          delete: {
+            args: Prisma.RecycleHistoryDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RecycleHistoryPayload>
+          }
+          update: {
+            args: Prisma.RecycleHistoryUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RecycleHistoryPayload>
+          }
+          deleteMany: {
+            args: Prisma.RecycleHistoryDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.RecycleHistoryUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.RecycleHistoryUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RecycleHistoryPayload>[]
+          }
+          upsert: {
+            args: Prisma.RecycleHistoryUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RecycleHistoryPayload>
+          }
+          aggregate: {
+            args: Prisma.RecycleHistoryAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateRecycleHistory>
+          }
+          groupBy: {
+            args: Prisma.RecycleHistoryGroupByArgs<ExtArgs>
+            result: $Utils.Optional<RecycleHistoryGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.RecycleHistoryCountArgs<ExtArgs>
+            result: $Utils.Optional<RecycleHistoryCountAggregateOutputType> | number
+          }
+        }
+      }
+      UserTotalPoint: {
+        payload: Prisma.$UserTotalPointPayload<ExtArgs>
+        fields: Prisma.UserTotalPointFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.UserTotalPointFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserTotalPointPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.UserTotalPointFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserTotalPointPayload>
+          }
+          findFirst: {
+            args: Prisma.UserTotalPointFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserTotalPointPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.UserTotalPointFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserTotalPointPayload>
+          }
+          findMany: {
+            args: Prisma.UserTotalPointFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserTotalPointPayload>[]
+          }
+          create: {
+            args: Prisma.UserTotalPointCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserTotalPointPayload>
+          }
+          createMany: {
+            args: Prisma.UserTotalPointCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.UserTotalPointCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserTotalPointPayload>[]
+          }
+          delete: {
+            args: Prisma.UserTotalPointDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserTotalPointPayload>
+          }
+          update: {
+            args: Prisma.UserTotalPointUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserTotalPointPayload>
+          }
+          deleteMany: {
+            args: Prisma.UserTotalPointDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.UserTotalPointUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.UserTotalPointUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserTotalPointPayload>[]
+          }
+          upsert: {
+            args: Prisma.UserTotalPointUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserTotalPointPayload>
+          }
+          aggregate: {
+            args: Prisma.UserTotalPointAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateUserTotalPoint>
+          }
+          groupBy: {
+            args: Prisma.UserTotalPointGroupByArgs<ExtArgs>
+            result: $Utils.Optional<UserTotalPointGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.UserTotalPointCountArgs<ExtArgs>
+            result: $Utils.Optional<UserTotalPointCountAggregateOutputType> | number
+          }
+        }
+      }
       Bin: {
         payload: Prisma.$BinPayload<ExtArgs>
         fields: Prisma.BinFieldRefs
@@ -1616,6 +1954,154 @@ export namespace Prisma {
           count: {
             args: Prisma.BinCountArgs<ExtArgs>
             result: $Utils.Optional<BinCountAggregateOutputType> | number
+          }
+        }
+      }
+      Coupon: {
+        payload: Prisma.$CouponPayload<ExtArgs>
+        fields: Prisma.CouponFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.CouponFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CouponPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.CouponFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CouponPayload>
+          }
+          findFirst: {
+            args: Prisma.CouponFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CouponPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.CouponFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CouponPayload>
+          }
+          findMany: {
+            args: Prisma.CouponFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CouponPayload>[]
+          }
+          create: {
+            args: Prisma.CouponCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CouponPayload>
+          }
+          createMany: {
+            args: Prisma.CouponCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.CouponCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CouponPayload>[]
+          }
+          delete: {
+            args: Prisma.CouponDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CouponPayload>
+          }
+          update: {
+            args: Prisma.CouponUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CouponPayload>
+          }
+          deleteMany: {
+            args: Prisma.CouponDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.CouponUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.CouponUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CouponPayload>[]
+          }
+          upsert: {
+            args: Prisma.CouponUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CouponPayload>
+          }
+          aggregate: {
+            args: Prisma.CouponAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateCoupon>
+          }
+          groupBy: {
+            args: Prisma.CouponGroupByArgs<ExtArgs>
+            result: $Utils.Optional<CouponGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.CouponCountArgs<ExtArgs>
+            result: $Utils.Optional<CouponCountAggregateOutputType> | number
+          }
+        }
+      }
+      FavoriteCouponList: {
+        payload: Prisma.$FavoriteCouponListPayload<ExtArgs>
+        fields: Prisma.FavoriteCouponListFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.FavoriteCouponListFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FavoriteCouponListPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.FavoriteCouponListFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FavoriteCouponListPayload>
+          }
+          findFirst: {
+            args: Prisma.FavoriteCouponListFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FavoriteCouponListPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.FavoriteCouponListFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FavoriteCouponListPayload>
+          }
+          findMany: {
+            args: Prisma.FavoriteCouponListFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FavoriteCouponListPayload>[]
+          }
+          create: {
+            args: Prisma.FavoriteCouponListCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FavoriteCouponListPayload>
+          }
+          createMany: {
+            args: Prisma.FavoriteCouponListCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.FavoriteCouponListCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FavoriteCouponListPayload>[]
+          }
+          delete: {
+            args: Prisma.FavoriteCouponListDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FavoriteCouponListPayload>
+          }
+          update: {
+            args: Prisma.FavoriteCouponListUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FavoriteCouponListPayload>
+          }
+          deleteMany: {
+            args: Prisma.FavoriteCouponListDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.FavoriteCouponListUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.FavoriteCouponListUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FavoriteCouponListPayload>[]
+          }
+          upsert: {
+            args: Prisma.FavoriteCouponListUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FavoriteCouponListPayload>
+          }
+          aggregate: {
+            args: Prisma.FavoriteCouponListAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateFavoriteCouponList>
+          }
+          groupBy: {
+            args: Prisma.FavoriteCouponListGroupByArgs<ExtArgs>
+            result: $Utils.Optional<FavoriteCouponListGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.FavoriteCouponListCountArgs<ExtArgs>
+            result: $Utils.Optional<FavoriteCouponListCountAggregateOutputType> | number
           }
         }
       }
@@ -1713,7 +2199,12 @@ export namespace Prisma {
     store?: StoreOmit
     material?: MaterialOmit
     rewardRules?: RewardRulesOmit
+    redeemHistory?: RedeemHistoryOmit
+    recycleHistory?: RecycleHistoryOmit
+    userTotalPoint?: UserTotalPointOmit
     bin?: BinOmit
+    coupon?: CouponOmit
+    favoriteCouponList?: FavoriteCouponListOmit
   }
 
   /* Types for Logging */
@@ -1812,6 +2303,10 @@ export namespace Prisma {
     accounts: number
     members: number
     invitations: number
+    FavoriteCouponList: number
+    RedeemHistory: number
+    RecycleHistory: number
+    UserTotalPoint: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -1819,6 +2314,10 @@ export namespace Prisma {
     accounts?: boolean | UserCountOutputTypeCountAccountsArgs
     members?: boolean | UserCountOutputTypeCountMembersArgs
     invitations?: boolean | UserCountOutputTypeCountInvitationsArgs
+    FavoriteCouponList?: boolean | UserCountOutputTypeCountFavoriteCouponListArgs
+    RedeemHistory?: boolean | UserCountOutputTypeCountRedeemHistoryArgs
+    RecycleHistory?: boolean | UserCountOutputTypeCountRecycleHistoryArgs
+    UserTotalPoint?: boolean | UserCountOutputTypeCountUserTotalPointArgs
   }
 
   // Custom InputTypes
@@ -1860,6 +2359,34 @@ export namespace Prisma {
     where?: InvitationWhereInput
   }
 
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountFavoriteCouponListArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FavoriteCouponListWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountRedeemHistoryArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: RedeemHistoryWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountRecycleHistoryArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: RecycleHistoryWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountUserTotalPointArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: UserTotalPointWhereInput
+  }
+
 
   /**
    * Count Type OrganizationCountOutputType
@@ -1869,12 +2396,14 @@ export namespace Prisma {
     members: number
     invitations: number
     stores: number
+    Coupon: number
   }
 
   export type OrganizationCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     members?: boolean | OrganizationCountOutputTypeCountMembersArgs
     invitations?: boolean | OrganizationCountOutputTypeCountInvitationsArgs
     stores?: boolean | OrganizationCountOutputTypeCountStoresArgs
+    Coupon?: boolean | OrganizationCountOutputTypeCountCouponArgs
   }
 
   // Custom InputTypes
@@ -1907,6 +2436,13 @@ export namespace Prisma {
    */
   export type OrganizationCountOutputTypeCountStoresArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: StoreWhereInput
+  }
+
+  /**
+   * OrganizationCountOutputType without action
+   */
+  export type OrganizationCountOutputTypeCountCouponArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CouponWhereInput
   }
 
 
@@ -2000,6 +2536,37 @@ export namespace Prisma {
    */
   export type RewardRulesCountOutputTypeCountMaterialsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: MaterialWhereInput
+  }
+
+
+  /**
+   * Count Type CouponCountOutputType
+   */
+
+  export type CouponCountOutputType = {
+    FavoriteCouponList: number
+  }
+
+  export type CouponCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    FavoriteCouponList?: boolean | CouponCountOutputTypeCountFavoriteCouponListArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * CouponCountOutputType without action
+   */
+  export type CouponCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CouponCountOutputType
+     */
+    select?: CouponCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * CouponCountOutputType without action
+   */
+  export type CouponCountOutputTypeCountFavoriteCouponListArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FavoriteCouponListWhereInput
   }
 
 
@@ -2279,6 +2846,10 @@ export namespace Prisma {
     accounts?: boolean | User$accountsArgs<ExtArgs>
     members?: boolean | User$membersArgs<ExtArgs>
     invitations?: boolean | User$invitationsArgs<ExtArgs>
+    FavoriteCouponList?: boolean | User$FavoriteCouponListArgs<ExtArgs>
+    RedeemHistory?: boolean | User$RedeemHistoryArgs<ExtArgs>
+    RecycleHistory?: boolean | User$RecycleHistoryArgs<ExtArgs>
+    UserTotalPoint?: boolean | User$UserTotalPointArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -2351,6 +2922,10 @@ export namespace Prisma {
     accounts?: boolean | User$accountsArgs<ExtArgs>
     members?: boolean | User$membersArgs<ExtArgs>
     invitations?: boolean | User$invitationsArgs<ExtArgs>
+    FavoriteCouponList?: boolean | User$FavoriteCouponListArgs<ExtArgs>
+    RedeemHistory?: boolean | User$RedeemHistoryArgs<ExtArgs>
+    RecycleHistory?: boolean | User$RecycleHistoryArgs<ExtArgs>
+    UserTotalPoint?: boolean | User$UserTotalPointArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -2363,6 +2938,10 @@ export namespace Prisma {
       accounts: Prisma.$AccountPayload<ExtArgs>[]
       members: Prisma.$MemberPayload<ExtArgs>[]
       invitations: Prisma.$InvitationPayload<ExtArgs>[]
+      FavoriteCouponList: Prisma.$FavoriteCouponListPayload<ExtArgs>[]
+      RedeemHistory: Prisma.$RedeemHistoryPayload<ExtArgs>[]
+      RecycleHistory: Prisma.$RecycleHistoryPayload<ExtArgs>[]
+      UserTotalPoint: Prisma.$UserTotalPointPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -2781,6 +3360,10 @@ export namespace Prisma {
     accounts<T extends User$accountsArgs<ExtArgs> = {}>(args?: Subset<T, User$accountsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AccountPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     members<T extends User$membersArgs<ExtArgs> = {}>(args?: Subset<T, User$membersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MemberPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     invitations<T extends User$invitationsArgs<ExtArgs> = {}>(args?: Subset<T, User$invitationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$InvitationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    FavoriteCouponList<T extends User$FavoriteCouponListArgs<ExtArgs> = {}>(args?: Subset<T, User$FavoriteCouponListArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FavoriteCouponListPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    RedeemHistory<T extends User$RedeemHistoryArgs<ExtArgs> = {}>(args?: Subset<T, User$RedeemHistoryArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RedeemHistoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    RecycleHistory<T extends User$RecycleHistoryArgs<ExtArgs> = {}>(args?: Subset<T, User$RecycleHistoryArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RecycleHistoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    UserTotalPoint<T extends User$UserTotalPointArgs<ExtArgs> = {}>(args?: Subset<T, User$UserTotalPointArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserTotalPointPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3309,6 +3892,102 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: InvitationScalarFieldEnum | InvitationScalarFieldEnum[]
+  }
+
+  /**
+   * User.FavoriteCouponList
+   */
+  export type User$FavoriteCouponListArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FavoriteCouponList
+     */
+    select?: FavoriteCouponListSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FavoriteCouponList
+     */
+    omit?: FavoriteCouponListOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FavoriteCouponListInclude<ExtArgs> | null
+    where?: FavoriteCouponListWhereInput
+    orderBy?: FavoriteCouponListOrderByWithRelationInput | FavoriteCouponListOrderByWithRelationInput[]
+    cursor?: FavoriteCouponListWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: FavoriteCouponListScalarFieldEnum | FavoriteCouponListScalarFieldEnum[]
+  }
+
+  /**
+   * User.RedeemHistory
+   */
+  export type User$RedeemHistoryArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RedeemHistory
+     */
+    select?: RedeemHistorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RedeemHistory
+     */
+    omit?: RedeemHistoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RedeemHistoryInclude<ExtArgs> | null
+    where?: RedeemHistoryWhereInput
+    orderBy?: RedeemHistoryOrderByWithRelationInput | RedeemHistoryOrderByWithRelationInput[]
+    cursor?: RedeemHistoryWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: RedeemHistoryScalarFieldEnum | RedeemHistoryScalarFieldEnum[]
+  }
+
+  /**
+   * User.RecycleHistory
+   */
+  export type User$RecycleHistoryArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RecycleHistory
+     */
+    select?: RecycleHistorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RecycleHistory
+     */
+    omit?: RecycleHistoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RecycleHistoryInclude<ExtArgs> | null
+    where?: RecycleHistoryWhereInput
+    orderBy?: RecycleHistoryOrderByWithRelationInput | RecycleHistoryOrderByWithRelationInput[]
+    cursor?: RecycleHistoryWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: RecycleHistoryScalarFieldEnum | RecycleHistoryScalarFieldEnum[]
+  }
+
+  /**
+   * User.UserTotalPoint
+   */
+  export type User$UserTotalPointArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserTotalPoint
+     */
+    select?: UserTotalPointSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserTotalPoint
+     */
+    omit?: UserTotalPointOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserTotalPointInclude<ExtArgs> | null
+    where?: UserTotalPointWhereInput
+    orderBy?: UserTotalPointOrderByWithRelationInput | UserTotalPointOrderByWithRelationInput[]
+    cursor?: UserTotalPointWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: UserTotalPointScalarFieldEnum | UserTotalPointScalarFieldEnum[]
   }
 
   /**
@@ -6798,6 +7477,7 @@ export namespace Prisma {
     members?: boolean | Organization$membersArgs<ExtArgs>
     invitations?: boolean | Organization$invitationsArgs<ExtArgs>
     stores?: boolean | Organization$storesArgs<ExtArgs>
+    Coupon?: boolean | Organization$CouponArgs<ExtArgs>
     _count?: boolean | OrganizationCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["organization"]>
 
@@ -6833,6 +7513,7 @@ export namespace Prisma {
     members?: boolean | Organization$membersArgs<ExtArgs>
     invitations?: boolean | Organization$invitationsArgs<ExtArgs>
     stores?: boolean | Organization$storesArgs<ExtArgs>
+    Coupon?: boolean | Organization$CouponArgs<ExtArgs>
     _count?: boolean | OrganizationCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type OrganizationIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -6844,6 +7525,7 @@ export namespace Prisma {
       members: Prisma.$MemberPayload<ExtArgs>[]
       invitations: Prisma.$InvitationPayload<ExtArgs>[]
       stores: Prisma.$StorePayload<ExtArgs>[]
+      Coupon: Prisma.$CouponPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -7249,6 +7931,7 @@ export namespace Prisma {
     members<T extends Organization$membersArgs<ExtArgs> = {}>(args?: Subset<T, Organization$membersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MemberPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     invitations<T extends Organization$invitationsArgs<ExtArgs> = {}>(args?: Subset<T, Organization$invitationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$InvitationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     stores<T extends Organization$storesArgs<ExtArgs> = {}>(args?: Subset<T, Organization$storesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StorePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    Coupon<T extends Organization$CouponArgs<ExtArgs> = {}>(args?: Subset<T, Organization$CouponArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CouponPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -7741,6 +8424,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: StoreScalarFieldEnum | StoreScalarFieldEnum[]
+  }
+
+  /**
+   * Organization.Coupon
+   */
+  export type Organization$CouponArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Coupon
+     */
+    select?: CouponSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Coupon
+     */
+    omit?: CouponOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CouponInclude<ExtArgs> | null
+    where?: CouponWhereInput
+    orderBy?: CouponOrderByWithRelationInput | CouponOrderByWithRelationInput[]
+    cursor?: CouponWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: CouponScalarFieldEnum | CouponScalarFieldEnum[]
   }
 
   /**
@@ -13463,6 +14170,3295 @@ export namespace Prisma {
 
 
   /**
+   * Model RedeemHistory
+   */
+
+  export type AggregateRedeemHistory = {
+    _count: RedeemHistoryCountAggregateOutputType | null
+    _avg: RedeemHistoryAvgAggregateOutputType | null
+    _sum: RedeemHistorySumAggregateOutputType | null
+    _min: RedeemHistoryMinAggregateOutputType | null
+    _max: RedeemHistoryMaxAggregateOutputType | null
+  }
+
+  export type RedeemHistoryAvgAggregateOutputType = {
+    points: number | null
+  }
+
+  export type RedeemHistorySumAggregateOutputType = {
+    points: number | null
+  }
+
+  export type RedeemHistoryMinAggregateOutputType = {
+    id: string | null
+    couponId: string | null
+    userId: string | null
+    points: number | null
+    description: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type RedeemHistoryMaxAggregateOutputType = {
+    id: string | null
+    couponId: string | null
+    userId: string | null
+    points: number | null
+    description: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type RedeemHistoryCountAggregateOutputType = {
+    id: number
+    couponId: number
+    userId: number
+    points: number
+    description: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type RedeemHistoryAvgAggregateInputType = {
+    points?: true
+  }
+
+  export type RedeemHistorySumAggregateInputType = {
+    points?: true
+  }
+
+  export type RedeemHistoryMinAggregateInputType = {
+    id?: true
+    couponId?: true
+    userId?: true
+    points?: true
+    description?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type RedeemHistoryMaxAggregateInputType = {
+    id?: true
+    couponId?: true
+    userId?: true
+    points?: true
+    description?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type RedeemHistoryCountAggregateInputType = {
+    id?: true
+    couponId?: true
+    userId?: true
+    points?: true
+    description?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type RedeemHistoryAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which RedeemHistory to aggregate.
+     */
+    where?: RedeemHistoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RedeemHistories to fetch.
+     */
+    orderBy?: RedeemHistoryOrderByWithRelationInput | RedeemHistoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: RedeemHistoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RedeemHistories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RedeemHistories.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned RedeemHistories
+    **/
+    _count?: true | RedeemHistoryCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: RedeemHistoryAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: RedeemHistorySumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: RedeemHistoryMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: RedeemHistoryMaxAggregateInputType
+  }
+
+  export type GetRedeemHistoryAggregateType<T extends RedeemHistoryAggregateArgs> = {
+        [P in keyof T & keyof AggregateRedeemHistory]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateRedeemHistory[P]>
+      : GetScalarType<T[P], AggregateRedeemHistory[P]>
+  }
+
+
+
+
+  export type RedeemHistoryGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: RedeemHistoryWhereInput
+    orderBy?: RedeemHistoryOrderByWithAggregationInput | RedeemHistoryOrderByWithAggregationInput[]
+    by: RedeemHistoryScalarFieldEnum[] | RedeemHistoryScalarFieldEnum
+    having?: RedeemHistoryScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: RedeemHistoryCountAggregateInputType | true
+    _avg?: RedeemHistoryAvgAggregateInputType
+    _sum?: RedeemHistorySumAggregateInputType
+    _min?: RedeemHistoryMinAggregateInputType
+    _max?: RedeemHistoryMaxAggregateInputType
+  }
+
+  export type RedeemHistoryGroupByOutputType = {
+    id: string
+    couponId: string
+    userId: string
+    points: number
+    description: string | null
+    createdAt: Date
+    updatedAt: Date
+    _count: RedeemHistoryCountAggregateOutputType | null
+    _avg: RedeemHistoryAvgAggregateOutputType | null
+    _sum: RedeemHistorySumAggregateOutputType | null
+    _min: RedeemHistoryMinAggregateOutputType | null
+    _max: RedeemHistoryMaxAggregateOutputType | null
+  }
+
+  type GetRedeemHistoryGroupByPayload<T extends RedeemHistoryGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<RedeemHistoryGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof RedeemHistoryGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], RedeemHistoryGroupByOutputType[P]>
+            : GetScalarType<T[P], RedeemHistoryGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type RedeemHistorySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    couponId?: boolean
+    userId?: boolean
+    points?: boolean
+    description?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    User?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["redeemHistory"]>
+
+  export type RedeemHistorySelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    couponId?: boolean
+    userId?: boolean
+    points?: boolean
+    description?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    User?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["redeemHistory"]>
+
+  export type RedeemHistorySelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    couponId?: boolean
+    userId?: boolean
+    points?: boolean
+    description?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    User?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["redeemHistory"]>
+
+  export type RedeemHistorySelectScalar = {
+    id?: boolean
+    couponId?: boolean
+    userId?: boolean
+    points?: boolean
+    description?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type RedeemHistoryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "couponId" | "userId" | "points" | "description" | "createdAt" | "updatedAt", ExtArgs["result"]["redeemHistory"]>
+  export type RedeemHistoryInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    User?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type RedeemHistoryIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    User?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type RedeemHistoryIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    User?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $RedeemHistoryPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "RedeemHistory"
+    objects: {
+      User: Prisma.$UserPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      couponId: string
+      userId: string
+      points: number
+      description: string | null
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["redeemHistory"]>
+    composites: {}
+  }
+
+  type RedeemHistoryGetPayload<S extends boolean | null | undefined | RedeemHistoryDefaultArgs> = $Result.GetResult<Prisma.$RedeemHistoryPayload, S>
+
+  type RedeemHistoryCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<RedeemHistoryFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: RedeemHistoryCountAggregateInputType | true
+    }
+
+  export interface RedeemHistoryDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['RedeemHistory'], meta: { name: 'RedeemHistory' } }
+    /**
+     * Find zero or one RedeemHistory that matches the filter.
+     * @param {RedeemHistoryFindUniqueArgs} args - Arguments to find a RedeemHistory
+     * @example
+     * // Get one RedeemHistory
+     * const redeemHistory = await prisma.redeemHistory.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends RedeemHistoryFindUniqueArgs>(args: SelectSubset<T, RedeemHistoryFindUniqueArgs<ExtArgs>>): Prisma__RedeemHistoryClient<$Result.GetResult<Prisma.$RedeemHistoryPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one RedeemHistory that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {RedeemHistoryFindUniqueOrThrowArgs} args - Arguments to find a RedeemHistory
+     * @example
+     * // Get one RedeemHistory
+     * const redeemHistory = await prisma.redeemHistory.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends RedeemHistoryFindUniqueOrThrowArgs>(args: SelectSubset<T, RedeemHistoryFindUniqueOrThrowArgs<ExtArgs>>): Prisma__RedeemHistoryClient<$Result.GetResult<Prisma.$RedeemHistoryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first RedeemHistory that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RedeemHistoryFindFirstArgs} args - Arguments to find a RedeemHistory
+     * @example
+     * // Get one RedeemHistory
+     * const redeemHistory = await prisma.redeemHistory.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends RedeemHistoryFindFirstArgs>(args?: SelectSubset<T, RedeemHistoryFindFirstArgs<ExtArgs>>): Prisma__RedeemHistoryClient<$Result.GetResult<Prisma.$RedeemHistoryPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first RedeemHistory that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RedeemHistoryFindFirstOrThrowArgs} args - Arguments to find a RedeemHistory
+     * @example
+     * // Get one RedeemHistory
+     * const redeemHistory = await prisma.redeemHistory.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends RedeemHistoryFindFirstOrThrowArgs>(args?: SelectSubset<T, RedeemHistoryFindFirstOrThrowArgs<ExtArgs>>): Prisma__RedeemHistoryClient<$Result.GetResult<Prisma.$RedeemHistoryPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more RedeemHistories that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RedeemHistoryFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all RedeemHistories
+     * const redeemHistories = await prisma.redeemHistory.findMany()
+     * 
+     * // Get first 10 RedeemHistories
+     * const redeemHistories = await prisma.redeemHistory.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const redeemHistoryWithIdOnly = await prisma.redeemHistory.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends RedeemHistoryFindManyArgs>(args?: SelectSubset<T, RedeemHistoryFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RedeemHistoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a RedeemHistory.
+     * @param {RedeemHistoryCreateArgs} args - Arguments to create a RedeemHistory.
+     * @example
+     * // Create one RedeemHistory
+     * const RedeemHistory = await prisma.redeemHistory.create({
+     *   data: {
+     *     // ... data to create a RedeemHistory
+     *   }
+     * })
+     * 
+     */
+    create<T extends RedeemHistoryCreateArgs>(args: SelectSubset<T, RedeemHistoryCreateArgs<ExtArgs>>): Prisma__RedeemHistoryClient<$Result.GetResult<Prisma.$RedeemHistoryPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many RedeemHistories.
+     * @param {RedeemHistoryCreateManyArgs} args - Arguments to create many RedeemHistories.
+     * @example
+     * // Create many RedeemHistories
+     * const redeemHistory = await prisma.redeemHistory.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends RedeemHistoryCreateManyArgs>(args?: SelectSubset<T, RedeemHistoryCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many RedeemHistories and returns the data saved in the database.
+     * @param {RedeemHistoryCreateManyAndReturnArgs} args - Arguments to create many RedeemHistories.
+     * @example
+     * // Create many RedeemHistories
+     * const redeemHistory = await prisma.redeemHistory.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many RedeemHistories and only return the `id`
+     * const redeemHistoryWithIdOnly = await prisma.redeemHistory.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends RedeemHistoryCreateManyAndReturnArgs>(args?: SelectSubset<T, RedeemHistoryCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RedeemHistoryPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a RedeemHistory.
+     * @param {RedeemHistoryDeleteArgs} args - Arguments to delete one RedeemHistory.
+     * @example
+     * // Delete one RedeemHistory
+     * const RedeemHistory = await prisma.redeemHistory.delete({
+     *   where: {
+     *     // ... filter to delete one RedeemHistory
+     *   }
+     * })
+     * 
+     */
+    delete<T extends RedeemHistoryDeleteArgs>(args: SelectSubset<T, RedeemHistoryDeleteArgs<ExtArgs>>): Prisma__RedeemHistoryClient<$Result.GetResult<Prisma.$RedeemHistoryPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one RedeemHistory.
+     * @param {RedeemHistoryUpdateArgs} args - Arguments to update one RedeemHistory.
+     * @example
+     * // Update one RedeemHistory
+     * const redeemHistory = await prisma.redeemHistory.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends RedeemHistoryUpdateArgs>(args: SelectSubset<T, RedeemHistoryUpdateArgs<ExtArgs>>): Prisma__RedeemHistoryClient<$Result.GetResult<Prisma.$RedeemHistoryPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more RedeemHistories.
+     * @param {RedeemHistoryDeleteManyArgs} args - Arguments to filter RedeemHistories to delete.
+     * @example
+     * // Delete a few RedeemHistories
+     * const { count } = await prisma.redeemHistory.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends RedeemHistoryDeleteManyArgs>(args?: SelectSubset<T, RedeemHistoryDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more RedeemHistories.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RedeemHistoryUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many RedeemHistories
+     * const redeemHistory = await prisma.redeemHistory.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends RedeemHistoryUpdateManyArgs>(args: SelectSubset<T, RedeemHistoryUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more RedeemHistories and returns the data updated in the database.
+     * @param {RedeemHistoryUpdateManyAndReturnArgs} args - Arguments to update many RedeemHistories.
+     * @example
+     * // Update many RedeemHistories
+     * const redeemHistory = await prisma.redeemHistory.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more RedeemHistories and only return the `id`
+     * const redeemHistoryWithIdOnly = await prisma.redeemHistory.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends RedeemHistoryUpdateManyAndReturnArgs>(args: SelectSubset<T, RedeemHistoryUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RedeemHistoryPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one RedeemHistory.
+     * @param {RedeemHistoryUpsertArgs} args - Arguments to update or create a RedeemHistory.
+     * @example
+     * // Update or create a RedeemHistory
+     * const redeemHistory = await prisma.redeemHistory.upsert({
+     *   create: {
+     *     // ... data to create a RedeemHistory
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the RedeemHistory we want to update
+     *   }
+     * })
+     */
+    upsert<T extends RedeemHistoryUpsertArgs>(args: SelectSubset<T, RedeemHistoryUpsertArgs<ExtArgs>>): Prisma__RedeemHistoryClient<$Result.GetResult<Prisma.$RedeemHistoryPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of RedeemHistories.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RedeemHistoryCountArgs} args - Arguments to filter RedeemHistories to count.
+     * @example
+     * // Count the number of RedeemHistories
+     * const count = await prisma.redeemHistory.count({
+     *   where: {
+     *     // ... the filter for the RedeemHistories we want to count
+     *   }
+     * })
+    **/
+    count<T extends RedeemHistoryCountArgs>(
+      args?: Subset<T, RedeemHistoryCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], RedeemHistoryCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a RedeemHistory.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RedeemHistoryAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends RedeemHistoryAggregateArgs>(args: Subset<T, RedeemHistoryAggregateArgs>): Prisma.PrismaPromise<GetRedeemHistoryAggregateType<T>>
+
+    /**
+     * Group by RedeemHistory.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RedeemHistoryGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends RedeemHistoryGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: RedeemHistoryGroupByArgs['orderBy'] }
+        : { orderBy?: RedeemHistoryGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, RedeemHistoryGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetRedeemHistoryGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the RedeemHistory model
+   */
+  readonly fields: RedeemHistoryFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for RedeemHistory.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__RedeemHistoryClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    User<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the RedeemHistory model
+   */
+  interface RedeemHistoryFieldRefs {
+    readonly id: FieldRef<"RedeemHistory", 'String'>
+    readonly couponId: FieldRef<"RedeemHistory", 'String'>
+    readonly userId: FieldRef<"RedeemHistory", 'String'>
+    readonly points: FieldRef<"RedeemHistory", 'Int'>
+    readonly description: FieldRef<"RedeemHistory", 'String'>
+    readonly createdAt: FieldRef<"RedeemHistory", 'DateTime'>
+    readonly updatedAt: FieldRef<"RedeemHistory", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * RedeemHistory findUnique
+   */
+  export type RedeemHistoryFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RedeemHistory
+     */
+    select?: RedeemHistorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RedeemHistory
+     */
+    omit?: RedeemHistoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RedeemHistoryInclude<ExtArgs> | null
+    /**
+     * Filter, which RedeemHistory to fetch.
+     */
+    where: RedeemHistoryWhereUniqueInput
+  }
+
+  /**
+   * RedeemHistory findUniqueOrThrow
+   */
+  export type RedeemHistoryFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RedeemHistory
+     */
+    select?: RedeemHistorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RedeemHistory
+     */
+    omit?: RedeemHistoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RedeemHistoryInclude<ExtArgs> | null
+    /**
+     * Filter, which RedeemHistory to fetch.
+     */
+    where: RedeemHistoryWhereUniqueInput
+  }
+
+  /**
+   * RedeemHistory findFirst
+   */
+  export type RedeemHistoryFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RedeemHistory
+     */
+    select?: RedeemHistorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RedeemHistory
+     */
+    omit?: RedeemHistoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RedeemHistoryInclude<ExtArgs> | null
+    /**
+     * Filter, which RedeemHistory to fetch.
+     */
+    where?: RedeemHistoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RedeemHistories to fetch.
+     */
+    orderBy?: RedeemHistoryOrderByWithRelationInput | RedeemHistoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for RedeemHistories.
+     */
+    cursor?: RedeemHistoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RedeemHistories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RedeemHistories.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of RedeemHistories.
+     */
+    distinct?: RedeemHistoryScalarFieldEnum | RedeemHistoryScalarFieldEnum[]
+  }
+
+  /**
+   * RedeemHistory findFirstOrThrow
+   */
+  export type RedeemHistoryFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RedeemHistory
+     */
+    select?: RedeemHistorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RedeemHistory
+     */
+    omit?: RedeemHistoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RedeemHistoryInclude<ExtArgs> | null
+    /**
+     * Filter, which RedeemHistory to fetch.
+     */
+    where?: RedeemHistoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RedeemHistories to fetch.
+     */
+    orderBy?: RedeemHistoryOrderByWithRelationInput | RedeemHistoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for RedeemHistories.
+     */
+    cursor?: RedeemHistoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RedeemHistories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RedeemHistories.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of RedeemHistories.
+     */
+    distinct?: RedeemHistoryScalarFieldEnum | RedeemHistoryScalarFieldEnum[]
+  }
+
+  /**
+   * RedeemHistory findMany
+   */
+  export type RedeemHistoryFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RedeemHistory
+     */
+    select?: RedeemHistorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RedeemHistory
+     */
+    omit?: RedeemHistoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RedeemHistoryInclude<ExtArgs> | null
+    /**
+     * Filter, which RedeemHistories to fetch.
+     */
+    where?: RedeemHistoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RedeemHistories to fetch.
+     */
+    orderBy?: RedeemHistoryOrderByWithRelationInput | RedeemHistoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing RedeemHistories.
+     */
+    cursor?: RedeemHistoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RedeemHistories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RedeemHistories.
+     */
+    skip?: number
+    distinct?: RedeemHistoryScalarFieldEnum | RedeemHistoryScalarFieldEnum[]
+  }
+
+  /**
+   * RedeemHistory create
+   */
+  export type RedeemHistoryCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RedeemHistory
+     */
+    select?: RedeemHistorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RedeemHistory
+     */
+    omit?: RedeemHistoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RedeemHistoryInclude<ExtArgs> | null
+    /**
+     * The data needed to create a RedeemHistory.
+     */
+    data: XOR<RedeemHistoryCreateInput, RedeemHistoryUncheckedCreateInput>
+  }
+
+  /**
+   * RedeemHistory createMany
+   */
+  export type RedeemHistoryCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many RedeemHistories.
+     */
+    data: RedeemHistoryCreateManyInput | RedeemHistoryCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * RedeemHistory createManyAndReturn
+   */
+  export type RedeemHistoryCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RedeemHistory
+     */
+    select?: RedeemHistorySelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the RedeemHistory
+     */
+    omit?: RedeemHistoryOmit<ExtArgs> | null
+    /**
+     * The data used to create many RedeemHistories.
+     */
+    data: RedeemHistoryCreateManyInput | RedeemHistoryCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RedeemHistoryIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * RedeemHistory update
+   */
+  export type RedeemHistoryUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RedeemHistory
+     */
+    select?: RedeemHistorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RedeemHistory
+     */
+    omit?: RedeemHistoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RedeemHistoryInclude<ExtArgs> | null
+    /**
+     * The data needed to update a RedeemHistory.
+     */
+    data: XOR<RedeemHistoryUpdateInput, RedeemHistoryUncheckedUpdateInput>
+    /**
+     * Choose, which RedeemHistory to update.
+     */
+    where: RedeemHistoryWhereUniqueInput
+  }
+
+  /**
+   * RedeemHistory updateMany
+   */
+  export type RedeemHistoryUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update RedeemHistories.
+     */
+    data: XOR<RedeemHistoryUpdateManyMutationInput, RedeemHistoryUncheckedUpdateManyInput>
+    /**
+     * Filter which RedeemHistories to update
+     */
+    where?: RedeemHistoryWhereInput
+    /**
+     * Limit how many RedeemHistories to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * RedeemHistory updateManyAndReturn
+   */
+  export type RedeemHistoryUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RedeemHistory
+     */
+    select?: RedeemHistorySelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the RedeemHistory
+     */
+    omit?: RedeemHistoryOmit<ExtArgs> | null
+    /**
+     * The data used to update RedeemHistories.
+     */
+    data: XOR<RedeemHistoryUpdateManyMutationInput, RedeemHistoryUncheckedUpdateManyInput>
+    /**
+     * Filter which RedeemHistories to update
+     */
+    where?: RedeemHistoryWhereInput
+    /**
+     * Limit how many RedeemHistories to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RedeemHistoryIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * RedeemHistory upsert
+   */
+  export type RedeemHistoryUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RedeemHistory
+     */
+    select?: RedeemHistorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RedeemHistory
+     */
+    omit?: RedeemHistoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RedeemHistoryInclude<ExtArgs> | null
+    /**
+     * The filter to search for the RedeemHistory to update in case it exists.
+     */
+    where: RedeemHistoryWhereUniqueInput
+    /**
+     * In case the RedeemHistory found by the `where` argument doesn't exist, create a new RedeemHistory with this data.
+     */
+    create: XOR<RedeemHistoryCreateInput, RedeemHistoryUncheckedCreateInput>
+    /**
+     * In case the RedeemHistory was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<RedeemHistoryUpdateInput, RedeemHistoryUncheckedUpdateInput>
+  }
+
+  /**
+   * RedeemHistory delete
+   */
+  export type RedeemHistoryDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RedeemHistory
+     */
+    select?: RedeemHistorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RedeemHistory
+     */
+    omit?: RedeemHistoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RedeemHistoryInclude<ExtArgs> | null
+    /**
+     * Filter which RedeemHistory to delete.
+     */
+    where: RedeemHistoryWhereUniqueInput
+  }
+
+  /**
+   * RedeemHistory deleteMany
+   */
+  export type RedeemHistoryDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which RedeemHistories to delete
+     */
+    where?: RedeemHistoryWhereInput
+    /**
+     * Limit how many RedeemHistories to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * RedeemHistory without action
+   */
+  export type RedeemHistoryDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RedeemHistory
+     */
+    select?: RedeemHistorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RedeemHistory
+     */
+    omit?: RedeemHistoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RedeemHistoryInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model RecycleHistory
+   */
+
+  export type AggregateRecycleHistory = {
+    _count: RecycleHistoryCountAggregateOutputType | null
+    _avg: RecycleHistoryAvgAggregateOutputType | null
+    _sum: RecycleHistorySumAggregateOutputType | null
+    _min: RecycleHistoryMinAggregateOutputType | null
+    _max: RecycleHistoryMaxAggregateOutputType | null
+  }
+
+  export type RecycleHistoryAvgAggregateOutputType = {
+    points: number | null
+  }
+
+  export type RecycleHistorySumAggregateOutputType = {
+    points: number | null
+  }
+
+  export type RecycleHistoryMinAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    points: number | null
+    mediaUrl: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type RecycleHistoryMaxAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    points: number | null
+    mediaUrl: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type RecycleHistoryCountAggregateOutputType = {
+    id: number
+    userId: number
+    points: number
+    mediaUrl: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type RecycleHistoryAvgAggregateInputType = {
+    points?: true
+  }
+
+  export type RecycleHistorySumAggregateInputType = {
+    points?: true
+  }
+
+  export type RecycleHistoryMinAggregateInputType = {
+    id?: true
+    userId?: true
+    points?: true
+    mediaUrl?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type RecycleHistoryMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    points?: true
+    mediaUrl?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type RecycleHistoryCountAggregateInputType = {
+    id?: true
+    userId?: true
+    points?: true
+    mediaUrl?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type RecycleHistoryAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which RecycleHistory to aggregate.
+     */
+    where?: RecycleHistoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RecycleHistories to fetch.
+     */
+    orderBy?: RecycleHistoryOrderByWithRelationInput | RecycleHistoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: RecycleHistoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RecycleHistories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RecycleHistories.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned RecycleHistories
+    **/
+    _count?: true | RecycleHistoryCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: RecycleHistoryAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: RecycleHistorySumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: RecycleHistoryMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: RecycleHistoryMaxAggregateInputType
+  }
+
+  export type GetRecycleHistoryAggregateType<T extends RecycleHistoryAggregateArgs> = {
+        [P in keyof T & keyof AggregateRecycleHistory]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateRecycleHistory[P]>
+      : GetScalarType<T[P], AggregateRecycleHistory[P]>
+  }
+
+
+
+
+  export type RecycleHistoryGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: RecycleHistoryWhereInput
+    orderBy?: RecycleHistoryOrderByWithAggregationInput | RecycleHistoryOrderByWithAggregationInput[]
+    by: RecycleHistoryScalarFieldEnum[] | RecycleHistoryScalarFieldEnum
+    having?: RecycleHistoryScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: RecycleHistoryCountAggregateInputType | true
+    _avg?: RecycleHistoryAvgAggregateInputType
+    _sum?: RecycleHistorySumAggregateInputType
+    _min?: RecycleHistoryMinAggregateInputType
+    _max?: RecycleHistoryMaxAggregateInputType
+  }
+
+  export type RecycleHistoryGroupByOutputType = {
+    id: string
+    userId: string
+    points: number
+    mediaUrl: string | null
+    createdAt: Date
+    updatedAt: Date
+    _count: RecycleHistoryCountAggregateOutputType | null
+    _avg: RecycleHistoryAvgAggregateOutputType | null
+    _sum: RecycleHistorySumAggregateOutputType | null
+    _min: RecycleHistoryMinAggregateOutputType | null
+    _max: RecycleHistoryMaxAggregateOutputType | null
+  }
+
+  type GetRecycleHistoryGroupByPayload<T extends RecycleHistoryGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<RecycleHistoryGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof RecycleHistoryGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], RecycleHistoryGroupByOutputType[P]>
+            : GetScalarType<T[P], RecycleHistoryGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type RecycleHistorySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    points?: boolean
+    mediaUrl?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    User?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["recycleHistory"]>
+
+  export type RecycleHistorySelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    points?: boolean
+    mediaUrl?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    User?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["recycleHistory"]>
+
+  export type RecycleHistorySelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    points?: boolean
+    mediaUrl?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    User?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["recycleHistory"]>
+
+  export type RecycleHistorySelectScalar = {
+    id?: boolean
+    userId?: boolean
+    points?: boolean
+    mediaUrl?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type RecycleHistoryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "points" | "mediaUrl" | "createdAt" | "updatedAt", ExtArgs["result"]["recycleHistory"]>
+  export type RecycleHistoryInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    User?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type RecycleHistoryIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    User?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type RecycleHistoryIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    User?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $RecycleHistoryPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "RecycleHistory"
+    objects: {
+      User: Prisma.$UserPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      userId: string
+      points: number
+      mediaUrl: string | null
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["recycleHistory"]>
+    composites: {}
+  }
+
+  type RecycleHistoryGetPayload<S extends boolean | null | undefined | RecycleHistoryDefaultArgs> = $Result.GetResult<Prisma.$RecycleHistoryPayload, S>
+
+  type RecycleHistoryCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<RecycleHistoryFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: RecycleHistoryCountAggregateInputType | true
+    }
+
+  export interface RecycleHistoryDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['RecycleHistory'], meta: { name: 'RecycleHistory' } }
+    /**
+     * Find zero or one RecycleHistory that matches the filter.
+     * @param {RecycleHistoryFindUniqueArgs} args - Arguments to find a RecycleHistory
+     * @example
+     * // Get one RecycleHistory
+     * const recycleHistory = await prisma.recycleHistory.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends RecycleHistoryFindUniqueArgs>(args: SelectSubset<T, RecycleHistoryFindUniqueArgs<ExtArgs>>): Prisma__RecycleHistoryClient<$Result.GetResult<Prisma.$RecycleHistoryPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one RecycleHistory that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {RecycleHistoryFindUniqueOrThrowArgs} args - Arguments to find a RecycleHistory
+     * @example
+     * // Get one RecycleHistory
+     * const recycleHistory = await prisma.recycleHistory.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends RecycleHistoryFindUniqueOrThrowArgs>(args: SelectSubset<T, RecycleHistoryFindUniqueOrThrowArgs<ExtArgs>>): Prisma__RecycleHistoryClient<$Result.GetResult<Prisma.$RecycleHistoryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first RecycleHistory that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RecycleHistoryFindFirstArgs} args - Arguments to find a RecycleHistory
+     * @example
+     * // Get one RecycleHistory
+     * const recycleHistory = await prisma.recycleHistory.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends RecycleHistoryFindFirstArgs>(args?: SelectSubset<T, RecycleHistoryFindFirstArgs<ExtArgs>>): Prisma__RecycleHistoryClient<$Result.GetResult<Prisma.$RecycleHistoryPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first RecycleHistory that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RecycleHistoryFindFirstOrThrowArgs} args - Arguments to find a RecycleHistory
+     * @example
+     * // Get one RecycleHistory
+     * const recycleHistory = await prisma.recycleHistory.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends RecycleHistoryFindFirstOrThrowArgs>(args?: SelectSubset<T, RecycleHistoryFindFirstOrThrowArgs<ExtArgs>>): Prisma__RecycleHistoryClient<$Result.GetResult<Prisma.$RecycleHistoryPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more RecycleHistories that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RecycleHistoryFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all RecycleHistories
+     * const recycleHistories = await prisma.recycleHistory.findMany()
+     * 
+     * // Get first 10 RecycleHistories
+     * const recycleHistories = await prisma.recycleHistory.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const recycleHistoryWithIdOnly = await prisma.recycleHistory.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends RecycleHistoryFindManyArgs>(args?: SelectSubset<T, RecycleHistoryFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RecycleHistoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a RecycleHistory.
+     * @param {RecycleHistoryCreateArgs} args - Arguments to create a RecycleHistory.
+     * @example
+     * // Create one RecycleHistory
+     * const RecycleHistory = await prisma.recycleHistory.create({
+     *   data: {
+     *     // ... data to create a RecycleHistory
+     *   }
+     * })
+     * 
+     */
+    create<T extends RecycleHistoryCreateArgs>(args: SelectSubset<T, RecycleHistoryCreateArgs<ExtArgs>>): Prisma__RecycleHistoryClient<$Result.GetResult<Prisma.$RecycleHistoryPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many RecycleHistories.
+     * @param {RecycleHistoryCreateManyArgs} args - Arguments to create many RecycleHistories.
+     * @example
+     * // Create many RecycleHistories
+     * const recycleHistory = await prisma.recycleHistory.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends RecycleHistoryCreateManyArgs>(args?: SelectSubset<T, RecycleHistoryCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many RecycleHistories and returns the data saved in the database.
+     * @param {RecycleHistoryCreateManyAndReturnArgs} args - Arguments to create many RecycleHistories.
+     * @example
+     * // Create many RecycleHistories
+     * const recycleHistory = await prisma.recycleHistory.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many RecycleHistories and only return the `id`
+     * const recycleHistoryWithIdOnly = await prisma.recycleHistory.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends RecycleHistoryCreateManyAndReturnArgs>(args?: SelectSubset<T, RecycleHistoryCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RecycleHistoryPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a RecycleHistory.
+     * @param {RecycleHistoryDeleteArgs} args - Arguments to delete one RecycleHistory.
+     * @example
+     * // Delete one RecycleHistory
+     * const RecycleHistory = await prisma.recycleHistory.delete({
+     *   where: {
+     *     // ... filter to delete one RecycleHistory
+     *   }
+     * })
+     * 
+     */
+    delete<T extends RecycleHistoryDeleteArgs>(args: SelectSubset<T, RecycleHistoryDeleteArgs<ExtArgs>>): Prisma__RecycleHistoryClient<$Result.GetResult<Prisma.$RecycleHistoryPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one RecycleHistory.
+     * @param {RecycleHistoryUpdateArgs} args - Arguments to update one RecycleHistory.
+     * @example
+     * // Update one RecycleHistory
+     * const recycleHistory = await prisma.recycleHistory.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends RecycleHistoryUpdateArgs>(args: SelectSubset<T, RecycleHistoryUpdateArgs<ExtArgs>>): Prisma__RecycleHistoryClient<$Result.GetResult<Prisma.$RecycleHistoryPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more RecycleHistories.
+     * @param {RecycleHistoryDeleteManyArgs} args - Arguments to filter RecycleHistories to delete.
+     * @example
+     * // Delete a few RecycleHistories
+     * const { count } = await prisma.recycleHistory.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends RecycleHistoryDeleteManyArgs>(args?: SelectSubset<T, RecycleHistoryDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more RecycleHistories.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RecycleHistoryUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many RecycleHistories
+     * const recycleHistory = await prisma.recycleHistory.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends RecycleHistoryUpdateManyArgs>(args: SelectSubset<T, RecycleHistoryUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more RecycleHistories and returns the data updated in the database.
+     * @param {RecycleHistoryUpdateManyAndReturnArgs} args - Arguments to update many RecycleHistories.
+     * @example
+     * // Update many RecycleHistories
+     * const recycleHistory = await prisma.recycleHistory.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more RecycleHistories and only return the `id`
+     * const recycleHistoryWithIdOnly = await prisma.recycleHistory.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends RecycleHistoryUpdateManyAndReturnArgs>(args: SelectSubset<T, RecycleHistoryUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RecycleHistoryPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one RecycleHistory.
+     * @param {RecycleHistoryUpsertArgs} args - Arguments to update or create a RecycleHistory.
+     * @example
+     * // Update or create a RecycleHistory
+     * const recycleHistory = await prisma.recycleHistory.upsert({
+     *   create: {
+     *     // ... data to create a RecycleHistory
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the RecycleHistory we want to update
+     *   }
+     * })
+     */
+    upsert<T extends RecycleHistoryUpsertArgs>(args: SelectSubset<T, RecycleHistoryUpsertArgs<ExtArgs>>): Prisma__RecycleHistoryClient<$Result.GetResult<Prisma.$RecycleHistoryPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of RecycleHistories.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RecycleHistoryCountArgs} args - Arguments to filter RecycleHistories to count.
+     * @example
+     * // Count the number of RecycleHistories
+     * const count = await prisma.recycleHistory.count({
+     *   where: {
+     *     // ... the filter for the RecycleHistories we want to count
+     *   }
+     * })
+    **/
+    count<T extends RecycleHistoryCountArgs>(
+      args?: Subset<T, RecycleHistoryCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], RecycleHistoryCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a RecycleHistory.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RecycleHistoryAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends RecycleHistoryAggregateArgs>(args: Subset<T, RecycleHistoryAggregateArgs>): Prisma.PrismaPromise<GetRecycleHistoryAggregateType<T>>
+
+    /**
+     * Group by RecycleHistory.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RecycleHistoryGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends RecycleHistoryGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: RecycleHistoryGroupByArgs['orderBy'] }
+        : { orderBy?: RecycleHistoryGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, RecycleHistoryGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetRecycleHistoryGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the RecycleHistory model
+   */
+  readonly fields: RecycleHistoryFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for RecycleHistory.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__RecycleHistoryClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    User<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the RecycleHistory model
+   */
+  interface RecycleHistoryFieldRefs {
+    readonly id: FieldRef<"RecycleHistory", 'String'>
+    readonly userId: FieldRef<"RecycleHistory", 'String'>
+    readonly points: FieldRef<"RecycleHistory", 'Int'>
+    readonly mediaUrl: FieldRef<"RecycleHistory", 'String'>
+    readonly createdAt: FieldRef<"RecycleHistory", 'DateTime'>
+    readonly updatedAt: FieldRef<"RecycleHistory", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * RecycleHistory findUnique
+   */
+  export type RecycleHistoryFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RecycleHistory
+     */
+    select?: RecycleHistorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RecycleHistory
+     */
+    omit?: RecycleHistoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RecycleHistoryInclude<ExtArgs> | null
+    /**
+     * Filter, which RecycleHistory to fetch.
+     */
+    where: RecycleHistoryWhereUniqueInput
+  }
+
+  /**
+   * RecycleHistory findUniqueOrThrow
+   */
+  export type RecycleHistoryFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RecycleHistory
+     */
+    select?: RecycleHistorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RecycleHistory
+     */
+    omit?: RecycleHistoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RecycleHistoryInclude<ExtArgs> | null
+    /**
+     * Filter, which RecycleHistory to fetch.
+     */
+    where: RecycleHistoryWhereUniqueInput
+  }
+
+  /**
+   * RecycleHistory findFirst
+   */
+  export type RecycleHistoryFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RecycleHistory
+     */
+    select?: RecycleHistorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RecycleHistory
+     */
+    omit?: RecycleHistoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RecycleHistoryInclude<ExtArgs> | null
+    /**
+     * Filter, which RecycleHistory to fetch.
+     */
+    where?: RecycleHistoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RecycleHistories to fetch.
+     */
+    orderBy?: RecycleHistoryOrderByWithRelationInput | RecycleHistoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for RecycleHistories.
+     */
+    cursor?: RecycleHistoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RecycleHistories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RecycleHistories.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of RecycleHistories.
+     */
+    distinct?: RecycleHistoryScalarFieldEnum | RecycleHistoryScalarFieldEnum[]
+  }
+
+  /**
+   * RecycleHistory findFirstOrThrow
+   */
+  export type RecycleHistoryFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RecycleHistory
+     */
+    select?: RecycleHistorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RecycleHistory
+     */
+    omit?: RecycleHistoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RecycleHistoryInclude<ExtArgs> | null
+    /**
+     * Filter, which RecycleHistory to fetch.
+     */
+    where?: RecycleHistoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RecycleHistories to fetch.
+     */
+    orderBy?: RecycleHistoryOrderByWithRelationInput | RecycleHistoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for RecycleHistories.
+     */
+    cursor?: RecycleHistoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RecycleHistories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RecycleHistories.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of RecycleHistories.
+     */
+    distinct?: RecycleHistoryScalarFieldEnum | RecycleHistoryScalarFieldEnum[]
+  }
+
+  /**
+   * RecycleHistory findMany
+   */
+  export type RecycleHistoryFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RecycleHistory
+     */
+    select?: RecycleHistorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RecycleHistory
+     */
+    omit?: RecycleHistoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RecycleHistoryInclude<ExtArgs> | null
+    /**
+     * Filter, which RecycleHistories to fetch.
+     */
+    where?: RecycleHistoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RecycleHistories to fetch.
+     */
+    orderBy?: RecycleHistoryOrderByWithRelationInput | RecycleHistoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing RecycleHistories.
+     */
+    cursor?: RecycleHistoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RecycleHistories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RecycleHistories.
+     */
+    skip?: number
+    distinct?: RecycleHistoryScalarFieldEnum | RecycleHistoryScalarFieldEnum[]
+  }
+
+  /**
+   * RecycleHistory create
+   */
+  export type RecycleHistoryCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RecycleHistory
+     */
+    select?: RecycleHistorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RecycleHistory
+     */
+    omit?: RecycleHistoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RecycleHistoryInclude<ExtArgs> | null
+    /**
+     * The data needed to create a RecycleHistory.
+     */
+    data: XOR<RecycleHistoryCreateInput, RecycleHistoryUncheckedCreateInput>
+  }
+
+  /**
+   * RecycleHistory createMany
+   */
+  export type RecycleHistoryCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many RecycleHistories.
+     */
+    data: RecycleHistoryCreateManyInput | RecycleHistoryCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * RecycleHistory createManyAndReturn
+   */
+  export type RecycleHistoryCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RecycleHistory
+     */
+    select?: RecycleHistorySelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the RecycleHistory
+     */
+    omit?: RecycleHistoryOmit<ExtArgs> | null
+    /**
+     * The data used to create many RecycleHistories.
+     */
+    data: RecycleHistoryCreateManyInput | RecycleHistoryCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RecycleHistoryIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * RecycleHistory update
+   */
+  export type RecycleHistoryUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RecycleHistory
+     */
+    select?: RecycleHistorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RecycleHistory
+     */
+    omit?: RecycleHistoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RecycleHistoryInclude<ExtArgs> | null
+    /**
+     * The data needed to update a RecycleHistory.
+     */
+    data: XOR<RecycleHistoryUpdateInput, RecycleHistoryUncheckedUpdateInput>
+    /**
+     * Choose, which RecycleHistory to update.
+     */
+    where: RecycleHistoryWhereUniqueInput
+  }
+
+  /**
+   * RecycleHistory updateMany
+   */
+  export type RecycleHistoryUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update RecycleHistories.
+     */
+    data: XOR<RecycleHistoryUpdateManyMutationInput, RecycleHistoryUncheckedUpdateManyInput>
+    /**
+     * Filter which RecycleHistories to update
+     */
+    where?: RecycleHistoryWhereInput
+    /**
+     * Limit how many RecycleHistories to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * RecycleHistory updateManyAndReturn
+   */
+  export type RecycleHistoryUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RecycleHistory
+     */
+    select?: RecycleHistorySelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the RecycleHistory
+     */
+    omit?: RecycleHistoryOmit<ExtArgs> | null
+    /**
+     * The data used to update RecycleHistories.
+     */
+    data: XOR<RecycleHistoryUpdateManyMutationInput, RecycleHistoryUncheckedUpdateManyInput>
+    /**
+     * Filter which RecycleHistories to update
+     */
+    where?: RecycleHistoryWhereInput
+    /**
+     * Limit how many RecycleHistories to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RecycleHistoryIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * RecycleHistory upsert
+   */
+  export type RecycleHistoryUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RecycleHistory
+     */
+    select?: RecycleHistorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RecycleHistory
+     */
+    omit?: RecycleHistoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RecycleHistoryInclude<ExtArgs> | null
+    /**
+     * The filter to search for the RecycleHistory to update in case it exists.
+     */
+    where: RecycleHistoryWhereUniqueInput
+    /**
+     * In case the RecycleHistory found by the `where` argument doesn't exist, create a new RecycleHistory with this data.
+     */
+    create: XOR<RecycleHistoryCreateInput, RecycleHistoryUncheckedCreateInput>
+    /**
+     * In case the RecycleHistory was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<RecycleHistoryUpdateInput, RecycleHistoryUncheckedUpdateInput>
+  }
+
+  /**
+   * RecycleHistory delete
+   */
+  export type RecycleHistoryDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RecycleHistory
+     */
+    select?: RecycleHistorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RecycleHistory
+     */
+    omit?: RecycleHistoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RecycleHistoryInclude<ExtArgs> | null
+    /**
+     * Filter which RecycleHistory to delete.
+     */
+    where: RecycleHistoryWhereUniqueInput
+  }
+
+  /**
+   * RecycleHistory deleteMany
+   */
+  export type RecycleHistoryDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which RecycleHistories to delete
+     */
+    where?: RecycleHistoryWhereInput
+    /**
+     * Limit how many RecycleHistories to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * RecycleHistory without action
+   */
+  export type RecycleHistoryDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RecycleHistory
+     */
+    select?: RecycleHistorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RecycleHistory
+     */
+    omit?: RecycleHistoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RecycleHistoryInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model UserTotalPoint
+   */
+
+  export type AggregateUserTotalPoint = {
+    _count: UserTotalPointCountAggregateOutputType | null
+    _avg: UserTotalPointAvgAggregateOutputType | null
+    _sum: UserTotalPointSumAggregateOutputType | null
+    _min: UserTotalPointMinAggregateOutputType | null
+    _max: UserTotalPointMaxAggregateOutputType | null
+  }
+
+  export type UserTotalPointAvgAggregateOutputType = {
+    totalPoints: number | null
+  }
+
+  export type UserTotalPointSumAggregateOutputType = {
+    totalPoints: number | null
+  }
+
+  export type UserTotalPointMinAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    totalPoints: number | null
+  }
+
+  export type UserTotalPointMaxAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    totalPoints: number | null
+  }
+
+  export type UserTotalPointCountAggregateOutputType = {
+    id: number
+    userId: number
+    totalPoints: number
+    _all: number
+  }
+
+
+  export type UserTotalPointAvgAggregateInputType = {
+    totalPoints?: true
+  }
+
+  export type UserTotalPointSumAggregateInputType = {
+    totalPoints?: true
+  }
+
+  export type UserTotalPointMinAggregateInputType = {
+    id?: true
+    userId?: true
+    totalPoints?: true
+  }
+
+  export type UserTotalPointMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    totalPoints?: true
+  }
+
+  export type UserTotalPointCountAggregateInputType = {
+    id?: true
+    userId?: true
+    totalPoints?: true
+    _all?: true
+  }
+
+  export type UserTotalPointAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which UserTotalPoint to aggregate.
+     */
+    where?: UserTotalPointWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of UserTotalPoints to fetch.
+     */
+    orderBy?: UserTotalPointOrderByWithRelationInput | UserTotalPointOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: UserTotalPointWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` UserTotalPoints from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` UserTotalPoints.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned UserTotalPoints
+    **/
+    _count?: true | UserTotalPointCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: UserTotalPointAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: UserTotalPointSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: UserTotalPointMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: UserTotalPointMaxAggregateInputType
+  }
+
+  export type GetUserTotalPointAggregateType<T extends UserTotalPointAggregateArgs> = {
+        [P in keyof T & keyof AggregateUserTotalPoint]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateUserTotalPoint[P]>
+      : GetScalarType<T[P], AggregateUserTotalPoint[P]>
+  }
+
+
+
+
+  export type UserTotalPointGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: UserTotalPointWhereInput
+    orderBy?: UserTotalPointOrderByWithAggregationInput | UserTotalPointOrderByWithAggregationInput[]
+    by: UserTotalPointScalarFieldEnum[] | UserTotalPointScalarFieldEnum
+    having?: UserTotalPointScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: UserTotalPointCountAggregateInputType | true
+    _avg?: UserTotalPointAvgAggregateInputType
+    _sum?: UserTotalPointSumAggregateInputType
+    _min?: UserTotalPointMinAggregateInputType
+    _max?: UserTotalPointMaxAggregateInputType
+  }
+
+  export type UserTotalPointGroupByOutputType = {
+    id: string
+    userId: string
+    totalPoints: number
+    _count: UserTotalPointCountAggregateOutputType | null
+    _avg: UserTotalPointAvgAggregateOutputType | null
+    _sum: UserTotalPointSumAggregateOutputType | null
+    _min: UserTotalPointMinAggregateOutputType | null
+    _max: UserTotalPointMaxAggregateOutputType | null
+  }
+
+  type GetUserTotalPointGroupByPayload<T extends UserTotalPointGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<UserTotalPointGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof UserTotalPointGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], UserTotalPointGroupByOutputType[P]>
+            : GetScalarType<T[P], UserTotalPointGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type UserTotalPointSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    totalPoints?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["userTotalPoint"]>
+
+  export type UserTotalPointSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    totalPoints?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["userTotalPoint"]>
+
+  export type UserTotalPointSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    totalPoints?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["userTotalPoint"]>
+
+  export type UserTotalPointSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    totalPoints?: boolean
+  }
+
+  export type UserTotalPointOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "totalPoints", ExtArgs["result"]["userTotalPoint"]>
+  export type UserTotalPointInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type UserTotalPointIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type UserTotalPointIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $UserTotalPointPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "UserTotalPoint"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      userId: string
+      totalPoints: number
+    }, ExtArgs["result"]["userTotalPoint"]>
+    composites: {}
+  }
+
+  type UserTotalPointGetPayload<S extends boolean | null | undefined | UserTotalPointDefaultArgs> = $Result.GetResult<Prisma.$UserTotalPointPayload, S>
+
+  type UserTotalPointCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<UserTotalPointFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: UserTotalPointCountAggregateInputType | true
+    }
+
+  export interface UserTotalPointDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['UserTotalPoint'], meta: { name: 'UserTotalPoint' } }
+    /**
+     * Find zero or one UserTotalPoint that matches the filter.
+     * @param {UserTotalPointFindUniqueArgs} args - Arguments to find a UserTotalPoint
+     * @example
+     * // Get one UserTotalPoint
+     * const userTotalPoint = await prisma.userTotalPoint.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends UserTotalPointFindUniqueArgs>(args: SelectSubset<T, UserTotalPointFindUniqueArgs<ExtArgs>>): Prisma__UserTotalPointClient<$Result.GetResult<Prisma.$UserTotalPointPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one UserTotalPoint that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {UserTotalPointFindUniqueOrThrowArgs} args - Arguments to find a UserTotalPoint
+     * @example
+     * // Get one UserTotalPoint
+     * const userTotalPoint = await prisma.userTotalPoint.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends UserTotalPointFindUniqueOrThrowArgs>(args: SelectSubset<T, UserTotalPointFindUniqueOrThrowArgs<ExtArgs>>): Prisma__UserTotalPointClient<$Result.GetResult<Prisma.$UserTotalPointPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first UserTotalPoint that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserTotalPointFindFirstArgs} args - Arguments to find a UserTotalPoint
+     * @example
+     * // Get one UserTotalPoint
+     * const userTotalPoint = await prisma.userTotalPoint.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends UserTotalPointFindFirstArgs>(args?: SelectSubset<T, UserTotalPointFindFirstArgs<ExtArgs>>): Prisma__UserTotalPointClient<$Result.GetResult<Prisma.$UserTotalPointPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first UserTotalPoint that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserTotalPointFindFirstOrThrowArgs} args - Arguments to find a UserTotalPoint
+     * @example
+     * // Get one UserTotalPoint
+     * const userTotalPoint = await prisma.userTotalPoint.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends UserTotalPointFindFirstOrThrowArgs>(args?: SelectSubset<T, UserTotalPointFindFirstOrThrowArgs<ExtArgs>>): Prisma__UserTotalPointClient<$Result.GetResult<Prisma.$UserTotalPointPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more UserTotalPoints that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserTotalPointFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all UserTotalPoints
+     * const userTotalPoints = await prisma.userTotalPoint.findMany()
+     * 
+     * // Get first 10 UserTotalPoints
+     * const userTotalPoints = await prisma.userTotalPoint.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const userTotalPointWithIdOnly = await prisma.userTotalPoint.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends UserTotalPointFindManyArgs>(args?: SelectSubset<T, UserTotalPointFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserTotalPointPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a UserTotalPoint.
+     * @param {UserTotalPointCreateArgs} args - Arguments to create a UserTotalPoint.
+     * @example
+     * // Create one UserTotalPoint
+     * const UserTotalPoint = await prisma.userTotalPoint.create({
+     *   data: {
+     *     // ... data to create a UserTotalPoint
+     *   }
+     * })
+     * 
+     */
+    create<T extends UserTotalPointCreateArgs>(args: SelectSubset<T, UserTotalPointCreateArgs<ExtArgs>>): Prisma__UserTotalPointClient<$Result.GetResult<Prisma.$UserTotalPointPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many UserTotalPoints.
+     * @param {UserTotalPointCreateManyArgs} args - Arguments to create many UserTotalPoints.
+     * @example
+     * // Create many UserTotalPoints
+     * const userTotalPoint = await prisma.userTotalPoint.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends UserTotalPointCreateManyArgs>(args?: SelectSubset<T, UserTotalPointCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many UserTotalPoints and returns the data saved in the database.
+     * @param {UserTotalPointCreateManyAndReturnArgs} args - Arguments to create many UserTotalPoints.
+     * @example
+     * // Create many UserTotalPoints
+     * const userTotalPoint = await prisma.userTotalPoint.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many UserTotalPoints and only return the `id`
+     * const userTotalPointWithIdOnly = await prisma.userTotalPoint.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends UserTotalPointCreateManyAndReturnArgs>(args?: SelectSubset<T, UserTotalPointCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserTotalPointPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a UserTotalPoint.
+     * @param {UserTotalPointDeleteArgs} args - Arguments to delete one UserTotalPoint.
+     * @example
+     * // Delete one UserTotalPoint
+     * const UserTotalPoint = await prisma.userTotalPoint.delete({
+     *   where: {
+     *     // ... filter to delete one UserTotalPoint
+     *   }
+     * })
+     * 
+     */
+    delete<T extends UserTotalPointDeleteArgs>(args: SelectSubset<T, UserTotalPointDeleteArgs<ExtArgs>>): Prisma__UserTotalPointClient<$Result.GetResult<Prisma.$UserTotalPointPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one UserTotalPoint.
+     * @param {UserTotalPointUpdateArgs} args - Arguments to update one UserTotalPoint.
+     * @example
+     * // Update one UserTotalPoint
+     * const userTotalPoint = await prisma.userTotalPoint.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends UserTotalPointUpdateArgs>(args: SelectSubset<T, UserTotalPointUpdateArgs<ExtArgs>>): Prisma__UserTotalPointClient<$Result.GetResult<Prisma.$UserTotalPointPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more UserTotalPoints.
+     * @param {UserTotalPointDeleteManyArgs} args - Arguments to filter UserTotalPoints to delete.
+     * @example
+     * // Delete a few UserTotalPoints
+     * const { count } = await prisma.userTotalPoint.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends UserTotalPointDeleteManyArgs>(args?: SelectSubset<T, UserTotalPointDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more UserTotalPoints.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserTotalPointUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many UserTotalPoints
+     * const userTotalPoint = await prisma.userTotalPoint.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends UserTotalPointUpdateManyArgs>(args: SelectSubset<T, UserTotalPointUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more UserTotalPoints and returns the data updated in the database.
+     * @param {UserTotalPointUpdateManyAndReturnArgs} args - Arguments to update many UserTotalPoints.
+     * @example
+     * // Update many UserTotalPoints
+     * const userTotalPoint = await prisma.userTotalPoint.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more UserTotalPoints and only return the `id`
+     * const userTotalPointWithIdOnly = await prisma.userTotalPoint.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends UserTotalPointUpdateManyAndReturnArgs>(args: SelectSubset<T, UserTotalPointUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserTotalPointPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one UserTotalPoint.
+     * @param {UserTotalPointUpsertArgs} args - Arguments to update or create a UserTotalPoint.
+     * @example
+     * // Update or create a UserTotalPoint
+     * const userTotalPoint = await prisma.userTotalPoint.upsert({
+     *   create: {
+     *     // ... data to create a UserTotalPoint
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the UserTotalPoint we want to update
+     *   }
+     * })
+     */
+    upsert<T extends UserTotalPointUpsertArgs>(args: SelectSubset<T, UserTotalPointUpsertArgs<ExtArgs>>): Prisma__UserTotalPointClient<$Result.GetResult<Prisma.$UserTotalPointPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of UserTotalPoints.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserTotalPointCountArgs} args - Arguments to filter UserTotalPoints to count.
+     * @example
+     * // Count the number of UserTotalPoints
+     * const count = await prisma.userTotalPoint.count({
+     *   where: {
+     *     // ... the filter for the UserTotalPoints we want to count
+     *   }
+     * })
+    **/
+    count<T extends UserTotalPointCountArgs>(
+      args?: Subset<T, UserTotalPointCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], UserTotalPointCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a UserTotalPoint.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserTotalPointAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends UserTotalPointAggregateArgs>(args: Subset<T, UserTotalPointAggregateArgs>): Prisma.PrismaPromise<GetUserTotalPointAggregateType<T>>
+
+    /**
+     * Group by UserTotalPoint.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserTotalPointGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends UserTotalPointGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: UserTotalPointGroupByArgs['orderBy'] }
+        : { orderBy?: UserTotalPointGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, UserTotalPointGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetUserTotalPointGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the UserTotalPoint model
+   */
+  readonly fields: UserTotalPointFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for UserTotalPoint.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__UserTotalPointClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the UserTotalPoint model
+   */
+  interface UserTotalPointFieldRefs {
+    readonly id: FieldRef<"UserTotalPoint", 'String'>
+    readonly userId: FieldRef<"UserTotalPoint", 'String'>
+    readonly totalPoints: FieldRef<"UserTotalPoint", 'Int'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * UserTotalPoint findUnique
+   */
+  export type UserTotalPointFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserTotalPoint
+     */
+    select?: UserTotalPointSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserTotalPoint
+     */
+    omit?: UserTotalPointOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserTotalPointInclude<ExtArgs> | null
+    /**
+     * Filter, which UserTotalPoint to fetch.
+     */
+    where: UserTotalPointWhereUniqueInput
+  }
+
+  /**
+   * UserTotalPoint findUniqueOrThrow
+   */
+  export type UserTotalPointFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserTotalPoint
+     */
+    select?: UserTotalPointSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserTotalPoint
+     */
+    omit?: UserTotalPointOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserTotalPointInclude<ExtArgs> | null
+    /**
+     * Filter, which UserTotalPoint to fetch.
+     */
+    where: UserTotalPointWhereUniqueInput
+  }
+
+  /**
+   * UserTotalPoint findFirst
+   */
+  export type UserTotalPointFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserTotalPoint
+     */
+    select?: UserTotalPointSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserTotalPoint
+     */
+    omit?: UserTotalPointOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserTotalPointInclude<ExtArgs> | null
+    /**
+     * Filter, which UserTotalPoint to fetch.
+     */
+    where?: UserTotalPointWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of UserTotalPoints to fetch.
+     */
+    orderBy?: UserTotalPointOrderByWithRelationInput | UserTotalPointOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for UserTotalPoints.
+     */
+    cursor?: UserTotalPointWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` UserTotalPoints from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` UserTotalPoints.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of UserTotalPoints.
+     */
+    distinct?: UserTotalPointScalarFieldEnum | UserTotalPointScalarFieldEnum[]
+  }
+
+  /**
+   * UserTotalPoint findFirstOrThrow
+   */
+  export type UserTotalPointFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserTotalPoint
+     */
+    select?: UserTotalPointSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserTotalPoint
+     */
+    omit?: UserTotalPointOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserTotalPointInclude<ExtArgs> | null
+    /**
+     * Filter, which UserTotalPoint to fetch.
+     */
+    where?: UserTotalPointWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of UserTotalPoints to fetch.
+     */
+    orderBy?: UserTotalPointOrderByWithRelationInput | UserTotalPointOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for UserTotalPoints.
+     */
+    cursor?: UserTotalPointWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` UserTotalPoints from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` UserTotalPoints.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of UserTotalPoints.
+     */
+    distinct?: UserTotalPointScalarFieldEnum | UserTotalPointScalarFieldEnum[]
+  }
+
+  /**
+   * UserTotalPoint findMany
+   */
+  export type UserTotalPointFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserTotalPoint
+     */
+    select?: UserTotalPointSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserTotalPoint
+     */
+    omit?: UserTotalPointOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserTotalPointInclude<ExtArgs> | null
+    /**
+     * Filter, which UserTotalPoints to fetch.
+     */
+    where?: UserTotalPointWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of UserTotalPoints to fetch.
+     */
+    orderBy?: UserTotalPointOrderByWithRelationInput | UserTotalPointOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing UserTotalPoints.
+     */
+    cursor?: UserTotalPointWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` UserTotalPoints from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` UserTotalPoints.
+     */
+    skip?: number
+    distinct?: UserTotalPointScalarFieldEnum | UserTotalPointScalarFieldEnum[]
+  }
+
+  /**
+   * UserTotalPoint create
+   */
+  export type UserTotalPointCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserTotalPoint
+     */
+    select?: UserTotalPointSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserTotalPoint
+     */
+    omit?: UserTotalPointOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserTotalPointInclude<ExtArgs> | null
+    /**
+     * The data needed to create a UserTotalPoint.
+     */
+    data: XOR<UserTotalPointCreateInput, UserTotalPointUncheckedCreateInput>
+  }
+
+  /**
+   * UserTotalPoint createMany
+   */
+  export type UserTotalPointCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many UserTotalPoints.
+     */
+    data: UserTotalPointCreateManyInput | UserTotalPointCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * UserTotalPoint createManyAndReturn
+   */
+  export type UserTotalPointCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserTotalPoint
+     */
+    select?: UserTotalPointSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserTotalPoint
+     */
+    omit?: UserTotalPointOmit<ExtArgs> | null
+    /**
+     * The data used to create many UserTotalPoints.
+     */
+    data: UserTotalPointCreateManyInput | UserTotalPointCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserTotalPointIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * UserTotalPoint update
+   */
+  export type UserTotalPointUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserTotalPoint
+     */
+    select?: UserTotalPointSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserTotalPoint
+     */
+    omit?: UserTotalPointOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserTotalPointInclude<ExtArgs> | null
+    /**
+     * The data needed to update a UserTotalPoint.
+     */
+    data: XOR<UserTotalPointUpdateInput, UserTotalPointUncheckedUpdateInput>
+    /**
+     * Choose, which UserTotalPoint to update.
+     */
+    where: UserTotalPointWhereUniqueInput
+  }
+
+  /**
+   * UserTotalPoint updateMany
+   */
+  export type UserTotalPointUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update UserTotalPoints.
+     */
+    data: XOR<UserTotalPointUpdateManyMutationInput, UserTotalPointUncheckedUpdateManyInput>
+    /**
+     * Filter which UserTotalPoints to update
+     */
+    where?: UserTotalPointWhereInput
+    /**
+     * Limit how many UserTotalPoints to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * UserTotalPoint updateManyAndReturn
+   */
+  export type UserTotalPointUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserTotalPoint
+     */
+    select?: UserTotalPointSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserTotalPoint
+     */
+    omit?: UserTotalPointOmit<ExtArgs> | null
+    /**
+     * The data used to update UserTotalPoints.
+     */
+    data: XOR<UserTotalPointUpdateManyMutationInput, UserTotalPointUncheckedUpdateManyInput>
+    /**
+     * Filter which UserTotalPoints to update
+     */
+    where?: UserTotalPointWhereInput
+    /**
+     * Limit how many UserTotalPoints to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserTotalPointIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * UserTotalPoint upsert
+   */
+  export type UserTotalPointUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserTotalPoint
+     */
+    select?: UserTotalPointSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserTotalPoint
+     */
+    omit?: UserTotalPointOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserTotalPointInclude<ExtArgs> | null
+    /**
+     * The filter to search for the UserTotalPoint to update in case it exists.
+     */
+    where: UserTotalPointWhereUniqueInput
+    /**
+     * In case the UserTotalPoint found by the `where` argument doesn't exist, create a new UserTotalPoint with this data.
+     */
+    create: XOR<UserTotalPointCreateInput, UserTotalPointUncheckedCreateInput>
+    /**
+     * In case the UserTotalPoint was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<UserTotalPointUpdateInput, UserTotalPointUncheckedUpdateInput>
+  }
+
+  /**
+   * UserTotalPoint delete
+   */
+  export type UserTotalPointDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserTotalPoint
+     */
+    select?: UserTotalPointSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserTotalPoint
+     */
+    omit?: UserTotalPointOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserTotalPointInclude<ExtArgs> | null
+    /**
+     * Filter which UserTotalPoint to delete.
+     */
+    where: UserTotalPointWhereUniqueInput
+  }
+
+  /**
+   * UserTotalPoint deleteMany
+   */
+  export type UserTotalPointDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which UserTotalPoints to delete
+     */
+    where?: UserTotalPointWhereInput
+    /**
+     * Limit how many UserTotalPoints to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * UserTotalPoint without action
+   */
+  export type UserTotalPointDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserTotalPoint
+     */
+    select?: UserTotalPointSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserTotalPoint
+     */
+    omit?: UserTotalPointOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserTotalPointInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Model Bin
    */
 
@@ -14581,6 +18577,2311 @@ export namespace Prisma {
 
 
   /**
+   * Model Coupon
+   */
+
+  export type AggregateCoupon = {
+    _count: CouponCountAggregateOutputType | null
+    _avg: CouponAvgAggregateOutputType | null
+    _sum: CouponSumAggregateOutputType | null
+    _min: CouponMinAggregateOutputType | null
+    _max: CouponMaxAggregateOutputType | null
+  }
+
+  export type CouponAvgAggregateOutputType = {
+    pointsToRedeem: number | null
+  }
+
+  export type CouponSumAggregateOutputType = {
+    pointsToRedeem: number | null
+  }
+
+  export type CouponMinAggregateOutputType = {
+    id: string | null
+    name: string | null
+    description: string | null
+    imageUrl: string | null
+    status: $Enums.Status | null
+    couponType: $Enums.CouponType | null
+    dealType: $Enums.DealType | null
+    isFeatured: boolean | null
+    couponCode: string | null
+    pointsToRedeem: number | null
+    startDate: Date | null
+    endDate: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
+    organizationId: string | null
+  }
+
+  export type CouponMaxAggregateOutputType = {
+    id: string | null
+    name: string | null
+    description: string | null
+    imageUrl: string | null
+    status: $Enums.Status | null
+    couponType: $Enums.CouponType | null
+    dealType: $Enums.DealType | null
+    isFeatured: boolean | null
+    couponCode: string | null
+    pointsToRedeem: number | null
+    startDate: Date | null
+    endDate: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
+    organizationId: string | null
+  }
+
+  export type CouponCountAggregateOutputType = {
+    id: number
+    name: number
+    description: number
+    imageUrl: number
+    status: number
+    couponType: number
+    dealType: number
+    isFeatured: number
+    couponCode: number
+    pointsToRedeem: number
+    startDate: number
+    endDate: number
+    createdAt: number
+    updatedAt: number
+    organizationId: number
+    _all: number
+  }
+
+
+  export type CouponAvgAggregateInputType = {
+    pointsToRedeem?: true
+  }
+
+  export type CouponSumAggregateInputType = {
+    pointsToRedeem?: true
+  }
+
+  export type CouponMinAggregateInputType = {
+    id?: true
+    name?: true
+    description?: true
+    imageUrl?: true
+    status?: true
+    couponType?: true
+    dealType?: true
+    isFeatured?: true
+    couponCode?: true
+    pointsToRedeem?: true
+    startDate?: true
+    endDate?: true
+    createdAt?: true
+    updatedAt?: true
+    organizationId?: true
+  }
+
+  export type CouponMaxAggregateInputType = {
+    id?: true
+    name?: true
+    description?: true
+    imageUrl?: true
+    status?: true
+    couponType?: true
+    dealType?: true
+    isFeatured?: true
+    couponCode?: true
+    pointsToRedeem?: true
+    startDate?: true
+    endDate?: true
+    createdAt?: true
+    updatedAt?: true
+    organizationId?: true
+  }
+
+  export type CouponCountAggregateInputType = {
+    id?: true
+    name?: true
+    description?: true
+    imageUrl?: true
+    status?: true
+    couponType?: true
+    dealType?: true
+    isFeatured?: true
+    couponCode?: true
+    pointsToRedeem?: true
+    startDate?: true
+    endDate?: true
+    createdAt?: true
+    updatedAt?: true
+    organizationId?: true
+    _all?: true
+  }
+
+  export type CouponAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Coupon to aggregate.
+     */
+    where?: CouponWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Coupons to fetch.
+     */
+    orderBy?: CouponOrderByWithRelationInput | CouponOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: CouponWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Coupons from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Coupons.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Coupons
+    **/
+    _count?: true | CouponCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: CouponAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: CouponSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: CouponMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: CouponMaxAggregateInputType
+  }
+
+  export type GetCouponAggregateType<T extends CouponAggregateArgs> = {
+        [P in keyof T & keyof AggregateCoupon]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateCoupon[P]>
+      : GetScalarType<T[P], AggregateCoupon[P]>
+  }
+
+
+
+
+  export type CouponGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CouponWhereInput
+    orderBy?: CouponOrderByWithAggregationInput | CouponOrderByWithAggregationInput[]
+    by: CouponScalarFieldEnum[] | CouponScalarFieldEnum
+    having?: CouponScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: CouponCountAggregateInputType | true
+    _avg?: CouponAvgAggregateInputType
+    _sum?: CouponSumAggregateInputType
+    _min?: CouponMinAggregateInputType
+    _max?: CouponMaxAggregateInputType
+  }
+
+  export type CouponGroupByOutputType = {
+    id: string
+    name: string
+    description: string | null
+    imageUrl: string
+    status: $Enums.Status
+    couponType: $Enums.CouponType
+    dealType: $Enums.DealType
+    isFeatured: boolean
+    couponCode: string
+    pointsToRedeem: number
+    startDate: Date
+    endDate: Date
+    createdAt: Date
+    updatedAt: Date
+    organizationId: string
+    _count: CouponCountAggregateOutputType | null
+    _avg: CouponAvgAggregateOutputType | null
+    _sum: CouponSumAggregateOutputType | null
+    _min: CouponMinAggregateOutputType | null
+    _max: CouponMaxAggregateOutputType | null
+  }
+
+  type GetCouponGroupByPayload<T extends CouponGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<CouponGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof CouponGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], CouponGroupByOutputType[P]>
+            : GetScalarType<T[P], CouponGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type CouponSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    description?: boolean
+    imageUrl?: boolean
+    status?: boolean
+    couponType?: boolean
+    dealType?: boolean
+    isFeatured?: boolean
+    couponCode?: boolean
+    pointsToRedeem?: boolean
+    startDate?: boolean
+    endDate?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    organizationId?: boolean
+    organization?: boolean | OrganizationDefaultArgs<ExtArgs>
+    FavoriteCouponList?: boolean | Coupon$FavoriteCouponListArgs<ExtArgs>
+    _count?: boolean | CouponCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["coupon"]>
+
+  export type CouponSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    description?: boolean
+    imageUrl?: boolean
+    status?: boolean
+    couponType?: boolean
+    dealType?: boolean
+    isFeatured?: boolean
+    couponCode?: boolean
+    pointsToRedeem?: boolean
+    startDate?: boolean
+    endDate?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    organizationId?: boolean
+    organization?: boolean | OrganizationDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["coupon"]>
+
+  export type CouponSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    description?: boolean
+    imageUrl?: boolean
+    status?: boolean
+    couponType?: boolean
+    dealType?: boolean
+    isFeatured?: boolean
+    couponCode?: boolean
+    pointsToRedeem?: boolean
+    startDate?: boolean
+    endDate?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    organizationId?: boolean
+    organization?: boolean | OrganizationDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["coupon"]>
+
+  export type CouponSelectScalar = {
+    id?: boolean
+    name?: boolean
+    description?: boolean
+    imageUrl?: boolean
+    status?: boolean
+    couponType?: boolean
+    dealType?: boolean
+    isFeatured?: boolean
+    couponCode?: boolean
+    pointsToRedeem?: boolean
+    startDate?: boolean
+    endDate?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    organizationId?: boolean
+  }
+
+  export type CouponOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "description" | "imageUrl" | "status" | "couponType" | "dealType" | "isFeatured" | "couponCode" | "pointsToRedeem" | "startDate" | "endDate" | "createdAt" | "updatedAt" | "organizationId", ExtArgs["result"]["coupon"]>
+  export type CouponInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    organization?: boolean | OrganizationDefaultArgs<ExtArgs>
+    FavoriteCouponList?: boolean | Coupon$FavoriteCouponListArgs<ExtArgs>
+    _count?: boolean | CouponCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type CouponIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    organization?: boolean | OrganizationDefaultArgs<ExtArgs>
+  }
+  export type CouponIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    organization?: boolean | OrganizationDefaultArgs<ExtArgs>
+  }
+
+  export type $CouponPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Coupon"
+    objects: {
+      organization: Prisma.$OrganizationPayload<ExtArgs>
+      FavoriteCouponList: Prisma.$FavoriteCouponListPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      name: string
+      description: string | null
+      imageUrl: string
+      status: $Enums.Status
+      couponType: $Enums.CouponType
+      dealType: $Enums.DealType
+      isFeatured: boolean
+      couponCode: string
+      pointsToRedeem: number
+      startDate: Date
+      endDate: Date
+      createdAt: Date
+      updatedAt: Date
+      organizationId: string
+    }, ExtArgs["result"]["coupon"]>
+    composites: {}
+  }
+
+  type CouponGetPayload<S extends boolean | null | undefined | CouponDefaultArgs> = $Result.GetResult<Prisma.$CouponPayload, S>
+
+  type CouponCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<CouponFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: CouponCountAggregateInputType | true
+    }
+
+  export interface CouponDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Coupon'], meta: { name: 'Coupon' } }
+    /**
+     * Find zero or one Coupon that matches the filter.
+     * @param {CouponFindUniqueArgs} args - Arguments to find a Coupon
+     * @example
+     * // Get one Coupon
+     * const coupon = await prisma.coupon.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends CouponFindUniqueArgs>(args: SelectSubset<T, CouponFindUniqueArgs<ExtArgs>>): Prisma__CouponClient<$Result.GetResult<Prisma.$CouponPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Coupon that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {CouponFindUniqueOrThrowArgs} args - Arguments to find a Coupon
+     * @example
+     * // Get one Coupon
+     * const coupon = await prisma.coupon.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends CouponFindUniqueOrThrowArgs>(args: SelectSubset<T, CouponFindUniqueOrThrowArgs<ExtArgs>>): Prisma__CouponClient<$Result.GetResult<Prisma.$CouponPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Coupon that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CouponFindFirstArgs} args - Arguments to find a Coupon
+     * @example
+     * // Get one Coupon
+     * const coupon = await prisma.coupon.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends CouponFindFirstArgs>(args?: SelectSubset<T, CouponFindFirstArgs<ExtArgs>>): Prisma__CouponClient<$Result.GetResult<Prisma.$CouponPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Coupon that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CouponFindFirstOrThrowArgs} args - Arguments to find a Coupon
+     * @example
+     * // Get one Coupon
+     * const coupon = await prisma.coupon.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends CouponFindFirstOrThrowArgs>(args?: SelectSubset<T, CouponFindFirstOrThrowArgs<ExtArgs>>): Prisma__CouponClient<$Result.GetResult<Prisma.$CouponPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Coupons that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CouponFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Coupons
+     * const coupons = await prisma.coupon.findMany()
+     * 
+     * // Get first 10 Coupons
+     * const coupons = await prisma.coupon.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const couponWithIdOnly = await prisma.coupon.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends CouponFindManyArgs>(args?: SelectSubset<T, CouponFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CouponPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Coupon.
+     * @param {CouponCreateArgs} args - Arguments to create a Coupon.
+     * @example
+     * // Create one Coupon
+     * const Coupon = await prisma.coupon.create({
+     *   data: {
+     *     // ... data to create a Coupon
+     *   }
+     * })
+     * 
+     */
+    create<T extends CouponCreateArgs>(args: SelectSubset<T, CouponCreateArgs<ExtArgs>>): Prisma__CouponClient<$Result.GetResult<Prisma.$CouponPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Coupons.
+     * @param {CouponCreateManyArgs} args - Arguments to create many Coupons.
+     * @example
+     * // Create many Coupons
+     * const coupon = await prisma.coupon.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends CouponCreateManyArgs>(args?: SelectSubset<T, CouponCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Coupons and returns the data saved in the database.
+     * @param {CouponCreateManyAndReturnArgs} args - Arguments to create many Coupons.
+     * @example
+     * // Create many Coupons
+     * const coupon = await prisma.coupon.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Coupons and only return the `id`
+     * const couponWithIdOnly = await prisma.coupon.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends CouponCreateManyAndReturnArgs>(args?: SelectSubset<T, CouponCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CouponPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Coupon.
+     * @param {CouponDeleteArgs} args - Arguments to delete one Coupon.
+     * @example
+     * // Delete one Coupon
+     * const Coupon = await prisma.coupon.delete({
+     *   where: {
+     *     // ... filter to delete one Coupon
+     *   }
+     * })
+     * 
+     */
+    delete<T extends CouponDeleteArgs>(args: SelectSubset<T, CouponDeleteArgs<ExtArgs>>): Prisma__CouponClient<$Result.GetResult<Prisma.$CouponPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Coupon.
+     * @param {CouponUpdateArgs} args - Arguments to update one Coupon.
+     * @example
+     * // Update one Coupon
+     * const coupon = await prisma.coupon.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends CouponUpdateArgs>(args: SelectSubset<T, CouponUpdateArgs<ExtArgs>>): Prisma__CouponClient<$Result.GetResult<Prisma.$CouponPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Coupons.
+     * @param {CouponDeleteManyArgs} args - Arguments to filter Coupons to delete.
+     * @example
+     * // Delete a few Coupons
+     * const { count } = await prisma.coupon.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends CouponDeleteManyArgs>(args?: SelectSubset<T, CouponDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Coupons.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CouponUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Coupons
+     * const coupon = await prisma.coupon.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends CouponUpdateManyArgs>(args: SelectSubset<T, CouponUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Coupons and returns the data updated in the database.
+     * @param {CouponUpdateManyAndReturnArgs} args - Arguments to update many Coupons.
+     * @example
+     * // Update many Coupons
+     * const coupon = await prisma.coupon.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Coupons and only return the `id`
+     * const couponWithIdOnly = await prisma.coupon.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends CouponUpdateManyAndReturnArgs>(args: SelectSubset<T, CouponUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CouponPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Coupon.
+     * @param {CouponUpsertArgs} args - Arguments to update or create a Coupon.
+     * @example
+     * // Update or create a Coupon
+     * const coupon = await prisma.coupon.upsert({
+     *   create: {
+     *     // ... data to create a Coupon
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Coupon we want to update
+     *   }
+     * })
+     */
+    upsert<T extends CouponUpsertArgs>(args: SelectSubset<T, CouponUpsertArgs<ExtArgs>>): Prisma__CouponClient<$Result.GetResult<Prisma.$CouponPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Coupons.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CouponCountArgs} args - Arguments to filter Coupons to count.
+     * @example
+     * // Count the number of Coupons
+     * const count = await prisma.coupon.count({
+     *   where: {
+     *     // ... the filter for the Coupons we want to count
+     *   }
+     * })
+    **/
+    count<T extends CouponCountArgs>(
+      args?: Subset<T, CouponCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], CouponCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Coupon.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CouponAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends CouponAggregateArgs>(args: Subset<T, CouponAggregateArgs>): Prisma.PrismaPromise<GetCouponAggregateType<T>>
+
+    /**
+     * Group by Coupon.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CouponGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends CouponGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: CouponGroupByArgs['orderBy'] }
+        : { orderBy?: CouponGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, CouponGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetCouponGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Coupon model
+   */
+  readonly fields: CouponFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Coupon.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__CouponClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    organization<T extends OrganizationDefaultArgs<ExtArgs> = {}>(args?: Subset<T, OrganizationDefaultArgs<ExtArgs>>): Prisma__OrganizationClient<$Result.GetResult<Prisma.$OrganizationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    FavoriteCouponList<T extends Coupon$FavoriteCouponListArgs<ExtArgs> = {}>(args?: Subset<T, Coupon$FavoriteCouponListArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FavoriteCouponListPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Coupon model
+   */
+  interface CouponFieldRefs {
+    readonly id: FieldRef<"Coupon", 'String'>
+    readonly name: FieldRef<"Coupon", 'String'>
+    readonly description: FieldRef<"Coupon", 'String'>
+    readonly imageUrl: FieldRef<"Coupon", 'String'>
+    readonly status: FieldRef<"Coupon", 'Status'>
+    readonly couponType: FieldRef<"Coupon", 'CouponType'>
+    readonly dealType: FieldRef<"Coupon", 'DealType'>
+    readonly isFeatured: FieldRef<"Coupon", 'Boolean'>
+    readonly couponCode: FieldRef<"Coupon", 'String'>
+    readonly pointsToRedeem: FieldRef<"Coupon", 'Int'>
+    readonly startDate: FieldRef<"Coupon", 'DateTime'>
+    readonly endDate: FieldRef<"Coupon", 'DateTime'>
+    readonly createdAt: FieldRef<"Coupon", 'DateTime'>
+    readonly updatedAt: FieldRef<"Coupon", 'DateTime'>
+    readonly organizationId: FieldRef<"Coupon", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Coupon findUnique
+   */
+  export type CouponFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Coupon
+     */
+    select?: CouponSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Coupon
+     */
+    omit?: CouponOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CouponInclude<ExtArgs> | null
+    /**
+     * Filter, which Coupon to fetch.
+     */
+    where: CouponWhereUniqueInput
+  }
+
+  /**
+   * Coupon findUniqueOrThrow
+   */
+  export type CouponFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Coupon
+     */
+    select?: CouponSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Coupon
+     */
+    omit?: CouponOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CouponInclude<ExtArgs> | null
+    /**
+     * Filter, which Coupon to fetch.
+     */
+    where: CouponWhereUniqueInput
+  }
+
+  /**
+   * Coupon findFirst
+   */
+  export type CouponFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Coupon
+     */
+    select?: CouponSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Coupon
+     */
+    omit?: CouponOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CouponInclude<ExtArgs> | null
+    /**
+     * Filter, which Coupon to fetch.
+     */
+    where?: CouponWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Coupons to fetch.
+     */
+    orderBy?: CouponOrderByWithRelationInput | CouponOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Coupons.
+     */
+    cursor?: CouponWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Coupons from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Coupons.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Coupons.
+     */
+    distinct?: CouponScalarFieldEnum | CouponScalarFieldEnum[]
+  }
+
+  /**
+   * Coupon findFirstOrThrow
+   */
+  export type CouponFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Coupon
+     */
+    select?: CouponSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Coupon
+     */
+    omit?: CouponOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CouponInclude<ExtArgs> | null
+    /**
+     * Filter, which Coupon to fetch.
+     */
+    where?: CouponWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Coupons to fetch.
+     */
+    orderBy?: CouponOrderByWithRelationInput | CouponOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Coupons.
+     */
+    cursor?: CouponWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Coupons from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Coupons.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Coupons.
+     */
+    distinct?: CouponScalarFieldEnum | CouponScalarFieldEnum[]
+  }
+
+  /**
+   * Coupon findMany
+   */
+  export type CouponFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Coupon
+     */
+    select?: CouponSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Coupon
+     */
+    omit?: CouponOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CouponInclude<ExtArgs> | null
+    /**
+     * Filter, which Coupons to fetch.
+     */
+    where?: CouponWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Coupons to fetch.
+     */
+    orderBy?: CouponOrderByWithRelationInput | CouponOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Coupons.
+     */
+    cursor?: CouponWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Coupons from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Coupons.
+     */
+    skip?: number
+    distinct?: CouponScalarFieldEnum | CouponScalarFieldEnum[]
+  }
+
+  /**
+   * Coupon create
+   */
+  export type CouponCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Coupon
+     */
+    select?: CouponSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Coupon
+     */
+    omit?: CouponOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CouponInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Coupon.
+     */
+    data: XOR<CouponCreateInput, CouponUncheckedCreateInput>
+  }
+
+  /**
+   * Coupon createMany
+   */
+  export type CouponCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Coupons.
+     */
+    data: CouponCreateManyInput | CouponCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Coupon createManyAndReturn
+   */
+  export type CouponCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Coupon
+     */
+    select?: CouponSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Coupon
+     */
+    omit?: CouponOmit<ExtArgs> | null
+    /**
+     * The data used to create many Coupons.
+     */
+    data: CouponCreateManyInput | CouponCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CouponIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Coupon update
+   */
+  export type CouponUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Coupon
+     */
+    select?: CouponSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Coupon
+     */
+    omit?: CouponOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CouponInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Coupon.
+     */
+    data: XOR<CouponUpdateInput, CouponUncheckedUpdateInput>
+    /**
+     * Choose, which Coupon to update.
+     */
+    where: CouponWhereUniqueInput
+  }
+
+  /**
+   * Coupon updateMany
+   */
+  export type CouponUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Coupons.
+     */
+    data: XOR<CouponUpdateManyMutationInput, CouponUncheckedUpdateManyInput>
+    /**
+     * Filter which Coupons to update
+     */
+    where?: CouponWhereInput
+    /**
+     * Limit how many Coupons to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Coupon updateManyAndReturn
+   */
+  export type CouponUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Coupon
+     */
+    select?: CouponSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Coupon
+     */
+    omit?: CouponOmit<ExtArgs> | null
+    /**
+     * The data used to update Coupons.
+     */
+    data: XOR<CouponUpdateManyMutationInput, CouponUncheckedUpdateManyInput>
+    /**
+     * Filter which Coupons to update
+     */
+    where?: CouponWhereInput
+    /**
+     * Limit how many Coupons to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CouponIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Coupon upsert
+   */
+  export type CouponUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Coupon
+     */
+    select?: CouponSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Coupon
+     */
+    omit?: CouponOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CouponInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Coupon to update in case it exists.
+     */
+    where: CouponWhereUniqueInput
+    /**
+     * In case the Coupon found by the `where` argument doesn't exist, create a new Coupon with this data.
+     */
+    create: XOR<CouponCreateInput, CouponUncheckedCreateInput>
+    /**
+     * In case the Coupon was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<CouponUpdateInput, CouponUncheckedUpdateInput>
+  }
+
+  /**
+   * Coupon delete
+   */
+  export type CouponDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Coupon
+     */
+    select?: CouponSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Coupon
+     */
+    omit?: CouponOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CouponInclude<ExtArgs> | null
+    /**
+     * Filter which Coupon to delete.
+     */
+    where: CouponWhereUniqueInput
+  }
+
+  /**
+   * Coupon deleteMany
+   */
+  export type CouponDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Coupons to delete
+     */
+    where?: CouponWhereInput
+    /**
+     * Limit how many Coupons to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Coupon.FavoriteCouponList
+   */
+  export type Coupon$FavoriteCouponListArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FavoriteCouponList
+     */
+    select?: FavoriteCouponListSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FavoriteCouponList
+     */
+    omit?: FavoriteCouponListOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FavoriteCouponListInclude<ExtArgs> | null
+    where?: FavoriteCouponListWhereInput
+    orderBy?: FavoriteCouponListOrderByWithRelationInput | FavoriteCouponListOrderByWithRelationInput[]
+    cursor?: FavoriteCouponListWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: FavoriteCouponListScalarFieldEnum | FavoriteCouponListScalarFieldEnum[]
+  }
+
+  /**
+   * Coupon without action
+   */
+  export type CouponDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Coupon
+     */
+    select?: CouponSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Coupon
+     */
+    omit?: CouponOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CouponInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model FavoriteCouponList
+   */
+
+  export type AggregateFavoriteCouponList = {
+    _count: FavoriteCouponListCountAggregateOutputType | null
+    _min: FavoriteCouponListMinAggregateOutputType | null
+    _max: FavoriteCouponListMaxAggregateOutputType | null
+  }
+
+  export type FavoriteCouponListMinAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    couponId: string | null
+    createdAt: Date | null
+  }
+
+  export type FavoriteCouponListMaxAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    couponId: string | null
+    createdAt: Date | null
+  }
+
+  export type FavoriteCouponListCountAggregateOutputType = {
+    id: number
+    userId: number
+    couponId: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type FavoriteCouponListMinAggregateInputType = {
+    id?: true
+    userId?: true
+    couponId?: true
+    createdAt?: true
+  }
+
+  export type FavoriteCouponListMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    couponId?: true
+    createdAt?: true
+  }
+
+  export type FavoriteCouponListCountAggregateInputType = {
+    id?: true
+    userId?: true
+    couponId?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type FavoriteCouponListAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which FavoriteCouponList to aggregate.
+     */
+    where?: FavoriteCouponListWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FavoriteCouponLists to fetch.
+     */
+    orderBy?: FavoriteCouponListOrderByWithRelationInput | FavoriteCouponListOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: FavoriteCouponListWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FavoriteCouponLists from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FavoriteCouponLists.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned FavoriteCouponLists
+    **/
+    _count?: true | FavoriteCouponListCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: FavoriteCouponListMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: FavoriteCouponListMaxAggregateInputType
+  }
+
+  export type GetFavoriteCouponListAggregateType<T extends FavoriteCouponListAggregateArgs> = {
+        [P in keyof T & keyof AggregateFavoriteCouponList]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateFavoriteCouponList[P]>
+      : GetScalarType<T[P], AggregateFavoriteCouponList[P]>
+  }
+
+
+
+
+  export type FavoriteCouponListGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FavoriteCouponListWhereInput
+    orderBy?: FavoriteCouponListOrderByWithAggregationInput | FavoriteCouponListOrderByWithAggregationInput[]
+    by: FavoriteCouponListScalarFieldEnum[] | FavoriteCouponListScalarFieldEnum
+    having?: FavoriteCouponListScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: FavoriteCouponListCountAggregateInputType | true
+    _min?: FavoriteCouponListMinAggregateInputType
+    _max?: FavoriteCouponListMaxAggregateInputType
+  }
+
+  export type FavoriteCouponListGroupByOutputType = {
+    id: string
+    userId: string
+    couponId: string
+    createdAt: Date
+    _count: FavoriteCouponListCountAggregateOutputType | null
+    _min: FavoriteCouponListMinAggregateOutputType | null
+    _max: FavoriteCouponListMaxAggregateOutputType | null
+  }
+
+  type GetFavoriteCouponListGroupByPayload<T extends FavoriteCouponListGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<FavoriteCouponListGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof FavoriteCouponListGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], FavoriteCouponListGroupByOutputType[P]>
+            : GetScalarType<T[P], FavoriteCouponListGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type FavoriteCouponListSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    couponId?: boolean
+    createdAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    coupon?: boolean | CouponDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["favoriteCouponList"]>
+
+  export type FavoriteCouponListSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    couponId?: boolean
+    createdAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    coupon?: boolean | CouponDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["favoriteCouponList"]>
+
+  export type FavoriteCouponListSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    couponId?: boolean
+    createdAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    coupon?: boolean | CouponDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["favoriteCouponList"]>
+
+  export type FavoriteCouponListSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    couponId?: boolean
+    createdAt?: boolean
+  }
+
+  export type FavoriteCouponListOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "couponId" | "createdAt", ExtArgs["result"]["favoriteCouponList"]>
+  export type FavoriteCouponListInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    coupon?: boolean | CouponDefaultArgs<ExtArgs>
+  }
+  export type FavoriteCouponListIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    coupon?: boolean | CouponDefaultArgs<ExtArgs>
+  }
+  export type FavoriteCouponListIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    coupon?: boolean | CouponDefaultArgs<ExtArgs>
+  }
+
+  export type $FavoriteCouponListPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "FavoriteCouponList"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+      coupon: Prisma.$CouponPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      userId: string
+      couponId: string
+      createdAt: Date
+    }, ExtArgs["result"]["favoriteCouponList"]>
+    composites: {}
+  }
+
+  type FavoriteCouponListGetPayload<S extends boolean | null | undefined | FavoriteCouponListDefaultArgs> = $Result.GetResult<Prisma.$FavoriteCouponListPayload, S>
+
+  type FavoriteCouponListCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<FavoriteCouponListFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: FavoriteCouponListCountAggregateInputType | true
+    }
+
+  export interface FavoriteCouponListDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['FavoriteCouponList'], meta: { name: 'FavoriteCouponList' } }
+    /**
+     * Find zero or one FavoriteCouponList that matches the filter.
+     * @param {FavoriteCouponListFindUniqueArgs} args - Arguments to find a FavoriteCouponList
+     * @example
+     * // Get one FavoriteCouponList
+     * const favoriteCouponList = await prisma.favoriteCouponList.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends FavoriteCouponListFindUniqueArgs>(args: SelectSubset<T, FavoriteCouponListFindUniqueArgs<ExtArgs>>): Prisma__FavoriteCouponListClient<$Result.GetResult<Prisma.$FavoriteCouponListPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one FavoriteCouponList that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {FavoriteCouponListFindUniqueOrThrowArgs} args - Arguments to find a FavoriteCouponList
+     * @example
+     * // Get one FavoriteCouponList
+     * const favoriteCouponList = await prisma.favoriteCouponList.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends FavoriteCouponListFindUniqueOrThrowArgs>(args: SelectSubset<T, FavoriteCouponListFindUniqueOrThrowArgs<ExtArgs>>): Prisma__FavoriteCouponListClient<$Result.GetResult<Prisma.$FavoriteCouponListPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first FavoriteCouponList that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FavoriteCouponListFindFirstArgs} args - Arguments to find a FavoriteCouponList
+     * @example
+     * // Get one FavoriteCouponList
+     * const favoriteCouponList = await prisma.favoriteCouponList.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends FavoriteCouponListFindFirstArgs>(args?: SelectSubset<T, FavoriteCouponListFindFirstArgs<ExtArgs>>): Prisma__FavoriteCouponListClient<$Result.GetResult<Prisma.$FavoriteCouponListPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first FavoriteCouponList that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FavoriteCouponListFindFirstOrThrowArgs} args - Arguments to find a FavoriteCouponList
+     * @example
+     * // Get one FavoriteCouponList
+     * const favoriteCouponList = await prisma.favoriteCouponList.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends FavoriteCouponListFindFirstOrThrowArgs>(args?: SelectSubset<T, FavoriteCouponListFindFirstOrThrowArgs<ExtArgs>>): Prisma__FavoriteCouponListClient<$Result.GetResult<Prisma.$FavoriteCouponListPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more FavoriteCouponLists that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FavoriteCouponListFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all FavoriteCouponLists
+     * const favoriteCouponLists = await prisma.favoriteCouponList.findMany()
+     * 
+     * // Get first 10 FavoriteCouponLists
+     * const favoriteCouponLists = await prisma.favoriteCouponList.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const favoriteCouponListWithIdOnly = await prisma.favoriteCouponList.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends FavoriteCouponListFindManyArgs>(args?: SelectSubset<T, FavoriteCouponListFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FavoriteCouponListPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a FavoriteCouponList.
+     * @param {FavoriteCouponListCreateArgs} args - Arguments to create a FavoriteCouponList.
+     * @example
+     * // Create one FavoriteCouponList
+     * const FavoriteCouponList = await prisma.favoriteCouponList.create({
+     *   data: {
+     *     // ... data to create a FavoriteCouponList
+     *   }
+     * })
+     * 
+     */
+    create<T extends FavoriteCouponListCreateArgs>(args: SelectSubset<T, FavoriteCouponListCreateArgs<ExtArgs>>): Prisma__FavoriteCouponListClient<$Result.GetResult<Prisma.$FavoriteCouponListPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many FavoriteCouponLists.
+     * @param {FavoriteCouponListCreateManyArgs} args - Arguments to create many FavoriteCouponLists.
+     * @example
+     * // Create many FavoriteCouponLists
+     * const favoriteCouponList = await prisma.favoriteCouponList.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends FavoriteCouponListCreateManyArgs>(args?: SelectSubset<T, FavoriteCouponListCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many FavoriteCouponLists and returns the data saved in the database.
+     * @param {FavoriteCouponListCreateManyAndReturnArgs} args - Arguments to create many FavoriteCouponLists.
+     * @example
+     * // Create many FavoriteCouponLists
+     * const favoriteCouponList = await prisma.favoriteCouponList.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many FavoriteCouponLists and only return the `id`
+     * const favoriteCouponListWithIdOnly = await prisma.favoriteCouponList.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends FavoriteCouponListCreateManyAndReturnArgs>(args?: SelectSubset<T, FavoriteCouponListCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FavoriteCouponListPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a FavoriteCouponList.
+     * @param {FavoriteCouponListDeleteArgs} args - Arguments to delete one FavoriteCouponList.
+     * @example
+     * // Delete one FavoriteCouponList
+     * const FavoriteCouponList = await prisma.favoriteCouponList.delete({
+     *   where: {
+     *     // ... filter to delete one FavoriteCouponList
+     *   }
+     * })
+     * 
+     */
+    delete<T extends FavoriteCouponListDeleteArgs>(args: SelectSubset<T, FavoriteCouponListDeleteArgs<ExtArgs>>): Prisma__FavoriteCouponListClient<$Result.GetResult<Prisma.$FavoriteCouponListPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one FavoriteCouponList.
+     * @param {FavoriteCouponListUpdateArgs} args - Arguments to update one FavoriteCouponList.
+     * @example
+     * // Update one FavoriteCouponList
+     * const favoriteCouponList = await prisma.favoriteCouponList.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends FavoriteCouponListUpdateArgs>(args: SelectSubset<T, FavoriteCouponListUpdateArgs<ExtArgs>>): Prisma__FavoriteCouponListClient<$Result.GetResult<Prisma.$FavoriteCouponListPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more FavoriteCouponLists.
+     * @param {FavoriteCouponListDeleteManyArgs} args - Arguments to filter FavoriteCouponLists to delete.
+     * @example
+     * // Delete a few FavoriteCouponLists
+     * const { count } = await prisma.favoriteCouponList.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends FavoriteCouponListDeleteManyArgs>(args?: SelectSubset<T, FavoriteCouponListDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more FavoriteCouponLists.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FavoriteCouponListUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many FavoriteCouponLists
+     * const favoriteCouponList = await prisma.favoriteCouponList.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends FavoriteCouponListUpdateManyArgs>(args: SelectSubset<T, FavoriteCouponListUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more FavoriteCouponLists and returns the data updated in the database.
+     * @param {FavoriteCouponListUpdateManyAndReturnArgs} args - Arguments to update many FavoriteCouponLists.
+     * @example
+     * // Update many FavoriteCouponLists
+     * const favoriteCouponList = await prisma.favoriteCouponList.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more FavoriteCouponLists and only return the `id`
+     * const favoriteCouponListWithIdOnly = await prisma.favoriteCouponList.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends FavoriteCouponListUpdateManyAndReturnArgs>(args: SelectSubset<T, FavoriteCouponListUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FavoriteCouponListPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one FavoriteCouponList.
+     * @param {FavoriteCouponListUpsertArgs} args - Arguments to update or create a FavoriteCouponList.
+     * @example
+     * // Update or create a FavoriteCouponList
+     * const favoriteCouponList = await prisma.favoriteCouponList.upsert({
+     *   create: {
+     *     // ... data to create a FavoriteCouponList
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the FavoriteCouponList we want to update
+     *   }
+     * })
+     */
+    upsert<T extends FavoriteCouponListUpsertArgs>(args: SelectSubset<T, FavoriteCouponListUpsertArgs<ExtArgs>>): Prisma__FavoriteCouponListClient<$Result.GetResult<Prisma.$FavoriteCouponListPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of FavoriteCouponLists.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FavoriteCouponListCountArgs} args - Arguments to filter FavoriteCouponLists to count.
+     * @example
+     * // Count the number of FavoriteCouponLists
+     * const count = await prisma.favoriteCouponList.count({
+     *   where: {
+     *     // ... the filter for the FavoriteCouponLists we want to count
+     *   }
+     * })
+    **/
+    count<T extends FavoriteCouponListCountArgs>(
+      args?: Subset<T, FavoriteCouponListCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], FavoriteCouponListCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a FavoriteCouponList.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FavoriteCouponListAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends FavoriteCouponListAggregateArgs>(args: Subset<T, FavoriteCouponListAggregateArgs>): Prisma.PrismaPromise<GetFavoriteCouponListAggregateType<T>>
+
+    /**
+     * Group by FavoriteCouponList.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FavoriteCouponListGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends FavoriteCouponListGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: FavoriteCouponListGroupByArgs['orderBy'] }
+        : { orderBy?: FavoriteCouponListGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, FavoriteCouponListGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetFavoriteCouponListGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the FavoriteCouponList model
+   */
+  readonly fields: FavoriteCouponListFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for FavoriteCouponList.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__FavoriteCouponListClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    coupon<T extends CouponDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CouponDefaultArgs<ExtArgs>>): Prisma__CouponClient<$Result.GetResult<Prisma.$CouponPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the FavoriteCouponList model
+   */
+  interface FavoriteCouponListFieldRefs {
+    readonly id: FieldRef<"FavoriteCouponList", 'String'>
+    readonly userId: FieldRef<"FavoriteCouponList", 'String'>
+    readonly couponId: FieldRef<"FavoriteCouponList", 'String'>
+    readonly createdAt: FieldRef<"FavoriteCouponList", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * FavoriteCouponList findUnique
+   */
+  export type FavoriteCouponListFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FavoriteCouponList
+     */
+    select?: FavoriteCouponListSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FavoriteCouponList
+     */
+    omit?: FavoriteCouponListOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FavoriteCouponListInclude<ExtArgs> | null
+    /**
+     * Filter, which FavoriteCouponList to fetch.
+     */
+    where: FavoriteCouponListWhereUniqueInput
+  }
+
+  /**
+   * FavoriteCouponList findUniqueOrThrow
+   */
+  export type FavoriteCouponListFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FavoriteCouponList
+     */
+    select?: FavoriteCouponListSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FavoriteCouponList
+     */
+    omit?: FavoriteCouponListOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FavoriteCouponListInclude<ExtArgs> | null
+    /**
+     * Filter, which FavoriteCouponList to fetch.
+     */
+    where: FavoriteCouponListWhereUniqueInput
+  }
+
+  /**
+   * FavoriteCouponList findFirst
+   */
+  export type FavoriteCouponListFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FavoriteCouponList
+     */
+    select?: FavoriteCouponListSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FavoriteCouponList
+     */
+    omit?: FavoriteCouponListOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FavoriteCouponListInclude<ExtArgs> | null
+    /**
+     * Filter, which FavoriteCouponList to fetch.
+     */
+    where?: FavoriteCouponListWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FavoriteCouponLists to fetch.
+     */
+    orderBy?: FavoriteCouponListOrderByWithRelationInput | FavoriteCouponListOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for FavoriteCouponLists.
+     */
+    cursor?: FavoriteCouponListWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FavoriteCouponLists from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FavoriteCouponLists.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of FavoriteCouponLists.
+     */
+    distinct?: FavoriteCouponListScalarFieldEnum | FavoriteCouponListScalarFieldEnum[]
+  }
+
+  /**
+   * FavoriteCouponList findFirstOrThrow
+   */
+  export type FavoriteCouponListFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FavoriteCouponList
+     */
+    select?: FavoriteCouponListSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FavoriteCouponList
+     */
+    omit?: FavoriteCouponListOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FavoriteCouponListInclude<ExtArgs> | null
+    /**
+     * Filter, which FavoriteCouponList to fetch.
+     */
+    where?: FavoriteCouponListWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FavoriteCouponLists to fetch.
+     */
+    orderBy?: FavoriteCouponListOrderByWithRelationInput | FavoriteCouponListOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for FavoriteCouponLists.
+     */
+    cursor?: FavoriteCouponListWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FavoriteCouponLists from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FavoriteCouponLists.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of FavoriteCouponLists.
+     */
+    distinct?: FavoriteCouponListScalarFieldEnum | FavoriteCouponListScalarFieldEnum[]
+  }
+
+  /**
+   * FavoriteCouponList findMany
+   */
+  export type FavoriteCouponListFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FavoriteCouponList
+     */
+    select?: FavoriteCouponListSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FavoriteCouponList
+     */
+    omit?: FavoriteCouponListOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FavoriteCouponListInclude<ExtArgs> | null
+    /**
+     * Filter, which FavoriteCouponLists to fetch.
+     */
+    where?: FavoriteCouponListWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FavoriteCouponLists to fetch.
+     */
+    orderBy?: FavoriteCouponListOrderByWithRelationInput | FavoriteCouponListOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing FavoriteCouponLists.
+     */
+    cursor?: FavoriteCouponListWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FavoriteCouponLists from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FavoriteCouponLists.
+     */
+    skip?: number
+    distinct?: FavoriteCouponListScalarFieldEnum | FavoriteCouponListScalarFieldEnum[]
+  }
+
+  /**
+   * FavoriteCouponList create
+   */
+  export type FavoriteCouponListCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FavoriteCouponList
+     */
+    select?: FavoriteCouponListSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FavoriteCouponList
+     */
+    omit?: FavoriteCouponListOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FavoriteCouponListInclude<ExtArgs> | null
+    /**
+     * The data needed to create a FavoriteCouponList.
+     */
+    data: XOR<FavoriteCouponListCreateInput, FavoriteCouponListUncheckedCreateInput>
+  }
+
+  /**
+   * FavoriteCouponList createMany
+   */
+  export type FavoriteCouponListCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many FavoriteCouponLists.
+     */
+    data: FavoriteCouponListCreateManyInput | FavoriteCouponListCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * FavoriteCouponList createManyAndReturn
+   */
+  export type FavoriteCouponListCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FavoriteCouponList
+     */
+    select?: FavoriteCouponListSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the FavoriteCouponList
+     */
+    omit?: FavoriteCouponListOmit<ExtArgs> | null
+    /**
+     * The data used to create many FavoriteCouponLists.
+     */
+    data: FavoriteCouponListCreateManyInput | FavoriteCouponListCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FavoriteCouponListIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * FavoriteCouponList update
+   */
+  export type FavoriteCouponListUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FavoriteCouponList
+     */
+    select?: FavoriteCouponListSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FavoriteCouponList
+     */
+    omit?: FavoriteCouponListOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FavoriteCouponListInclude<ExtArgs> | null
+    /**
+     * The data needed to update a FavoriteCouponList.
+     */
+    data: XOR<FavoriteCouponListUpdateInput, FavoriteCouponListUncheckedUpdateInput>
+    /**
+     * Choose, which FavoriteCouponList to update.
+     */
+    where: FavoriteCouponListWhereUniqueInput
+  }
+
+  /**
+   * FavoriteCouponList updateMany
+   */
+  export type FavoriteCouponListUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update FavoriteCouponLists.
+     */
+    data: XOR<FavoriteCouponListUpdateManyMutationInput, FavoriteCouponListUncheckedUpdateManyInput>
+    /**
+     * Filter which FavoriteCouponLists to update
+     */
+    where?: FavoriteCouponListWhereInput
+    /**
+     * Limit how many FavoriteCouponLists to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * FavoriteCouponList updateManyAndReturn
+   */
+  export type FavoriteCouponListUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FavoriteCouponList
+     */
+    select?: FavoriteCouponListSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the FavoriteCouponList
+     */
+    omit?: FavoriteCouponListOmit<ExtArgs> | null
+    /**
+     * The data used to update FavoriteCouponLists.
+     */
+    data: XOR<FavoriteCouponListUpdateManyMutationInput, FavoriteCouponListUncheckedUpdateManyInput>
+    /**
+     * Filter which FavoriteCouponLists to update
+     */
+    where?: FavoriteCouponListWhereInput
+    /**
+     * Limit how many FavoriteCouponLists to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FavoriteCouponListIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * FavoriteCouponList upsert
+   */
+  export type FavoriteCouponListUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FavoriteCouponList
+     */
+    select?: FavoriteCouponListSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FavoriteCouponList
+     */
+    omit?: FavoriteCouponListOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FavoriteCouponListInclude<ExtArgs> | null
+    /**
+     * The filter to search for the FavoriteCouponList to update in case it exists.
+     */
+    where: FavoriteCouponListWhereUniqueInput
+    /**
+     * In case the FavoriteCouponList found by the `where` argument doesn't exist, create a new FavoriteCouponList with this data.
+     */
+    create: XOR<FavoriteCouponListCreateInput, FavoriteCouponListUncheckedCreateInput>
+    /**
+     * In case the FavoriteCouponList was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<FavoriteCouponListUpdateInput, FavoriteCouponListUncheckedUpdateInput>
+  }
+
+  /**
+   * FavoriteCouponList delete
+   */
+  export type FavoriteCouponListDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FavoriteCouponList
+     */
+    select?: FavoriteCouponListSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FavoriteCouponList
+     */
+    omit?: FavoriteCouponListOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FavoriteCouponListInclude<ExtArgs> | null
+    /**
+     * Filter which FavoriteCouponList to delete.
+     */
+    where: FavoriteCouponListWhereUniqueInput
+  }
+
+  /**
+   * FavoriteCouponList deleteMany
+   */
+  export type FavoriteCouponListDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which FavoriteCouponLists to delete
+     */
+    where?: FavoriteCouponListWhereInput
+    /**
+     * Limit how many FavoriteCouponLists to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * FavoriteCouponList without action
+   */
+  export type FavoriteCouponListDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FavoriteCouponList
+     */
+    select?: FavoriteCouponListSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FavoriteCouponList
+     */
+    omit?: FavoriteCouponListOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FavoriteCouponListInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -14748,6 +21049,40 @@ export namespace Prisma {
   export type RewardRulesScalarFieldEnum = (typeof RewardRulesScalarFieldEnum)[keyof typeof RewardRulesScalarFieldEnum]
 
 
+  export const RedeemHistoryScalarFieldEnum: {
+    id: 'id',
+    couponId: 'couponId',
+    userId: 'userId',
+    points: 'points',
+    description: 'description',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type RedeemHistoryScalarFieldEnum = (typeof RedeemHistoryScalarFieldEnum)[keyof typeof RedeemHistoryScalarFieldEnum]
+
+
+  export const RecycleHistoryScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    points: 'points',
+    mediaUrl: 'mediaUrl',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type RecycleHistoryScalarFieldEnum = (typeof RecycleHistoryScalarFieldEnum)[keyof typeof RecycleHistoryScalarFieldEnum]
+
+
+  export const UserTotalPointScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    totalPoints: 'totalPoints'
+  };
+
+  export type UserTotalPointScalarFieldEnum = (typeof UserTotalPointScalarFieldEnum)[keyof typeof UserTotalPointScalarFieldEnum]
+
+
   export const BinScalarFieldEnum: {
     id: 'id',
     number: 'number',
@@ -14761,6 +21096,37 @@ export namespace Prisma {
   };
 
   export type BinScalarFieldEnum = (typeof BinScalarFieldEnum)[keyof typeof BinScalarFieldEnum]
+
+
+  export const CouponScalarFieldEnum: {
+    id: 'id',
+    name: 'name',
+    description: 'description',
+    imageUrl: 'imageUrl',
+    status: 'status',
+    couponType: 'couponType',
+    dealType: 'dealType',
+    isFeatured: 'isFeatured',
+    couponCode: 'couponCode',
+    pointsToRedeem: 'pointsToRedeem',
+    startDate: 'startDate',
+    endDate: 'endDate',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt',
+    organizationId: 'organizationId'
+  };
+
+  export type CouponScalarFieldEnum = (typeof CouponScalarFieldEnum)[keyof typeof CouponScalarFieldEnum]
+
+
+  export const FavoriteCouponListScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    couponId: 'couponId',
+    createdAt: 'createdAt'
+  };
+
+  export type FavoriteCouponListScalarFieldEnum = (typeof FavoriteCouponListScalarFieldEnum)[keyof typeof FavoriteCouponListScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -14881,6 +21247,48 @@ export namespace Prisma {
    */
   export type ListEnumBinStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'BinStatus[]'>
     
+
+
+  /**
+   * Reference to a field of type 'Status'
+   */
+  export type EnumStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Status'>
+    
+
+
+  /**
+   * Reference to a field of type 'Status[]'
+   */
+  export type ListEnumStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Status[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'CouponType'
+   */
+  export type EnumCouponTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'CouponType'>
+    
+
+
+  /**
+   * Reference to a field of type 'CouponType[]'
+   */
+  export type ListEnumCouponTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'CouponType[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'DealType'
+   */
+  export type EnumDealTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DealType'>
+    
+
+
+  /**
+   * Reference to a field of type 'DealType[]'
+   */
+  export type ListEnumDealTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DealType[]'>
+    
   /**
    * Deep Input Types
    */
@@ -14912,6 +21320,10 @@ export namespace Prisma {
     accounts?: AccountListRelationFilter
     members?: MemberListRelationFilter
     invitations?: InvitationListRelationFilter
+    FavoriteCouponList?: FavoriteCouponListListRelationFilter
+    RedeemHistory?: RedeemHistoryListRelationFilter
+    RecycleHistory?: RecycleHistoryListRelationFilter
+    UserTotalPoint?: UserTotalPointListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -14937,6 +21349,10 @@ export namespace Prisma {
     accounts?: AccountOrderByRelationAggregateInput
     members?: MemberOrderByRelationAggregateInput
     invitations?: InvitationOrderByRelationAggregateInput
+    FavoriteCouponList?: FavoriteCouponListOrderByRelationAggregateInput
+    RedeemHistory?: RedeemHistoryOrderByRelationAggregateInput
+    RecycleHistory?: RecycleHistoryOrderByRelationAggregateInput
+    UserTotalPoint?: UserTotalPointOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -14965,6 +21381,10 @@ export namespace Prisma {
     accounts?: AccountListRelationFilter
     members?: MemberListRelationFilter
     invitations?: InvitationListRelationFilter
+    FavoriteCouponList?: FavoriteCouponListListRelationFilter
+    RedeemHistory?: RedeemHistoryListRelationFilter
+    RecycleHistory?: RecycleHistoryListRelationFilter
+    UserTotalPoint?: UserTotalPointListRelationFilter
   }, "id" | "email" | "username">
 
   export type UserOrderByWithAggregationInput = {
@@ -15260,6 +21680,7 @@ export namespace Prisma {
     members?: MemberListRelationFilter
     invitations?: InvitationListRelationFilter
     stores?: StoreListRelationFilter
+    Coupon?: CouponListRelationFilter
   }
 
   export type OrganizationOrderByWithRelationInput = {
@@ -15272,6 +21693,7 @@ export namespace Prisma {
     members?: MemberOrderByRelationAggregateInput
     invitations?: InvitationOrderByRelationAggregateInput
     stores?: StoreOrderByRelationAggregateInput
+    Coupon?: CouponOrderByRelationAggregateInput
   }
 
   export type OrganizationWhereUniqueInput = Prisma.AtLeast<{
@@ -15287,6 +21709,7 @@ export namespace Prisma {
     members?: MemberListRelationFilter
     invitations?: InvitationListRelationFilter
     stores?: StoreListRelationFilter
+    Coupon?: CouponListRelationFilter
   }, "id" | "slug">
 
   export type OrganizationOrderByWithAggregationInput = {
@@ -15684,6 +22107,182 @@ export namespace Prisma {
     updatedAt?: DateTimeWithAggregatesFilter<"RewardRules"> | Date | string
   }
 
+  export type RedeemHistoryWhereInput = {
+    AND?: RedeemHistoryWhereInput | RedeemHistoryWhereInput[]
+    OR?: RedeemHistoryWhereInput[]
+    NOT?: RedeemHistoryWhereInput | RedeemHistoryWhereInput[]
+    id?: StringFilter<"RedeemHistory"> | string
+    couponId?: StringFilter<"RedeemHistory"> | string
+    userId?: StringFilter<"RedeemHistory"> | string
+    points?: IntFilter<"RedeemHistory"> | number
+    description?: StringNullableFilter<"RedeemHistory"> | string | null
+    createdAt?: DateTimeFilter<"RedeemHistory"> | Date | string
+    updatedAt?: DateTimeFilter<"RedeemHistory"> | Date | string
+    User?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }
+
+  export type RedeemHistoryOrderByWithRelationInput = {
+    id?: SortOrder
+    couponId?: SortOrder
+    userId?: SortOrder
+    points?: SortOrder
+    description?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    User?: UserOrderByWithRelationInput
+  }
+
+  export type RedeemHistoryWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: RedeemHistoryWhereInput | RedeemHistoryWhereInput[]
+    OR?: RedeemHistoryWhereInput[]
+    NOT?: RedeemHistoryWhereInput | RedeemHistoryWhereInput[]
+    couponId?: StringFilter<"RedeemHistory"> | string
+    userId?: StringFilter<"RedeemHistory"> | string
+    points?: IntFilter<"RedeemHistory"> | number
+    description?: StringNullableFilter<"RedeemHistory"> | string | null
+    createdAt?: DateTimeFilter<"RedeemHistory"> | Date | string
+    updatedAt?: DateTimeFilter<"RedeemHistory"> | Date | string
+    User?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }, "id">
+
+  export type RedeemHistoryOrderByWithAggregationInput = {
+    id?: SortOrder
+    couponId?: SortOrder
+    userId?: SortOrder
+    points?: SortOrder
+    description?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: RedeemHistoryCountOrderByAggregateInput
+    _avg?: RedeemHistoryAvgOrderByAggregateInput
+    _max?: RedeemHistoryMaxOrderByAggregateInput
+    _min?: RedeemHistoryMinOrderByAggregateInput
+    _sum?: RedeemHistorySumOrderByAggregateInput
+  }
+
+  export type RedeemHistoryScalarWhereWithAggregatesInput = {
+    AND?: RedeemHistoryScalarWhereWithAggregatesInput | RedeemHistoryScalarWhereWithAggregatesInput[]
+    OR?: RedeemHistoryScalarWhereWithAggregatesInput[]
+    NOT?: RedeemHistoryScalarWhereWithAggregatesInput | RedeemHistoryScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"RedeemHistory"> | string
+    couponId?: StringWithAggregatesFilter<"RedeemHistory"> | string
+    userId?: StringWithAggregatesFilter<"RedeemHistory"> | string
+    points?: IntWithAggregatesFilter<"RedeemHistory"> | number
+    description?: StringNullableWithAggregatesFilter<"RedeemHistory"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"RedeemHistory"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"RedeemHistory"> | Date | string
+  }
+
+  export type RecycleHistoryWhereInput = {
+    AND?: RecycleHistoryWhereInput | RecycleHistoryWhereInput[]
+    OR?: RecycleHistoryWhereInput[]
+    NOT?: RecycleHistoryWhereInput | RecycleHistoryWhereInput[]
+    id?: StringFilter<"RecycleHistory"> | string
+    userId?: StringFilter<"RecycleHistory"> | string
+    points?: IntFilter<"RecycleHistory"> | number
+    mediaUrl?: StringNullableFilter<"RecycleHistory"> | string | null
+    createdAt?: DateTimeFilter<"RecycleHistory"> | Date | string
+    updatedAt?: DateTimeFilter<"RecycleHistory"> | Date | string
+    User?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }
+
+  export type RecycleHistoryOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    points?: SortOrder
+    mediaUrl?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    User?: UserOrderByWithRelationInput
+  }
+
+  export type RecycleHistoryWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: RecycleHistoryWhereInput | RecycleHistoryWhereInput[]
+    OR?: RecycleHistoryWhereInput[]
+    NOT?: RecycleHistoryWhereInput | RecycleHistoryWhereInput[]
+    userId?: StringFilter<"RecycleHistory"> | string
+    points?: IntFilter<"RecycleHistory"> | number
+    mediaUrl?: StringNullableFilter<"RecycleHistory"> | string | null
+    createdAt?: DateTimeFilter<"RecycleHistory"> | Date | string
+    updatedAt?: DateTimeFilter<"RecycleHistory"> | Date | string
+    User?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }, "id">
+
+  export type RecycleHistoryOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    points?: SortOrder
+    mediaUrl?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: RecycleHistoryCountOrderByAggregateInput
+    _avg?: RecycleHistoryAvgOrderByAggregateInput
+    _max?: RecycleHistoryMaxOrderByAggregateInput
+    _min?: RecycleHistoryMinOrderByAggregateInput
+    _sum?: RecycleHistorySumOrderByAggregateInput
+  }
+
+  export type RecycleHistoryScalarWhereWithAggregatesInput = {
+    AND?: RecycleHistoryScalarWhereWithAggregatesInput | RecycleHistoryScalarWhereWithAggregatesInput[]
+    OR?: RecycleHistoryScalarWhereWithAggregatesInput[]
+    NOT?: RecycleHistoryScalarWhereWithAggregatesInput | RecycleHistoryScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"RecycleHistory"> | string
+    userId?: StringWithAggregatesFilter<"RecycleHistory"> | string
+    points?: IntWithAggregatesFilter<"RecycleHistory"> | number
+    mediaUrl?: StringNullableWithAggregatesFilter<"RecycleHistory"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"RecycleHistory"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"RecycleHistory"> | Date | string
+  }
+
+  export type UserTotalPointWhereInput = {
+    AND?: UserTotalPointWhereInput | UserTotalPointWhereInput[]
+    OR?: UserTotalPointWhereInput[]
+    NOT?: UserTotalPointWhereInput | UserTotalPointWhereInput[]
+    id?: StringFilter<"UserTotalPoint"> | string
+    userId?: StringFilter<"UserTotalPoint"> | string
+    totalPoints?: IntFilter<"UserTotalPoint"> | number
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }
+
+  export type UserTotalPointOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    totalPoints?: SortOrder
+    user?: UserOrderByWithRelationInput
+  }
+
+  export type UserTotalPointWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    userId?: string
+    AND?: UserTotalPointWhereInput | UserTotalPointWhereInput[]
+    OR?: UserTotalPointWhereInput[]
+    NOT?: UserTotalPointWhereInput | UserTotalPointWhereInput[]
+    totalPoints?: IntFilter<"UserTotalPoint"> | number
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }, "id" | "userId">
+
+  export type UserTotalPointOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    totalPoints?: SortOrder
+    _count?: UserTotalPointCountOrderByAggregateInput
+    _avg?: UserTotalPointAvgOrderByAggregateInput
+    _max?: UserTotalPointMaxOrderByAggregateInput
+    _min?: UserTotalPointMinOrderByAggregateInput
+    _sum?: UserTotalPointSumOrderByAggregateInput
+  }
+
+  export type UserTotalPointScalarWhereWithAggregatesInput = {
+    AND?: UserTotalPointScalarWhereWithAggregatesInput | UserTotalPointScalarWhereWithAggregatesInput[]
+    OR?: UserTotalPointScalarWhereWithAggregatesInput[]
+    NOT?: UserTotalPointScalarWhereWithAggregatesInput | UserTotalPointScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"UserTotalPoint"> | string
+    userId?: StringWithAggregatesFilter<"UserTotalPoint"> | string
+    totalPoints?: IntWithAggregatesFilter<"UserTotalPoint"> | number
+  }
+
   export type BinWhereInput = {
     AND?: BinWhereInput | BinWhereInput[]
     OR?: BinWhereInput[]
@@ -15762,6 +22361,170 @@ export namespace Prisma {
     updatedAt?: DateTimeWithAggregatesFilter<"Bin"> | Date | string
   }
 
+  export type CouponWhereInput = {
+    AND?: CouponWhereInput | CouponWhereInput[]
+    OR?: CouponWhereInput[]
+    NOT?: CouponWhereInput | CouponWhereInput[]
+    id?: StringFilter<"Coupon"> | string
+    name?: StringFilter<"Coupon"> | string
+    description?: StringNullableFilter<"Coupon"> | string | null
+    imageUrl?: StringFilter<"Coupon"> | string
+    status?: EnumStatusFilter<"Coupon"> | $Enums.Status
+    couponType?: EnumCouponTypeFilter<"Coupon"> | $Enums.CouponType
+    dealType?: EnumDealTypeFilter<"Coupon"> | $Enums.DealType
+    isFeatured?: BoolFilter<"Coupon"> | boolean
+    couponCode?: StringFilter<"Coupon"> | string
+    pointsToRedeem?: IntFilter<"Coupon"> | number
+    startDate?: DateTimeFilter<"Coupon"> | Date | string
+    endDate?: DateTimeFilter<"Coupon"> | Date | string
+    createdAt?: DateTimeFilter<"Coupon"> | Date | string
+    updatedAt?: DateTimeFilter<"Coupon"> | Date | string
+    organizationId?: StringFilter<"Coupon"> | string
+    organization?: XOR<OrganizationScalarRelationFilter, OrganizationWhereInput>
+    FavoriteCouponList?: FavoriteCouponListListRelationFilter
+  }
+
+  export type CouponOrderByWithRelationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    description?: SortOrderInput | SortOrder
+    imageUrl?: SortOrder
+    status?: SortOrder
+    couponType?: SortOrder
+    dealType?: SortOrder
+    isFeatured?: SortOrder
+    couponCode?: SortOrder
+    pointsToRedeem?: SortOrder
+    startDate?: SortOrder
+    endDate?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    organizationId?: SortOrder
+    organization?: OrganizationOrderByWithRelationInput
+    FavoriteCouponList?: FavoriteCouponListOrderByRelationAggregateInput
+  }
+
+  export type CouponWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: CouponWhereInput | CouponWhereInput[]
+    OR?: CouponWhereInput[]
+    NOT?: CouponWhereInput | CouponWhereInput[]
+    name?: StringFilter<"Coupon"> | string
+    description?: StringNullableFilter<"Coupon"> | string | null
+    imageUrl?: StringFilter<"Coupon"> | string
+    status?: EnumStatusFilter<"Coupon"> | $Enums.Status
+    couponType?: EnumCouponTypeFilter<"Coupon"> | $Enums.CouponType
+    dealType?: EnumDealTypeFilter<"Coupon"> | $Enums.DealType
+    isFeatured?: BoolFilter<"Coupon"> | boolean
+    couponCode?: StringFilter<"Coupon"> | string
+    pointsToRedeem?: IntFilter<"Coupon"> | number
+    startDate?: DateTimeFilter<"Coupon"> | Date | string
+    endDate?: DateTimeFilter<"Coupon"> | Date | string
+    createdAt?: DateTimeFilter<"Coupon"> | Date | string
+    updatedAt?: DateTimeFilter<"Coupon"> | Date | string
+    organizationId?: StringFilter<"Coupon"> | string
+    organization?: XOR<OrganizationScalarRelationFilter, OrganizationWhereInput>
+    FavoriteCouponList?: FavoriteCouponListListRelationFilter
+  }, "id">
+
+  export type CouponOrderByWithAggregationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    description?: SortOrderInput | SortOrder
+    imageUrl?: SortOrder
+    status?: SortOrder
+    couponType?: SortOrder
+    dealType?: SortOrder
+    isFeatured?: SortOrder
+    couponCode?: SortOrder
+    pointsToRedeem?: SortOrder
+    startDate?: SortOrder
+    endDate?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    organizationId?: SortOrder
+    _count?: CouponCountOrderByAggregateInput
+    _avg?: CouponAvgOrderByAggregateInput
+    _max?: CouponMaxOrderByAggregateInput
+    _min?: CouponMinOrderByAggregateInput
+    _sum?: CouponSumOrderByAggregateInput
+  }
+
+  export type CouponScalarWhereWithAggregatesInput = {
+    AND?: CouponScalarWhereWithAggregatesInput | CouponScalarWhereWithAggregatesInput[]
+    OR?: CouponScalarWhereWithAggregatesInput[]
+    NOT?: CouponScalarWhereWithAggregatesInput | CouponScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Coupon"> | string
+    name?: StringWithAggregatesFilter<"Coupon"> | string
+    description?: StringNullableWithAggregatesFilter<"Coupon"> | string | null
+    imageUrl?: StringWithAggregatesFilter<"Coupon"> | string
+    status?: EnumStatusWithAggregatesFilter<"Coupon"> | $Enums.Status
+    couponType?: EnumCouponTypeWithAggregatesFilter<"Coupon"> | $Enums.CouponType
+    dealType?: EnumDealTypeWithAggregatesFilter<"Coupon"> | $Enums.DealType
+    isFeatured?: BoolWithAggregatesFilter<"Coupon"> | boolean
+    couponCode?: StringWithAggregatesFilter<"Coupon"> | string
+    pointsToRedeem?: IntWithAggregatesFilter<"Coupon"> | number
+    startDate?: DateTimeWithAggregatesFilter<"Coupon"> | Date | string
+    endDate?: DateTimeWithAggregatesFilter<"Coupon"> | Date | string
+    createdAt?: DateTimeWithAggregatesFilter<"Coupon"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Coupon"> | Date | string
+    organizationId?: StringWithAggregatesFilter<"Coupon"> | string
+  }
+
+  export type FavoriteCouponListWhereInput = {
+    AND?: FavoriteCouponListWhereInput | FavoriteCouponListWhereInput[]
+    OR?: FavoriteCouponListWhereInput[]
+    NOT?: FavoriteCouponListWhereInput | FavoriteCouponListWhereInput[]
+    id?: StringFilter<"FavoriteCouponList"> | string
+    userId?: StringFilter<"FavoriteCouponList"> | string
+    couponId?: StringFilter<"FavoriteCouponList"> | string
+    createdAt?: DateTimeFilter<"FavoriteCouponList"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    coupon?: XOR<CouponScalarRelationFilter, CouponWhereInput>
+  }
+
+  export type FavoriteCouponListOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    couponId?: SortOrder
+    createdAt?: SortOrder
+    user?: UserOrderByWithRelationInput
+    coupon?: CouponOrderByWithRelationInput
+  }
+
+  export type FavoriteCouponListWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    userId_couponId?: FavoriteCouponListUserIdCouponIdCompoundUniqueInput
+    AND?: FavoriteCouponListWhereInput | FavoriteCouponListWhereInput[]
+    OR?: FavoriteCouponListWhereInput[]
+    NOT?: FavoriteCouponListWhereInput | FavoriteCouponListWhereInput[]
+    userId?: StringFilter<"FavoriteCouponList"> | string
+    couponId?: StringFilter<"FavoriteCouponList"> | string
+    createdAt?: DateTimeFilter<"FavoriteCouponList"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    coupon?: XOR<CouponScalarRelationFilter, CouponWhereInput>
+  }, "id" | "userId_couponId">
+
+  export type FavoriteCouponListOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    couponId?: SortOrder
+    createdAt?: SortOrder
+    _count?: FavoriteCouponListCountOrderByAggregateInput
+    _max?: FavoriteCouponListMaxOrderByAggregateInput
+    _min?: FavoriteCouponListMinOrderByAggregateInput
+  }
+
+  export type FavoriteCouponListScalarWhereWithAggregatesInput = {
+    AND?: FavoriteCouponListScalarWhereWithAggregatesInput | FavoriteCouponListScalarWhereWithAggregatesInput[]
+    OR?: FavoriteCouponListScalarWhereWithAggregatesInput[]
+    NOT?: FavoriteCouponListScalarWhereWithAggregatesInput | FavoriteCouponListScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"FavoriteCouponList"> | string
+    userId?: StringWithAggregatesFilter<"FavoriteCouponList"> | string
+    couponId?: StringWithAggregatesFilter<"FavoriteCouponList"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"FavoriteCouponList"> | Date | string
+  }
+
   export type UserCreateInput = {
     id: string
     name: string
@@ -15785,6 +22548,10 @@ export namespace Prisma {
     accounts?: AccountCreateNestedManyWithoutUserInput
     members?: MemberCreateNestedManyWithoutUserInput
     invitations?: InvitationCreateNestedManyWithoutUserInput
+    FavoriteCouponList?: FavoriteCouponListCreateNestedManyWithoutUserInput
+    RedeemHistory?: RedeemHistoryCreateNestedManyWithoutUserInput
+    RecycleHistory?: RecycleHistoryCreateNestedManyWithoutUserInput
+    UserTotalPoint?: UserTotalPointCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -15810,6 +22577,10 @@ export namespace Prisma {
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
     members?: MemberUncheckedCreateNestedManyWithoutUserInput
     invitations?: InvitationUncheckedCreateNestedManyWithoutUserInput
+    FavoriteCouponList?: FavoriteCouponListUncheckedCreateNestedManyWithoutUserInput
+    RedeemHistory?: RedeemHistoryUncheckedCreateNestedManyWithoutUserInput
+    RecycleHistory?: RecycleHistoryUncheckedCreateNestedManyWithoutUserInput
+    UserTotalPoint?: UserTotalPointUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserUpdateInput = {
@@ -15835,6 +22606,10 @@ export namespace Prisma {
     accounts?: AccountUpdateManyWithoutUserNestedInput
     members?: MemberUpdateManyWithoutUserNestedInput
     invitations?: InvitationUpdateManyWithoutUserNestedInput
+    FavoriteCouponList?: FavoriteCouponListUpdateManyWithoutUserNestedInput
+    RedeemHistory?: RedeemHistoryUpdateManyWithoutUserNestedInput
+    RecycleHistory?: RecycleHistoryUpdateManyWithoutUserNestedInput
+    UserTotalPoint?: UserTotalPointUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -15860,6 +22635,10 @@ export namespace Prisma {
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
     members?: MemberUncheckedUpdateManyWithoutUserNestedInput
     invitations?: InvitationUncheckedUpdateManyWithoutUserNestedInput
+    FavoriteCouponList?: FavoriteCouponListUncheckedUpdateManyWithoutUserNestedInput
+    RedeemHistory?: RedeemHistoryUncheckedUpdateManyWithoutUserNestedInput
+    RecycleHistory?: RecycleHistoryUncheckedUpdateManyWithoutUserNestedInput
+    UserTotalPoint?: UserTotalPointUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -16199,6 +22978,7 @@ export namespace Prisma {
     members?: MemberCreateNestedManyWithoutOrganizationInput
     invitations?: InvitationCreateNestedManyWithoutOrganizationInput
     stores?: StoreCreateNestedManyWithoutOrganizationInput
+    Coupon?: CouponCreateNestedManyWithoutOrganizationInput
   }
 
   export type OrganizationUncheckedCreateInput = {
@@ -16211,6 +22991,7 @@ export namespace Prisma {
     members?: MemberUncheckedCreateNestedManyWithoutOrganizationInput
     invitations?: InvitationUncheckedCreateNestedManyWithoutOrganizationInput
     stores?: StoreUncheckedCreateNestedManyWithoutOrganizationInput
+    Coupon?: CouponUncheckedCreateNestedManyWithoutOrganizationInput
   }
 
   export type OrganizationUpdateInput = {
@@ -16223,6 +23004,7 @@ export namespace Prisma {
     members?: MemberUpdateManyWithoutOrganizationNestedInput
     invitations?: InvitationUpdateManyWithoutOrganizationNestedInput
     stores?: StoreUpdateManyWithoutOrganizationNestedInput
+    Coupon?: CouponUpdateManyWithoutOrganizationNestedInput
   }
 
   export type OrganizationUncheckedUpdateInput = {
@@ -16235,6 +23017,7 @@ export namespace Prisma {
     members?: MemberUncheckedUpdateManyWithoutOrganizationNestedInput
     invitations?: InvitationUncheckedUpdateManyWithoutOrganizationNestedInput
     stores?: StoreUncheckedUpdateManyWithoutOrganizationNestedInput
+    Coupon?: CouponUncheckedUpdateManyWithoutOrganizationNestedInput
   }
 
   export type OrganizationCreateManyInput = {
@@ -16662,6 +23445,178 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type RedeemHistoryCreateInput = {
+    id?: string
+    couponId: string
+    points: number
+    description?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    User: UserCreateNestedOneWithoutRedeemHistoryInput
+  }
+
+  export type RedeemHistoryUncheckedCreateInput = {
+    id?: string
+    couponId: string
+    userId: string
+    points: number
+    description?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type RedeemHistoryUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    couponId?: StringFieldUpdateOperationsInput | string
+    points?: IntFieldUpdateOperationsInput | number
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    User?: UserUpdateOneRequiredWithoutRedeemHistoryNestedInput
+  }
+
+  export type RedeemHistoryUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    couponId?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    points?: IntFieldUpdateOperationsInput | number
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RedeemHistoryCreateManyInput = {
+    id?: string
+    couponId: string
+    userId: string
+    points: number
+    description?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type RedeemHistoryUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    couponId?: StringFieldUpdateOperationsInput | string
+    points?: IntFieldUpdateOperationsInput | number
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RedeemHistoryUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    couponId?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    points?: IntFieldUpdateOperationsInput | number
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RecycleHistoryCreateInput = {
+    id?: string
+    points: number
+    mediaUrl?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    User: UserCreateNestedOneWithoutRecycleHistoryInput
+  }
+
+  export type RecycleHistoryUncheckedCreateInput = {
+    id?: string
+    userId: string
+    points: number
+    mediaUrl?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type RecycleHistoryUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    points?: IntFieldUpdateOperationsInput | number
+    mediaUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    User?: UserUpdateOneRequiredWithoutRecycleHistoryNestedInput
+  }
+
+  export type RecycleHistoryUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    points?: IntFieldUpdateOperationsInput | number
+    mediaUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RecycleHistoryCreateManyInput = {
+    id?: string
+    userId: string
+    points: number
+    mediaUrl?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type RecycleHistoryUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    points?: IntFieldUpdateOperationsInput | number
+    mediaUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RecycleHistoryUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    points?: IntFieldUpdateOperationsInput | number
+    mediaUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserTotalPointCreateInput = {
+    id?: string
+    totalPoints?: number
+    user: UserCreateNestedOneWithoutUserTotalPointInput
+  }
+
+  export type UserTotalPointUncheckedCreateInput = {
+    id?: string
+    userId: string
+    totalPoints?: number
+  }
+
+  export type UserTotalPointUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    totalPoints?: IntFieldUpdateOperationsInput | number
+    user?: UserUpdateOneRequiredWithoutUserTotalPointNestedInput
+  }
+
+  export type UserTotalPointUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    totalPoints?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type UserTotalPointCreateManyInput = {
+    id?: string
+    userId: string
+    totalPoints?: number
+  }
+
+  export type UserTotalPointUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    totalPoints?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type UserTotalPointUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    totalPoints?: IntFieldUpdateOperationsInput | number
+  }
+
   export type BinCreateInput = {
     id?: string
     number: string
@@ -16742,6 +23697,182 @@ export namespace Prisma {
     status?: EnumBinStatusFieldUpdateOperationsInput | $Enums.BinStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CouponCreateInput = {
+    id?: string
+    name: string
+    description?: string | null
+    imageUrl: string
+    status?: $Enums.Status
+    couponType: $Enums.CouponType
+    dealType: $Enums.DealType
+    isFeatured: boolean
+    couponCode: string
+    pointsToRedeem: number
+    startDate: Date | string
+    endDate: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    organization: OrganizationCreateNestedOneWithoutCouponInput
+    FavoriteCouponList?: FavoriteCouponListCreateNestedManyWithoutCouponInput
+  }
+
+  export type CouponUncheckedCreateInput = {
+    id?: string
+    name: string
+    description?: string | null
+    imageUrl: string
+    status?: $Enums.Status
+    couponType: $Enums.CouponType
+    dealType: $Enums.DealType
+    isFeatured: boolean
+    couponCode: string
+    pointsToRedeem: number
+    startDate: Date | string
+    endDate: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    organizationId: string
+    FavoriteCouponList?: FavoriteCouponListUncheckedCreateNestedManyWithoutCouponInput
+  }
+
+  export type CouponUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    imageUrl?: StringFieldUpdateOperationsInput | string
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    couponType?: EnumCouponTypeFieldUpdateOperationsInput | $Enums.CouponType
+    dealType?: EnumDealTypeFieldUpdateOperationsInput | $Enums.DealType
+    isFeatured?: BoolFieldUpdateOperationsInput | boolean
+    couponCode?: StringFieldUpdateOperationsInput | string
+    pointsToRedeem?: IntFieldUpdateOperationsInput | number
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    organization?: OrganizationUpdateOneRequiredWithoutCouponNestedInput
+    FavoriteCouponList?: FavoriteCouponListUpdateManyWithoutCouponNestedInput
+  }
+
+  export type CouponUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    imageUrl?: StringFieldUpdateOperationsInput | string
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    couponType?: EnumCouponTypeFieldUpdateOperationsInput | $Enums.CouponType
+    dealType?: EnumDealTypeFieldUpdateOperationsInput | $Enums.DealType
+    isFeatured?: BoolFieldUpdateOperationsInput | boolean
+    couponCode?: StringFieldUpdateOperationsInput | string
+    pointsToRedeem?: IntFieldUpdateOperationsInput | number
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    organizationId?: StringFieldUpdateOperationsInput | string
+    FavoriteCouponList?: FavoriteCouponListUncheckedUpdateManyWithoutCouponNestedInput
+  }
+
+  export type CouponCreateManyInput = {
+    id?: string
+    name: string
+    description?: string | null
+    imageUrl: string
+    status?: $Enums.Status
+    couponType: $Enums.CouponType
+    dealType: $Enums.DealType
+    isFeatured: boolean
+    couponCode: string
+    pointsToRedeem: number
+    startDate: Date | string
+    endDate: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    organizationId: string
+  }
+
+  export type CouponUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    imageUrl?: StringFieldUpdateOperationsInput | string
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    couponType?: EnumCouponTypeFieldUpdateOperationsInput | $Enums.CouponType
+    dealType?: EnumDealTypeFieldUpdateOperationsInput | $Enums.DealType
+    isFeatured?: BoolFieldUpdateOperationsInput | boolean
+    couponCode?: StringFieldUpdateOperationsInput | string
+    pointsToRedeem?: IntFieldUpdateOperationsInput | number
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CouponUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    imageUrl?: StringFieldUpdateOperationsInput | string
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    couponType?: EnumCouponTypeFieldUpdateOperationsInput | $Enums.CouponType
+    dealType?: EnumDealTypeFieldUpdateOperationsInput | $Enums.DealType
+    isFeatured?: BoolFieldUpdateOperationsInput | boolean
+    couponCode?: StringFieldUpdateOperationsInput | string
+    pointsToRedeem?: IntFieldUpdateOperationsInput | number
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    organizationId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type FavoriteCouponListCreateInput = {
+    id?: string
+    createdAt?: Date | string
+    user: UserCreateNestedOneWithoutFavoriteCouponListInput
+    coupon: CouponCreateNestedOneWithoutFavoriteCouponListInput
+  }
+
+  export type FavoriteCouponListUncheckedCreateInput = {
+    id?: string
+    userId: string
+    couponId: string
+    createdAt?: Date | string
+  }
+
+  export type FavoriteCouponListUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutFavoriteCouponListNestedInput
+    coupon?: CouponUpdateOneRequiredWithoutFavoriteCouponListNestedInput
+  }
+
+  export type FavoriteCouponListUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    couponId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FavoriteCouponListCreateManyInput = {
+    id?: string
+    userId: string
+    couponId: string
+    createdAt?: Date | string
+  }
+
+  export type FavoriteCouponListUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FavoriteCouponListUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    couponId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -16830,6 +23961,30 @@ export namespace Prisma {
     none?: InvitationWhereInput
   }
 
+  export type FavoriteCouponListListRelationFilter = {
+    every?: FavoriteCouponListWhereInput
+    some?: FavoriteCouponListWhereInput
+    none?: FavoriteCouponListWhereInput
+  }
+
+  export type RedeemHistoryListRelationFilter = {
+    every?: RedeemHistoryWhereInput
+    some?: RedeemHistoryWhereInput
+    none?: RedeemHistoryWhereInput
+  }
+
+  export type RecycleHistoryListRelationFilter = {
+    every?: RecycleHistoryWhereInput
+    some?: RecycleHistoryWhereInput
+    none?: RecycleHistoryWhereInput
+  }
+
+  export type UserTotalPointListRelationFilter = {
+    every?: UserTotalPointWhereInput
+    some?: UserTotalPointWhereInput
+    none?: UserTotalPointWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
@@ -16848,6 +24003,22 @@ export namespace Prisma {
   }
 
   export type InvitationOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type FavoriteCouponListOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type RedeemHistoryOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type RecycleHistoryOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type UserTotalPointOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -17119,7 +24290,17 @@ export namespace Prisma {
     none?: StoreWhereInput
   }
 
+  export type CouponListRelationFilter = {
+    every?: CouponWhereInput
+    some?: CouponWhereInput
+    none?: CouponWhereInput
+  }
+
   export type StoreOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type CouponOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -17444,6 +24625,105 @@ export namespace Prisma {
     _max?: NestedIntFilter<$PrismaModel>
   }
 
+  export type RedeemHistoryCountOrderByAggregateInput = {
+    id?: SortOrder
+    couponId?: SortOrder
+    userId?: SortOrder
+    points?: SortOrder
+    description?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type RedeemHistoryAvgOrderByAggregateInput = {
+    points?: SortOrder
+  }
+
+  export type RedeemHistoryMaxOrderByAggregateInput = {
+    id?: SortOrder
+    couponId?: SortOrder
+    userId?: SortOrder
+    points?: SortOrder
+    description?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type RedeemHistoryMinOrderByAggregateInput = {
+    id?: SortOrder
+    couponId?: SortOrder
+    userId?: SortOrder
+    points?: SortOrder
+    description?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type RedeemHistorySumOrderByAggregateInput = {
+    points?: SortOrder
+  }
+
+  export type RecycleHistoryCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    points?: SortOrder
+    mediaUrl?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type RecycleHistoryAvgOrderByAggregateInput = {
+    points?: SortOrder
+  }
+
+  export type RecycleHistoryMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    points?: SortOrder
+    mediaUrl?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type RecycleHistoryMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    points?: SortOrder
+    mediaUrl?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type RecycleHistorySumOrderByAggregateInput = {
+    points?: SortOrder
+  }
+
+  export type UserTotalPointCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    totalPoints?: SortOrder
+  }
+
+  export type UserTotalPointAvgOrderByAggregateInput = {
+    totalPoints?: SortOrder
+  }
+
+  export type UserTotalPointMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    totalPoints?: SortOrder
+  }
+
+  export type UserTotalPointMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    totalPoints?: SortOrder
+  }
+
+  export type UserTotalPointSumOrderByAggregateInput = {
+    totalPoints?: SortOrder
+  }
+
   export type EnumBinStatusFilter<$PrismaModel = never> = {
     equals?: $Enums.BinStatus | EnumBinStatusFieldRefInput<$PrismaModel>
     in?: $Enums.BinStatus[] | ListEnumBinStatusFieldRefInput<$PrismaModel>
@@ -17507,6 +24787,150 @@ export namespace Prisma {
     _max?: NestedEnumBinStatusFilter<$PrismaModel>
   }
 
+  export type EnumStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.Status | EnumStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.Status[] | ListEnumStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Status[] | ListEnumStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumStatusFilter<$PrismaModel> | $Enums.Status
+  }
+
+  export type EnumCouponTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.CouponType | EnumCouponTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.CouponType[] | ListEnumCouponTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.CouponType[] | ListEnumCouponTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumCouponTypeFilter<$PrismaModel> | $Enums.CouponType
+  }
+
+  export type EnumDealTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.DealType | EnumDealTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.DealType[] | ListEnumDealTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.DealType[] | ListEnumDealTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumDealTypeFilter<$PrismaModel> | $Enums.DealType
+  }
+
+  export type CouponCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    description?: SortOrder
+    imageUrl?: SortOrder
+    status?: SortOrder
+    couponType?: SortOrder
+    dealType?: SortOrder
+    isFeatured?: SortOrder
+    couponCode?: SortOrder
+    pointsToRedeem?: SortOrder
+    startDate?: SortOrder
+    endDate?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    organizationId?: SortOrder
+  }
+
+  export type CouponAvgOrderByAggregateInput = {
+    pointsToRedeem?: SortOrder
+  }
+
+  export type CouponMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    description?: SortOrder
+    imageUrl?: SortOrder
+    status?: SortOrder
+    couponType?: SortOrder
+    dealType?: SortOrder
+    isFeatured?: SortOrder
+    couponCode?: SortOrder
+    pointsToRedeem?: SortOrder
+    startDate?: SortOrder
+    endDate?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    organizationId?: SortOrder
+  }
+
+  export type CouponMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    description?: SortOrder
+    imageUrl?: SortOrder
+    status?: SortOrder
+    couponType?: SortOrder
+    dealType?: SortOrder
+    isFeatured?: SortOrder
+    couponCode?: SortOrder
+    pointsToRedeem?: SortOrder
+    startDate?: SortOrder
+    endDate?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    organizationId?: SortOrder
+  }
+
+  export type CouponSumOrderByAggregateInput = {
+    pointsToRedeem?: SortOrder
+  }
+
+  export type EnumStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Status | EnumStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.Status[] | ListEnumStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Status[] | ListEnumStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumStatusWithAggregatesFilter<$PrismaModel> | $Enums.Status
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumStatusFilter<$PrismaModel>
+    _max?: NestedEnumStatusFilter<$PrismaModel>
+  }
+
+  export type EnumCouponTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.CouponType | EnumCouponTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.CouponType[] | ListEnumCouponTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.CouponType[] | ListEnumCouponTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumCouponTypeWithAggregatesFilter<$PrismaModel> | $Enums.CouponType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumCouponTypeFilter<$PrismaModel>
+    _max?: NestedEnumCouponTypeFilter<$PrismaModel>
+  }
+
+  export type EnumDealTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.DealType | EnumDealTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.DealType[] | ListEnumDealTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.DealType[] | ListEnumDealTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumDealTypeWithAggregatesFilter<$PrismaModel> | $Enums.DealType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumDealTypeFilter<$PrismaModel>
+    _max?: NestedEnumDealTypeFilter<$PrismaModel>
+  }
+
+  export type CouponScalarRelationFilter = {
+    is?: CouponWhereInput
+    isNot?: CouponWhereInput
+  }
+
+  export type FavoriteCouponListUserIdCouponIdCompoundUniqueInput = {
+    userId: string
+    couponId: string
+  }
+
+  export type FavoriteCouponListCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    couponId?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type FavoriteCouponListMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    couponId?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type FavoriteCouponListMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    couponId?: SortOrder
+    createdAt?: SortOrder
+  }
+
   export type SessionCreateNestedManyWithoutUserInput = {
     create?: XOR<SessionCreateWithoutUserInput, SessionUncheckedCreateWithoutUserInput> | SessionCreateWithoutUserInput[] | SessionUncheckedCreateWithoutUserInput[]
     connectOrCreate?: SessionCreateOrConnectWithoutUserInput | SessionCreateOrConnectWithoutUserInput[]
@@ -17535,6 +24959,34 @@ export namespace Prisma {
     connect?: InvitationWhereUniqueInput | InvitationWhereUniqueInput[]
   }
 
+  export type FavoriteCouponListCreateNestedManyWithoutUserInput = {
+    create?: XOR<FavoriteCouponListCreateWithoutUserInput, FavoriteCouponListUncheckedCreateWithoutUserInput> | FavoriteCouponListCreateWithoutUserInput[] | FavoriteCouponListUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: FavoriteCouponListCreateOrConnectWithoutUserInput | FavoriteCouponListCreateOrConnectWithoutUserInput[]
+    createMany?: FavoriteCouponListCreateManyUserInputEnvelope
+    connect?: FavoriteCouponListWhereUniqueInput | FavoriteCouponListWhereUniqueInput[]
+  }
+
+  export type RedeemHistoryCreateNestedManyWithoutUserInput = {
+    create?: XOR<RedeemHistoryCreateWithoutUserInput, RedeemHistoryUncheckedCreateWithoutUserInput> | RedeemHistoryCreateWithoutUserInput[] | RedeemHistoryUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: RedeemHistoryCreateOrConnectWithoutUserInput | RedeemHistoryCreateOrConnectWithoutUserInput[]
+    createMany?: RedeemHistoryCreateManyUserInputEnvelope
+    connect?: RedeemHistoryWhereUniqueInput | RedeemHistoryWhereUniqueInput[]
+  }
+
+  export type RecycleHistoryCreateNestedManyWithoutUserInput = {
+    create?: XOR<RecycleHistoryCreateWithoutUserInput, RecycleHistoryUncheckedCreateWithoutUserInput> | RecycleHistoryCreateWithoutUserInput[] | RecycleHistoryUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: RecycleHistoryCreateOrConnectWithoutUserInput | RecycleHistoryCreateOrConnectWithoutUserInput[]
+    createMany?: RecycleHistoryCreateManyUserInputEnvelope
+    connect?: RecycleHistoryWhereUniqueInput | RecycleHistoryWhereUniqueInput[]
+  }
+
+  export type UserTotalPointCreateNestedManyWithoutUserInput = {
+    create?: XOR<UserTotalPointCreateWithoutUserInput, UserTotalPointUncheckedCreateWithoutUserInput> | UserTotalPointCreateWithoutUserInput[] | UserTotalPointUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: UserTotalPointCreateOrConnectWithoutUserInput | UserTotalPointCreateOrConnectWithoutUserInput[]
+    createMany?: UserTotalPointCreateManyUserInputEnvelope
+    connect?: UserTotalPointWhereUniqueInput | UserTotalPointWhereUniqueInput[]
+  }
+
   export type SessionUncheckedCreateNestedManyWithoutUserInput = {
     create?: XOR<SessionCreateWithoutUserInput, SessionUncheckedCreateWithoutUserInput> | SessionCreateWithoutUserInput[] | SessionUncheckedCreateWithoutUserInput[]
     connectOrCreate?: SessionCreateOrConnectWithoutUserInput | SessionCreateOrConnectWithoutUserInput[]
@@ -17561,6 +25013,34 @@ export namespace Prisma {
     connectOrCreate?: InvitationCreateOrConnectWithoutUserInput | InvitationCreateOrConnectWithoutUserInput[]
     createMany?: InvitationCreateManyUserInputEnvelope
     connect?: InvitationWhereUniqueInput | InvitationWhereUniqueInput[]
+  }
+
+  export type FavoriteCouponListUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<FavoriteCouponListCreateWithoutUserInput, FavoriteCouponListUncheckedCreateWithoutUserInput> | FavoriteCouponListCreateWithoutUserInput[] | FavoriteCouponListUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: FavoriteCouponListCreateOrConnectWithoutUserInput | FavoriteCouponListCreateOrConnectWithoutUserInput[]
+    createMany?: FavoriteCouponListCreateManyUserInputEnvelope
+    connect?: FavoriteCouponListWhereUniqueInput | FavoriteCouponListWhereUniqueInput[]
+  }
+
+  export type RedeemHistoryUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<RedeemHistoryCreateWithoutUserInput, RedeemHistoryUncheckedCreateWithoutUserInput> | RedeemHistoryCreateWithoutUserInput[] | RedeemHistoryUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: RedeemHistoryCreateOrConnectWithoutUserInput | RedeemHistoryCreateOrConnectWithoutUserInput[]
+    createMany?: RedeemHistoryCreateManyUserInputEnvelope
+    connect?: RedeemHistoryWhereUniqueInput | RedeemHistoryWhereUniqueInput[]
+  }
+
+  export type RecycleHistoryUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<RecycleHistoryCreateWithoutUserInput, RecycleHistoryUncheckedCreateWithoutUserInput> | RecycleHistoryCreateWithoutUserInput[] | RecycleHistoryUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: RecycleHistoryCreateOrConnectWithoutUserInput | RecycleHistoryCreateOrConnectWithoutUserInput[]
+    createMany?: RecycleHistoryCreateManyUserInputEnvelope
+    connect?: RecycleHistoryWhereUniqueInput | RecycleHistoryWhereUniqueInput[]
+  }
+
+  export type UserTotalPointUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<UserTotalPointCreateWithoutUserInput, UserTotalPointUncheckedCreateWithoutUserInput> | UserTotalPointCreateWithoutUserInput[] | UserTotalPointUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: UserTotalPointCreateOrConnectWithoutUserInput | UserTotalPointCreateOrConnectWithoutUserInput[]
+    createMany?: UserTotalPointCreateManyUserInputEnvelope
+    connect?: UserTotalPointWhereUniqueInput | UserTotalPointWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -17643,6 +25123,62 @@ export namespace Prisma {
     deleteMany?: InvitationScalarWhereInput | InvitationScalarWhereInput[]
   }
 
+  export type FavoriteCouponListUpdateManyWithoutUserNestedInput = {
+    create?: XOR<FavoriteCouponListCreateWithoutUserInput, FavoriteCouponListUncheckedCreateWithoutUserInput> | FavoriteCouponListCreateWithoutUserInput[] | FavoriteCouponListUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: FavoriteCouponListCreateOrConnectWithoutUserInput | FavoriteCouponListCreateOrConnectWithoutUserInput[]
+    upsert?: FavoriteCouponListUpsertWithWhereUniqueWithoutUserInput | FavoriteCouponListUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: FavoriteCouponListCreateManyUserInputEnvelope
+    set?: FavoriteCouponListWhereUniqueInput | FavoriteCouponListWhereUniqueInput[]
+    disconnect?: FavoriteCouponListWhereUniqueInput | FavoriteCouponListWhereUniqueInput[]
+    delete?: FavoriteCouponListWhereUniqueInput | FavoriteCouponListWhereUniqueInput[]
+    connect?: FavoriteCouponListWhereUniqueInput | FavoriteCouponListWhereUniqueInput[]
+    update?: FavoriteCouponListUpdateWithWhereUniqueWithoutUserInput | FavoriteCouponListUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: FavoriteCouponListUpdateManyWithWhereWithoutUserInput | FavoriteCouponListUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: FavoriteCouponListScalarWhereInput | FavoriteCouponListScalarWhereInput[]
+  }
+
+  export type RedeemHistoryUpdateManyWithoutUserNestedInput = {
+    create?: XOR<RedeemHistoryCreateWithoutUserInput, RedeemHistoryUncheckedCreateWithoutUserInput> | RedeemHistoryCreateWithoutUserInput[] | RedeemHistoryUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: RedeemHistoryCreateOrConnectWithoutUserInput | RedeemHistoryCreateOrConnectWithoutUserInput[]
+    upsert?: RedeemHistoryUpsertWithWhereUniqueWithoutUserInput | RedeemHistoryUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: RedeemHistoryCreateManyUserInputEnvelope
+    set?: RedeemHistoryWhereUniqueInput | RedeemHistoryWhereUniqueInput[]
+    disconnect?: RedeemHistoryWhereUniqueInput | RedeemHistoryWhereUniqueInput[]
+    delete?: RedeemHistoryWhereUniqueInput | RedeemHistoryWhereUniqueInput[]
+    connect?: RedeemHistoryWhereUniqueInput | RedeemHistoryWhereUniqueInput[]
+    update?: RedeemHistoryUpdateWithWhereUniqueWithoutUserInput | RedeemHistoryUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: RedeemHistoryUpdateManyWithWhereWithoutUserInput | RedeemHistoryUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: RedeemHistoryScalarWhereInput | RedeemHistoryScalarWhereInput[]
+  }
+
+  export type RecycleHistoryUpdateManyWithoutUserNestedInput = {
+    create?: XOR<RecycleHistoryCreateWithoutUserInput, RecycleHistoryUncheckedCreateWithoutUserInput> | RecycleHistoryCreateWithoutUserInput[] | RecycleHistoryUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: RecycleHistoryCreateOrConnectWithoutUserInput | RecycleHistoryCreateOrConnectWithoutUserInput[]
+    upsert?: RecycleHistoryUpsertWithWhereUniqueWithoutUserInput | RecycleHistoryUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: RecycleHistoryCreateManyUserInputEnvelope
+    set?: RecycleHistoryWhereUniqueInput | RecycleHistoryWhereUniqueInput[]
+    disconnect?: RecycleHistoryWhereUniqueInput | RecycleHistoryWhereUniqueInput[]
+    delete?: RecycleHistoryWhereUniqueInput | RecycleHistoryWhereUniqueInput[]
+    connect?: RecycleHistoryWhereUniqueInput | RecycleHistoryWhereUniqueInput[]
+    update?: RecycleHistoryUpdateWithWhereUniqueWithoutUserInput | RecycleHistoryUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: RecycleHistoryUpdateManyWithWhereWithoutUserInput | RecycleHistoryUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: RecycleHistoryScalarWhereInput | RecycleHistoryScalarWhereInput[]
+  }
+
+  export type UserTotalPointUpdateManyWithoutUserNestedInput = {
+    create?: XOR<UserTotalPointCreateWithoutUserInput, UserTotalPointUncheckedCreateWithoutUserInput> | UserTotalPointCreateWithoutUserInput[] | UserTotalPointUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: UserTotalPointCreateOrConnectWithoutUserInput | UserTotalPointCreateOrConnectWithoutUserInput[]
+    upsert?: UserTotalPointUpsertWithWhereUniqueWithoutUserInput | UserTotalPointUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: UserTotalPointCreateManyUserInputEnvelope
+    set?: UserTotalPointWhereUniqueInput | UserTotalPointWhereUniqueInput[]
+    disconnect?: UserTotalPointWhereUniqueInput | UserTotalPointWhereUniqueInput[]
+    delete?: UserTotalPointWhereUniqueInput | UserTotalPointWhereUniqueInput[]
+    connect?: UserTotalPointWhereUniqueInput | UserTotalPointWhereUniqueInput[]
+    update?: UserTotalPointUpdateWithWhereUniqueWithoutUserInput | UserTotalPointUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: UserTotalPointUpdateManyWithWhereWithoutUserInput | UserTotalPointUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: UserTotalPointScalarWhereInput | UserTotalPointScalarWhereInput[]
+  }
+
   export type SessionUncheckedUpdateManyWithoutUserNestedInput = {
     create?: XOR<SessionCreateWithoutUserInput, SessionUncheckedCreateWithoutUserInput> | SessionCreateWithoutUserInput[] | SessionUncheckedCreateWithoutUserInput[]
     connectOrCreate?: SessionCreateOrConnectWithoutUserInput | SessionCreateOrConnectWithoutUserInput[]
@@ -17699,6 +25235,62 @@ export namespace Prisma {
     deleteMany?: InvitationScalarWhereInput | InvitationScalarWhereInput[]
   }
 
+  export type FavoriteCouponListUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<FavoriteCouponListCreateWithoutUserInput, FavoriteCouponListUncheckedCreateWithoutUserInput> | FavoriteCouponListCreateWithoutUserInput[] | FavoriteCouponListUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: FavoriteCouponListCreateOrConnectWithoutUserInput | FavoriteCouponListCreateOrConnectWithoutUserInput[]
+    upsert?: FavoriteCouponListUpsertWithWhereUniqueWithoutUserInput | FavoriteCouponListUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: FavoriteCouponListCreateManyUserInputEnvelope
+    set?: FavoriteCouponListWhereUniqueInput | FavoriteCouponListWhereUniqueInput[]
+    disconnect?: FavoriteCouponListWhereUniqueInput | FavoriteCouponListWhereUniqueInput[]
+    delete?: FavoriteCouponListWhereUniqueInput | FavoriteCouponListWhereUniqueInput[]
+    connect?: FavoriteCouponListWhereUniqueInput | FavoriteCouponListWhereUniqueInput[]
+    update?: FavoriteCouponListUpdateWithWhereUniqueWithoutUserInput | FavoriteCouponListUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: FavoriteCouponListUpdateManyWithWhereWithoutUserInput | FavoriteCouponListUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: FavoriteCouponListScalarWhereInput | FavoriteCouponListScalarWhereInput[]
+  }
+
+  export type RedeemHistoryUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<RedeemHistoryCreateWithoutUserInput, RedeemHistoryUncheckedCreateWithoutUserInput> | RedeemHistoryCreateWithoutUserInput[] | RedeemHistoryUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: RedeemHistoryCreateOrConnectWithoutUserInput | RedeemHistoryCreateOrConnectWithoutUserInput[]
+    upsert?: RedeemHistoryUpsertWithWhereUniqueWithoutUserInput | RedeemHistoryUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: RedeemHistoryCreateManyUserInputEnvelope
+    set?: RedeemHistoryWhereUniqueInput | RedeemHistoryWhereUniqueInput[]
+    disconnect?: RedeemHistoryWhereUniqueInput | RedeemHistoryWhereUniqueInput[]
+    delete?: RedeemHistoryWhereUniqueInput | RedeemHistoryWhereUniqueInput[]
+    connect?: RedeemHistoryWhereUniqueInput | RedeemHistoryWhereUniqueInput[]
+    update?: RedeemHistoryUpdateWithWhereUniqueWithoutUserInput | RedeemHistoryUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: RedeemHistoryUpdateManyWithWhereWithoutUserInput | RedeemHistoryUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: RedeemHistoryScalarWhereInput | RedeemHistoryScalarWhereInput[]
+  }
+
+  export type RecycleHistoryUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<RecycleHistoryCreateWithoutUserInput, RecycleHistoryUncheckedCreateWithoutUserInput> | RecycleHistoryCreateWithoutUserInput[] | RecycleHistoryUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: RecycleHistoryCreateOrConnectWithoutUserInput | RecycleHistoryCreateOrConnectWithoutUserInput[]
+    upsert?: RecycleHistoryUpsertWithWhereUniqueWithoutUserInput | RecycleHistoryUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: RecycleHistoryCreateManyUserInputEnvelope
+    set?: RecycleHistoryWhereUniqueInput | RecycleHistoryWhereUniqueInput[]
+    disconnect?: RecycleHistoryWhereUniqueInput | RecycleHistoryWhereUniqueInput[]
+    delete?: RecycleHistoryWhereUniqueInput | RecycleHistoryWhereUniqueInput[]
+    connect?: RecycleHistoryWhereUniqueInput | RecycleHistoryWhereUniqueInput[]
+    update?: RecycleHistoryUpdateWithWhereUniqueWithoutUserInput | RecycleHistoryUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: RecycleHistoryUpdateManyWithWhereWithoutUserInput | RecycleHistoryUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: RecycleHistoryScalarWhereInput | RecycleHistoryScalarWhereInput[]
+  }
+
+  export type UserTotalPointUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<UserTotalPointCreateWithoutUserInput, UserTotalPointUncheckedCreateWithoutUserInput> | UserTotalPointCreateWithoutUserInput[] | UserTotalPointUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: UserTotalPointCreateOrConnectWithoutUserInput | UserTotalPointCreateOrConnectWithoutUserInput[]
+    upsert?: UserTotalPointUpsertWithWhereUniqueWithoutUserInput | UserTotalPointUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: UserTotalPointCreateManyUserInputEnvelope
+    set?: UserTotalPointWhereUniqueInput | UserTotalPointWhereUniqueInput[]
+    disconnect?: UserTotalPointWhereUniqueInput | UserTotalPointWhereUniqueInput[]
+    delete?: UserTotalPointWhereUniqueInput | UserTotalPointWhereUniqueInput[]
+    connect?: UserTotalPointWhereUniqueInput | UserTotalPointWhereUniqueInput[]
+    update?: UserTotalPointUpdateWithWhereUniqueWithoutUserInput | UserTotalPointUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: UserTotalPointUpdateManyWithWhereWithoutUserInput | UserTotalPointUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: UserTotalPointScalarWhereInput | UserTotalPointScalarWhereInput[]
+  }
+
   export type UserCreateNestedOneWithoutSessionsInput = {
     create?: XOR<UserCreateWithoutSessionsInput, UserUncheckedCreateWithoutSessionsInput>
     connectOrCreate?: UserCreateOrConnectWithoutSessionsInput
@@ -17748,6 +25340,13 @@ export namespace Prisma {
     connect?: StoreWhereUniqueInput | StoreWhereUniqueInput[]
   }
 
+  export type CouponCreateNestedManyWithoutOrganizationInput = {
+    create?: XOR<CouponCreateWithoutOrganizationInput, CouponUncheckedCreateWithoutOrganizationInput> | CouponCreateWithoutOrganizationInput[] | CouponUncheckedCreateWithoutOrganizationInput[]
+    connectOrCreate?: CouponCreateOrConnectWithoutOrganizationInput | CouponCreateOrConnectWithoutOrganizationInput[]
+    createMany?: CouponCreateManyOrganizationInputEnvelope
+    connect?: CouponWhereUniqueInput | CouponWhereUniqueInput[]
+  }
+
   export type MemberUncheckedCreateNestedManyWithoutOrganizationInput = {
     create?: XOR<MemberCreateWithoutOrganizationInput, MemberUncheckedCreateWithoutOrganizationInput> | MemberCreateWithoutOrganizationInput[] | MemberUncheckedCreateWithoutOrganizationInput[]
     connectOrCreate?: MemberCreateOrConnectWithoutOrganizationInput | MemberCreateOrConnectWithoutOrganizationInput[]
@@ -17767,6 +25366,13 @@ export namespace Prisma {
     connectOrCreate?: StoreCreateOrConnectWithoutOrganizationInput | StoreCreateOrConnectWithoutOrganizationInput[]
     createMany?: StoreCreateManyOrganizationInputEnvelope
     connect?: StoreWhereUniqueInput | StoreWhereUniqueInput[]
+  }
+
+  export type CouponUncheckedCreateNestedManyWithoutOrganizationInput = {
+    create?: XOR<CouponCreateWithoutOrganizationInput, CouponUncheckedCreateWithoutOrganizationInput> | CouponCreateWithoutOrganizationInput[] | CouponUncheckedCreateWithoutOrganizationInput[]
+    connectOrCreate?: CouponCreateOrConnectWithoutOrganizationInput | CouponCreateOrConnectWithoutOrganizationInput[]
+    createMany?: CouponCreateManyOrganizationInputEnvelope
+    connect?: CouponWhereUniqueInput | CouponWhereUniqueInput[]
   }
 
   export type MemberUpdateManyWithoutOrganizationNestedInput = {
@@ -17811,6 +25417,20 @@ export namespace Prisma {
     deleteMany?: StoreScalarWhereInput | StoreScalarWhereInput[]
   }
 
+  export type CouponUpdateManyWithoutOrganizationNestedInput = {
+    create?: XOR<CouponCreateWithoutOrganizationInput, CouponUncheckedCreateWithoutOrganizationInput> | CouponCreateWithoutOrganizationInput[] | CouponUncheckedCreateWithoutOrganizationInput[]
+    connectOrCreate?: CouponCreateOrConnectWithoutOrganizationInput | CouponCreateOrConnectWithoutOrganizationInput[]
+    upsert?: CouponUpsertWithWhereUniqueWithoutOrganizationInput | CouponUpsertWithWhereUniqueWithoutOrganizationInput[]
+    createMany?: CouponCreateManyOrganizationInputEnvelope
+    set?: CouponWhereUniqueInput | CouponWhereUniqueInput[]
+    disconnect?: CouponWhereUniqueInput | CouponWhereUniqueInput[]
+    delete?: CouponWhereUniqueInput | CouponWhereUniqueInput[]
+    connect?: CouponWhereUniqueInput | CouponWhereUniqueInput[]
+    update?: CouponUpdateWithWhereUniqueWithoutOrganizationInput | CouponUpdateWithWhereUniqueWithoutOrganizationInput[]
+    updateMany?: CouponUpdateManyWithWhereWithoutOrganizationInput | CouponUpdateManyWithWhereWithoutOrganizationInput[]
+    deleteMany?: CouponScalarWhereInput | CouponScalarWhereInput[]
+  }
+
   export type MemberUncheckedUpdateManyWithoutOrganizationNestedInput = {
     create?: XOR<MemberCreateWithoutOrganizationInput, MemberUncheckedCreateWithoutOrganizationInput> | MemberCreateWithoutOrganizationInput[] | MemberUncheckedCreateWithoutOrganizationInput[]
     connectOrCreate?: MemberCreateOrConnectWithoutOrganizationInput | MemberCreateOrConnectWithoutOrganizationInput[]
@@ -17851,6 +25471,20 @@ export namespace Prisma {
     update?: StoreUpdateWithWhereUniqueWithoutOrganizationInput | StoreUpdateWithWhereUniqueWithoutOrganizationInput[]
     updateMany?: StoreUpdateManyWithWhereWithoutOrganizationInput | StoreUpdateManyWithWhereWithoutOrganizationInput[]
     deleteMany?: StoreScalarWhereInput | StoreScalarWhereInput[]
+  }
+
+  export type CouponUncheckedUpdateManyWithoutOrganizationNestedInput = {
+    create?: XOR<CouponCreateWithoutOrganizationInput, CouponUncheckedCreateWithoutOrganizationInput> | CouponCreateWithoutOrganizationInput[] | CouponUncheckedCreateWithoutOrganizationInput[]
+    connectOrCreate?: CouponCreateOrConnectWithoutOrganizationInput | CouponCreateOrConnectWithoutOrganizationInput[]
+    upsert?: CouponUpsertWithWhereUniqueWithoutOrganizationInput | CouponUpsertWithWhereUniqueWithoutOrganizationInput[]
+    createMany?: CouponCreateManyOrganizationInputEnvelope
+    set?: CouponWhereUniqueInput | CouponWhereUniqueInput[]
+    disconnect?: CouponWhereUniqueInput | CouponWhereUniqueInput[]
+    delete?: CouponWhereUniqueInput | CouponWhereUniqueInput[]
+    connect?: CouponWhereUniqueInput | CouponWhereUniqueInput[]
+    update?: CouponUpdateWithWhereUniqueWithoutOrganizationInput | CouponUpdateWithWhereUniqueWithoutOrganizationInput[]
+    updateMany?: CouponUpdateManyWithWhereWithoutOrganizationInput | CouponUpdateManyWithWhereWithoutOrganizationInput[]
+    deleteMany?: CouponScalarWhereInput | CouponScalarWhereInput[]
   }
 
   export type OrganizationCreateNestedOneWithoutMembersInput = {
@@ -18087,6 +25721,48 @@ export namespace Prisma {
     deleteMany?: MaterialScalarWhereInput | MaterialScalarWhereInput[]
   }
 
+  export type UserCreateNestedOneWithoutRedeemHistoryInput = {
+    create?: XOR<UserCreateWithoutRedeemHistoryInput, UserUncheckedCreateWithoutRedeemHistoryInput>
+    connectOrCreate?: UserCreateOrConnectWithoutRedeemHistoryInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type UserUpdateOneRequiredWithoutRedeemHistoryNestedInput = {
+    create?: XOR<UserCreateWithoutRedeemHistoryInput, UserUncheckedCreateWithoutRedeemHistoryInput>
+    connectOrCreate?: UserCreateOrConnectWithoutRedeemHistoryInput
+    upsert?: UserUpsertWithoutRedeemHistoryInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutRedeemHistoryInput, UserUpdateWithoutRedeemHistoryInput>, UserUncheckedUpdateWithoutRedeemHistoryInput>
+  }
+
+  export type UserCreateNestedOneWithoutRecycleHistoryInput = {
+    create?: XOR<UserCreateWithoutRecycleHistoryInput, UserUncheckedCreateWithoutRecycleHistoryInput>
+    connectOrCreate?: UserCreateOrConnectWithoutRecycleHistoryInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type UserUpdateOneRequiredWithoutRecycleHistoryNestedInput = {
+    create?: XOR<UserCreateWithoutRecycleHistoryInput, UserUncheckedCreateWithoutRecycleHistoryInput>
+    connectOrCreate?: UserCreateOrConnectWithoutRecycleHistoryInput
+    upsert?: UserUpsertWithoutRecycleHistoryInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutRecycleHistoryInput, UserUpdateWithoutRecycleHistoryInput>, UserUncheckedUpdateWithoutRecycleHistoryInput>
+  }
+
+  export type UserCreateNestedOneWithoutUserTotalPointInput = {
+    create?: XOR<UserCreateWithoutUserTotalPointInput, UserUncheckedCreateWithoutUserTotalPointInput>
+    connectOrCreate?: UserCreateOrConnectWithoutUserTotalPointInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type UserUpdateOneRequiredWithoutUserTotalPointNestedInput = {
+    create?: XOR<UserCreateWithoutUserTotalPointInput, UserUncheckedCreateWithoutUserTotalPointInput>
+    connectOrCreate?: UserCreateOrConnectWithoutUserTotalPointInput
+    upsert?: UserUpsertWithoutUserTotalPointInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutUserTotalPointInput, UserUpdateWithoutUserTotalPointInput>, UserUncheckedUpdateWithoutUserTotalPointInput>
+  }
+
   export type MaterialCreateNestedOneWithoutBinsInput = {
     create?: XOR<MaterialCreateWithoutBinsInput, MaterialUncheckedCreateWithoutBinsInput>
     connectOrCreate?: MaterialCreateOrConnectWithoutBinsInput
@@ -18117,6 +25793,102 @@ export namespace Prisma {
     upsert?: StoreUpsertWithoutBinsInput
     connect?: StoreWhereUniqueInput
     update?: XOR<XOR<StoreUpdateToOneWithWhereWithoutBinsInput, StoreUpdateWithoutBinsInput>, StoreUncheckedUpdateWithoutBinsInput>
+  }
+
+  export type OrganizationCreateNestedOneWithoutCouponInput = {
+    create?: XOR<OrganizationCreateWithoutCouponInput, OrganizationUncheckedCreateWithoutCouponInput>
+    connectOrCreate?: OrganizationCreateOrConnectWithoutCouponInput
+    connect?: OrganizationWhereUniqueInput
+  }
+
+  export type FavoriteCouponListCreateNestedManyWithoutCouponInput = {
+    create?: XOR<FavoriteCouponListCreateWithoutCouponInput, FavoriteCouponListUncheckedCreateWithoutCouponInput> | FavoriteCouponListCreateWithoutCouponInput[] | FavoriteCouponListUncheckedCreateWithoutCouponInput[]
+    connectOrCreate?: FavoriteCouponListCreateOrConnectWithoutCouponInput | FavoriteCouponListCreateOrConnectWithoutCouponInput[]
+    createMany?: FavoriteCouponListCreateManyCouponInputEnvelope
+    connect?: FavoriteCouponListWhereUniqueInput | FavoriteCouponListWhereUniqueInput[]
+  }
+
+  export type FavoriteCouponListUncheckedCreateNestedManyWithoutCouponInput = {
+    create?: XOR<FavoriteCouponListCreateWithoutCouponInput, FavoriteCouponListUncheckedCreateWithoutCouponInput> | FavoriteCouponListCreateWithoutCouponInput[] | FavoriteCouponListUncheckedCreateWithoutCouponInput[]
+    connectOrCreate?: FavoriteCouponListCreateOrConnectWithoutCouponInput | FavoriteCouponListCreateOrConnectWithoutCouponInput[]
+    createMany?: FavoriteCouponListCreateManyCouponInputEnvelope
+    connect?: FavoriteCouponListWhereUniqueInput | FavoriteCouponListWhereUniqueInput[]
+  }
+
+  export type EnumStatusFieldUpdateOperationsInput = {
+    set?: $Enums.Status
+  }
+
+  export type EnumCouponTypeFieldUpdateOperationsInput = {
+    set?: $Enums.CouponType
+  }
+
+  export type EnumDealTypeFieldUpdateOperationsInput = {
+    set?: $Enums.DealType
+  }
+
+  export type OrganizationUpdateOneRequiredWithoutCouponNestedInput = {
+    create?: XOR<OrganizationCreateWithoutCouponInput, OrganizationUncheckedCreateWithoutCouponInput>
+    connectOrCreate?: OrganizationCreateOrConnectWithoutCouponInput
+    upsert?: OrganizationUpsertWithoutCouponInput
+    connect?: OrganizationWhereUniqueInput
+    update?: XOR<XOR<OrganizationUpdateToOneWithWhereWithoutCouponInput, OrganizationUpdateWithoutCouponInput>, OrganizationUncheckedUpdateWithoutCouponInput>
+  }
+
+  export type FavoriteCouponListUpdateManyWithoutCouponNestedInput = {
+    create?: XOR<FavoriteCouponListCreateWithoutCouponInput, FavoriteCouponListUncheckedCreateWithoutCouponInput> | FavoriteCouponListCreateWithoutCouponInput[] | FavoriteCouponListUncheckedCreateWithoutCouponInput[]
+    connectOrCreate?: FavoriteCouponListCreateOrConnectWithoutCouponInput | FavoriteCouponListCreateOrConnectWithoutCouponInput[]
+    upsert?: FavoriteCouponListUpsertWithWhereUniqueWithoutCouponInput | FavoriteCouponListUpsertWithWhereUniqueWithoutCouponInput[]
+    createMany?: FavoriteCouponListCreateManyCouponInputEnvelope
+    set?: FavoriteCouponListWhereUniqueInput | FavoriteCouponListWhereUniqueInput[]
+    disconnect?: FavoriteCouponListWhereUniqueInput | FavoriteCouponListWhereUniqueInput[]
+    delete?: FavoriteCouponListWhereUniqueInput | FavoriteCouponListWhereUniqueInput[]
+    connect?: FavoriteCouponListWhereUniqueInput | FavoriteCouponListWhereUniqueInput[]
+    update?: FavoriteCouponListUpdateWithWhereUniqueWithoutCouponInput | FavoriteCouponListUpdateWithWhereUniqueWithoutCouponInput[]
+    updateMany?: FavoriteCouponListUpdateManyWithWhereWithoutCouponInput | FavoriteCouponListUpdateManyWithWhereWithoutCouponInput[]
+    deleteMany?: FavoriteCouponListScalarWhereInput | FavoriteCouponListScalarWhereInput[]
+  }
+
+  export type FavoriteCouponListUncheckedUpdateManyWithoutCouponNestedInput = {
+    create?: XOR<FavoriteCouponListCreateWithoutCouponInput, FavoriteCouponListUncheckedCreateWithoutCouponInput> | FavoriteCouponListCreateWithoutCouponInput[] | FavoriteCouponListUncheckedCreateWithoutCouponInput[]
+    connectOrCreate?: FavoriteCouponListCreateOrConnectWithoutCouponInput | FavoriteCouponListCreateOrConnectWithoutCouponInput[]
+    upsert?: FavoriteCouponListUpsertWithWhereUniqueWithoutCouponInput | FavoriteCouponListUpsertWithWhereUniqueWithoutCouponInput[]
+    createMany?: FavoriteCouponListCreateManyCouponInputEnvelope
+    set?: FavoriteCouponListWhereUniqueInput | FavoriteCouponListWhereUniqueInput[]
+    disconnect?: FavoriteCouponListWhereUniqueInput | FavoriteCouponListWhereUniqueInput[]
+    delete?: FavoriteCouponListWhereUniqueInput | FavoriteCouponListWhereUniqueInput[]
+    connect?: FavoriteCouponListWhereUniqueInput | FavoriteCouponListWhereUniqueInput[]
+    update?: FavoriteCouponListUpdateWithWhereUniqueWithoutCouponInput | FavoriteCouponListUpdateWithWhereUniqueWithoutCouponInput[]
+    updateMany?: FavoriteCouponListUpdateManyWithWhereWithoutCouponInput | FavoriteCouponListUpdateManyWithWhereWithoutCouponInput[]
+    deleteMany?: FavoriteCouponListScalarWhereInput | FavoriteCouponListScalarWhereInput[]
+  }
+
+  export type UserCreateNestedOneWithoutFavoriteCouponListInput = {
+    create?: XOR<UserCreateWithoutFavoriteCouponListInput, UserUncheckedCreateWithoutFavoriteCouponListInput>
+    connectOrCreate?: UserCreateOrConnectWithoutFavoriteCouponListInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type CouponCreateNestedOneWithoutFavoriteCouponListInput = {
+    create?: XOR<CouponCreateWithoutFavoriteCouponListInput, CouponUncheckedCreateWithoutFavoriteCouponListInput>
+    connectOrCreate?: CouponCreateOrConnectWithoutFavoriteCouponListInput
+    connect?: CouponWhereUniqueInput
+  }
+
+  export type UserUpdateOneRequiredWithoutFavoriteCouponListNestedInput = {
+    create?: XOR<UserCreateWithoutFavoriteCouponListInput, UserUncheckedCreateWithoutFavoriteCouponListInput>
+    connectOrCreate?: UserCreateOrConnectWithoutFavoriteCouponListInput
+    upsert?: UserUpsertWithoutFavoriteCouponListInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutFavoriteCouponListInput, UserUpdateWithoutFavoriteCouponListInput>, UserUncheckedUpdateWithoutFavoriteCouponListInput>
+  }
+
+  export type CouponUpdateOneRequiredWithoutFavoriteCouponListNestedInput = {
+    create?: XOR<CouponCreateWithoutFavoriteCouponListInput, CouponUncheckedCreateWithoutFavoriteCouponListInput>
+    connectOrCreate?: CouponCreateOrConnectWithoutFavoriteCouponListInput
+    upsert?: CouponUpsertWithoutFavoriteCouponListInput
+    connect?: CouponWhereUniqueInput
+    update?: XOR<XOR<CouponUpdateToOneWithWhereWithoutFavoriteCouponListInput, CouponUpdateWithoutFavoriteCouponListInput>, CouponUncheckedUpdateWithoutFavoriteCouponListInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -18356,6 +26128,57 @@ export namespace Prisma {
     _max?: NestedEnumBinStatusFilter<$PrismaModel>
   }
 
+  export type NestedEnumStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.Status | EnumStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.Status[] | ListEnumStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Status[] | ListEnumStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumStatusFilter<$PrismaModel> | $Enums.Status
+  }
+
+  export type NestedEnumCouponTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.CouponType | EnumCouponTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.CouponType[] | ListEnumCouponTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.CouponType[] | ListEnumCouponTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumCouponTypeFilter<$PrismaModel> | $Enums.CouponType
+  }
+
+  export type NestedEnumDealTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.DealType | EnumDealTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.DealType[] | ListEnumDealTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.DealType[] | ListEnumDealTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumDealTypeFilter<$PrismaModel> | $Enums.DealType
+  }
+
+  export type NestedEnumStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Status | EnumStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.Status[] | ListEnumStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Status[] | ListEnumStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumStatusWithAggregatesFilter<$PrismaModel> | $Enums.Status
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumStatusFilter<$PrismaModel>
+    _max?: NestedEnumStatusFilter<$PrismaModel>
+  }
+
+  export type NestedEnumCouponTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.CouponType | EnumCouponTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.CouponType[] | ListEnumCouponTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.CouponType[] | ListEnumCouponTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumCouponTypeWithAggregatesFilter<$PrismaModel> | $Enums.CouponType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumCouponTypeFilter<$PrismaModel>
+    _max?: NestedEnumCouponTypeFilter<$PrismaModel>
+  }
+
+  export type NestedEnumDealTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.DealType | EnumDealTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.DealType[] | ListEnumDealTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.DealType[] | ListEnumDealTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumDealTypeWithAggregatesFilter<$PrismaModel> | $Enums.DealType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumDealTypeFilter<$PrismaModel>
+    _max?: NestedEnumDealTypeFilter<$PrismaModel>
+  }
+
   export type SessionCreateWithoutUserInput = {
     id: string
     expiresAt: Date | string
@@ -18482,6 +26305,102 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type FavoriteCouponListCreateWithoutUserInput = {
+    id?: string
+    createdAt?: Date | string
+    coupon: CouponCreateNestedOneWithoutFavoriteCouponListInput
+  }
+
+  export type FavoriteCouponListUncheckedCreateWithoutUserInput = {
+    id?: string
+    couponId: string
+    createdAt?: Date | string
+  }
+
+  export type FavoriteCouponListCreateOrConnectWithoutUserInput = {
+    where: FavoriteCouponListWhereUniqueInput
+    create: XOR<FavoriteCouponListCreateWithoutUserInput, FavoriteCouponListUncheckedCreateWithoutUserInput>
+  }
+
+  export type FavoriteCouponListCreateManyUserInputEnvelope = {
+    data: FavoriteCouponListCreateManyUserInput | FavoriteCouponListCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type RedeemHistoryCreateWithoutUserInput = {
+    id?: string
+    couponId: string
+    points: number
+    description?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type RedeemHistoryUncheckedCreateWithoutUserInput = {
+    id?: string
+    couponId: string
+    points: number
+    description?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type RedeemHistoryCreateOrConnectWithoutUserInput = {
+    where: RedeemHistoryWhereUniqueInput
+    create: XOR<RedeemHistoryCreateWithoutUserInput, RedeemHistoryUncheckedCreateWithoutUserInput>
+  }
+
+  export type RedeemHistoryCreateManyUserInputEnvelope = {
+    data: RedeemHistoryCreateManyUserInput | RedeemHistoryCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type RecycleHistoryCreateWithoutUserInput = {
+    id?: string
+    points: number
+    mediaUrl?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type RecycleHistoryUncheckedCreateWithoutUserInput = {
+    id?: string
+    points: number
+    mediaUrl?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type RecycleHistoryCreateOrConnectWithoutUserInput = {
+    where: RecycleHistoryWhereUniqueInput
+    create: XOR<RecycleHistoryCreateWithoutUserInput, RecycleHistoryUncheckedCreateWithoutUserInput>
+  }
+
+  export type RecycleHistoryCreateManyUserInputEnvelope = {
+    data: RecycleHistoryCreateManyUserInput | RecycleHistoryCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type UserTotalPointCreateWithoutUserInput = {
+    id?: string
+    totalPoints?: number
+  }
+
+  export type UserTotalPointUncheckedCreateWithoutUserInput = {
+    id?: string
+    totalPoints?: number
+  }
+
+  export type UserTotalPointCreateOrConnectWithoutUserInput = {
+    where: UserTotalPointWhereUniqueInput
+    create: XOR<UserTotalPointCreateWithoutUserInput, UserTotalPointUncheckedCreateWithoutUserInput>
+  }
+
+  export type UserTotalPointCreateManyUserInputEnvelope = {
+    data: UserTotalPointCreateManyUserInput | UserTotalPointCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
   export type SessionUpsertWithWhereUniqueWithoutUserInput = {
     where: SessionWhereUniqueInput
     update: XOR<SessionUpdateWithoutUserInput, SessionUncheckedUpdateWithoutUserInput>
@@ -18605,6 +26524,114 @@ export namespace Prisma {
     inviterId?: StringFilter<"Invitation"> | string
   }
 
+  export type FavoriteCouponListUpsertWithWhereUniqueWithoutUserInput = {
+    where: FavoriteCouponListWhereUniqueInput
+    update: XOR<FavoriteCouponListUpdateWithoutUserInput, FavoriteCouponListUncheckedUpdateWithoutUserInput>
+    create: XOR<FavoriteCouponListCreateWithoutUserInput, FavoriteCouponListUncheckedCreateWithoutUserInput>
+  }
+
+  export type FavoriteCouponListUpdateWithWhereUniqueWithoutUserInput = {
+    where: FavoriteCouponListWhereUniqueInput
+    data: XOR<FavoriteCouponListUpdateWithoutUserInput, FavoriteCouponListUncheckedUpdateWithoutUserInput>
+  }
+
+  export type FavoriteCouponListUpdateManyWithWhereWithoutUserInput = {
+    where: FavoriteCouponListScalarWhereInput
+    data: XOR<FavoriteCouponListUpdateManyMutationInput, FavoriteCouponListUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type FavoriteCouponListScalarWhereInput = {
+    AND?: FavoriteCouponListScalarWhereInput | FavoriteCouponListScalarWhereInput[]
+    OR?: FavoriteCouponListScalarWhereInput[]
+    NOT?: FavoriteCouponListScalarWhereInput | FavoriteCouponListScalarWhereInput[]
+    id?: StringFilter<"FavoriteCouponList"> | string
+    userId?: StringFilter<"FavoriteCouponList"> | string
+    couponId?: StringFilter<"FavoriteCouponList"> | string
+    createdAt?: DateTimeFilter<"FavoriteCouponList"> | Date | string
+  }
+
+  export type RedeemHistoryUpsertWithWhereUniqueWithoutUserInput = {
+    where: RedeemHistoryWhereUniqueInput
+    update: XOR<RedeemHistoryUpdateWithoutUserInput, RedeemHistoryUncheckedUpdateWithoutUserInput>
+    create: XOR<RedeemHistoryCreateWithoutUserInput, RedeemHistoryUncheckedCreateWithoutUserInput>
+  }
+
+  export type RedeemHistoryUpdateWithWhereUniqueWithoutUserInput = {
+    where: RedeemHistoryWhereUniqueInput
+    data: XOR<RedeemHistoryUpdateWithoutUserInput, RedeemHistoryUncheckedUpdateWithoutUserInput>
+  }
+
+  export type RedeemHistoryUpdateManyWithWhereWithoutUserInput = {
+    where: RedeemHistoryScalarWhereInput
+    data: XOR<RedeemHistoryUpdateManyMutationInput, RedeemHistoryUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type RedeemHistoryScalarWhereInput = {
+    AND?: RedeemHistoryScalarWhereInput | RedeemHistoryScalarWhereInput[]
+    OR?: RedeemHistoryScalarWhereInput[]
+    NOT?: RedeemHistoryScalarWhereInput | RedeemHistoryScalarWhereInput[]
+    id?: StringFilter<"RedeemHistory"> | string
+    couponId?: StringFilter<"RedeemHistory"> | string
+    userId?: StringFilter<"RedeemHistory"> | string
+    points?: IntFilter<"RedeemHistory"> | number
+    description?: StringNullableFilter<"RedeemHistory"> | string | null
+    createdAt?: DateTimeFilter<"RedeemHistory"> | Date | string
+    updatedAt?: DateTimeFilter<"RedeemHistory"> | Date | string
+  }
+
+  export type RecycleHistoryUpsertWithWhereUniqueWithoutUserInput = {
+    where: RecycleHistoryWhereUniqueInput
+    update: XOR<RecycleHistoryUpdateWithoutUserInput, RecycleHistoryUncheckedUpdateWithoutUserInput>
+    create: XOR<RecycleHistoryCreateWithoutUserInput, RecycleHistoryUncheckedCreateWithoutUserInput>
+  }
+
+  export type RecycleHistoryUpdateWithWhereUniqueWithoutUserInput = {
+    where: RecycleHistoryWhereUniqueInput
+    data: XOR<RecycleHistoryUpdateWithoutUserInput, RecycleHistoryUncheckedUpdateWithoutUserInput>
+  }
+
+  export type RecycleHistoryUpdateManyWithWhereWithoutUserInput = {
+    where: RecycleHistoryScalarWhereInput
+    data: XOR<RecycleHistoryUpdateManyMutationInput, RecycleHistoryUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type RecycleHistoryScalarWhereInput = {
+    AND?: RecycleHistoryScalarWhereInput | RecycleHistoryScalarWhereInput[]
+    OR?: RecycleHistoryScalarWhereInput[]
+    NOT?: RecycleHistoryScalarWhereInput | RecycleHistoryScalarWhereInput[]
+    id?: StringFilter<"RecycleHistory"> | string
+    userId?: StringFilter<"RecycleHistory"> | string
+    points?: IntFilter<"RecycleHistory"> | number
+    mediaUrl?: StringNullableFilter<"RecycleHistory"> | string | null
+    createdAt?: DateTimeFilter<"RecycleHistory"> | Date | string
+    updatedAt?: DateTimeFilter<"RecycleHistory"> | Date | string
+  }
+
+  export type UserTotalPointUpsertWithWhereUniqueWithoutUserInput = {
+    where: UserTotalPointWhereUniqueInput
+    update: XOR<UserTotalPointUpdateWithoutUserInput, UserTotalPointUncheckedUpdateWithoutUserInput>
+    create: XOR<UserTotalPointCreateWithoutUserInput, UserTotalPointUncheckedCreateWithoutUserInput>
+  }
+
+  export type UserTotalPointUpdateWithWhereUniqueWithoutUserInput = {
+    where: UserTotalPointWhereUniqueInput
+    data: XOR<UserTotalPointUpdateWithoutUserInput, UserTotalPointUncheckedUpdateWithoutUserInput>
+  }
+
+  export type UserTotalPointUpdateManyWithWhereWithoutUserInput = {
+    where: UserTotalPointScalarWhereInput
+    data: XOR<UserTotalPointUpdateManyMutationInput, UserTotalPointUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type UserTotalPointScalarWhereInput = {
+    AND?: UserTotalPointScalarWhereInput | UserTotalPointScalarWhereInput[]
+    OR?: UserTotalPointScalarWhereInput[]
+    NOT?: UserTotalPointScalarWhereInput | UserTotalPointScalarWhereInput[]
+    id?: StringFilter<"UserTotalPoint"> | string
+    userId?: StringFilter<"UserTotalPoint"> | string
+    totalPoints?: IntFilter<"UserTotalPoint"> | number
+  }
+
   export type UserCreateWithoutSessionsInput = {
     id: string
     name: string
@@ -18627,6 +26654,10 @@ export namespace Prisma {
     accounts?: AccountCreateNestedManyWithoutUserInput
     members?: MemberCreateNestedManyWithoutUserInput
     invitations?: InvitationCreateNestedManyWithoutUserInput
+    FavoriteCouponList?: FavoriteCouponListCreateNestedManyWithoutUserInput
+    RedeemHistory?: RedeemHistoryCreateNestedManyWithoutUserInput
+    RecycleHistory?: RecycleHistoryCreateNestedManyWithoutUserInput
+    UserTotalPoint?: UserTotalPointCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutSessionsInput = {
@@ -18651,6 +26682,10 @@ export namespace Prisma {
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
     members?: MemberUncheckedCreateNestedManyWithoutUserInput
     invitations?: InvitationUncheckedCreateNestedManyWithoutUserInput
+    FavoriteCouponList?: FavoriteCouponListUncheckedCreateNestedManyWithoutUserInput
+    RedeemHistory?: RedeemHistoryUncheckedCreateNestedManyWithoutUserInput
+    RecycleHistory?: RecycleHistoryUncheckedCreateNestedManyWithoutUserInput
+    UserTotalPoint?: UserTotalPointUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutSessionsInput = {
@@ -18691,6 +26726,10 @@ export namespace Prisma {
     accounts?: AccountUpdateManyWithoutUserNestedInput
     members?: MemberUpdateManyWithoutUserNestedInput
     invitations?: InvitationUpdateManyWithoutUserNestedInput
+    FavoriteCouponList?: FavoriteCouponListUpdateManyWithoutUserNestedInput
+    RedeemHistory?: RedeemHistoryUpdateManyWithoutUserNestedInput
+    RecycleHistory?: RecycleHistoryUpdateManyWithoutUserNestedInput
+    UserTotalPoint?: UserTotalPointUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutSessionsInput = {
@@ -18715,6 +26754,10 @@ export namespace Prisma {
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
     members?: MemberUncheckedUpdateManyWithoutUserNestedInput
     invitations?: InvitationUncheckedUpdateManyWithoutUserNestedInput
+    FavoriteCouponList?: FavoriteCouponListUncheckedUpdateManyWithoutUserNestedInput
+    RedeemHistory?: RedeemHistoryUncheckedUpdateManyWithoutUserNestedInput
+    RecycleHistory?: RecycleHistoryUncheckedUpdateManyWithoutUserNestedInput
+    UserTotalPoint?: UserTotalPointUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutAccountsInput = {
@@ -18739,6 +26782,10 @@ export namespace Prisma {
     sessions?: SessionCreateNestedManyWithoutUserInput
     members?: MemberCreateNestedManyWithoutUserInput
     invitations?: InvitationCreateNestedManyWithoutUserInput
+    FavoriteCouponList?: FavoriteCouponListCreateNestedManyWithoutUserInput
+    RedeemHistory?: RedeemHistoryCreateNestedManyWithoutUserInput
+    RecycleHistory?: RecycleHistoryCreateNestedManyWithoutUserInput
+    UserTotalPoint?: UserTotalPointCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutAccountsInput = {
@@ -18763,6 +26810,10 @@ export namespace Prisma {
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     members?: MemberUncheckedCreateNestedManyWithoutUserInput
     invitations?: InvitationUncheckedCreateNestedManyWithoutUserInput
+    FavoriteCouponList?: FavoriteCouponListUncheckedCreateNestedManyWithoutUserInput
+    RedeemHistory?: RedeemHistoryUncheckedCreateNestedManyWithoutUserInput
+    RecycleHistory?: RecycleHistoryUncheckedCreateNestedManyWithoutUserInput
+    UserTotalPoint?: UserTotalPointUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutAccountsInput = {
@@ -18803,6 +26854,10 @@ export namespace Prisma {
     sessions?: SessionUpdateManyWithoutUserNestedInput
     members?: MemberUpdateManyWithoutUserNestedInput
     invitations?: InvitationUpdateManyWithoutUserNestedInput
+    FavoriteCouponList?: FavoriteCouponListUpdateManyWithoutUserNestedInput
+    RedeemHistory?: RedeemHistoryUpdateManyWithoutUserNestedInput
+    RecycleHistory?: RecycleHistoryUpdateManyWithoutUserNestedInput
+    UserTotalPoint?: UserTotalPointUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutAccountsInput = {
@@ -18827,6 +26882,10 @@ export namespace Prisma {
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     members?: MemberUncheckedUpdateManyWithoutUserNestedInput
     invitations?: InvitationUncheckedUpdateManyWithoutUserNestedInput
+    FavoriteCouponList?: FavoriteCouponListUncheckedUpdateManyWithoutUserNestedInput
+    RedeemHistory?: RedeemHistoryUncheckedUpdateManyWithoutUserNestedInput
+    RecycleHistory?: RecycleHistoryUncheckedUpdateManyWithoutUserNestedInput
+    UserTotalPoint?: UserTotalPointUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type MemberCreateWithoutOrganizationInput = {
@@ -18929,6 +26988,52 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type CouponCreateWithoutOrganizationInput = {
+    id?: string
+    name: string
+    description?: string | null
+    imageUrl: string
+    status?: $Enums.Status
+    couponType: $Enums.CouponType
+    dealType: $Enums.DealType
+    isFeatured: boolean
+    couponCode: string
+    pointsToRedeem: number
+    startDate: Date | string
+    endDate: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    FavoriteCouponList?: FavoriteCouponListCreateNestedManyWithoutCouponInput
+  }
+
+  export type CouponUncheckedCreateWithoutOrganizationInput = {
+    id?: string
+    name: string
+    description?: string | null
+    imageUrl: string
+    status?: $Enums.Status
+    couponType: $Enums.CouponType
+    dealType: $Enums.DealType
+    isFeatured: boolean
+    couponCode: string
+    pointsToRedeem: number
+    startDate: Date | string
+    endDate: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    FavoriteCouponList?: FavoriteCouponListUncheckedCreateNestedManyWithoutCouponInput
+  }
+
+  export type CouponCreateOrConnectWithoutOrganizationInput = {
+    where: CouponWhereUniqueInput
+    create: XOR<CouponCreateWithoutOrganizationInput, CouponUncheckedCreateWithoutOrganizationInput>
+  }
+
+  export type CouponCreateManyOrganizationInputEnvelope = {
+    data: CouponCreateManyOrganizationInput | CouponCreateManyOrganizationInput[]
+    skipDuplicates?: boolean
+  }
+
   export type MemberUpsertWithWhereUniqueWithoutOrganizationInput = {
     where: MemberWhereUniqueInput
     update: XOR<MemberUpdateWithoutOrganizationInput, MemberUncheckedUpdateWithoutOrganizationInput>
@@ -18999,6 +27104,43 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"Store"> | Date | string
   }
 
+  export type CouponUpsertWithWhereUniqueWithoutOrganizationInput = {
+    where: CouponWhereUniqueInput
+    update: XOR<CouponUpdateWithoutOrganizationInput, CouponUncheckedUpdateWithoutOrganizationInput>
+    create: XOR<CouponCreateWithoutOrganizationInput, CouponUncheckedCreateWithoutOrganizationInput>
+  }
+
+  export type CouponUpdateWithWhereUniqueWithoutOrganizationInput = {
+    where: CouponWhereUniqueInput
+    data: XOR<CouponUpdateWithoutOrganizationInput, CouponUncheckedUpdateWithoutOrganizationInput>
+  }
+
+  export type CouponUpdateManyWithWhereWithoutOrganizationInput = {
+    where: CouponScalarWhereInput
+    data: XOR<CouponUpdateManyMutationInput, CouponUncheckedUpdateManyWithoutOrganizationInput>
+  }
+
+  export type CouponScalarWhereInput = {
+    AND?: CouponScalarWhereInput | CouponScalarWhereInput[]
+    OR?: CouponScalarWhereInput[]
+    NOT?: CouponScalarWhereInput | CouponScalarWhereInput[]
+    id?: StringFilter<"Coupon"> | string
+    name?: StringFilter<"Coupon"> | string
+    description?: StringNullableFilter<"Coupon"> | string | null
+    imageUrl?: StringFilter<"Coupon"> | string
+    status?: EnumStatusFilter<"Coupon"> | $Enums.Status
+    couponType?: EnumCouponTypeFilter<"Coupon"> | $Enums.CouponType
+    dealType?: EnumDealTypeFilter<"Coupon"> | $Enums.DealType
+    isFeatured?: BoolFilter<"Coupon"> | boolean
+    couponCode?: StringFilter<"Coupon"> | string
+    pointsToRedeem?: IntFilter<"Coupon"> | number
+    startDate?: DateTimeFilter<"Coupon"> | Date | string
+    endDate?: DateTimeFilter<"Coupon"> | Date | string
+    createdAt?: DateTimeFilter<"Coupon"> | Date | string
+    updatedAt?: DateTimeFilter<"Coupon"> | Date | string
+    organizationId?: StringFilter<"Coupon"> | string
+  }
+
   export type OrganizationCreateWithoutMembersInput = {
     id: string
     name: string
@@ -19008,6 +27150,7 @@ export namespace Prisma {
     metadata?: string | null
     invitations?: InvitationCreateNestedManyWithoutOrganizationInput
     stores?: StoreCreateNestedManyWithoutOrganizationInput
+    Coupon?: CouponCreateNestedManyWithoutOrganizationInput
   }
 
   export type OrganizationUncheckedCreateWithoutMembersInput = {
@@ -19019,6 +27162,7 @@ export namespace Prisma {
     metadata?: string | null
     invitations?: InvitationUncheckedCreateNestedManyWithoutOrganizationInput
     stores?: StoreUncheckedCreateNestedManyWithoutOrganizationInput
+    Coupon?: CouponUncheckedCreateNestedManyWithoutOrganizationInput
   }
 
   export type OrganizationCreateOrConnectWithoutMembersInput = {
@@ -19048,6 +27192,10 @@ export namespace Prisma {
     sessions?: SessionCreateNestedManyWithoutUserInput
     accounts?: AccountCreateNestedManyWithoutUserInput
     invitations?: InvitationCreateNestedManyWithoutUserInput
+    FavoriteCouponList?: FavoriteCouponListCreateNestedManyWithoutUserInput
+    RedeemHistory?: RedeemHistoryCreateNestedManyWithoutUserInput
+    RecycleHistory?: RecycleHistoryCreateNestedManyWithoutUserInput
+    UserTotalPoint?: UserTotalPointCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutMembersInput = {
@@ -19072,6 +27220,10 @@ export namespace Prisma {
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
     invitations?: InvitationUncheckedCreateNestedManyWithoutUserInput
+    FavoriteCouponList?: FavoriteCouponListUncheckedCreateNestedManyWithoutUserInput
+    RedeemHistory?: RedeemHistoryUncheckedCreateNestedManyWithoutUserInput
+    RecycleHistory?: RecycleHistoryUncheckedCreateNestedManyWithoutUserInput
+    UserTotalPoint?: UserTotalPointUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutMembersInput = {
@@ -19099,6 +27251,7 @@ export namespace Prisma {
     metadata?: NullableStringFieldUpdateOperationsInput | string | null
     invitations?: InvitationUpdateManyWithoutOrganizationNestedInput
     stores?: StoreUpdateManyWithoutOrganizationNestedInput
+    Coupon?: CouponUpdateManyWithoutOrganizationNestedInput
   }
 
   export type OrganizationUncheckedUpdateWithoutMembersInput = {
@@ -19110,6 +27263,7 @@ export namespace Prisma {
     metadata?: NullableStringFieldUpdateOperationsInput | string | null
     invitations?: InvitationUncheckedUpdateManyWithoutOrganizationNestedInput
     stores?: StoreUncheckedUpdateManyWithoutOrganizationNestedInput
+    Coupon?: CouponUncheckedUpdateManyWithoutOrganizationNestedInput
   }
 
   export type UserUpsertWithoutMembersInput = {
@@ -19145,6 +27299,10 @@ export namespace Prisma {
     sessions?: SessionUpdateManyWithoutUserNestedInput
     accounts?: AccountUpdateManyWithoutUserNestedInput
     invitations?: InvitationUpdateManyWithoutUserNestedInput
+    FavoriteCouponList?: FavoriteCouponListUpdateManyWithoutUserNestedInput
+    RedeemHistory?: RedeemHistoryUpdateManyWithoutUserNestedInput
+    RecycleHistory?: RecycleHistoryUpdateManyWithoutUserNestedInput
+    UserTotalPoint?: UserTotalPointUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutMembersInput = {
@@ -19169,6 +27327,10 @@ export namespace Prisma {
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
     invitations?: InvitationUncheckedUpdateManyWithoutUserNestedInput
+    FavoriteCouponList?: FavoriteCouponListUncheckedUpdateManyWithoutUserNestedInput
+    RedeemHistory?: RedeemHistoryUncheckedUpdateManyWithoutUserNestedInput
+    RecycleHistory?: RecycleHistoryUncheckedUpdateManyWithoutUserNestedInput
+    UserTotalPoint?: UserTotalPointUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type OrganizationCreateWithoutInvitationsInput = {
@@ -19180,6 +27342,7 @@ export namespace Prisma {
     metadata?: string | null
     members?: MemberCreateNestedManyWithoutOrganizationInput
     stores?: StoreCreateNestedManyWithoutOrganizationInput
+    Coupon?: CouponCreateNestedManyWithoutOrganizationInput
   }
 
   export type OrganizationUncheckedCreateWithoutInvitationsInput = {
@@ -19191,6 +27354,7 @@ export namespace Prisma {
     metadata?: string | null
     members?: MemberUncheckedCreateNestedManyWithoutOrganizationInput
     stores?: StoreUncheckedCreateNestedManyWithoutOrganizationInput
+    Coupon?: CouponUncheckedCreateNestedManyWithoutOrganizationInput
   }
 
   export type OrganizationCreateOrConnectWithoutInvitationsInput = {
@@ -19220,6 +27384,10 @@ export namespace Prisma {
     sessions?: SessionCreateNestedManyWithoutUserInput
     accounts?: AccountCreateNestedManyWithoutUserInput
     members?: MemberCreateNestedManyWithoutUserInput
+    FavoriteCouponList?: FavoriteCouponListCreateNestedManyWithoutUserInput
+    RedeemHistory?: RedeemHistoryCreateNestedManyWithoutUserInput
+    RecycleHistory?: RecycleHistoryCreateNestedManyWithoutUserInput
+    UserTotalPoint?: UserTotalPointCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutInvitationsInput = {
@@ -19244,6 +27412,10 @@ export namespace Prisma {
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
     members?: MemberUncheckedCreateNestedManyWithoutUserInput
+    FavoriteCouponList?: FavoriteCouponListUncheckedCreateNestedManyWithoutUserInput
+    RedeemHistory?: RedeemHistoryUncheckedCreateNestedManyWithoutUserInput
+    RecycleHistory?: RecycleHistoryUncheckedCreateNestedManyWithoutUserInput
+    UserTotalPoint?: UserTotalPointUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutInvitationsInput = {
@@ -19271,6 +27443,7 @@ export namespace Prisma {
     metadata?: NullableStringFieldUpdateOperationsInput | string | null
     members?: MemberUpdateManyWithoutOrganizationNestedInput
     stores?: StoreUpdateManyWithoutOrganizationNestedInput
+    Coupon?: CouponUpdateManyWithoutOrganizationNestedInput
   }
 
   export type OrganizationUncheckedUpdateWithoutInvitationsInput = {
@@ -19282,6 +27455,7 @@ export namespace Prisma {
     metadata?: NullableStringFieldUpdateOperationsInput | string | null
     members?: MemberUncheckedUpdateManyWithoutOrganizationNestedInput
     stores?: StoreUncheckedUpdateManyWithoutOrganizationNestedInput
+    Coupon?: CouponUncheckedUpdateManyWithoutOrganizationNestedInput
   }
 
   export type UserUpsertWithoutInvitationsInput = {
@@ -19317,6 +27491,10 @@ export namespace Prisma {
     sessions?: SessionUpdateManyWithoutUserNestedInput
     accounts?: AccountUpdateManyWithoutUserNestedInput
     members?: MemberUpdateManyWithoutUserNestedInput
+    FavoriteCouponList?: FavoriteCouponListUpdateManyWithoutUserNestedInput
+    RedeemHistory?: RedeemHistoryUpdateManyWithoutUserNestedInput
+    RecycleHistory?: RecycleHistoryUpdateManyWithoutUserNestedInput
+    UserTotalPoint?: UserTotalPointUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutInvitationsInput = {
@@ -19341,6 +27519,10 @@ export namespace Prisma {
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
     members?: MemberUncheckedUpdateManyWithoutUserNestedInput
+    FavoriteCouponList?: FavoriteCouponListUncheckedUpdateManyWithoutUserNestedInput
+    RedeemHistory?: RedeemHistoryUncheckedUpdateManyWithoutUserNestedInput
+    RecycleHistory?: RecycleHistoryUncheckedUpdateManyWithoutUserNestedInput
+    UserTotalPoint?: UserTotalPointUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type OrganizationCreateWithoutStoresInput = {
@@ -19352,6 +27534,7 @@ export namespace Prisma {
     metadata?: string | null
     members?: MemberCreateNestedManyWithoutOrganizationInput
     invitations?: InvitationCreateNestedManyWithoutOrganizationInput
+    Coupon?: CouponCreateNestedManyWithoutOrganizationInput
   }
 
   export type OrganizationUncheckedCreateWithoutStoresInput = {
@@ -19363,6 +27546,7 @@ export namespace Prisma {
     metadata?: string | null
     members?: MemberUncheckedCreateNestedManyWithoutOrganizationInput
     invitations?: InvitationUncheckedCreateNestedManyWithoutOrganizationInput
+    Coupon?: CouponUncheckedCreateNestedManyWithoutOrganizationInput
   }
 
   export type OrganizationCreateOrConnectWithoutStoresInput = {
@@ -19422,6 +27606,7 @@ export namespace Prisma {
     metadata?: NullableStringFieldUpdateOperationsInput | string | null
     members?: MemberUpdateManyWithoutOrganizationNestedInput
     invitations?: InvitationUpdateManyWithoutOrganizationNestedInput
+    Coupon?: CouponUpdateManyWithoutOrganizationNestedInput
   }
 
   export type OrganizationUncheckedUpdateWithoutStoresInput = {
@@ -19433,6 +27618,7 @@ export namespace Prisma {
     metadata?: NullableStringFieldUpdateOperationsInput | string | null
     members?: MemberUncheckedUpdateManyWithoutOrganizationNestedInput
     invitations?: InvitationUncheckedUpdateManyWithoutOrganizationNestedInput
+    Coupon?: CouponUncheckedUpdateManyWithoutOrganizationNestedInput
   }
 
   export type BinUpsertWithWhereUniqueWithoutStoreInput = {
@@ -19626,6 +27812,390 @@ export namespace Prisma {
     rewardRuleId?: StringNullableFilter<"Material"> | string | null
   }
 
+  export type UserCreateWithoutRedeemHistoryInput = {
+    id: string
+    name: string
+    email: string
+    emailVerified: boolean
+    image?: string | null
+    createdAt: Date | string
+    updatedAt: Date | string
+    role?: string | null
+    banned?: boolean | null
+    banReason?: string | null
+    banExpires?: Date | string | null
+    username?: string | null
+    displayUsername?: string | null
+    phoneNumber?: string | null
+    address?: string | null
+    postalCode?: string | null
+    status: string
+    state?: string | null
+    sessions?: SessionCreateNestedManyWithoutUserInput
+    accounts?: AccountCreateNestedManyWithoutUserInput
+    members?: MemberCreateNestedManyWithoutUserInput
+    invitations?: InvitationCreateNestedManyWithoutUserInput
+    FavoriteCouponList?: FavoriteCouponListCreateNestedManyWithoutUserInput
+    RecycleHistory?: RecycleHistoryCreateNestedManyWithoutUserInput
+    UserTotalPoint?: UserTotalPointCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutRedeemHistoryInput = {
+    id: string
+    name: string
+    email: string
+    emailVerified: boolean
+    image?: string | null
+    createdAt: Date | string
+    updatedAt: Date | string
+    role?: string | null
+    banned?: boolean | null
+    banReason?: string | null
+    banExpires?: Date | string | null
+    username?: string | null
+    displayUsername?: string | null
+    phoneNumber?: string | null
+    address?: string | null
+    postalCode?: string | null
+    status: string
+    state?: string | null
+    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+    accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
+    members?: MemberUncheckedCreateNestedManyWithoutUserInput
+    invitations?: InvitationUncheckedCreateNestedManyWithoutUserInput
+    FavoriteCouponList?: FavoriteCouponListUncheckedCreateNestedManyWithoutUserInput
+    RecycleHistory?: RecycleHistoryUncheckedCreateNestedManyWithoutUserInput
+    UserTotalPoint?: UserTotalPointUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutRedeemHistoryInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutRedeemHistoryInput, UserUncheckedCreateWithoutRedeemHistoryInput>
+  }
+
+  export type UserUpsertWithoutRedeemHistoryInput = {
+    update: XOR<UserUpdateWithoutRedeemHistoryInput, UserUncheckedUpdateWithoutRedeemHistoryInput>
+    create: XOR<UserCreateWithoutRedeemHistoryInput, UserUncheckedCreateWithoutRedeemHistoryInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutRedeemHistoryInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutRedeemHistoryInput, UserUncheckedUpdateWithoutRedeemHistoryInput>
+  }
+
+  export type UserUpdateWithoutRedeemHistoryInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    emailVerified?: BoolFieldUpdateOperationsInput | boolean
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    role?: NullableStringFieldUpdateOperationsInput | string | null
+    banned?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    banReason?: NullableStringFieldUpdateOperationsInput | string | null
+    banExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    username?: NullableStringFieldUpdateOperationsInput | string | null
+    displayUsername?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    postalCode?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    state?: NullableStringFieldUpdateOperationsInput | string | null
+    sessions?: SessionUpdateManyWithoutUserNestedInput
+    accounts?: AccountUpdateManyWithoutUserNestedInput
+    members?: MemberUpdateManyWithoutUserNestedInput
+    invitations?: InvitationUpdateManyWithoutUserNestedInput
+    FavoriteCouponList?: FavoriteCouponListUpdateManyWithoutUserNestedInput
+    RecycleHistory?: RecycleHistoryUpdateManyWithoutUserNestedInput
+    UserTotalPoint?: UserTotalPointUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutRedeemHistoryInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    emailVerified?: BoolFieldUpdateOperationsInput | boolean
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    role?: NullableStringFieldUpdateOperationsInput | string | null
+    banned?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    banReason?: NullableStringFieldUpdateOperationsInput | string | null
+    banExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    username?: NullableStringFieldUpdateOperationsInput | string | null
+    displayUsername?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    postalCode?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    state?: NullableStringFieldUpdateOperationsInput | string | null
+    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
+    members?: MemberUncheckedUpdateManyWithoutUserNestedInput
+    invitations?: InvitationUncheckedUpdateManyWithoutUserNestedInput
+    FavoriteCouponList?: FavoriteCouponListUncheckedUpdateManyWithoutUserNestedInput
+    RecycleHistory?: RecycleHistoryUncheckedUpdateManyWithoutUserNestedInput
+    UserTotalPoint?: UserTotalPointUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserCreateWithoutRecycleHistoryInput = {
+    id: string
+    name: string
+    email: string
+    emailVerified: boolean
+    image?: string | null
+    createdAt: Date | string
+    updatedAt: Date | string
+    role?: string | null
+    banned?: boolean | null
+    banReason?: string | null
+    banExpires?: Date | string | null
+    username?: string | null
+    displayUsername?: string | null
+    phoneNumber?: string | null
+    address?: string | null
+    postalCode?: string | null
+    status: string
+    state?: string | null
+    sessions?: SessionCreateNestedManyWithoutUserInput
+    accounts?: AccountCreateNestedManyWithoutUserInput
+    members?: MemberCreateNestedManyWithoutUserInput
+    invitations?: InvitationCreateNestedManyWithoutUserInput
+    FavoriteCouponList?: FavoriteCouponListCreateNestedManyWithoutUserInput
+    RedeemHistory?: RedeemHistoryCreateNestedManyWithoutUserInput
+    UserTotalPoint?: UserTotalPointCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutRecycleHistoryInput = {
+    id: string
+    name: string
+    email: string
+    emailVerified: boolean
+    image?: string | null
+    createdAt: Date | string
+    updatedAt: Date | string
+    role?: string | null
+    banned?: boolean | null
+    banReason?: string | null
+    banExpires?: Date | string | null
+    username?: string | null
+    displayUsername?: string | null
+    phoneNumber?: string | null
+    address?: string | null
+    postalCode?: string | null
+    status: string
+    state?: string | null
+    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+    accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
+    members?: MemberUncheckedCreateNestedManyWithoutUserInput
+    invitations?: InvitationUncheckedCreateNestedManyWithoutUserInput
+    FavoriteCouponList?: FavoriteCouponListUncheckedCreateNestedManyWithoutUserInput
+    RedeemHistory?: RedeemHistoryUncheckedCreateNestedManyWithoutUserInput
+    UserTotalPoint?: UserTotalPointUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutRecycleHistoryInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutRecycleHistoryInput, UserUncheckedCreateWithoutRecycleHistoryInput>
+  }
+
+  export type UserUpsertWithoutRecycleHistoryInput = {
+    update: XOR<UserUpdateWithoutRecycleHistoryInput, UserUncheckedUpdateWithoutRecycleHistoryInput>
+    create: XOR<UserCreateWithoutRecycleHistoryInput, UserUncheckedCreateWithoutRecycleHistoryInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutRecycleHistoryInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutRecycleHistoryInput, UserUncheckedUpdateWithoutRecycleHistoryInput>
+  }
+
+  export type UserUpdateWithoutRecycleHistoryInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    emailVerified?: BoolFieldUpdateOperationsInput | boolean
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    role?: NullableStringFieldUpdateOperationsInput | string | null
+    banned?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    banReason?: NullableStringFieldUpdateOperationsInput | string | null
+    banExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    username?: NullableStringFieldUpdateOperationsInput | string | null
+    displayUsername?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    postalCode?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    state?: NullableStringFieldUpdateOperationsInput | string | null
+    sessions?: SessionUpdateManyWithoutUserNestedInput
+    accounts?: AccountUpdateManyWithoutUserNestedInput
+    members?: MemberUpdateManyWithoutUserNestedInput
+    invitations?: InvitationUpdateManyWithoutUserNestedInput
+    FavoriteCouponList?: FavoriteCouponListUpdateManyWithoutUserNestedInput
+    RedeemHistory?: RedeemHistoryUpdateManyWithoutUserNestedInput
+    UserTotalPoint?: UserTotalPointUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutRecycleHistoryInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    emailVerified?: BoolFieldUpdateOperationsInput | boolean
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    role?: NullableStringFieldUpdateOperationsInput | string | null
+    banned?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    banReason?: NullableStringFieldUpdateOperationsInput | string | null
+    banExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    username?: NullableStringFieldUpdateOperationsInput | string | null
+    displayUsername?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    postalCode?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    state?: NullableStringFieldUpdateOperationsInput | string | null
+    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
+    members?: MemberUncheckedUpdateManyWithoutUserNestedInput
+    invitations?: InvitationUncheckedUpdateManyWithoutUserNestedInput
+    FavoriteCouponList?: FavoriteCouponListUncheckedUpdateManyWithoutUserNestedInput
+    RedeemHistory?: RedeemHistoryUncheckedUpdateManyWithoutUserNestedInput
+    UserTotalPoint?: UserTotalPointUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserCreateWithoutUserTotalPointInput = {
+    id: string
+    name: string
+    email: string
+    emailVerified: boolean
+    image?: string | null
+    createdAt: Date | string
+    updatedAt: Date | string
+    role?: string | null
+    banned?: boolean | null
+    banReason?: string | null
+    banExpires?: Date | string | null
+    username?: string | null
+    displayUsername?: string | null
+    phoneNumber?: string | null
+    address?: string | null
+    postalCode?: string | null
+    status: string
+    state?: string | null
+    sessions?: SessionCreateNestedManyWithoutUserInput
+    accounts?: AccountCreateNestedManyWithoutUserInput
+    members?: MemberCreateNestedManyWithoutUserInput
+    invitations?: InvitationCreateNestedManyWithoutUserInput
+    FavoriteCouponList?: FavoriteCouponListCreateNestedManyWithoutUserInput
+    RedeemHistory?: RedeemHistoryCreateNestedManyWithoutUserInput
+    RecycleHistory?: RecycleHistoryCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutUserTotalPointInput = {
+    id: string
+    name: string
+    email: string
+    emailVerified: boolean
+    image?: string | null
+    createdAt: Date | string
+    updatedAt: Date | string
+    role?: string | null
+    banned?: boolean | null
+    banReason?: string | null
+    banExpires?: Date | string | null
+    username?: string | null
+    displayUsername?: string | null
+    phoneNumber?: string | null
+    address?: string | null
+    postalCode?: string | null
+    status: string
+    state?: string | null
+    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+    accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
+    members?: MemberUncheckedCreateNestedManyWithoutUserInput
+    invitations?: InvitationUncheckedCreateNestedManyWithoutUserInput
+    FavoriteCouponList?: FavoriteCouponListUncheckedCreateNestedManyWithoutUserInput
+    RedeemHistory?: RedeemHistoryUncheckedCreateNestedManyWithoutUserInput
+    RecycleHistory?: RecycleHistoryUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutUserTotalPointInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutUserTotalPointInput, UserUncheckedCreateWithoutUserTotalPointInput>
+  }
+
+  export type UserUpsertWithoutUserTotalPointInput = {
+    update: XOR<UserUpdateWithoutUserTotalPointInput, UserUncheckedUpdateWithoutUserTotalPointInput>
+    create: XOR<UserCreateWithoutUserTotalPointInput, UserUncheckedCreateWithoutUserTotalPointInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutUserTotalPointInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutUserTotalPointInput, UserUncheckedUpdateWithoutUserTotalPointInput>
+  }
+
+  export type UserUpdateWithoutUserTotalPointInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    emailVerified?: BoolFieldUpdateOperationsInput | boolean
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    role?: NullableStringFieldUpdateOperationsInput | string | null
+    banned?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    banReason?: NullableStringFieldUpdateOperationsInput | string | null
+    banExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    username?: NullableStringFieldUpdateOperationsInput | string | null
+    displayUsername?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    postalCode?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    state?: NullableStringFieldUpdateOperationsInput | string | null
+    sessions?: SessionUpdateManyWithoutUserNestedInput
+    accounts?: AccountUpdateManyWithoutUserNestedInput
+    members?: MemberUpdateManyWithoutUserNestedInput
+    invitations?: InvitationUpdateManyWithoutUserNestedInput
+    FavoriteCouponList?: FavoriteCouponListUpdateManyWithoutUserNestedInput
+    RedeemHistory?: RedeemHistoryUpdateManyWithoutUserNestedInput
+    RecycleHistory?: RecycleHistoryUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutUserTotalPointInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    emailVerified?: BoolFieldUpdateOperationsInput | boolean
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    role?: NullableStringFieldUpdateOperationsInput | string | null
+    banned?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    banReason?: NullableStringFieldUpdateOperationsInput | string | null
+    banExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    username?: NullableStringFieldUpdateOperationsInput | string | null
+    displayUsername?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    postalCode?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    state?: NullableStringFieldUpdateOperationsInput | string | null
+    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
+    members?: MemberUncheckedUpdateManyWithoutUserNestedInput
+    invitations?: InvitationUncheckedUpdateManyWithoutUserNestedInput
+    FavoriteCouponList?: FavoriteCouponListUncheckedUpdateManyWithoutUserNestedInput
+    RedeemHistory?: RedeemHistoryUncheckedUpdateManyWithoutUserNestedInput
+    RecycleHistory?: RecycleHistoryUncheckedUpdateManyWithoutUserNestedInput
+  }
+
   export type MaterialCreateWithoutBinsInput = {
     id?: string
     name: string
@@ -19770,6 +28340,324 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type OrganizationCreateWithoutCouponInput = {
+    id: string
+    name: string
+    slug?: string | null
+    logo?: string | null
+    createdAt: Date | string
+    metadata?: string | null
+    members?: MemberCreateNestedManyWithoutOrganizationInput
+    invitations?: InvitationCreateNestedManyWithoutOrganizationInput
+    stores?: StoreCreateNestedManyWithoutOrganizationInput
+  }
+
+  export type OrganizationUncheckedCreateWithoutCouponInput = {
+    id: string
+    name: string
+    slug?: string | null
+    logo?: string | null
+    createdAt: Date | string
+    metadata?: string | null
+    members?: MemberUncheckedCreateNestedManyWithoutOrganizationInput
+    invitations?: InvitationUncheckedCreateNestedManyWithoutOrganizationInput
+    stores?: StoreUncheckedCreateNestedManyWithoutOrganizationInput
+  }
+
+  export type OrganizationCreateOrConnectWithoutCouponInput = {
+    where: OrganizationWhereUniqueInput
+    create: XOR<OrganizationCreateWithoutCouponInput, OrganizationUncheckedCreateWithoutCouponInput>
+  }
+
+  export type FavoriteCouponListCreateWithoutCouponInput = {
+    id?: string
+    createdAt?: Date | string
+    user: UserCreateNestedOneWithoutFavoriteCouponListInput
+  }
+
+  export type FavoriteCouponListUncheckedCreateWithoutCouponInput = {
+    id?: string
+    userId: string
+    createdAt?: Date | string
+  }
+
+  export type FavoriteCouponListCreateOrConnectWithoutCouponInput = {
+    where: FavoriteCouponListWhereUniqueInput
+    create: XOR<FavoriteCouponListCreateWithoutCouponInput, FavoriteCouponListUncheckedCreateWithoutCouponInput>
+  }
+
+  export type FavoriteCouponListCreateManyCouponInputEnvelope = {
+    data: FavoriteCouponListCreateManyCouponInput | FavoriteCouponListCreateManyCouponInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type OrganizationUpsertWithoutCouponInput = {
+    update: XOR<OrganizationUpdateWithoutCouponInput, OrganizationUncheckedUpdateWithoutCouponInput>
+    create: XOR<OrganizationCreateWithoutCouponInput, OrganizationUncheckedCreateWithoutCouponInput>
+    where?: OrganizationWhereInput
+  }
+
+  export type OrganizationUpdateToOneWithWhereWithoutCouponInput = {
+    where?: OrganizationWhereInput
+    data: XOR<OrganizationUpdateWithoutCouponInput, OrganizationUncheckedUpdateWithoutCouponInput>
+  }
+
+  export type OrganizationUpdateWithoutCouponInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: NullableStringFieldUpdateOperationsInput | string | null
+    logo?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    metadata?: NullableStringFieldUpdateOperationsInput | string | null
+    members?: MemberUpdateManyWithoutOrganizationNestedInput
+    invitations?: InvitationUpdateManyWithoutOrganizationNestedInput
+    stores?: StoreUpdateManyWithoutOrganizationNestedInput
+  }
+
+  export type OrganizationUncheckedUpdateWithoutCouponInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: NullableStringFieldUpdateOperationsInput | string | null
+    logo?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    metadata?: NullableStringFieldUpdateOperationsInput | string | null
+    members?: MemberUncheckedUpdateManyWithoutOrganizationNestedInput
+    invitations?: InvitationUncheckedUpdateManyWithoutOrganizationNestedInput
+    stores?: StoreUncheckedUpdateManyWithoutOrganizationNestedInput
+  }
+
+  export type FavoriteCouponListUpsertWithWhereUniqueWithoutCouponInput = {
+    where: FavoriteCouponListWhereUniqueInput
+    update: XOR<FavoriteCouponListUpdateWithoutCouponInput, FavoriteCouponListUncheckedUpdateWithoutCouponInput>
+    create: XOR<FavoriteCouponListCreateWithoutCouponInput, FavoriteCouponListUncheckedCreateWithoutCouponInput>
+  }
+
+  export type FavoriteCouponListUpdateWithWhereUniqueWithoutCouponInput = {
+    where: FavoriteCouponListWhereUniqueInput
+    data: XOR<FavoriteCouponListUpdateWithoutCouponInput, FavoriteCouponListUncheckedUpdateWithoutCouponInput>
+  }
+
+  export type FavoriteCouponListUpdateManyWithWhereWithoutCouponInput = {
+    where: FavoriteCouponListScalarWhereInput
+    data: XOR<FavoriteCouponListUpdateManyMutationInput, FavoriteCouponListUncheckedUpdateManyWithoutCouponInput>
+  }
+
+  export type UserCreateWithoutFavoriteCouponListInput = {
+    id: string
+    name: string
+    email: string
+    emailVerified: boolean
+    image?: string | null
+    createdAt: Date | string
+    updatedAt: Date | string
+    role?: string | null
+    banned?: boolean | null
+    banReason?: string | null
+    banExpires?: Date | string | null
+    username?: string | null
+    displayUsername?: string | null
+    phoneNumber?: string | null
+    address?: string | null
+    postalCode?: string | null
+    status: string
+    state?: string | null
+    sessions?: SessionCreateNestedManyWithoutUserInput
+    accounts?: AccountCreateNestedManyWithoutUserInput
+    members?: MemberCreateNestedManyWithoutUserInput
+    invitations?: InvitationCreateNestedManyWithoutUserInput
+    RedeemHistory?: RedeemHistoryCreateNestedManyWithoutUserInput
+    RecycleHistory?: RecycleHistoryCreateNestedManyWithoutUserInput
+    UserTotalPoint?: UserTotalPointCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutFavoriteCouponListInput = {
+    id: string
+    name: string
+    email: string
+    emailVerified: boolean
+    image?: string | null
+    createdAt: Date | string
+    updatedAt: Date | string
+    role?: string | null
+    banned?: boolean | null
+    banReason?: string | null
+    banExpires?: Date | string | null
+    username?: string | null
+    displayUsername?: string | null
+    phoneNumber?: string | null
+    address?: string | null
+    postalCode?: string | null
+    status: string
+    state?: string | null
+    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+    accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
+    members?: MemberUncheckedCreateNestedManyWithoutUserInput
+    invitations?: InvitationUncheckedCreateNestedManyWithoutUserInput
+    RedeemHistory?: RedeemHistoryUncheckedCreateNestedManyWithoutUserInput
+    RecycleHistory?: RecycleHistoryUncheckedCreateNestedManyWithoutUserInput
+    UserTotalPoint?: UserTotalPointUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutFavoriteCouponListInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutFavoriteCouponListInput, UserUncheckedCreateWithoutFavoriteCouponListInput>
+  }
+
+  export type CouponCreateWithoutFavoriteCouponListInput = {
+    id?: string
+    name: string
+    description?: string | null
+    imageUrl: string
+    status?: $Enums.Status
+    couponType: $Enums.CouponType
+    dealType: $Enums.DealType
+    isFeatured: boolean
+    couponCode: string
+    pointsToRedeem: number
+    startDate: Date | string
+    endDate: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    organization: OrganizationCreateNestedOneWithoutCouponInput
+  }
+
+  export type CouponUncheckedCreateWithoutFavoriteCouponListInput = {
+    id?: string
+    name: string
+    description?: string | null
+    imageUrl: string
+    status?: $Enums.Status
+    couponType: $Enums.CouponType
+    dealType: $Enums.DealType
+    isFeatured: boolean
+    couponCode: string
+    pointsToRedeem: number
+    startDate: Date | string
+    endDate: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    organizationId: string
+  }
+
+  export type CouponCreateOrConnectWithoutFavoriteCouponListInput = {
+    where: CouponWhereUniqueInput
+    create: XOR<CouponCreateWithoutFavoriteCouponListInput, CouponUncheckedCreateWithoutFavoriteCouponListInput>
+  }
+
+  export type UserUpsertWithoutFavoriteCouponListInput = {
+    update: XOR<UserUpdateWithoutFavoriteCouponListInput, UserUncheckedUpdateWithoutFavoriteCouponListInput>
+    create: XOR<UserCreateWithoutFavoriteCouponListInput, UserUncheckedCreateWithoutFavoriteCouponListInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutFavoriteCouponListInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutFavoriteCouponListInput, UserUncheckedUpdateWithoutFavoriteCouponListInput>
+  }
+
+  export type UserUpdateWithoutFavoriteCouponListInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    emailVerified?: BoolFieldUpdateOperationsInput | boolean
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    role?: NullableStringFieldUpdateOperationsInput | string | null
+    banned?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    banReason?: NullableStringFieldUpdateOperationsInput | string | null
+    banExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    username?: NullableStringFieldUpdateOperationsInput | string | null
+    displayUsername?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    postalCode?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    state?: NullableStringFieldUpdateOperationsInput | string | null
+    sessions?: SessionUpdateManyWithoutUserNestedInput
+    accounts?: AccountUpdateManyWithoutUserNestedInput
+    members?: MemberUpdateManyWithoutUserNestedInput
+    invitations?: InvitationUpdateManyWithoutUserNestedInput
+    RedeemHistory?: RedeemHistoryUpdateManyWithoutUserNestedInput
+    RecycleHistory?: RecycleHistoryUpdateManyWithoutUserNestedInput
+    UserTotalPoint?: UserTotalPointUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutFavoriteCouponListInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    emailVerified?: BoolFieldUpdateOperationsInput | boolean
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    role?: NullableStringFieldUpdateOperationsInput | string | null
+    banned?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    banReason?: NullableStringFieldUpdateOperationsInput | string | null
+    banExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    username?: NullableStringFieldUpdateOperationsInput | string | null
+    displayUsername?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    postalCode?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    state?: NullableStringFieldUpdateOperationsInput | string | null
+    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
+    members?: MemberUncheckedUpdateManyWithoutUserNestedInput
+    invitations?: InvitationUncheckedUpdateManyWithoutUserNestedInput
+    RedeemHistory?: RedeemHistoryUncheckedUpdateManyWithoutUserNestedInput
+    RecycleHistory?: RecycleHistoryUncheckedUpdateManyWithoutUserNestedInput
+    UserTotalPoint?: UserTotalPointUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type CouponUpsertWithoutFavoriteCouponListInput = {
+    update: XOR<CouponUpdateWithoutFavoriteCouponListInput, CouponUncheckedUpdateWithoutFavoriteCouponListInput>
+    create: XOR<CouponCreateWithoutFavoriteCouponListInput, CouponUncheckedCreateWithoutFavoriteCouponListInput>
+    where?: CouponWhereInput
+  }
+
+  export type CouponUpdateToOneWithWhereWithoutFavoriteCouponListInput = {
+    where?: CouponWhereInput
+    data: XOR<CouponUpdateWithoutFavoriteCouponListInput, CouponUncheckedUpdateWithoutFavoriteCouponListInput>
+  }
+
+  export type CouponUpdateWithoutFavoriteCouponListInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    imageUrl?: StringFieldUpdateOperationsInput | string
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    couponType?: EnumCouponTypeFieldUpdateOperationsInput | $Enums.CouponType
+    dealType?: EnumDealTypeFieldUpdateOperationsInput | $Enums.DealType
+    isFeatured?: BoolFieldUpdateOperationsInput | boolean
+    couponCode?: StringFieldUpdateOperationsInput | string
+    pointsToRedeem?: IntFieldUpdateOperationsInput | number
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    organization?: OrganizationUpdateOneRequiredWithoutCouponNestedInput
+  }
+
+  export type CouponUncheckedUpdateWithoutFavoriteCouponListInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    imageUrl?: StringFieldUpdateOperationsInput | string
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    couponType?: EnumCouponTypeFieldUpdateOperationsInput | $Enums.CouponType
+    dealType?: EnumDealTypeFieldUpdateOperationsInput | $Enums.DealType
+    isFeatured?: BoolFieldUpdateOperationsInput | boolean
+    couponCode?: StringFieldUpdateOperationsInput | string
+    pointsToRedeem?: IntFieldUpdateOperationsInput | number
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    organizationId?: StringFieldUpdateOperationsInput | string
+  }
+
   export type SessionCreateManyUserInput = {
     id: string
     expiresAt: Date | string
@@ -19811,6 +28699,34 @@ export namespace Prisma {
     role?: string | null
     status: string
     expiresAt: Date | string
+  }
+
+  export type FavoriteCouponListCreateManyUserInput = {
+    id?: string
+    couponId: string
+    createdAt?: Date | string
+  }
+
+  export type RedeemHistoryCreateManyUserInput = {
+    id?: string
+    couponId: string
+    points: number
+    description?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type RecycleHistoryCreateManyUserInput = {
+    id?: string
+    points: number
+    mediaUrl?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type UserTotalPointCreateManyUserInput = {
+    id?: string
+    totalPoints?: number
   }
 
   export type SessionUpdateWithoutUserInput = {
@@ -19942,6 +28858,90 @@ export namespace Prisma {
     expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type FavoriteCouponListUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    coupon?: CouponUpdateOneRequiredWithoutFavoriteCouponListNestedInput
+  }
+
+  export type FavoriteCouponListUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    couponId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FavoriteCouponListUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    couponId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RedeemHistoryUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    couponId?: StringFieldUpdateOperationsInput | string
+    points?: IntFieldUpdateOperationsInput | number
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RedeemHistoryUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    couponId?: StringFieldUpdateOperationsInput | string
+    points?: IntFieldUpdateOperationsInput | number
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RedeemHistoryUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    couponId?: StringFieldUpdateOperationsInput | string
+    points?: IntFieldUpdateOperationsInput | number
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RecycleHistoryUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    points?: IntFieldUpdateOperationsInput | number
+    mediaUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RecycleHistoryUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    points?: IntFieldUpdateOperationsInput | number
+    mediaUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RecycleHistoryUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    points?: IntFieldUpdateOperationsInput | number
+    mediaUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserTotalPointUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    totalPoints?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type UserTotalPointUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    totalPoints?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type UserTotalPointUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    totalPoints?: IntFieldUpdateOperationsInput | number
+  }
+
   export type MemberCreateManyOrganizationInput = {
     id: string
     userId: string
@@ -19972,6 +28972,23 @@ export namespace Prisma {
     country: string
     lat: number
     lng: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type CouponCreateManyOrganizationInput = {
+    id?: string
+    name: string
+    description?: string | null
+    imageUrl: string
+    status?: $Enums.Status
+    couponType: $Enums.CouponType
+    dealType: $Enums.DealType
+    isFeatured: boolean
+    couponCode: string
+    pointsToRedeem: number
+    startDate: Date | string
+    endDate: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -20076,6 +29093,59 @@ export namespace Prisma {
     country?: StringFieldUpdateOperationsInput | string
     lat?: FloatFieldUpdateOperationsInput | number
     lng?: FloatFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CouponUpdateWithoutOrganizationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    imageUrl?: StringFieldUpdateOperationsInput | string
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    couponType?: EnumCouponTypeFieldUpdateOperationsInput | $Enums.CouponType
+    dealType?: EnumDealTypeFieldUpdateOperationsInput | $Enums.DealType
+    isFeatured?: BoolFieldUpdateOperationsInput | boolean
+    couponCode?: StringFieldUpdateOperationsInput | string
+    pointsToRedeem?: IntFieldUpdateOperationsInput | number
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    FavoriteCouponList?: FavoriteCouponListUpdateManyWithoutCouponNestedInput
+  }
+
+  export type CouponUncheckedUpdateWithoutOrganizationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    imageUrl?: StringFieldUpdateOperationsInput | string
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    couponType?: EnumCouponTypeFieldUpdateOperationsInput | $Enums.CouponType
+    dealType?: EnumDealTypeFieldUpdateOperationsInput | $Enums.DealType
+    isFeatured?: BoolFieldUpdateOperationsInput | boolean
+    couponCode?: StringFieldUpdateOperationsInput | string
+    pointsToRedeem?: IntFieldUpdateOperationsInput | number
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    FavoriteCouponList?: FavoriteCouponListUncheckedUpdateManyWithoutCouponNestedInput
+  }
+
+  export type CouponUncheckedUpdateManyWithoutOrganizationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    imageUrl?: StringFieldUpdateOperationsInput | string
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    couponType?: EnumCouponTypeFieldUpdateOperationsInput | $Enums.CouponType
+    dealType?: EnumDealTypeFieldUpdateOperationsInput | $Enums.DealType
+    isFeatured?: BoolFieldUpdateOperationsInput | boolean
+    couponCode?: StringFieldUpdateOperationsInput | string
+    pointsToRedeem?: IntFieldUpdateOperationsInput | number
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -20200,6 +29270,30 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FavoriteCouponListCreateManyCouponInput = {
+    id?: string
+    userId: string
+    createdAt?: Date | string
+  }
+
+  export type FavoriteCouponListUpdateWithoutCouponInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutFavoriteCouponListNestedInput
+  }
+
+  export type FavoriteCouponListUncheckedUpdateWithoutCouponInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FavoriteCouponListUncheckedUpdateManyWithoutCouponInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
 

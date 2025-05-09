@@ -14,6 +14,21 @@ export const BinStatus = {
     INACTIVE: "INACTIVE"
 } as const;
 export type BinStatus = (typeof BinStatus)[keyof typeof BinStatus];
+export const Status = {
+    ACTIVE: "ACTIVE",
+    INACTIVE: "INACTIVE"
+} as const;
+export type Status = (typeof Status)[keyof typeof Status];
+export const CouponType = {
+    FIXED: "FIXED",
+    PERCENTAGE: "PERCENTAGE"
+} as const;
+export type CouponType = (typeof CouponType)[keyof typeof CouponType];
+export const DealType = {
+    NOPOINTS: "NOPOINTS",
+    POINTS: "POINTS"
+} as const;
+export type DealType = (typeof DealType)[keyof typeof DealType];
 export type Account = {
     id: string;
     accountId: string;
@@ -39,6 +54,29 @@ export type Bin = {
     status: Generated<BinStatus>;
     createdAt: Generated<Timestamp>;
     updatedAt: Timestamp;
+};
+export type Coupon = {
+    id: Generated<string>;
+    name: string;
+    description: string | null;
+    imageUrl: string;
+    status: Generated<Status>;
+    couponType: CouponType;
+    dealType: DealType;
+    isFeatured: boolean;
+    couponCode: string;
+    pointsToRedeem: number;
+    startDate: Timestamp;
+    endDate: Timestamp;
+    createdAt: Generated<Timestamp>;
+    updatedAt: Timestamp;
+    organizationId: string;
+};
+export type FavoriteCouponList = {
+    id: Generated<string>;
+    userId: string;
+    couponId: string;
+    createdAt: Generated<Timestamp>;
 };
 export type Invitation = {
     id: string;
@@ -71,6 +109,23 @@ export type Organization = {
     logo: string | null;
     createdAt: Timestamp;
     metadata: string | null;
+};
+export type RecycleHistory = {
+    id: string;
+    userId: string;
+    points: number;
+    mediaUrl: string | null;
+    createdAt: Generated<Timestamp>;
+    updatedAt: Timestamp;
+};
+export type RedeemHistory = {
+    id: string;
+    couponId: string;
+    userId: string;
+    points: number;
+    description: string | null;
+    createdAt: Generated<Timestamp>;
+    updatedAt: Timestamp;
 };
 export type RewardRules = {
     id: Generated<string>;
@@ -131,6 +186,11 @@ export type User = {
     status: string;
     state: string | null;
 };
+export type UserTotalPoint = {
+    id: Generated<string>;
+    userId: string;
+    totalPoints: Generated<number>;
+};
 export type Verification = {
     id: string;
     identifier: string;
@@ -142,13 +202,18 @@ export type Verification = {
 export type DB = {
     account: Account;
     bin: Bin;
+    coupon: Coupon;
+    favorite_coupon_list: FavoriteCouponList;
     invitation: Invitation;
     material: Material;
     member: Member;
     organization: Organization;
+    RecycleHistory: RecycleHistory;
+    RedeemHistory: RedeemHistory;
     reward_rules: RewardRules;
     session: Session;
     store: Store;
     user: User;
+    user_total_point: UserTotalPoint;
     verification: Verification;
 };
