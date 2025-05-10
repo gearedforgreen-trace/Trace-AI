@@ -1,0 +1,1142 @@
+{
+	"info": {
+		"_postman_id": "1946143d-678a-4d93-a1ea-b50a064b786c",
+		"name": "Gear For Green",
+		"description": "# 🚀 Get started here\n\nThis template guides you through CRUD operations (GET, POST, PUT, DELETE), variables, and tests.\n\n## 🔖 **How to use this template**\n\n#### **Step 1: Send requests**\n\nRESTful APIs allow you to perform CRUD operations using the POST, GET, PUT, and DELETE HTTP methods.\n\nThis collection contains each of these [request](https://learning.postman.com/docs/sending-requests/requests/) types. Open each request and click \"Send\" to see what happens.\n\n#### **Step 2: View responses**\n\nObserve the response tab for status code (200 OK), response time, and size.\n\n#### **Step 3: Send new Body data**\n\nUpdate or add new data in \"Body\" in the POST request. Typically, Body data is also used in PUT request.\n\n```\n{\n    \"name\": \"Add your name in the body\"\n}\n\n ```\n\n#### **Step 4: Update the variable**\n\nVariables enable you to store and reuse values in Postman. We have created a [variable](https://learning.postman.com/docs/sending-requests/variables/) called `base_url` with the sample request [https://postman-api-learner.glitch.me](https://postman-api-learner.glitch.me). Replace it with your API endpoint to customize this collection.\n\n#### **Step 5: Add tests in the \"Scripts\" tab**\n\nAdding tests to your requests can help you confirm that your API is working as expected. You can write test scripts in JavaScript and view the output in the \"Test Results\" tab.\n\n<img src=\"https://content.pstmn.io/fa30ea0a-373d-4545-a668-e7b283cca343/aW1hZ2UucG5n\" alt=\"\" height=\"1530\" width=\"2162\">\n\n## 💪 Pro tips\n\n- Use folders to group related requests and organize the collection.\n    \n- Add more [scripts](https://learning.postman.com/docs/writing-scripts/intro-to-scripts/) to verify if the API works as expected and execute workflows.\n    \n\n## 💡Related templates\n\n[API testing basics](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=e9a37a28-055b-49cd-8c7e-97494a21eb54&sourceTemplateId=ddb19591-3097-41cf-82af-c84273e56719)  \n[API documentation](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=e9c28f47-1253-44af-a2f3-20dce4da1f18&sourceTemplateId=ddb19591-3097-41cf-82af-c84273e56719)  \n[Authorization methods](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=31a9a6ed-4cdf-4ced-984c-d12c9aec1c27&sourceTemplateId=ddb19591-3097-41cf-82af-c84273e56719)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "7246859"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "sign-up",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json();\r",
+									"pm.environment.set('B_TOKEN', response.token);\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Shanto Islam\",\r\n    \"username\": \"ishantoz\",\r\n    \"email\": \"ishanto412@gmail.com\",\r\n    \"address\": \"Asdsd\",\r\n    \"postalCode\": \"12312\",\r\n    \"phoneNumber\": \"091230120123\",\r\n    \"state\": \"ASDaasd\",\r\n    \"password\": \"password\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{GFG_API}}/auth/sign-up/email",
+							"host": [
+								"{{GFG_API}}"
+							],
+							"path": [
+								"auth",
+								"sign-up",
+								"email"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "sign-in/email",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json();\r",
+									"pm.environment.set('B_TOKEN', response.token);\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"ishanto412@gmail.com\",\n  \"password\": \"password\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{GFG_API}}/auth/sign-in/email",
+							"host": [
+								"{{GFG_API}}"
+							],
+							"path": [
+								"auth",
+								"sign-in",
+								"email"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "sign-in/username",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json();\r",
+									"pm.environment.set('B_TOKEN', response.token);\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{B_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"username\": \"ishantoz\",\n  \"password\": \"password\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{GFG_API}}/auth/sign-in/username",
+							"host": [
+								"{{GFG_API}}"
+							],
+							"path": [
+								"auth",
+								"sign-in",
+								"username"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Session",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{B_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{GFG_API}}/auth/get-session",
+							"host": [
+								"{{GFG_API}}"
+							],
+							"path": [
+								"auth",
+								"get-session"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Store",
+			"item": [
+				{
+					"name": "Get Stores",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{B_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{GFG_API}}/stores",
+							"host": [
+								"{{GFG_API}}"
+							],
+							"path": [
+								"stores"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Store",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{B_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\" : \"Store one\",\r\n    \"address1\": \"Example address\",\r\n    \"city\" : \"Asdasd\",\r\n    \"zip\":\"12223\",\r\n    \"state\": \"State\",\r\n    \"country\": \"Usa\",\r\n    \"lat\": 90,\r\n    \"lng\": 90\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{GFG_API}}/stores",
+							"host": [
+								"{{GFG_API}}"
+							],
+							"path": [
+								"stores"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Details Store",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{B_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{GFG_API}}/stores/01JTK3FV51KFNT4J6BDHWSBH2N",
+							"host": [
+								"{{GFG_API}}"
+							],
+							"path": [
+								"stores",
+								"01JTK3FV51KFNT4J6BDHWSBH2N"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Store",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{B_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n{\r\n    \"name\": \"Shanto\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{GFG_API}}/stores/01JTK3FV51KFNT4J6BDHWSBH2N",
+							"host": [
+								"{{GFG_API}}"
+							],
+							"path": [
+								"stores",
+								"01JTK3FV51KFNT4J6BDHWSBH2N"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Store",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{GFG_API}}/stores/01JTK3MYJX8G2JJQW26262RFTV",
+							"host": [
+								"{{GFG_API}}"
+							],
+							"path": [
+								"stores",
+								"01JTK3MYJX8G2JJQW26262RFTV"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Bin",
+			"item": [
+				{
+					"name": "Get Bins",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{B_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{GFG_API}}/bins",
+							"host": [
+								"{{GFG_API}}"
+							],
+							"path": [
+								"bins"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Bin",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{B_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"number\": \"123123\",\r\n    \"description\": \"asd\",\r\n    \"materialId\": \"01JTX3DQNSMX6ZYV343HB9YYJA\",\r\n    \"storeId\": \"01JTWRPAYJGGNME6HPM6GAAF3K\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{GFG_API}}/bins",
+							"host": [
+								"{{GFG_API}}"
+							],
+							"path": [
+								"bins"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Details Bin",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{B_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{GFG_API}}/bins/01JTKF7QXCAWA5X90QV082FA3Y",
+							"host": [
+								"{{GFG_API}}"
+							],
+							"path": [
+								"bins",
+								"01JTKF7QXCAWA5X90QV082FA3Y"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Bin",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{B_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"materialId\": \"01JTKEEF95K68A533EX84NB4CR\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{GFG_API}}/bins/01JTKF7QXCAWA5X90QV082FA3Y",
+							"host": [
+								"{{GFG_API}}"
+							],
+							"path": [
+								"bins",
+								"01JTKF7QXCAWA5X90QV082FA3Y"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Bin",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{B_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{GFG_API}}/bins/1231232",
+							"host": [
+								"{{GFG_API}}"
+							],
+							"path": [
+								"bins",
+								"1231232"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Material",
+			"item": [
+				{
+					"name": "Get Materials",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "Create Material",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"asddasdasd\",\r\n    \"rewardRuleId\": \"01JTKAHX3JTN6270AVCM7HQXM7\",\r\n    \"description\": \"ASDasdasd\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{GFG_API}}/materials",
+							"host": [
+								"{{GFG_API}}"
+							],
+							"path": [
+								"materials"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Details Material",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{GFG_API}}/materials",
+							"host": [
+								"{{GFG_API}}"
+							],
+							"path": [
+								"materials"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Material",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"Asdadsdadasdasdasdasdasdadsdadsad\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{GFG_API}}/materials/01JTKEKR5280QXPJQ5RJW4NJ23",
+							"host": [
+								"{{GFG_API}}"
+							],
+							"path": [
+								"materials",
+								"01JTKEKR5280QXPJQ5RJW4NJ23"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Material",
+					"request": {
+						"method": "DELETE",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Reward Rules",
+			"item": [
+				{
+					"name": "Reward Rules",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{GFG_API}}/reward-rules",
+							"host": [
+								"{{GFG_API}}"
+							],
+							"path": [
+								"reward-rules"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Reward Rule",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"unitType\": \"piece\",\r\n    \"unit\": 1,\r\n    \"point\": 100\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{GFG_API}}/reward-rules",
+							"host": [
+								"{{GFG_API}}"
+							],
+							"path": [
+								"reward-rules"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Details Reward Rule",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{GFG_API}}/reward-rules",
+							"host": [
+								"{{GFG_API}}"
+							],
+							"path": [
+								"reward-rules"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Reward Rule",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"description\": \"Asd\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{GFG_API}}/reward-rules/01JTKAJP4MPSNWNVZ7ZXT1CKF4",
+							"host": [
+								"{{GFG_API}}"
+							],
+							"path": [
+								"reward-rules",
+								"01JTKAJP4MPSNWNVZ7ZXT1CKF4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Reward Rule",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{GFG_API}}/reward-rules/01JTKAJP4MPSNWNVZ7ZXT1CKF4",
+							"host": [
+								"{{GFG_API}}"
+							],
+							"path": [
+								"reward-rules",
+								"01JTKAJP4MPSNWNVZ7ZXT1CKF4"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Coupons",
+			"item": [
+				{
+					"name": "Get Coupons",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\" : \"Store one\",\r\n    \"address1\": \"Example address\",\r\n    \"city\" : \"Asdasd\",\r\n    \"zip\":\"12223\",\r\n    \"state\": \"State\",\r\n    \"country\": \"Usa\",\r\n    \"lat\": 90,\r\n    \"lng\": 90\r\n}"
+						},
+						"url": {
+							"raw": "{{GFG_API}}/coupons",
+							"host": [
+								"{{GFG_API}}"
+							],
+							"path": [
+								"coupons"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Coupon",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{}"
+						},
+						"url": {
+							"raw": "{{GFG_API}}/coupons/123123123",
+							"host": [
+								"{{GFG_API}}"
+							],
+							"path": [
+								"coupons",
+								"123123123"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Coupons",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Summer Discount\",\r\n    \"couponType\": \"PERCENTAGE\",\r\n    \"discountAmount\": 123,\r\n    \"startDate\": \"2025-05-10T09:52:16.466Z\",\r\n    \"endDate\": \"2026-05-10T09:52:16.466Z\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{GFG_API}}/coupons",
+							"host": [
+								"{{GFG_API}}"
+							],
+							"path": [
+								"coupons"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Coupons",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{GFG_API}}/coupons/12312313123",
+							"host": [
+								"{{GFG_API}}"
+							],
+							"path": [
+								"coupons",
+								"12312313123"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Coupons",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{GFG_API}}/coupons/12312313123",
+							"host": [
+								"{{GFG_API}}"
+							],
+							"path": [
+								"coupons",
+								"12312313123"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "FavouriteCoupons",
+			"item": [
+				{
+					"name": "Get Fav Coupons",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\" : \"Store one\",\r\n    \"address1\": \"Example address\",\r\n    \"city\" : \"Asdasd\",\r\n    \"zip\":\"12223\",\r\n    \"state\": \"State\",\r\n    \"country\": \"Usa\",\r\n    \"lat\": 90,\r\n    \"lng\": 90\r\n}"
+						},
+						"url": {
+							"raw": "{{GFG_API}}/favourite-coupons",
+							"host": [
+								"{{GFG_API}}"
+							],
+							"path": [
+								"favourite-coupons"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Fav Coupon",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{}"
+						},
+						"url": {
+							"raw": "{{GFG_API}}/favourite-coupons",
+							"host": [
+								"{{GFG_API}}"
+							],
+							"path": [
+								"favourite-coupons"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Fav Coupons",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"couponId\": \"01JTWZ2X5X8WA20VAP95VN0GMD\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{GFG_API}}/favourite-coupons",
+							"host": [
+								"{{GFG_API}}"
+							],
+							"path": [
+								"favourite-coupons"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Fav Coupon",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Summer Discount\",\r\n    \"couponType\": \"PERCENTAGE\",\r\n    \"discountAmount\": 123,\r\n    \"startDate\": \"2025-05-10T09:52:16.466Z\",\r\n    \"endDate\": \"2026-05-10T09:52:16.466Z\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{GFG_API}}/favourite-coupons",
+							"host": [
+								"{{GFG_API}}"
+							],
+							"path": [
+								"favourite-coupons"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Recycle History",
+			"item": [
+				{
+					"name": "Get Recycle Histories",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\" : \"Store one\",\r\n    \"address1\": \"Example address\",\r\n    \"city\" : \"Asdasd\",\r\n    \"zip\":\"12223\",\r\n    \"state\": \"State\",\r\n    \"country\": \"Usa\",\r\n    \"lat\": 90,\r\n    \"lng\": 90\r\n}"
+						},
+						"url": {
+							"raw": "{{GFG_API}}/recycle-histories",
+							"host": [
+								"{{GFG_API}}"
+							],
+							"path": [
+								"recycle-histories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Recycle History",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{}"
+						},
+						"url": {
+							"raw": "{{GFG_API}}/recycle-histories/123",
+							"host": [
+								"{{GFG_API}}"
+							],
+							"path": [
+								"recycle-histories",
+								"123"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Recycle History",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"couponId\": \"01JTWZ2X5X8WA20VAP95VN0GMD\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{GFG_API}}/recycle-histories",
+							"host": [
+								"{{GFG_API}}"
+							],
+							"path": [
+								"recycle-histories"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Redeem History",
+			"item": [
+				{
+					"name": "Get Redeem Histories",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\" : \"Store one\",\r\n    \"address1\": \"Example address\",\r\n    \"city\" : \"Asdasd\",\r\n    \"zip\":\"12223\",\r\n    \"state\": \"State\",\r\n    \"country\": \"Usa\",\r\n    \"lat\": 90,\r\n    \"lng\": 90\r\n}"
+						},
+						"url": {
+							"raw": "{{GFG_API}}/redeem-histories",
+							"host": [
+								"{{GFG_API}}"
+							],
+							"path": [
+								"redeem-histories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Redeem History",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{}"
+						},
+						"url": {
+							"raw": "{{GFG_API}}/redeem-histories/123",
+							"host": [
+								"{{GFG_API}}"
+							],
+							"path": [
+								"redeem-histories",
+								"123"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Redeem History",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"couponId\": \"01JTWZ2X5X8WA20VAP95VN0GMD\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{GFG_API}}/redeem-histories",
+							"host": [
+								"{{GFG_API}}"
+							],
+							"path": [
+								"redeem-histories"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{B_TOKEN}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "id",
+			"value": "1"
+		},
+		{
+			"key": "base_url",
+			"value": "https://postman-rest-api-learner.glitch.me/"
+		}
+	]
+}
