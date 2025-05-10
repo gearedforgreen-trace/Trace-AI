@@ -3,8 +3,9 @@ import prisma from '@/lib/prisma';
 import { getSession } from '@/lib/servers/sessions';
 import { NextResponse, NextRequest } from 'next/server';
 import { createPaginator } from 'prisma-pagination';
-import type { Bin, Prisma } from '@prisma-gen/client';
-import { binSchema } from '@/schemas/schema';
+import type { Prisma, RecycleHistory } from '@prisma-gen/client';
+import { recycleHistorySchema } from '@/schemas/schema';
+import { calculateRecyclePoints } from '@/services/recycle.services';
 
 const paginate = createPaginator({ perPage: 10, page: 1 });
 
@@ -25,7 +26,7 @@ export async function GET(request: NextRequest) {
       body: {
         role: session.user.role,
         permission: {
-          bin: ['list'],
+          recycleHistory: ['list'],
         },
       },
     });
@@ -49,19 +50,17 @@ export async function GET(request: NextRequest) {
       50
     );
 
-    const binsResult = await paginate<Bin, Prisma.BinFindManyArgs>(
-      prisma.bin,
+    const recycleHistoriesResult = await paginate<
+      RecycleHistory,
+      Prisma.RecycleHistoryFindManyArgs
+    >(
+      prisma.recycleHistory,
       {
         orderBy: {
           createdAt: 'desc',
         },
-        include: {
-          material: {
-            include: {
-              rewardRule: true,
-            },
-          },
-          store: true,
+        where: {
+          userId: session.user.id,
         },
       },
       {
@@ -69,7 +68,8 @@ export async function GET(request: NextRequest) {
         perPage: perPage,
       }
     );
-    return NextResponse.json(binsResult, { status: 200 });
+
+    return NextResponse.json(recycleHistoriesResult, { status: 200 });
   } catch (error) {
     console.error(error);
     return NextResponse.json(
@@ -98,7 +98,7 @@ export async function POST(request: NextRequest) {
       body: {
         role: session.user.role,
         permission: {
-          bin: ['create'],
+          recycleHistory: ['create'],
         },
       },
     });
@@ -114,7 +114,7 @@ export async function POST(request: NextRequest) {
 
     const body = await request.json();
 
-    const validatedBody = binSchema.safeParse(body);
+    const validatedBody = recycleHistorySchema.safeParse(body);
 
     if (validatedBody.error) {
       return NextResponse.json(
@@ -126,21 +126,60 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const bin = await prisma.bin.create({
-      data: validatedBody.data,
+    const bin = await prisma.bin.findUnique({
+      where: {
+        id: validatedBody.data.binId,
+      },
       include: {
         material: {
           include: {
             rewardRule: true,
           },
         },
-        store: true,
+      },
+    });
+
+    if (!bin) {
+      return NextResponse.json({ error: 'Bin not found' }, { status: 404 });
+    }
+
+    if (bin.status !== 'ACTIVE') {
+      return NextResponse.json({ error: 'Bin is not active' }, { status: 403 });
+    }
+
+    if (!bin.material.rewardRule?.point) {
+      return NextResponse.json(
+        { error: 'Bin material has no reward rule point' },
+        { status: 400 }
+      );
+    }
+
+    const totalPoints = calculateRecyclePoints(
+      validatedBody.data.totalCount,
+      bin.material.rewardRule.point
+    );
+
+    const recycleHistory = await prisma.recycleHistory.create({
+      data: {
+        userId: session.user.id,
+        binId: validatedBody.data.binId,
+        points: totalPoints,
+        mediaUrl: validatedBody.data.mediaUrl,
+      },
+      include: {
+        bin: {
+          include: {
+            material: {
+              include: { rewardRule: true },
+            },
+          },
+        },
       },
     });
 
     return NextResponse.json(
       {
-        data: bin,
+        data: recycleHistory,
       },
       { status: 201 }
     );

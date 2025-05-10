@@ -3,8 +3,8 @@ import prisma from '@/lib/prisma';
 import { getSession } from '@/lib/servers/sessions';
 import { NextResponse, NextRequest } from 'next/server';
 import { createPaginator } from 'prisma-pagination';
-import type { Bin, Prisma } from '@prisma-gen/client';
-import { binSchema } from '@/schemas/schema';
+import type { FavouriteCoupon, Prisma } from '@prisma-gen/client';
+import { favouriteCouponSchema } from '@/schemas/schema';
 
 const paginate = createPaginator({ perPage: 10, page: 1 });
 
@@ -25,7 +25,7 @@ export async function GET(request: NextRequest) {
       body: {
         role: session.user.role,
         permission: {
-          bin: ['list'],
+          favouriteCoupon: ['list'],
         },
       },
     });
@@ -49,19 +49,20 @@ export async function GET(request: NextRequest) {
       50
     );
 
-    const binsResult = await paginate<Bin, Prisma.BinFindManyArgs>(
-      prisma.bin,
+    const favouriteCouponsResult = await paginate<
+      FavouriteCoupon,
+      Prisma.FavouriteCouponFindManyArgs
+    >(
+      prisma.favouriteCoupon,
       {
         orderBy: {
           createdAt: 'desc',
         },
+        where: {
+          userId: session.user.id,
+        },
         include: {
-          material: {
-            include: {
-              rewardRule: true,
-            },
-          },
-          store: true,
+          coupon: true,
         },
       },
       {
@@ -69,7 +70,8 @@ export async function GET(request: NextRequest) {
         perPage: perPage,
       }
     );
-    return NextResponse.json(binsResult, { status: 200 });
+
+    return NextResponse.json(favouriteCouponsResult, { status: 200 });
   } catch (error) {
     console.error(error);
     return NextResponse.json(
@@ -98,7 +100,7 @@ export async function POST(request: NextRequest) {
       body: {
         role: session.user.role,
         permission: {
-          bin: ['create'],
+          favouriteCoupon: ['create'],
         },
       },
     });
@@ -114,7 +116,7 @@ export async function POST(request: NextRequest) {
 
     const body = await request.json();
 
-    const validatedBody = binSchema.safeParse(body);
+    const validatedBody = favouriteCouponSchema.safeParse(body);
 
     if (validatedBody.error) {
       return NextResponse.json(
@@ -126,21 +128,19 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const bin = await prisma.bin.create({
-      data: validatedBody.data,
+    const favouriteCoupon = await prisma.favouriteCoupon.create({
+      data: {
+        userId: session.user.id,
+        couponId: validatedBody.data.couponId,
+      },
       include: {
-        material: {
-          include: {
-            rewardRule: true,
-          },
-        },
-        store: true,
+        coupon: true,
       },
     });
 
     return NextResponse.json(
       {
-        data: bin,
+        data: favouriteCoupon,
       },
       { status: 201 }
     );

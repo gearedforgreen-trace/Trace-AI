@@ -1,6 +1,6 @@
-import { validateSessionAndPermission } from '@/lib/permissions';
+import { validateSessionAndPermission } from '@/lib/servers/permissions';
 import prisma from '@/lib/prisma';
-import {couponSchema} from '@/schemas/schema';
+import { couponUpdateSchema } from '@/schemas/schema';
 import { NextRequest, NextResponse } from 'next/server';
 
 export async function GET(
@@ -12,7 +12,7 @@ export async function GET(
 
     if (!couponId) {
       return NextResponse.json(
-        { error: 'Material ID is required' },
+        { error: 'Coupon ID is required' },
         { status: 400 }
       );
     }
@@ -26,12 +26,12 @@ export async function GET(
     }
 
     const coupon = await prisma.coupon.findUnique({
-      where: { id: couponId }
+      where: { id: couponId },
     });
 
     if (!coupon) {
       return NextResponse.json(
-        { error: 'Material not found' },
+        { error: 'Coupon not found' },
         { status: 404 }
       );
     }
@@ -60,7 +60,7 @@ export async function PUT(
 
     if (!couponId) {
       return NextResponse.json(
-        { error: 'Material ID is required' },
+        { error: 'Coupon ID is required' },
         { status: 400 }
       );
     }
@@ -75,7 +75,7 @@ export async function PUT(
 
     const body = await request.json();
 
-    const validatedBody = couponSchema.safeParse(body);
+    const validatedBody = couponUpdateSchema.safeParse(body);
 
     if (!validatedBody.success) {
       return NextResponse.json(
@@ -102,7 +102,7 @@ export async function PUT(
   }
 }
 
-  export async function DELETE(
+export async function DELETE(
   _request: NextRequest,
   { params }: { params: { couponId: string } }
 ) {
@@ -129,7 +129,7 @@ export async function PUT(
     });
 
     return NextResponse.json(
-      { data: deletedCoupon, message: 'Material deleted successfully' },
+      { data: deletedCoupon, message: 'Coupon deleted successfully' },
       { status: 200 }
     );
 

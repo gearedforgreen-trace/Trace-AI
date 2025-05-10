@@ -59,20 +59,20 @@ export type Coupon = {
     id: Generated<string>;
     name: string;
     description: string | null;
-    imageUrl: string;
+    imageUrl: string | null;
     status: Generated<Status>;
     couponType: CouponType;
     dealType: DealType;
-    isFeatured: boolean;
-    couponCode: string;
+    isFeatured: Generated<boolean>;
+    discountAmount: number;
     pointsToRedeem: number;
     startDate: Timestamp;
     endDate: Timestamp;
     createdAt: Generated<Timestamp>;
     updatedAt: Timestamp;
-    organizationId: string;
+    organizationId: string | null;
 };
-export type FavoriteCouponList = {
+export type FavouriteCoupon = {
     id: Generated<string>;
     userId: string;
     couponId: string;
@@ -113,8 +113,10 @@ export type Organization = {
 export type RecycleHistory = {
     id: string;
     userId: string;
+    binId: string;
     points: number;
     mediaUrl: string | null;
+    totalCount: Generated<number>;
     createdAt: Generated<Timestamp>;
     updatedAt: Timestamp;
 };
@@ -124,6 +126,7 @@ export type RedeemHistory = {
     userId: string;
     points: number;
     description: string | null;
+    couponCode: string;
     createdAt: Generated<Timestamp>;
     updatedAt: Timestamp;
 };
@@ -203,7 +206,7 @@ export type DB = {
     account: Account;
     bin: Bin;
     coupon: Coupon;
-    favorite_coupon_list: FavoriteCouponList;
+    favourite_coupon: FavouriteCoupon;
     invitation: Invitation;
     material: Material;
     member: Member;

@@ -2,15 +2,15 @@ import prisma from '@/lib/prisma';
 import { NextResponse, NextRequest } from 'next/server';
 import { createPaginator } from 'prisma-pagination';
 import type { Coupon, Prisma } from '@prisma-gen/client';
-import { couponSchema } from '@/schemas/schema';
-import {validateSessionAndPermission} from "@/lib/permissions";
+import { couponCreateSchema } from '@/schemas/schema';
+import { validateSessionAndPermission } from '@/lib/servers/permissions';
 
 const paginate = createPaginator({ perPage: 10, page: 1 });
 
 export async function GET(request: NextRequest) {
   try {
     const validation = await validateSessionAndPermission({
-      coupon: ['list'],
+      coupon: ['detail'],
     });
 
     if (!validation.success) {
@@ -27,15 +27,12 @@ export async function GET(request: NextRequest) {
       50
     );
 
-    const coupons = await paginate<
-      Coupon,
-      Prisma.CouponFindManyArgs
-    >(
+    const coupons = await paginate<Coupon, Prisma.CouponFindManyArgs>(
       prisma.coupon,
       {
         orderBy: {
           createdAt: 'desc',
-        }
+        },
       },
       {
         page: page,
@@ -66,7 +63,7 @@ export async function POST(request: NextRequest) {
 
     const body = await request.json();
 
-    const validatedBody = couponSchema.safeParse(body);
+    const validatedBody = couponCreateSchema.safeParse(body);
 
     if (validatedBody.error) {
       return NextResponse.json(

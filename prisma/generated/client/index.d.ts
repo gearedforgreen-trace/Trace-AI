@@ -89,10 +89,10 @@ export type Bin = $Result.DefaultSelection<Prisma.$BinPayload>
  */
 export type Coupon = $Result.DefaultSelection<Prisma.$CouponPayload>
 /**
- * Model FavoriteCouponList
+ * Model FavouriteCoupon
  * 
  */
-export type FavoriteCouponList = $Result.DefaultSelection<Prisma.$FavoriteCouponListPayload>
+export type FavouriteCoupon = $Result.DefaultSelection<Prisma.$FavouriteCouponPayload>
 
 /**
  * Enums
@@ -435,14 +435,14 @@ export class PrismaClient<
   get coupon(): Prisma.CouponDelegate<ExtArgs, ClientOptions>;
 
   /**
-   * `prisma.favoriteCouponList`: Exposes CRUD operations for the **FavoriteCouponList** model.
+   * `prisma.favouriteCoupon`: Exposes CRUD operations for the **FavouriteCoupon** model.
     * Example usage:
     * ```ts
-    * // Fetch zero or more FavoriteCouponLists
-    * const favoriteCouponLists = await prisma.favoriteCouponList.findMany()
+    * // Fetch zero or more FavouriteCoupons
+    * const favouriteCoupons = await prisma.favouriteCoupon.findMany()
     * ```
     */
-  get favoriteCouponList(): Prisma.FavoriteCouponListDelegate<ExtArgs, ClientOptions>;
+  get favouriteCoupon(): Prisma.FavouriteCouponDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -898,7 +898,7 @@ export namespace Prisma {
     UserTotalPoint: 'UserTotalPoint',
     Bin: 'Bin',
     Coupon: 'Coupon',
-    FavoriteCouponList: 'FavoriteCouponList'
+    FavouriteCoupon: 'FavouriteCoupon'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -917,7 +917,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "session" | "account" | "verification" | "organization" | "member" | "invitation" | "store" | "material" | "rewardRules" | "redeemHistory" | "recycleHistory" | "userTotalPoint" | "bin" | "coupon" | "favoriteCouponList"
+      modelProps: "user" | "session" | "account" | "verification" | "organization" | "member" | "invitation" | "store" | "material" | "rewardRules" | "redeemHistory" | "recycleHistory" | "userTotalPoint" | "bin" | "coupon" | "favouriteCoupon"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -2031,77 +2031,77 @@ export namespace Prisma {
           }
         }
       }
-      FavoriteCouponList: {
-        payload: Prisma.$FavoriteCouponListPayload<ExtArgs>
-        fields: Prisma.FavoriteCouponListFieldRefs
+      FavouriteCoupon: {
+        payload: Prisma.$FavouriteCouponPayload<ExtArgs>
+        fields: Prisma.FavouriteCouponFieldRefs
         operations: {
           findUnique: {
-            args: Prisma.FavoriteCouponListFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$FavoriteCouponListPayload> | null
+            args: Prisma.FavouriteCouponFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FavouriteCouponPayload> | null
           }
           findUniqueOrThrow: {
-            args: Prisma.FavoriteCouponListFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$FavoriteCouponListPayload>
+            args: Prisma.FavouriteCouponFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FavouriteCouponPayload>
           }
           findFirst: {
-            args: Prisma.FavoriteCouponListFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$FavoriteCouponListPayload> | null
+            args: Prisma.FavouriteCouponFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FavouriteCouponPayload> | null
           }
           findFirstOrThrow: {
-            args: Prisma.FavoriteCouponListFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$FavoriteCouponListPayload>
+            args: Prisma.FavouriteCouponFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FavouriteCouponPayload>
           }
           findMany: {
-            args: Prisma.FavoriteCouponListFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$FavoriteCouponListPayload>[]
+            args: Prisma.FavouriteCouponFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FavouriteCouponPayload>[]
           }
           create: {
-            args: Prisma.FavoriteCouponListCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$FavoriteCouponListPayload>
+            args: Prisma.FavouriteCouponCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FavouriteCouponPayload>
           }
           createMany: {
-            args: Prisma.FavoriteCouponListCreateManyArgs<ExtArgs>
+            args: Prisma.FavouriteCouponCreateManyArgs<ExtArgs>
             result: BatchPayload
           }
           createManyAndReturn: {
-            args: Prisma.FavoriteCouponListCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$FavoriteCouponListPayload>[]
+            args: Prisma.FavouriteCouponCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FavouriteCouponPayload>[]
           }
           delete: {
-            args: Prisma.FavoriteCouponListDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$FavoriteCouponListPayload>
+            args: Prisma.FavouriteCouponDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FavouriteCouponPayload>
           }
           update: {
-            args: Prisma.FavoriteCouponListUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$FavoriteCouponListPayload>
+            args: Prisma.FavouriteCouponUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FavouriteCouponPayload>
           }
           deleteMany: {
-            args: Prisma.FavoriteCouponListDeleteManyArgs<ExtArgs>
+            args: Prisma.FavouriteCouponDeleteManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateMany: {
-            args: Prisma.FavoriteCouponListUpdateManyArgs<ExtArgs>
+            args: Prisma.FavouriteCouponUpdateManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateManyAndReturn: {
-            args: Prisma.FavoriteCouponListUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$FavoriteCouponListPayload>[]
+            args: Prisma.FavouriteCouponUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FavouriteCouponPayload>[]
           }
           upsert: {
-            args: Prisma.FavoriteCouponListUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$FavoriteCouponListPayload>
+            args: Prisma.FavouriteCouponUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FavouriteCouponPayload>
           }
           aggregate: {
-            args: Prisma.FavoriteCouponListAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateFavoriteCouponList>
+            args: Prisma.FavouriteCouponAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateFavouriteCoupon>
           }
           groupBy: {
-            args: Prisma.FavoriteCouponListGroupByArgs<ExtArgs>
-            result: $Utils.Optional<FavoriteCouponListGroupByOutputType>[]
+            args: Prisma.FavouriteCouponGroupByArgs<ExtArgs>
+            result: $Utils.Optional<FavouriteCouponGroupByOutputType>[]
           }
           count: {
-            args: Prisma.FavoriteCouponListCountArgs<ExtArgs>
-            result: $Utils.Optional<FavoriteCouponListCountAggregateOutputType> | number
+            args: Prisma.FavouriteCouponCountArgs<ExtArgs>
+            result: $Utils.Optional<FavouriteCouponCountAggregateOutputType> | number
           }
         }
       }
@@ -2204,7 +2204,7 @@ export namespace Prisma {
     userTotalPoint?: UserTotalPointOmit
     bin?: BinOmit
     coupon?: CouponOmit
-    favoriteCouponList?: FavoriteCouponListOmit
+    favouriteCoupon?: FavouriteCouponOmit
   }
 
   /* Types for Logging */
@@ -2299,25 +2299,23 @@ export namespace Prisma {
    */
 
   export type UserCountOutputType = {
-    sessions: number
+    recycleHistory: number
+    redeemHistory: number
     accounts: number
-    members: number
+    favouriteCoupon: number
     invitations: number
-    FavoriteCouponList: number
-    RedeemHistory: number
-    RecycleHistory: number
-    UserTotalPoint: number
+    members: number
+    sessions: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    sessions?: boolean | UserCountOutputTypeCountSessionsArgs
+    recycleHistory?: boolean | UserCountOutputTypeCountRecycleHistoryArgs
+    redeemHistory?: boolean | UserCountOutputTypeCountRedeemHistoryArgs
     accounts?: boolean | UserCountOutputTypeCountAccountsArgs
-    members?: boolean | UserCountOutputTypeCountMembersArgs
+    favouriteCoupon?: boolean | UserCountOutputTypeCountFavouriteCouponArgs
     invitations?: boolean | UserCountOutputTypeCountInvitationsArgs
-    FavoriteCouponList?: boolean | UserCountOutputTypeCountFavoriteCouponListArgs
-    RedeemHistory?: boolean | UserCountOutputTypeCountRedeemHistoryArgs
-    RecycleHistory?: boolean | UserCountOutputTypeCountRecycleHistoryArgs
-    UserTotalPoint?: boolean | UserCountOutputTypeCountUserTotalPointArgs
+    members?: boolean | UserCountOutputTypeCountMembersArgs
+    sessions?: boolean | UserCountOutputTypeCountSessionsArgs
   }
 
   // Custom InputTypes
@@ -2334,36 +2332,8 @@ export namespace Prisma {
   /**
    * UserCountOutputType without action
    */
-  export type UserCountOutputTypeCountSessionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: SessionWhereInput
-  }
-
-  /**
-   * UserCountOutputType without action
-   */
-  export type UserCountOutputTypeCountAccountsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: AccountWhereInput
-  }
-
-  /**
-   * UserCountOutputType without action
-   */
-  export type UserCountOutputTypeCountMembersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: MemberWhereInput
-  }
-
-  /**
-   * UserCountOutputType without action
-   */
-  export type UserCountOutputTypeCountInvitationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: InvitationWhereInput
-  }
-
-  /**
-   * UserCountOutputType without action
-   */
-  export type UserCountOutputTypeCountFavoriteCouponListArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: FavoriteCouponListWhereInput
+  export type UserCountOutputTypeCountRecycleHistoryArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: RecycleHistoryWhereInput
   }
 
   /**
@@ -2376,15 +2346,36 @@ export namespace Prisma {
   /**
    * UserCountOutputType without action
    */
-  export type UserCountOutputTypeCountRecycleHistoryArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: RecycleHistoryWhereInput
+  export type UserCountOutputTypeCountAccountsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AccountWhereInput
   }
 
   /**
    * UserCountOutputType without action
    */
-  export type UserCountOutputTypeCountUserTotalPointArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: UserTotalPointWhereInput
+  export type UserCountOutputTypeCountFavouriteCouponArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FavouriteCouponWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountInvitationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: InvitationWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountMembersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MemberWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountSessionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SessionWhereInput
   }
 
 
@@ -2393,17 +2384,17 @@ export namespace Prisma {
    */
 
   export type OrganizationCountOutputType = {
-    members: number
-    invitations: number
-    stores: number
     Coupon: number
+    invitations: number
+    members: number
+    stores: number
   }
 
   export type OrganizationCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    members?: boolean | OrganizationCountOutputTypeCountMembersArgs
-    invitations?: boolean | OrganizationCountOutputTypeCountInvitationsArgs
-    stores?: boolean | OrganizationCountOutputTypeCountStoresArgs
     Coupon?: boolean | OrganizationCountOutputTypeCountCouponArgs
+    invitations?: boolean | OrganizationCountOutputTypeCountInvitationsArgs
+    members?: boolean | OrganizationCountOutputTypeCountMembersArgs
+    stores?: boolean | OrganizationCountOutputTypeCountStoresArgs
   }
 
   // Custom InputTypes
@@ -2420,8 +2411,8 @@ export namespace Prisma {
   /**
    * OrganizationCountOutputType without action
    */
-  export type OrganizationCountOutputTypeCountMembersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: MemberWhereInput
+  export type OrganizationCountOutputTypeCountCouponArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CouponWhereInput
   }
 
   /**
@@ -2434,15 +2425,15 @@ export namespace Prisma {
   /**
    * OrganizationCountOutputType without action
    */
-  export type OrganizationCountOutputTypeCountStoresArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: StoreWhereInput
+  export type OrganizationCountOutputTypeCountMembersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MemberWhereInput
   }
 
   /**
    * OrganizationCountOutputType without action
    */
-  export type OrganizationCountOutputTypeCountCouponArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: CouponWhereInput
+  export type OrganizationCountOutputTypeCountStoresArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: StoreWhereInput
   }
 
 
@@ -2540,15 +2531,48 @@ export namespace Prisma {
 
 
   /**
+   * Count Type BinCountOutputType
+   */
+
+  export type BinCountOutputType = {
+    recycleHistory: number
+  }
+
+  export type BinCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    recycleHistory?: boolean | BinCountOutputTypeCountRecycleHistoryArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * BinCountOutputType without action
+   */
+  export type BinCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BinCountOutputType
+     */
+    select?: BinCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * BinCountOutputType without action
+   */
+  export type BinCountOutputTypeCountRecycleHistoryArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: RecycleHistoryWhereInput
+  }
+
+
+  /**
    * Count Type CouponCountOutputType
    */
 
   export type CouponCountOutputType = {
-    FavoriteCouponList: number
+    favouriteCoupon: number
+    redeemHistory: number
   }
 
   export type CouponCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    FavoriteCouponList?: boolean | CouponCountOutputTypeCountFavoriteCouponListArgs
+    favouriteCoupon?: boolean | CouponCountOutputTypeCountFavouriteCouponArgs
+    redeemHistory?: boolean | CouponCountOutputTypeCountRedeemHistoryArgs
   }
 
   // Custom InputTypes
@@ -2565,8 +2589,15 @@ export namespace Prisma {
   /**
    * CouponCountOutputType without action
    */
-  export type CouponCountOutputTypeCountFavoriteCouponListArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: FavoriteCouponListWhereInput
+  export type CouponCountOutputTypeCountFavouriteCouponArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FavouriteCouponWhereInput
+  }
+
+  /**
+   * CouponCountOutputType without action
+   */
+  export type CouponCountOutputTypeCountRedeemHistoryArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: RedeemHistoryWhereInput
   }
 
 
@@ -2842,13 +2873,13 @@ export namespace Prisma {
     postalCode?: boolean
     status?: boolean
     state?: boolean
-    sessions?: boolean | User$sessionsArgs<ExtArgs>
+    recycleHistory?: boolean | User$recycleHistoryArgs<ExtArgs>
+    redeemHistory?: boolean | User$redeemHistoryArgs<ExtArgs>
     accounts?: boolean | User$accountsArgs<ExtArgs>
-    members?: boolean | User$membersArgs<ExtArgs>
+    favouriteCoupon?: boolean | User$favouriteCouponArgs<ExtArgs>
     invitations?: boolean | User$invitationsArgs<ExtArgs>
-    FavoriteCouponList?: boolean | User$FavoriteCouponListArgs<ExtArgs>
-    RedeemHistory?: boolean | User$RedeemHistoryArgs<ExtArgs>
-    RecycleHistory?: boolean | User$RecycleHistoryArgs<ExtArgs>
+    members?: boolean | User$membersArgs<ExtArgs>
+    sessions?: boolean | User$sessionsArgs<ExtArgs>
     UserTotalPoint?: boolean | User$UserTotalPointArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
@@ -2918,13 +2949,13 @@ export namespace Prisma {
 
   export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "email" | "emailVerified" | "image" | "createdAt" | "updatedAt" | "role" | "banned" | "banReason" | "banExpires" | "username" | "displayUsername" | "phoneNumber" | "address" | "postalCode" | "status" | "state", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    sessions?: boolean | User$sessionsArgs<ExtArgs>
+    recycleHistory?: boolean | User$recycleHistoryArgs<ExtArgs>
+    redeemHistory?: boolean | User$redeemHistoryArgs<ExtArgs>
     accounts?: boolean | User$accountsArgs<ExtArgs>
-    members?: boolean | User$membersArgs<ExtArgs>
+    favouriteCoupon?: boolean | User$favouriteCouponArgs<ExtArgs>
     invitations?: boolean | User$invitationsArgs<ExtArgs>
-    FavoriteCouponList?: boolean | User$FavoriteCouponListArgs<ExtArgs>
-    RedeemHistory?: boolean | User$RedeemHistoryArgs<ExtArgs>
-    RecycleHistory?: boolean | User$RecycleHistoryArgs<ExtArgs>
+    members?: boolean | User$membersArgs<ExtArgs>
+    sessions?: boolean | User$sessionsArgs<ExtArgs>
     UserTotalPoint?: boolean | User$UserTotalPointArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
@@ -2934,14 +2965,14 @@ export namespace Prisma {
   export type $UserPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "User"
     objects: {
-      sessions: Prisma.$SessionPayload<ExtArgs>[]
+      recycleHistory: Prisma.$RecycleHistoryPayload<ExtArgs>[]
+      redeemHistory: Prisma.$RedeemHistoryPayload<ExtArgs>[]
       accounts: Prisma.$AccountPayload<ExtArgs>[]
-      members: Prisma.$MemberPayload<ExtArgs>[]
+      favouriteCoupon: Prisma.$FavouriteCouponPayload<ExtArgs>[]
       invitations: Prisma.$InvitationPayload<ExtArgs>[]
-      FavoriteCouponList: Prisma.$FavoriteCouponListPayload<ExtArgs>[]
-      RedeemHistory: Prisma.$RedeemHistoryPayload<ExtArgs>[]
-      RecycleHistory: Prisma.$RecycleHistoryPayload<ExtArgs>[]
-      UserTotalPoint: Prisma.$UserTotalPointPayload<ExtArgs>[]
+      members: Prisma.$MemberPayload<ExtArgs>[]
+      sessions: Prisma.$SessionPayload<ExtArgs>[]
+      UserTotalPoint: Prisma.$UserTotalPointPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -3356,14 +3387,14 @@ export namespace Prisma {
    */
   export interface Prisma__UserClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    sessions<T extends User$sessionsArgs<ExtArgs> = {}>(args?: Subset<T, User$sessionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    recycleHistory<T extends User$recycleHistoryArgs<ExtArgs> = {}>(args?: Subset<T, User$recycleHistoryArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RecycleHistoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    redeemHistory<T extends User$redeemHistoryArgs<ExtArgs> = {}>(args?: Subset<T, User$redeemHistoryArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RedeemHistoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     accounts<T extends User$accountsArgs<ExtArgs> = {}>(args?: Subset<T, User$accountsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AccountPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    members<T extends User$membersArgs<ExtArgs> = {}>(args?: Subset<T, User$membersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MemberPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    favouriteCoupon<T extends User$favouriteCouponArgs<ExtArgs> = {}>(args?: Subset<T, User$favouriteCouponArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FavouriteCouponPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     invitations<T extends User$invitationsArgs<ExtArgs> = {}>(args?: Subset<T, User$invitationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$InvitationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    FavoriteCouponList<T extends User$FavoriteCouponListArgs<ExtArgs> = {}>(args?: Subset<T, User$FavoriteCouponListArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FavoriteCouponListPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    RedeemHistory<T extends User$RedeemHistoryArgs<ExtArgs> = {}>(args?: Subset<T, User$RedeemHistoryArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RedeemHistoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    RecycleHistory<T extends User$RecycleHistoryArgs<ExtArgs> = {}>(args?: Subset<T, User$RecycleHistoryArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RecycleHistoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    UserTotalPoint<T extends User$UserTotalPointArgs<ExtArgs> = {}>(args?: Subset<T, User$UserTotalPointArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserTotalPointPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    members<T extends User$membersArgs<ExtArgs> = {}>(args?: Subset<T, User$membersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MemberPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    sessions<T extends User$sessionsArgs<ExtArgs> = {}>(args?: Subset<T, User$sessionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    UserTotalPoint<T extends User$UserTotalPointArgs<ExtArgs> = {}>(args?: Subset<T, User$UserTotalPointArgs<ExtArgs>>): Prisma__UserTotalPointClient<$Result.GetResult<Prisma.$UserTotalPointPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3799,27 +3830,51 @@ export namespace Prisma {
   }
 
   /**
-   * User.sessions
+   * User.recycleHistory
    */
-  export type User$sessionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type User$recycleHistoryArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Session
+     * Select specific fields to fetch from the RecycleHistory
      */
-    select?: SessionSelect<ExtArgs> | null
+    select?: RecycleHistorySelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Session
+     * Omit specific fields from the RecycleHistory
      */
-    omit?: SessionOmit<ExtArgs> | null
+    omit?: RecycleHistoryOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: SessionInclude<ExtArgs> | null
-    where?: SessionWhereInput
-    orderBy?: SessionOrderByWithRelationInput | SessionOrderByWithRelationInput[]
-    cursor?: SessionWhereUniqueInput
+    include?: RecycleHistoryInclude<ExtArgs> | null
+    where?: RecycleHistoryWhereInput
+    orderBy?: RecycleHistoryOrderByWithRelationInput | RecycleHistoryOrderByWithRelationInput[]
+    cursor?: RecycleHistoryWhereUniqueInput
     take?: number
     skip?: number
-    distinct?: SessionScalarFieldEnum | SessionScalarFieldEnum[]
+    distinct?: RecycleHistoryScalarFieldEnum | RecycleHistoryScalarFieldEnum[]
+  }
+
+  /**
+   * User.redeemHistory
+   */
+  export type User$redeemHistoryArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RedeemHistory
+     */
+    select?: RedeemHistorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RedeemHistory
+     */
+    omit?: RedeemHistoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RedeemHistoryInclude<ExtArgs> | null
+    where?: RedeemHistoryWhereInput
+    orderBy?: RedeemHistoryOrderByWithRelationInput | RedeemHistoryOrderByWithRelationInput[]
+    cursor?: RedeemHistoryWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: RedeemHistoryScalarFieldEnum | RedeemHistoryScalarFieldEnum[]
   }
 
   /**
@@ -3847,27 +3902,27 @@ export namespace Prisma {
   }
 
   /**
-   * User.members
+   * User.favouriteCoupon
    */
-  export type User$membersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type User$favouriteCouponArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Member
+     * Select specific fields to fetch from the FavouriteCoupon
      */
-    select?: MemberSelect<ExtArgs> | null
+    select?: FavouriteCouponSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Member
+     * Omit specific fields from the FavouriteCoupon
      */
-    omit?: MemberOmit<ExtArgs> | null
+    omit?: FavouriteCouponOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: MemberInclude<ExtArgs> | null
-    where?: MemberWhereInput
-    orderBy?: MemberOrderByWithRelationInput | MemberOrderByWithRelationInput[]
-    cursor?: MemberWhereUniqueInput
+    include?: FavouriteCouponInclude<ExtArgs> | null
+    where?: FavouriteCouponWhereInput
+    orderBy?: FavouriteCouponOrderByWithRelationInput | FavouriteCouponOrderByWithRelationInput[]
+    cursor?: FavouriteCouponWhereUniqueInput
     take?: number
     skip?: number
-    distinct?: MemberScalarFieldEnum | MemberScalarFieldEnum[]
+    distinct?: FavouriteCouponScalarFieldEnum | FavouriteCouponScalarFieldEnum[]
   }
 
   /**
@@ -3895,75 +3950,51 @@ export namespace Prisma {
   }
 
   /**
-   * User.FavoriteCouponList
+   * User.members
    */
-  export type User$FavoriteCouponListArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type User$membersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the FavoriteCouponList
+     * Select specific fields to fetch from the Member
      */
-    select?: FavoriteCouponListSelect<ExtArgs> | null
+    select?: MemberSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the FavoriteCouponList
+     * Omit specific fields from the Member
      */
-    omit?: FavoriteCouponListOmit<ExtArgs> | null
+    omit?: MemberOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: FavoriteCouponListInclude<ExtArgs> | null
-    where?: FavoriteCouponListWhereInput
-    orderBy?: FavoriteCouponListOrderByWithRelationInput | FavoriteCouponListOrderByWithRelationInput[]
-    cursor?: FavoriteCouponListWhereUniqueInput
+    include?: MemberInclude<ExtArgs> | null
+    where?: MemberWhereInput
+    orderBy?: MemberOrderByWithRelationInput | MemberOrderByWithRelationInput[]
+    cursor?: MemberWhereUniqueInput
     take?: number
     skip?: number
-    distinct?: FavoriteCouponListScalarFieldEnum | FavoriteCouponListScalarFieldEnum[]
+    distinct?: MemberScalarFieldEnum | MemberScalarFieldEnum[]
   }
 
   /**
-   * User.RedeemHistory
+   * User.sessions
    */
-  export type User$RedeemHistoryArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type User$sessionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the RedeemHistory
+     * Select specific fields to fetch from the Session
      */
-    select?: RedeemHistorySelect<ExtArgs> | null
+    select?: SessionSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the RedeemHistory
+     * Omit specific fields from the Session
      */
-    omit?: RedeemHistoryOmit<ExtArgs> | null
+    omit?: SessionOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: RedeemHistoryInclude<ExtArgs> | null
-    where?: RedeemHistoryWhereInput
-    orderBy?: RedeemHistoryOrderByWithRelationInput | RedeemHistoryOrderByWithRelationInput[]
-    cursor?: RedeemHistoryWhereUniqueInput
+    include?: SessionInclude<ExtArgs> | null
+    where?: SessionWhereInput
+    orderBy?: SessionOrderByWithRelationInput | SessionOrderByWithRelationInput[]
+    cursor?: SessionWhereUniqueInput
     take?: number
     skip?: number
-    distinct?: RedeemHistoryScalarFieldEnum | RedeemHistoryScalarFieldEnum[]
-  }
-
-  /**
-   * User.RecycleHistory
-   */
-  export type User$RecycleHistoryArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the RecycleHistory
-     */
-    select?: RecycleHistorySelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the RecycleHistory
-     */
-    omit?: RecycleHistoryOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: RecycleHistoryInclude<ExtArgs> | null
-    where?: RecycleHistoryWhereInput
-    orderBy?: RecycleHistoryOrderByWithRelationInput | RecycleHistoryOrderByWithRelationInput[]
-    cursor?: RecycleHistoryWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: RecycleHistoryScalarFieldEnum | RecycleHistoryScalarFieldEnum[]
+    distinct?: SessionScalarFieldEnum | SessionScalarFieldEnum[]
   }
 
   /**
@@ -3983,11 +4014,6 @@ export namespace Prisma {
      */
     include?: UserTotalPointInclude<ExtArgs> | null
     where?: UserTotalPointWhereInput
-    orderBy?: UserTotalPointOrderByWithRelationInput | UserTotalPointOrderByWithRelationInput[]
-    cursor?: UserTotalPointWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: UserTotalPointScalarFieldEnum | UserTotalPointScalarFieldEnum[]
   }
 
   /**
@@ -7474,10 +7500,10 @@ export namespace Prisma {
     logo?: boolean
     createdAt?: boolean
     metadata?: boolean
-    members?: boolean | Organization$membersArgs<ExtArgs>
-    invitations?: boolean | Organization$invitationsArgs<ExtArgs>
-    stores?: boolean | Organization$storesArgs<ExtArgs>
     Coupon?: boolean | Organization$CouponArgs<ExtArgs>
+    invitations?: boolean | Organization$invitationsArgs<ExtArgs>
+    members?: boolean | Organization$membersArgs<ExtArgs>
+    stores?: boolean | Organization$storesArgs<ExtArgs>
     _count?: boolean | OrganizationCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["organization"]>
 
@@ -7510,10 +7536,10 @@ export namespace Prisma {
 
   export type OrganizationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "slug" | "logo" | "createdAt" | "metadata", ExtArgs["result"]["organization"]>
   export type OrganizationInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    members?: boolean | Organization$membersArgs<ExtArgs>
-    invitations?: boolean | Organization$invitationsArgs<ExtArgs>
-    stores?: boolean | Organization$storesArgs<ExtArgs>
     Coupon?: boolean | Organization$CouponArgs<ExtArgs>
+    invitations?: boolean | Organization$invitationsArgs<ExtArgs>
+    members?: boolean | Organization$membersArgs<ExtArgs>
+    stores?: boolean | Organization$storesArgs<ExtArgs>
     _count?: boolean | OrganizationCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type OrganizationIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -7522,10 +7548,10 @@ export namespace Prisma {
   export type $OrganizationPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Organization"
     objects: {
-      members: Prisma.$MemberPayload<ExtArgs>[]
-      invitations: Prisma.$InvitationPayload<ExtArgs>[]
-      stores: Prisma.$StorePayload<ExtArgs>[]
       Coupon: Prisma.$CouponPayload<ExtArgs>[]
+      invitations: Prisma.$InvitationPayload<ExtArgs>[]
+      members: Prisma.$MemberPayload<ExtArgs>[]
+      stores: Prisma.$StorePayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -7928,10 +7954,10 @@ export namespace Prisma {
    */
   export interface Prisma__OrganizationClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    members<T extends Organization$membersArgs<ExtArgs> = {}>(args?: Subset<T, Organization$membersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MemberPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    invitations<T extends Organization$invitationsArgs<ExtArgs> = {}>(args?: Subset<T, Organization$invitationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$InvitationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    stores<T extends Organization$storesArgs<ExtArgs> = {}>(args?: Subset<T, Organization$storesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StorePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     Coupon<T extends Organization$CouponArgs<ExtArgs> = {}>(args?: Subset<T, Organization$CouponArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CouponPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    invitations<T extends Organization$invitationsArgs<ExtArgs> = {}>(args?: Subset<T, Organization$invitationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$InvitationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    members<T extends Organization$membersArgs<ExtArgs> = {}>(args?: Subset<T, Organization$membersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MemberPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    stores<T extends Organization$storesArgs<ExtArgs> = {}>(args?: Subset<T, Organization$storesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StorePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -8355,27 +8381,27 @@ export namespace Prisma {
   }
 
   /**
-   * Organization.members
+   * Organization.Coupon
    */
-  export type Organization$membersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Organization$CouponArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Member
+     * Select specific fields to fetch from the Coupon
      */
-    select?: MemberSelect<ExtArgs> | null
+    select?: CouponSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Member
+     * Omit specific fields from the Coupon
      */
-    omit?: MemberOmit<ExtArgs> | null
+    omit?: CouponOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: MemberInclude<ExtArgs> | null
-    where?: MemberWhereInput
-    orderBy?: MemberOrderByWithRelationInput | MemberOrderByWithRelationInput[]
-    cursor?: MemberWhereUniqueInput
+    include?: CouponInclude<ExtArgs> | null
+    where?: CouponWhereInput
+    orderBy?: CouponOrderByWithRelationInput | CouponOrderByWithRelationInput[]
+    cursor?: CouponWhereUniqueInput
     take?: number
     skip?: number
-    distinct?: MemberScalarFieldEnum | MemberScalarFieldEnum[]
+    distinct?: CouponScalarFieldEnum | CouponScalarFieldEnum[]
   }
 
   /**
@@ -8403,6 +8429,30 @@ export namespace Prisma {
   }
 
   /**
+   * Organization.members
+   */
+  export type Organization$membersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Member
+     */
+    select?: MemberSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Member
+     */
+    omit?: MemberOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MemberInclude<ExtArgs> | null
+    where?: MemberWhereInput
+    orderBy?: MemberOrderByWithRelationInput | MemberOrderByWithRelationInput[]
+    cursor?: MemberWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: MemberScalarFieldEnum | MemberScalarFieldEnum[]
+  }
+
+  /**
    * Organization.stores
    */
   export type Organization$storesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -8424,30 +8474,6 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: StoreScalarFieldEnum | StoreScalarFieldEnum[]
-  }
-
-  /**
-   * Organization.Coupon
-   */
-  export type Organization$CouponArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Coupon
-     */
-    select?: CouponSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Coupon
-     */
-    omit?: CouponOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CouponInclude<ExtArgs> | null
-    where?: CouponWhereInput
-    orderBy?: CouponOrderByWithRelationInput | CouponOrderByWithRelationInput[]
-    cursor?: CouponWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: CouponScalarFieldEnum | CouponScalarFieldEnum[]
   }
 
   /**
@@ -9715,8 +9741,8 @@ export namespace Prisma {
     status?: boolean
     expiresAt?: boolean
     inviterId?: boolean
-    organization?: boolean | OrganizationDefaultArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
+    organization?: boolean | OrganizationDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["invitation"]>
 
   export type InvitationSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -9727,8 +9753,8 @@ export namespace Prisma {
     status?: boolean
     expiresAt?: boolean
     inviterId?: boolean
-    organization?: boolean | OrganizationDefaultArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
+    organization?: boolean | OrganizationDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["invitation"]>
 
   export type InvitationSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -9739,8 +9765,8 @@ export namespace Prisma {
     status?: boolean
     expiresAt?: boolean
     inviterId?: boolean
-    organization?: boolean | OrganizationDefaultArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
+    organization?: boolean | OrganizationDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["invitation"]>
 
   export type InvitationSelectScalar = {
@@ -9755,23 +9781,23 @@ export namespace Prisma {
 
   export type InvitationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "organizationId" | "email" | "role" | "status" | "expiresAt" | "inviterId", ExtArgs["result"]["invitation"]>
   export type InvitationInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    organization?: boolean | OrganizationDefaultArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
+    organization?: boolean | OrganizationDefaultArgs<ExtArgs>
   }
   export type InvitationIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    organization?: boolean | OrganizationDefaultArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
+    organization?: boolean | OrganizationDefaultArgs<ExtArgs>
   }
   export type InvitationIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    organization?: boolean | OrganizationDefaultArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
+    organization?: boolean | OrganizationDefaultArgs<ExtArgs>
   }
 
   export type $InvitationPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Invitation"
     objects: {
-      organization: Prisma.$OrganizationPayload<ExtArgs>
       user: Prisma.$UserPayload<ExtArgs>
+      organization: Prisma.$OrganizationPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -10175,8 +10201,8 @@ export namespace Prisma {
    */
   export interface Prisma__InvitationClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    organization<T extends OrganizationDefaultArgs<ExtArgs> = {}>(args?: Subset<T, OrganizationDefaultArgs<ExtArgs>>): Prisma__OrganizationClient<$Result.GetResult<Prisma.$OrganizationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    organization<T extends OrganizationDefaultArgs<ExtArgs> = {}>(args?: Subset<T, OrganizationDefaultArgs<ExtArgs>>): Prisma__OrganizationClient<$Result.GetResult<Prisma.$OrganizationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -10917,8 +10943,8 @@ export namespace Prisma {
     lng?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    organization?: boolean | Store$organizationArgs<ExtArgs>
     bins?: boolean | Store$binsArgs<ExtArgs>
+    organization?: boolean | Store$organizationArgs<ExtArgs>
     _count?: boolean | StoreCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["store"]>
 
@@ -10983,8 +11009,8 @@ export namespace Prisma {
 
   export type StoreOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "description" | "imageUrl" | "status" | "organizationId" | "address1" | "address2" | "city" | "state" | "zip" | "country" | "lat" | "lng" | "createdAt" | "updatedAt", ExtArgs["result"]["store"]>
   export type StoreInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    organization?: boolean | Store$organizationArgs<ExtArgs>
     bins?: boolean | Store$binsArgs<ExtArgs>
+    organization?: boolean | Store$organizationArgs<ExtArgs>
     _count?: boolean | StoreCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type StoreIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -10997,8 +11023,8 @@ export namespace Prisma {
   export type $StorePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Store"
     objects: {
-      organization: Prisma.$OrganizationPayload<ExtArgs> | null
       bins: Prisma.$BinPayload<ExtArgs>[]
+      organization: Prisma.$OrganizationPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -11411,8 +11437,8 @@ export namespace Prisma {
    */
   export interface Prisma__StoreClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    organization<T extends Store$organizationArgs<ExtArgs> = {}>(args?: Subset<T, Store$organizationArgs<ExtArgs>>): Prisma__OrganizationClient<$Result.GetResult<Prisma.$OrganizationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     bins<T extends Store$binsArgs<ExtArgs> = {}>(args?: Subset<T, Store$binsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BinPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    organization<T extends Store$organizationArgs<ExtArgs> = {}>(args?: Subset<T, Store$organizationArgs<ExtArgs>>): Prisma__OrganizationClient<$Result.GetResult<Prisma.$OrganizationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -11854,25 +11880,6 @@ export namespace Prisma {
   }
 
   /**
-   * Store.organization
-   */
-  export type Store$organizationArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Organization
-     */
-    select?: OrganizationSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Organization
-     */
-    omit?: OrganizationOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: OrganizationInclude<ExtArgs> | null
-    where?: OrganizationWhereInput
-  }
-
-  /**
    * Store.bins
    */
   export type Store$binsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -11894,6 +11901,25 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: BinScalarFieldEnum | BinScalarFieldEnum[]
+  }
+
+  /**
+   * Store.organization
+   */
+  export type Store$organizationArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Organization
+     */
+    select?: OrganizationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Organization
+     */
+    omit?: OrganizationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OrganizationInclude<ExtArgs> | null
+    where?: OrganizationWhereInput
   }
 
   /**
@@ -14195,6 +14221,7 @@ export namespace Prisma {
     userId: string | null
     points: number | null
     description: string | null
+    couponCode: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -14205,6 +14232,7 @@ export namespace Prisma {
     userId: string | null
     points: number | null
     description: string | null
+    couponCode: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -14215,6 +14243,7 @@ export namespace Prisma {
     userId: number
     points: number
     description: number
+    couponCode: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -14235,6 +14264,7 @@ export namespace Prisma {
     userId?: true
     points?: true
     description?: true
+    couponCode?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -14245,6 +14275,7 @@ export namespace Prisma {
     userId?: true
     points?: true
     description?: true
+    couponCode?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -14255,6 +14286,7 @@ export namespace Prisma {
     userId?: true
     points?: true
     description?: true
+    couponCode?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -14352,6 +14384,7 @@ export namespace Prisma {
     userId: string
     points: number
     description: string | null
+    couponCode: string
     createdAt: Date
     updatedAt: Date
     _count: RedeemHistoryCountAggregateOutputType | null
@@ -14381,9 +14414,11 @@ export namespace Prisma {
     userId?: boolean
     points?: boolean
     description?: boolean
+    couponCode?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    User?: boolean | UserDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    coupon?: boolean | CouponDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["redeemHistory"]>
 
   export type RedeemHistorySelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -14392,9 +14427,11 @@ export namespace Prisma {
     userId?: boolean
     points?: boolean
     description?: boolean
+    couponCode?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    User?: boolean | UserDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    coupon?: boolean | CouponDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["redeemHistory"]>
 
   export type RedeemHistorySelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -14403,9 +14440,11 @@ export namespace Prisma {
     userId?: boolean
     points?: boolean
     description?: boolean
+    couponCode?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    User?: boolean | UserDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    coupon?: boolean | CouponDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["redeemHistory"]>
 
   export type RedeemHistorySelectScalar = {
@@ -14414,25 +14453,30 @@ export namespace Prisma {
     userId?: boolean
     points?: boolean
     description?: boolean
+    couponCode?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type RedeemHistoryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "couponId" | "userId" | "points" | "description" | "createdAt" | "updatedAt", ExtArgs["result"]["redeemHistory"]>
+  export type RedeemHistoryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "couponId" | "userId" | "points" | "description" | "couponCode" | "createdAt" | "updatedAt", ExtArgs["result"]["redeemHistory"]>
   export type RedeemHistoryInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    User?: boolean | UserDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    coupon?: boolean | CouponDefaultArgs<ExtArgs>
   }
   export type RedeemHistoryIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    User?: boolean | UserDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    coupon?: boolean | CouponDefaultArgs<ExtArgs>
   }
   export type RedeemHistoryIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    User?: boolean | UserDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    coupon?: boolean | CouponDefaultArgs<ExtArgs>
   }
 
   export type $RedeemHistoryPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "RedeemHistory"
     objects: {
-      User: Prisma.$UserPayload<ExtArgs>
+      user: Prisma.$UserPayload<ExtArgs>
+      coupon: Prisma.$CouponPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -14440,6 +14484,7 @@ export namespace Prisma {
       userId: string
       points: number
       description: string | null
+      couponCode: string
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["redeemHistory"]>
@@ -14836,7 +14881,8 @@ export namespace Prisma {
    */
   export interface Prisma__RedeemHistoryClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    User<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    coupon<T extends CouponDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CouponDefaultArgs<ExtArgs>>): Prisma__CouponClient<$Result.GetResult<Prisma.$CouponPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -14871,6 +14917,7 @@ export namespace Prisma {
     readonly userId: FieldRef<"RedeemHistory", 'String'>
     readonly points: FieldRef<"RedeemHistory", 'Int'>
     readonly description: FieldRef<"RedeemHistory", 'String'>
+    readonly couponCode: FieldRef<"RedeemHistory", 'String'>
     readonly createdAt: FieldRef<"RedeemHistory", 'DateTime'>
     readonly updatedAt: FieldRef<"RedeemHistory", 'DateTime'>
   }
@@ -15301,17 +15348,21 @@ export namespace Prisma {
 
   export type RecycleHistoryAvgAggregateOutputType = {
     points: number | null
+    totalCount: number | null
   }
 
   export type RecycleHistorySumAggregateOutputType = {
     points: number | null
+    totalCount: number | null
   }
 
   export type RecycleHistoryMinAggregateOutputType = {
     id: string | null
     userId: string | null
+    binId: string | null
     points: number | null
     mediaUrl: string | null
+    totalCount: number | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -15319,8 +15370,10 @@ export namespace Prisma {
   export type RecycleHistoryMaxAggregateOutputType = {
     id: string | null
     userId: string | null
+    binId: string | null
     points: number | null
     mediaUrl: string | null
+    totalCount: number | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -15328,8 +15381,10 @@ export namespace Prisma {
   export type RecycleHistoryCountAggregateOutputType = {
     id: number
     userId: number
+    binId: number
     points: number
     mediaUrl: number
+    totalCount: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -15338,17 +15393,21 @@ export namespace Prisma {
 
   export type RecycleHistoryAvgAggregateInputType = {
     points?: true
+    totalCount?: true
   }
 
   export type RecycleHistorySumAggregateInputType = {
     points?: true
+    totalCount?: true
   }
 
   export type RecycleHistoryMinAggregateInputType = {
     id?: true
     userId?: true
+    binId?: true
     points?: true
     mediaUrl?: true
+    totalCount?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -15356,8 +15415,10 @@ export namespace Prisma {
   export type RecycleHistoryMaxAggregateInputType = {
     id?: true
     userId?: true
+    binId?: true
     points?: true
     mediaUrl?: true
+    totalCount?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -15365,8 +15426,10 @@ export namespace Prisma {
   export type RecycleHistoryCountAggregateInputType = {
     id?: true
     userId?: true
+    binId?: true
     points?: true
     mediaUrl?: true
+    totalCount?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -15461,8 +15524,10 @@ export namespace Prisma {
   export type RecycleHistoryGroupByOutputType = {
     id: string
     userId: string
+    binId: string
     points: number
     mediaUrl: string | null
+    totalCount: number
     createdAt: Date
     updatedAt: Date
     _count: RecycleHistoryCountAggregateOutputType | null
@@ -15489,63 +15554,80 @@ export namespace Prisma {
   export type RecycleHistorySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     userId?: boolean
+    binId?: boolean
     points?: boolean
     mediaUrl?: boolean
+    totalCount?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    User?: boolean | UserDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    bin?: boolean | BinDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["recycleHistory"]>
 
   export type RecycleHistorySelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     userId?: boolean
+    binId?: boolean
     points?: boolean
     mediaUrl?: boolean
+    totalCount?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    User?: boolean | UserDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    bin?: boolean | BinDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["recycleHistory"]>
 
   export type RecycleHistorySelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     userId?: boolean
+    binId?: boolean
     points?: boolean
     mediaUrl?: boolean
+    totalCount?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    User?: boolean | UserDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    bin?: boolean | BinDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["recycleHistory"]>
 
   export type RecycleHistorySelectScalar = {
     id?: boolean
     userId?: boolean
+    binId?: boolean
     points?: boolean
     mediaUrl?: boolean
+    totalCount?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type RecycleHistoryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "points" | "mediaUrl" | "createdAt" | "updatedAt", ExtArgs["result"]["recycleHistory"]>
+  export type RecycleHistoryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "binId" | "points" | "mediaUrl" | "totalCount" | "createdAt" | "updatedAt", ExtArgs["result"]["recycleHistory"]>
   export type RecycleHistoryInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    User?: boolean | UserDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    bin?: boolean | BinDefaultArgs<ExtArgs>
   }
   export type RecycleHistoryIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    User?: boolean | UserDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    bin?: boolean | BinDefaultArgs<ExtArgs>
   }
   export type RecycleHistoryIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    User?: boolean | UserDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    bin?: boolean | BinDefaultArgs<ExtArgs>
   }
 
   export type $RecycleHistoryPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "RecycleHistory"
     objects: {
-      User: Prisma.$UserPayload<ExtArgs>
+      user: Prisma.$UserPayload<ExtArgs>
+      bin: Prisma.$BinPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
       userId: string
+      binId: string
       points: number
       mediaUrl: string | null
+      totalCount: number
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["recycleHistory"]>
@@ -15942,7 +16024,8 @@ export namespace Prisma {
    */
   export interface Prisma__RecycleHistoryClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    User<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    bin<T extends BinDefaultArgs<ExtArgs> = {}>(args?: Subset<T, BinDefaultArgs<ExtArgs>>): Prisma__BinClient<$Result.GetResult<Prisma.$BinPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -15974,8 +16057,10 @@ export namespace Prisma {
   interface RecycleHistoryFieldRefs {
     readonly id: FieldRef<"RecycleHistory", 'String'>
     readonly userId: FieldRef<"RecycleHistory", 'String'>
+    readonly binId: FieldRef<"RecycleHistory", 'String'>
     readonly points: FieldRef<"RecycleHistory", 'Int'>
     readonly mediaUrl: FieldRef<"RecycleHistory", 'String'>
+    readonly totalCount: FieldRef<"RecycleHistory", 'Int'>
     readonly createdAt: FieldRef<"RecycleHistory", 'DateTime'>
     readonly updatedAt: FieldRef<"RecycleHistory", 'DateTime'>
   }
@@ -17656,6 +17741,8 @@ export namespace Prisma {
     updatedAt?: boolean
     material?: boolean | MaterialDefaultArgs<ExtArgs>
     store?: boolean | StoreDefaultArgs<ExtArgs>
+    recycleHistory?: boolean | Bin$recycleHistoryArgs<ExtArgs>
+    _count?: boolean | BinCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["bin"]>
 
   export type BinSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -17702,6 +17789,8 @@ export namespace Prisma {
   export type BinInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     material?: boolean | MaterialDefaultArgs<ExtArgs>
     store?: boolean | StoreDefaultArgs<ExtArgs>
+    recycleHistory?: boolean | Bin$recycleHistoryArgs<ExtArgs>
+    _count?: boolean | BinCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type BinIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     material?: boolean | MaterialDefaultArgs<ExtArgs>
@@ -17717,6 +17806,7 @@ export namespace Prisma {
     objects: {
       material: Prisma.$MaterialPayload<ExtArgs>
       store: Prisma.$StorePayload<ExtArgs>
+      recycleHistory: Prisma.$RecycleHistoryPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -18124,6 +18214,7 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     material<T extends MaterialDefaultArgs<ExtArgs> = {}>(args?: Subset<T, MaterialDefaultArgs<ExtArgs>>): Prisma__MaterialClient<$Result.GetResult<Prisma.$MaterialPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     store<T extends StoreDefaultArgs<ExtArgs> = {}>(args?: Subset<T, StoreDefaultArgs<ExtArgs>>): Prisma__StoreClient<$Result.GetResult<Prisma.$StorePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    recycleHistory<T extends Bin$recycleHistoryArgs<ExtArgs> = {}>(args?: Subset<T, Bin$recycleHistoryArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RecycleHistoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -18558,6 +18649,30 @@ export namespace Prisma {
   }
 
   /**
+   * Bin.recycleHistory
+   */
+  export type Bin$recycleHistoryArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RecycleHistory
+     */
+    select?: RecycleHistorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RecycleHistory
+     */
+    omit?: RecycleHistoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RecycleHistoryInclude<ExtArgs> | null
+    where?: RecycleHistoryWhereInput
+    orderBy?: RecycleHistoryOrderByWithRelationInput | RecycleHistoryOrderByWithRelationInput[]
+    cursor?: RecycleHistoryWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: RecycleHistoryScalarFieldEnum | RecycleHistoryScalarFieldEnum[]
+  }
+
+  /**
    * Bin without action
    */
   export type BinDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -18589,10 +18704,12 @@ export namespace Prisma {
   }
 
   export type CouponAvgAggregateOutputType = {
+    discountAmount: number | null
     pointsToRedeem: number | null
   }
 
   export type CouponSumAggregateOutputType = {
+    discountAmount: number | null
     pointsToRedeem: number | null
   }
 
@@ -18605,7 +18722,7 @@ export namespace Prisma {
     couponType: $Enums.CouponType | null
     dealType: $Enums.DealType | null
     isFeatured: boolean | null
-    couponCode: string | null
+    discountAmount: number | null
     pointsToRedeem: number | null
     startDate: Date | null
     endDate: Date | null
@@ -18623,7 +18740,7 @@ export namespace Prisma {
     couponType: $Enums.CouponType | null
     dealType: $Enums.DealType | null
     isFeatured: boolean | null
-    couponCode: string | null
+    discountAmount: number | null
     pointsToRedeem: number | null
     startDate: Date | null
     endDate: Date | null
@@ -18641,7 +18758,7 @@ export namespace Prisma {
     couponType: number
     dealType: number
     isFeatured: number
-    couponCode: number
+    discountAmount: number
     pointsToRedeem: number
     startDate: number
     endDate: number
@@ -18653,10 +18770,12 @@ export namespace Prisma {
 
 
   export type CouponAvgAggregateInputType = {
+    discountAmount?: true
     pointsToRedeem?: true
   }
 
   export type CouponSumAggregateInputType = {
+    discountAmount?: true
     pointsToRedeem?: true
   }
 
@@ -18669,7 +18788,7 @@ export namespace Prisma {
     couponType?: true
     dealType?: true
     isFeatured?: true
-    couponCode?: true
+    discountAmount?: true
     pointsToRedeem?: true
     startDate?: true
     endDate?: true
@@ -18687,7 +18806,7 @@ export namespace Prisma {
     couponType?: true
     dealType?: true
     isFeatured?: true
-    couponCode?: true
+    discountAmount?: true
     pointsToRedeem?: true
     startDate?: true
     endDate?: true
@@ -18705,7 +18824,7 @@ export namespace Prisma {
     couponType?: true
     dealType?: true
     isFeatured?: true
-    couponCode?: true
+    discountAmount?: true
     pointsToRedeem?: true
     startDate?: true
     endDate?: true
@@ -18805,18 +18924,18 @@ export namespace Prisma {
     id: string
     name: string
     description: string | null
-    imageUrl: string
+    imageUrl: string | null
     status: $Enums.Status
     couponType: $Enums.CouponType
     dealType: $Enums.DealType
     isFeatured: boolean
-    couponCode: string
+    discountAmount: number
     pointsToRedeem: number
     startDate: Date
     endDate: Date
     createdAt: Date
     updatedAt: Date
-    organizationId: string
+    organizationId: string | null
     _count: CouponCountAggregateOutputType | null
     _avg: CouponAvgAggregateOutputType | null
     _sum: CouponSumAggregateOutputType | null
@@ -18847,15 +18966,16 @@ export namespace Prisma {
     couponType?: boolean
     dealType?: boolean
     isFeatured?: boolean
-    couponCode?: boolean
+    discountAmount?: boolean
     pointsToRedeem?: boolean
     startDate?: boolean
     endDate?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     organizationId?: boolean
-    organization?: boolean | OrganizationDefaultArgs<ExtArgs>
-    FavoriteCouponList?: boolean | Coupon$FavoriteCouponListArgs<ExtArgs>
+    organization?: boolean | Coupon$organizationArgs<ExtArgs>
+    favouriteCoupon?: boolean | Coupon$favouriteCouponArgs<ExtArgs>
+    redeemHistory?: boolean | Coupon$redeemHistoryArgs<ExtArgs>
     _count?: boolean | CouponCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["coupon"]>
 
@@ -18868,14 +18988,14 @@ export namespace Prisma {
     couponType?: boolean
     dealType?: boolean
     isFeatured?: boolean
-    couponCode?: boolean
+    discountAmount?: boolean
     pointsToRedeem?: boolean
     startDate?: boolean
     endDate?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     organizationId?: boolean
-    organization?: boolean | OrganizationDefaultArgs<ExtArgs>
+    organization?: boolean | Coupon$organizationArgs<ExtArgs>
   }, ExtArgs["result"]["coupon"]>
 
   export type CouponSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -18887,14 +19007,14 @@ export namespace Prisma {
     couponType?: boolean
     dealType?: boolean
     isFeatured?: boolean
-    couponCode?: boolean
+    discountAmount?: boolean
     pointsToRedeem?: boolean
     startDate?: boolean
     endDate?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     organizationId?: boolean
-    organization?: boolean | OrganizationDefaultArgs<ExtArgs>
+    organization?: boolean | Coupon$organizationArgs<ExtArgs>
   }, ExtArgs["result"]["coupon"]>
 
   export type CouponSelectScalar = {
@@ -18906,7 +19026,7 @@ export namespace Prisma {
     couponType?: boolean
     dealType?: boolean
     isFeatured?: boolean
-    couponCode?: boolean
+    discountAmount?: boolean
     pointsToRedeem?: boolean
     startDate?: boolean
     endDate?: boolean
@@ -18915,41 +19035,43 @@ export namespace Prisma {
     organizationId?: boolean
   }
 
-  export type CouponOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "description" | "imageUrl" | "status" | "couponType" | "dealType" | "isFeatured" | "couponCode" | "pointsToRedeem" | "startDate" | "endDate" | "createdAt" | "updatedAt" | "organizationId", ExtArgs["result"]["coupon"]>
+  export type CouponOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "description" | "imageUrl" | "status" | "couponType" | "dealType" | "isFeatured" | "discountAmount" | "pointsToRedeem" | "startDate" | "endDate" | "createdAt" | "updatedAt" | "organizationId", ExtArgs["result"]["coupon"]>
   export type CouponInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    organization?: boolean | OrganizationDefaultArgs<ExtArgs>
-    FavoriteCouponList?: boolean | Coupon$FavoriteCouponListArgs<ExtArgs>
+    organization?: boolean | Coupon$organizationArgs<ExtArgs>
+    favouriteCoupon?: boolean | Coupon$favouriteCouponArgs<ExtArgs>
+    redeemHistory?: boolean | Coupon$redeemHistoryArgs<ExtArgs>
     _count?: boolean | CouponCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type CouponIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    organization?: boolean | OrganizationDefaultArgs<ExtArgs>
+    organization?: boolean | Coupon$organizationArgs<ExtArgs>
   }
   export type CouponIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    organization?: boolean | OrganizationDefaultArgs<ExtArgs>
+    organization?: boolean | Coupon$organizationArgs<ExtArgs>
   }
 
   export type $CouponPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Coupon"
     objects: {
-      organization: Prisma.$OrganizationPayload<ExtArgs>
-      FavoriteCouponList: Prisma.$FavoriteCouponListPayload<ExtArgs>[]
+      organization: Prisma.$OrganizationPayload<ExtArgs> | null
+      favouriteCoupon: Prisma.$FavouriteCouponPayload<ExtArgs>[]
+      redeemHistory: Prisma.$RedeemHistoryPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
       name: string
       description: string | null
-      imageUrl: string
+      imageUrl: string | null
       status: $Enums.Status
       couponType: $Enums.CouponType
       dealType: $Enums.DealType
       isFeatured: boolean
-      couponCode: string
+      discountAmount: number
       pointsToRedeem: number
       startDate: Date
       endDate: Date
       createdAt: Date
       updatedAt: Date
-      organizationId: string
+      organizationId: string | null
     }, ExtArgs["result"]["coupon"]>
     composites: {}
   }
@@ -19344,8 +19466,9 @@ export namespace Prisma {
    */
   export interface Prisma__CouponClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    organization<T extends OrganizationDefaultArgs<ExtArgs> = {}>(args?: Subset<T, OrganizationDefaultArgs<ExtArgs>>): Prisma__OrganizationClient<$Result.GetResult<Prisma.$OrganizationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    FavoriteCouponList<T extends Coupon$FavoriteCouponListArgs<ExtArgs> = {}>(args?: Subset<T, Coupon$FavoriteCouponListArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FavoriteCouponListPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    organization<T extends Coupon$organizationArgs<ExtArgs> = {}>(args?: Subset<T, Coupon$organizationArgs<ExtArgs>>): Prisma__OrganizationClient<$Result.GetResult<Prisma.$OrganizationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    favouriteCoupon<T extends Coupon$favouriteCouponArgs<ExtArgs> = {}>(args?: Subset<T, Coupon$favouriteCouponArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FavouriteCouponPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    redeemHistory<T extends Coupon$redeemHistoryArgs<ExtArgs> = {}>(args?: Subset<T, Coupon$redeemHistoryArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RedeemHistoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -19383,7 +19506,7 @@ export namespace Prisma {
     readonly couponType: FieldRef<"Coupon", 'CouponType'>
     readonly dealType: FieldRef<"Coupon", 'DealType'>
     readonly isFeatured: FieldRef<"Coupon", 'Boolean'>
-    readonly couponCode: FieldRef<"Coupon", 'String'>
+    readonly discountAmount: FieldRef<"Coupon", 'Int'>
     readonly pointsToRedeem: FieldRef<"Coupon", 'Int'>
     readonly startDate: FieldRef<"Coupon", 'DateTime'>
     readonly endDate: FieldRef<"Coupon", 'DateTime'>
@@ -19786,27 +19909,70 @@ export namespace Prisma {
   }
 
   /**
-   * Coupon.FavoriteCouponList
+   * Coupon.organization
    */
-  export type Coupon$FavoriteCouponListArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Coupon$organizationArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the FavoriteCouponList
+     * Select specific fields to fetch from the Organization
      */
-    select?: FavoriteCouponListSelect<ExtArgs> | null
+    select?: OrganizationSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the FavoriteCouponList
+     * Omit specific fields from the Organization
      */
-    omit?: FavoriteCouponListOmit<ExtArgs> | null
+    omit?: OrganizationOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: FavoriteCouponListInclude<ExtArgs> | null
-    where?: FavoriteCouponListWhereInput
-    orderBy?: FavoriteCouponListOrderByWithRelationInput | FavoriteCouponListOrderByWithRelationInput[]
-    cursor?: FavoriteCouponListWhereUniqueInput
+    include?: OrganizationInclude<ExtArgs> | null
+    where?: OrganizationWhereInput
+  }
+
+  /**
+   * Coupon.favouriteCoupon
+   */
+  export type Coupon$favouriteCouponArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FavouriteCoupon
+     */
+    select?: FavouriteCouponSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FavouriteCoupon
+     */
+    omit?: FavouriteCouponOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FavouriteCouponInclude<ExtArgs> | null
+    where?: FavouriteCouponWhereInput
+    orderBy?: FavouriteCouponOrderByWithRelationInput | FavouriteCouponOrderByWithRelationInput[]
+    cursor?: FavouriteCouponWhereUniqueInput
     take?: number
     skip?: number
-    distinct?: FavoriteCouponListScalarFieldEnum | FavoriteCouponListScalarFieldEnum[]
+    distinct?: FavouriteCouponScalarFieldEnum | FavouriteCouponScalarFieldEnum[]
+  }
+
+  /**
+   * Coupon.redeemHistory
+   */
+  export type Coupon$redeemHistoryArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RedeemHistory
+     */
+    select?: RedeemHistorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RedeemHistory
+     */
+    omit?: RedeemHistoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RedeemHistoryInclude<ExtArgs> | null
+    where?: RedeemHistoryWhereInput
+    orderBy?: RedeemHistoryOrderByWithRelationInput | RedeemHistoryOrderByWithRelationInput[]
+    cursor?: RedeemHistoryWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: RedeemHistoryScalarFieldEnum | RedeemHistoryScalarFieldEnum[]
   }
 
   /**
@@ -19829,30 +19995,30 @@ export namespace Prisma {
 
 
   /**
-   * Model FavoriteCouponList
+   * Model FavouriteCoupon
    */
 
-  export type AggregateFavoriteCouponList = {
-    _count: FavoriteCouponListCountAggregateOutputType | null
-    _min: FavoriteCouponListMinAggregateOutputType | null
-    _max: FavoriteCouponListMaxAggregateOutputType | null
+  export type AggregateFavouriteCoupon = {
+    _count: FavouriteCouponCountAggregateOutputType | null
+    _min: FavouriteCouponMinAggregateOutputType | null
+    _max: FavouriteCouponMaxAggregateOutputType | null
   }
 
-  export type FavoriteCouponListMinAggregateOutputType = {
+  export type FavouriteCouponMinAggregateOutputType = {
     id: string | null
     userId: string | null
     couponId: string | null
     createdAt: Date | null
   }
 
-  export type FavoriteCouponListMaxAggregateOutputType = {
+  export type FavouriteCouponMaxAggregateOutputType = {
     id: string | null
     userId: string | null
     couponId: string | null
     createdAt: Date | null
   }
 
-  export type FavoriteCouponListCountAggregateOutputType = {
+  export type FavouriteCouponCountAggregateOutputType = {
     id: number
     userId: number
     couponId: number
@@ -19861,21 +20027,21 @@ export namespace Prisma {
   }
 
 
-  export type FavoriteCouponListMinAggregateInputType = {
+  export type FavouriteCouponMinAggregateInputType = {
     id?: true
     userId?: true
     couponId?: true
     createdAt?: true
   }
 
-  export type FavoriteCouponListMaxAggregateInputType = {
+  export type FavouriteCouponMaxAggregateInputType = {
     id?: true
     userId?: true
     couponId?: true
     createdAt?: true
   }
 
-  export type FavoriteCouponListCountAggregateInputType = {
+  export type FavouriteCouponCountAggregateInputType = {
     id?: true
     userId?: true
     couponId?: true
@@ -19883,291 +20049,291 @@ export namespace Prisma {
     _all?: true
   }
 
-  export type FavoriteCouponListAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FavouriteCouponAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which FavoriteCouponList to aggregate.
+     * Filter which FavouriteCoupon to aggregate.
      */
-    where?: FavoriteCouponListWhereInput
+    where?: FavouriteCouponWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of FavoriteCouponLists to fetch.
+     * Determine the order of FavouriteCoupons to fetch.
      */
-    orderBy?: FavoriteCouponListOrderByWithRelationInput | FavoriteCouponListOrderByWithRelationInput[]
+    orderBy?: FavouriteCouponOrderByWithRelationInput | FavouriteCouponOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the start position
      */
-    cursor?: FavoriteCouponListWhereUniqueInput
+    cursor?: FavouriteCouponWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` FavoriteCouponLists from the position of the cursor.
+     * Take `±n` FavouriteCoupons from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` FavoriteCouponLists.
+     * Skip the first `n` FavouriteCoupons.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Count returned FavoriteCouponLists
+     * Count returned FavouriteCoupons
     **/
-    _count?: true | FavoriteCouponListCountAggregateInputType
+    _count?: true | FavouriteCouponCountAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the minimum value
     **/
-    _min?: FavoriteCouponListMinAggregateInputType
+    _min?: FavouriteCouponMinAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the maximum value
     **/
-    _max?: FavoriteCouponListMaxAggregateInputType
+    _max?: FavouriteCouponMaxAggregateInputType
   }
 
-  export type GetFavoriteCouponListAggregateType<T extends FavoriteCouponListAggregateArgs> = {
-        [P in keyof T & keyof AggregateFavoriteCouponList]: P extends '_count' | 'count'
+  export type GetFavouriteCouponAggregateType<T extends FavouriteCouponAggregateArgs> = {
+        [P in keyof T & keyof AggregateFavouriteCoupon]: P extends '_count' | 'count'
       ? T[P] extends true
         ? number
-        : GetScalarType<T[P], AggregateFavoriteCouponList[P]>
-      : GetScalarType<T[P], AggregateFavoriteCouponList[P]>
+        : GetScalarType<T[P], AggregateFavouriteCoupon[P]>
+      : GetScalarType<T[P], AggregateFavouriteCoupon[P]>
   }
 
 
 
 
-  export type FavoriteCouponListGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: FavoriteCouponListWhereInput
-    orderBy?: FavoriteCouponListOrderByWithAggregationInput | FavoriteCouponListOrderByWithAggregationInput[]
-    by: FavoriteCouponListScalarFieldEnum[] | FavoriteCouponListScalarFieldEnum
-    having?: FavoriteCouponListScalarWhereWithAggregatesInput
+  export type FavouriteCouponGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FavouriteCouponWhereInput
+    orderBy?: FavouriteCouponOrderByWithAggregationInput | FavouriteCouponOrderByWithAggregationInput[]
+    by: FavouriteCouponScalarFieldEnum[] | FavouriteCouponScalarFieldEnum
+    having?: FavouriteCouponScalarWhereWithAggregatesInput
     take?: number
     skip?: number
-    _count?: FavoriteCouponListCountAggregateInputType | true
-    _min?: FavoriteCouponListMinAggregateInputType
-    _max?: FavoriteCouponListMaxAggregateInputType
+    _count?: FavouriteCouponCountAggregateInputType | true
+    _min?: FavouriteCouponMinAggregateInputType
+    _max?: FavouriteCouponMaxAggregateInputType
   }
 
-  export type FavoriteCouponListGroupByOutputType = {
+  export type FavouriteCouponGroupByOutputType = {
     id: string
     userId: string
     couponId: string
     createdAt: Date
-    _count: FavoriteCouponListCountAggregateOutputType | null
-    _min: FavoriteCouponListMinAggregateOutputType | null
-    _max: FavoriteCouponListMaxAggregateOutputType | null
+    _count: FavouriteCouponCountAggregateOutputType | null
+    _min: FavouriteCouponMinAggregateOutputType | null
+    _max: FavouriteCouponMaxAggregateOutputType | null
   }
 
-  type GetFavoriteCouponListGroupByPayload<T extends FavoriteCouponListGroupByArgs> = Prisma.PrismaPromise<
+  type GetFavouriteCouponGroupByPayload<T extends FavouriteCouponGroupByArgs> = Prisma.PrismaPromise<
     Array<
-      PickEnumerable<FavoriteCouponListGroupByOutputType, T['by']> &
+      PickEnumerable<FavouriteCouponGroupByOutputType, T['by']> &
         {
-          [P in ((keyof T) & (keyof FavoriteCouponListGroupByOutputType))]: P extends '_count'
+          [P in ((keyof T) & (keyof FavouriteCouponGroupByOutputType))]: P extends '_count'
             ? T[P] extends boolean
               ? number
-              : GetScalarType<T[P], FavoriteCouponListGroupByOutputType[P]>
-            : GetScalarType<T[P], FavoriteCouponListGroupByOutputType[P]>
+              : GetScalarType<T[P], FavouriteCouponGroupByOutputType[P]>
+            : GetScalarType<T[P], FavouriteCouponGroupByOutputType[P]>
         }
       >
     >
 
 
-  export type FavoriteCouponListSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type FavouriteCouponSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     userId?: boolean
     couponId?: boolean
     createdAt?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
     coupon?: boolean | CouponDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["favoriteCouponList"]>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["favouriteCoupon"]>
 
-  export type FavoriteCouponListSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type FavouriteCouponSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     userId?: boolean
     couponId?: boolean
     createdAt?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
     coupon?: boolean | CouponDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["favoriteCouponList"]>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["favouriteCoupon"]>
 
-  export type FavoriteCouponListSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type FavouriteCouponSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     userId?: boolean
     couponId?: boolean
     createdAt?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
     coupon?: boolean | CouponDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["favoriteCouponList"]>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["favouriteCoupon"]>
 
-  export type FavoriteCouponListSelectScalar = {
+  export type FavouriteCouponSelectScalar = {
     id?: boolean
     userId?: boolean
     couponId?: boolean
     createdAt?: boolean
   }
 
-  export type FavoriteCouponListOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "couponId" | "createdAt", ExtArgs["result"]["favoriteCouponList"]>
-  export type FavoriteCouponListInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
+  export type FavouriteCouponOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "couponId" | "createdAt", ExtArgs["result"]["favouriteCoupon"]>
+  export type FavouriteCouponInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     coupon?: boolean | CouponDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }
-  export type FavoriteCouponListIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
+  export type FavouriteCouponIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     coupon?: boolean | CouponDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }
-  export type FavoriteCouponListIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
+  export type FavouriteCouponIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     coupon?: boolean | CouponDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }
 
-  export type $FavoriteCouponListPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "FavoriteCouponList"
+  export type $FavouriteCouponPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "FavouriteCoupon"
     objects: {
-      user: Prisma.$UserPayload<ExtArgs>
       coupon: Prisma.$CouponPayload<ExtArgs>
+      user: Prisma.$UserPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
       userId: string
       couponId: string
       createdAt: Date
-    }, ExtArgs["result"]["favoriteCouponList"]>
+    }, ExtArgs["result"]["favouriteCoupon"]>
     composites: {}
   }
 
-  type FavoriteCouponListGetPayload<S extends boolean | null | undefined | FavoriteCouponListDefaultArgs> = $Result.GetResult<Prisma.$FavoriteCouponListPayload, S>
+  type FavouriteCouponGetPayload<S extends boolean | null | undefined | FavouriteCouponDefaultArgs> = $Result.GetResult<Prisma.$FavouriteCouponPayload, S>
 
-  type FavoriteCouponListCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<FavoriteCouponListFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: FavoriteCouponListCountAggregateInputType | true
+  type FavouriteCouponCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<FavouriteCouponFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: FavouriteCouponCountAggregateInputType | true
     }
 
-  export interface FavoriteCouponListDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['FavoriteCouponList'], meta: { name: 'FavoriteCouponList' } }
+  export interface FavouriteCouponDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['FavouriteCoupon'], meta: { name: 'FavouriteCoupon' } }
     /**
-     * Find zero or one FavoriteCouponList that matches the filter.
-     * @param {FavoriteCouponListFindUniqueArgs} args - Arguments to find a FavoriteCouponList
+     * Find zero or one FavouriteCoupon that matches the filter.
+     * @param {FavouriteCouponFindUniqueArgs} args - Arguments to find a FavouriteCoupon
      * @example
-     * // Get one FavoriteCouponList
-     * const favoriteCouponList = await prisma.favoriteCouponList.findUnique({
+     * // Get one FavouriteCoupon
+     * const favouriteCoupon = await prisma.favouriteCoupon.findUnique({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUnique<T extends FavoriteCouponListFindUniqueArgs>(args: SelectSubset<T, FavoriteCouponListFindUniqueArgs<ExtArgs>>): Prisma__FavoriteCouponListClient<$Result.GetResult<Prisma.$FavoriteCouponListPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findUnique<T extends FavouriteCouponFindUniqueArgs>(args: SelectSubset<T, FavouriteCouponFindUniqueArgs<ExtArgs>>): Prisma__FavouriteCouponClient<$Result.GetResult<Prisma.$FavouriteCouponPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find one FavoriteCouponList that matches the filter or throw an error with `error.code='P2025'`
+     * Find one FavouriteCoupon that matches the filter or throw an error with `error.code='P2025'`
      * if no matches were found.
-     * @param {FavoriteCouponListFindUniqueOrThrowArgs} args - Arguments to find a FavoriteCouponList
+     * @param {FavouriteCouponFindUniqueOrThrowArgs} args - Arguments to find a FavouriteCoupon
      * @example
-     * // Get one FavoriteCouponList
-     * const favoriteCouponList = await prisma.favoriteCouponList.findUniqueOrThrow({
+     * // Get one FavouriteCoupon
+     * const favouriteCoupon = await prisma.favouriteCoupon.findUniqueOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUniqueOrThrow<T extends FavoriteCouponListFindUniqueOrThrowArgs>(args: SelectSubset<T, FavoriteCouponListFindUniqueOrThrowArgs<ExtArgs>>): Prisma__FavoriteCouponListClient<$Result.GetResult<Prisma.$FavoriteCouponListPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findUniqueOrThrow<T extends FavouriteCouponFindUniqueOrThrowArgs>(args: SelectSubset<T, FavouriteCouponFindUniqueOrThrowArgs<ExtArgs>>): Prisma__FavouriteCouponClient<$Result.GetResult<Prisma.$FavouriteCouponPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first FavoriteCouponList that matches the filter.
+     * Find the first FavouriteCoupon that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {FavoriteCouponListFindFirstArgs} args - Arguments to find a FavoriteCouponList
+     * @param {FavouriteCouponFindFirstArgs} args - Arguments to find a FavouriteCoupon
      * @example
-     * // Get one FavoriteCouponList
-     * const favoriteCouponList = await prisma.favoriteCouponList.findFirst({
+     * // Get one FavouriteCoupon
+     * const favouriteCoupon = await prisma.favouriteCoupon.findFirst({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirst<T extends FavoriteCouponListFindFirstArgs>(args?: SelectSubset<T, FavoriteCouponListFindFirstArgs<ExtArgs>>): Prisma__FavoriteCouponListClient<$Result.GetResult<Prisma.$FavoriteCouponListPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findFirst<T extends FavouriteCouponFindFirstArgs>(args?: SelectSubset<T, FavouriteCouponFindFirstArgs<ExtArgs>>): Prisma__FavouriteCouponClient<$Result.GetResult<Prisma.$FavouriteCouponPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first FavoriteCouponList that matches the filter or
+     * Find the first FavouriteCoupon that matches the filter or
      * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {FavoriteCouponListFindFirstOrThrowArgs} args - Arguments to find a FavoriteCouponList
+     * @param {FavouriteCouponFindFirstOrThrowArgs} args - Arguments to find a FavouriteCoupon
      * @example
-     * // Get one FavoriteCouponList
-     * const favoriteCouponList = await prisma.favoriteCouponList.findFirstOrThrow({
+     * // Get one FavouriteCoupon
+     * const favouriteCoupon = await prisma.favouriteCoupon.findFirstOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirstOrThrow<T extends FavoriteCouponListFindFirstOrThrowArgs>(args?: SelectSubset<T, FavoriteCouponListFindFirstOrThrowArgs<ExtArgs>>): Prisma__FavoriteCouponListClient<$Result.GetResult<Prisma.$FavoriteCouponListPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findFirstOrThrow<T extends FavouriteCouponFindFirstOrThrowArgs>(args?: SelectSubset<T, FavouriteCouponFindFirstOrThrowArgs<ExtArgs>>): Prisma__FavouriteCouponClient<$Result.GetResult<Prisma.$FavouriteCouponPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find zero or more FavoriteCouponLists that matches the filter.
+     * Find zero or more FavouriteCoupons that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {FavoriteCouponListFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @param {FavouriteCouponFindManyArgs} args - Arguments to filter and select certain fields only.
      * @example
-     * // Get all FavoriteCouponLists
-     * const favoriteCouponLists = await prisma.favoriteCouponList.findMany()
+     * // Get all FavouriteCoupons
+     * const favouriteCoupons = await prisma.favouriteCoupon.findMany()
      * 
-     * // Get first 10 FavoriteCouponLists
-     * const favoriteCouponLists = await prisma.favoriteCouponList.findMany({ take: 10 })
+     * // Get first 10 FavouriteCoupons
+     * const favouriteCoupons = await prisma.favouriteCoupon.findMany({ take: 10 })
      * 
      * // Only select the `id`
-     * const favoriteCouponListWithIdOnly = await prisma.favoriteCouponList.findMany({ select: { id: true } })
+     * const favouriteCouponWithIdOnly = await prisma.favouriteCoupon.findMany({ select: { id: true } })
      * 
      */
-    findMany<T extends FavoriteCouponListFindManyArgs>(args?: SelectSubset<T, FavoriteCouponListFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FavoriteCouponListPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+    findMany<T extends FavouriteCouponFindManyArgs>(args?: SelectSubset<T, FavouriteCouponFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FavouriteCouponPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
     /**
-     * Create a FavoriteCouponList.
-     * @param {FavoriteCouponListCreateArgs} args - Arguments to create a FavoriteCouponList.
+     * Create a FavouriteCoupon.
+     * @param {FavouriteCouponCreateArgs} args - Arguments to create a FavouriteCoupon.
      * @example
-     * // Create one FavoriteCouponList
-     * const FavoriteCouponList = await prisma.favoriteCouponList.create({
+     * // Create one FavouriteCoupon
+     * const FavouriteCoupon = await prisma.favouriteCoupon.create({
      *   data: {
-     *     // ... data to create a FavoriteCouponList
+     *     // ... data to create a FavouriteCoupon
      *   }
      * })
      * 
      */
-    create<T extends FavoriteCouponListCreateArgs>(args: SelectSubset<T, FavoriteCouponListCreateArgs<ExtArgs>>): Prisma__FavoriteCouponListClient<$Result.GetResult<Prisma.$FavoriteCouponListPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    create<T extends FavouriteCouponCreateArgs>(args: SelectSubset<T, FavouriteCouponCreateArgs<ExtArgs>>): Prisma__FavouriteCouponClient<$Result.GetResult<Prisma.$FavouriteCouponPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Create many FavoriteCouponLists.
-     * @param {FavoriteCouponListCreateManyArgs} args - Arguments to create many FavoriteCouponLists.
+     * Create many FavouriteCoupons.
+     * @param {FavouriteCouponCreateManyArgs} args - Arguments to create many FavouriteCoupons.
      * @example
-     * // Create many FavoriteCouponLists
-     * const favoriteCouponList = await prisma.favoriteCouponList.createMany({
+     * // Create many FavouriteCoupons
+     * const favouriteCoupon = await prisma.favouriteCoupon.createMany({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      *     
      */
-    createMany<T extends FavoriteCouponListCreateManyArgs>(args?: SelectSubset<T, FavoriteCouponListCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    createMany<T extends FavouriteCouponCreateManyArgs>(args?: SelectSubset<T, FavouriteCouponCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Create many FavoriteCouponLists and returns the data saved in the database.
-     * @param {FavoriteCouponListCreateManyAndReturnArgs} args - Arguments to create many FavoriteCouponLists.
+     * Create many FavouriteCoupons and returns the data saved in the database.
+     * @param {FavouriteCouponCreateManyAndReturnArgs} args - Arguments to create many FavouriteCoupons.
      * @example
-     * // Create many FavoriteCouponLists
-     * const favoriteCouponList = await prisma.favoriteCouponList.createManyAndReturn({
+     * // Create many FavouriteCoupons
+     * const favouriteCoupon = await prisma.favouriteCoupon.createManyAndReturn({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      * 
-     * // Create many FavoriteCouponLists and only return the `id`
-     * const favoriteCouponListWithIdOnly = await prisma.favoriteCouponList.createManyAndReturn({
+     * // Create many FavouriteCoupons and only return the `id`
+     * const favouriteCouponWithIdOnly = await prisma.favouriteCoupon.createManyAndReturn({
      *   select: { id: true },
      *   data: [
      *     // ... provide data here
@@ -20177,28 +20343,28 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      * 
      */
-    createManyAndReturn<T extends FavoriteCouponListCreateManyAndReturnArgs>(args?: SelectSubset<T, FavoriteCouponListCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FavoriteCouponListPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+    createManyAndReturn<T extends FavouriteCouponCreateManyAndReturnArgs>(args?: SelectSubset<T, FavouriteCouponCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FavouriteCouponPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
 
     /**
-     * Delete a FavoriteCouponList.
-     * @param {FavoriteCouponListDeleteArgs} args - Arguments to delete one FavoriteCouponList.
+     * Delete a FavouriteCoupon.
+     * @param {FavouriteCouponDeleteArgs} args - Arguments to delete one FavouriteCoupon.
      * @example
-     * // Delete one FavoriteCouponList
-     * const FavoriteCouponList = await prisma.favoriteCouponList.delete({
+     * // Delete one FavouriteCoupon
+     * const FavouriteCoupon = await prisma.favouriteCoupon.delete({
      *   where: {
-     *     // ... filter to delete one FavoriteCouponList
+     *     // ... filter to delete one FavouriteCoupon
      *   }
      * })
      * 
      */
-    delete<T extends FavoriteCouponListDeleteArgs>(args: SelectSubset<T, FavoriteCouponListDeleteArgs<ExtArgs>>): Prisma__FavoriteCouponListClient<$Result.GetResult<Prisma.$FavoriteCouponListPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    delete<T extends FavouriteCouponDeleteArgs>(args: SelectSubset<T, FavouriteCouponDeleteArgs<ExtArgs>>): Prisma__FavouriteCouponClient<$Result.GetResult<Prisma.$FavouriteCouponPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Update one FavoriteCouponList.
-     * @param {FavoriteCouponListUpdateArgs} args - Arguments to update one FavoriteCouponList.
+     * Update one FavouriteCoupon.
+     * @param {FavouriteCouponUpdateArgs} args - Arguments to update one FavouriteCoupon.
      * @example
-     * // Update one FavoriteCouponList
-     * const favoriteCouponList = await prisma.favoriteCouponList.update({
+     * // Update one FavouriteCoupon
+     * const favouriteCoupon = await prisma.favouriteCoupon.update({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -20208,30 +20374,30 @@ export namespace Prisma {
      * })
      * 
      */
-    update<T extends FavoriteCouponListUpdateArgs>(args: SelectSubset<T, FavoriteCouponListUpdateArgs<ExtArgs>>): Prisma__FavoriteCouponListClient<$Result.GetResult<Prisma.$FavoriteCouponListPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    update<T extends FavouriteCouponUpdateArgs>(args: SelectSubset<T, FavouriteCouponUpdateArgs<ExtArgs>>): Prisma__FavouriteCouponClient<$Result.GetResult<Prisma.$FavouriteCouponPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Delete zero or more FavoriteCouponLists.
-     * @param {FavoriteCouponListDeleteManyArgs} args - Arguments to filter FavoriteCouponLists to delete.
+     * Delete zero or more FavouriteCoupons.
+     * @param {FavouriteCouponDeleteManyArgs} args - Arguments to filter FavouriteCoupons to delete.
      * @example
-     * // Delete a few FavoriteCouponLists
-     * const { count } = await prisma.favoriteCouponList.deleteMany({
+     * // Delete a few FavouriteCoupons
+     * const { count } = await prisma.favouriteCoupon.deleteMany({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      * 
      */
-    deleteMany<T extends FavoriteCouponListDeleteManyArgs>(args?: SelectSubset<T, FavoriteCouponListDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    deleteMany<T extends FavouriteCouponDeleteManyArgs>(args?: SelectSubset<T, FavouriteCouponDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more FavoriteCouponLists.
+     * Update zero or more FavouriteCoupons.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {FavoriteCouponListUpdateManyArgs} args - Arguments to update one or more rows.
+     * @param {FavouriteCouponUpdateManyArgs} args - Arguments to update one or more rows.
      * @example
-     * // Update many FavoriteCouponLists
-     * const favoriteCouponList = await prisma.favoriteCouponList.updateMany({
+     * // Update many FavouriteCoupons
+     * const favouriteCoupon = await prisma.favouriteCoupon.updateMany({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -20241,14 +20407,14 @@ export namespace Prisma {
      * })
      * 
      */
-    updateMany<T extends FavoriteCouponListUpdateManyArgs>(args: SelectSubset<T, FavoriteCouponListUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    updateMany<T extends FavouriteCouponUpdateManyArgs>(args: SelectSubset<T, FavouriteCouponUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more FavoriteCouponLists and returns the data updated in the database.
-     * @param {FavoriteCouponListUpdateManyAndReturnArgs} args - Arguments to update many FavoriteCouponLists.
+     * Update zero or more FavouriteCoupons and returns the data updated in the database.
+     * @param {FavouriteCouponUpdateManyAndReturnArgs} args - Arguments to update many FavouriteCoupons.
      * @example
-     * // Update many FavoriteCouponLists
-     * const favoriteCouponList = await prisma.favoriteCouponList.updateManyAndReturn({
+     * // Update many FavouriteCoupons
+     * const favouriteCoupon = await prisma.favouriteCoupon.updateManyAndReturn({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -20257,8 +20423,8 @@ export namespace Prisma {
      *   ]
      * })
      * 
-     * // Update zero or more FavoriteCouponLists and only return the `id`
-     * const favoriteCouponListWithIdOnly = await prisma.favoriteCouponList.updateManyAndReturn({
+     * // Update zero or more FavouriteCoupons and only return the `id`
+     * const favouriteCouponWithIdOnly = await prisma.favouriteCoupon.updateManyAndReturn({
      *   select: { id: true },
      *   where: {
      *     // ... provide filter here
@@ -20271,56 +20437,56 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      * 
      */
-    updateManyAndReturn<T extends FavoriteCouponListUpdateManyAndReturnArgs>(args: SelectSubset<T, FavoriteCouponListUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FavoriteCouponListPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+    updateManyAndReturn<T extends FavouriteCouponUpdateManyAndReturnArgs>(args: SelectSubset<T, FavouriteCouponUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FavouriteCouponPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
 
     /**
-     * Create or update one FavoriteCouponList.
-     * @param {FavoriteCouponListUpsertArgs} args - Arguments to update or create a FavoriteCouponList.
+     * Create or update one FavouriteCoupon.
+     * @param {FavouriteCouponUpsertArgs} args - Arguments to update or create a FavouriteCoupon.
      * @example
-     * // Update or create a FavoriteCouponList
-     * const favoriteCouponList = await prisma.favoriteCouponList.upsert({
+     * // Update or create a FavouriteCoupon
+     * const favouriteCoupon = await prisma.favouriteCoupon.upsert({
      *   create: {
-     *     // ... data to create a FavoriteCouponList
+     *     // ... data to create a FavouriteCoupon
      *   },
      *   update: {
      *     // ... in case it already exists, update
      *   },
      *   where: {
-     *     // ... the filter for the FavoriteCouponList we want to update
+     *     // ... the filter for the FavouriteCoupon we want to update
      *   }
      * })
      */
-    upsert<T extends FavoriteCouponListUpsertArgs>(args: SelectSubset<T, FavoriteCouponListUpsertArgs<ExtArgs>>): Prisma__FavoriteCouponListClient<$Result.GetResult<Prisma.$FavoriteCouponListPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    upsert<T extends FavouriteCouponUpsertArgs>(args: SelectSubset<T, FavouriteCouponUpsertArgs<ExtArgs>>): Prisma__FavouriteCouponClient<$Result.GetResult<Prisma.$FavouriteCouponPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
 
     /**
-     * Count the number of FavoriteCouponLists.
+     * Count the number of FavouriteCoupons.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {FavoriteCouponListCountArgs} args - Arguments to filter FavoriteCouponLists to count.
+     * @param {FavouriteCouponCountArgs} args - Arguments to filter FavouriteCoupons to count.
      * @example
-     * // Count the number of FavoriteCouponLists
-     * const count = await prisma.favoriteCouponList.count({
+     * // Count the number of FavouriteCoupons
+     * const count = await prisma.favouriteCoupon.count({
      *   where: {
-     *     // ... the filter for the FavoriteCouponLists we want to count
+     *     // ... the filter for the FavouriteCoupons we want to count
      *   }
      * })
     **/
-    count<T extends FavoriteCouponListCountArgs>(
-      args?: Subset<T, FavoriteCouponListCountArgs>,
+    count<T extends FavouriteCouponCountArgs>(
+      args?: Subset<T, FavouriteCouponCountArgs>,
     ): Prisma.PrismaPromise<
       T extends $Utils.Record<'select', any>
         ? T['select'] extends true
           ? number
-          : GetScalarType<T['select'], FavoriteCouponListCountAggregateOutputType>
+          : GetScalarType<T['select'], FavouriteCouponCountAggregateOutputType>
         : number
     >
 
     /**
-     * Allows you to perform aggregations operations on a FavoriteCouponList.
+     * Allows you to perform aggregations operations on a FavouriteCoupon.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {FavoriteCouponListAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @param {FavouriteCouponAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
      * @example
      * // Ordered by age ascending
      * // Where email contains prisma.io
@@ -20340,13 +20506,13 @@ export namespace Prisma {
      *   take: 10,
      * })
     **/
-    aggregate<T extends FavoriteCouponListAggregateArgs>(args: Subset<T, FavoriteCouponListAggregateArgs>): Prisma.PrismaPromise<GetFavoriteCouponListAggregateType<T>>
+    aggregate<T extends FavouriteCouponAggregateArgs>(args: Subset<T, FavouriteCouponAggregateArgs>): Prisma.PrismaPromise<GetFavouriteCouponAggregateType<T>>
 
     /**
-     * Group by FavoriteCouponList.
+     * Group by FavouriteCoupon.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {FavoriteCouponListGroupByArgs} args - Group by arguments.
+     * @param {FavouriteCouponGroupByArgs} args - Group by arguments.
      * @example
      * // Group by city, order by createdAt, get count
      * const result = await prisma.user.groupBy({
@@ -20361,14 +20527,14 @@ export namespace Prisma {
      * 
     **/
     groupBy<
-      T extends FavoriteCouponListGroupByArgs,
+      T extends FavouriteCouponGroupByArgs,
       HasSelectOrTake extends Or<
         Extends<'skip', Keys<T>>,
         Extends<'take', Keys<T>>
       >,
       OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: FavoriteCouponListGroupByArgs['orderBy'] }
-        : { orderBy?: FavoriteCouponListGroupByArgs['orderBy'] },
+        ? { orderBy: FavouriteCouponGroupByArgs['orderBy'] }
+        : { orderBy?: FavouriteCouponGroupByArgs['orderBy'] },
       OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
       ByFields extends MaybeTupleToUnion<T['by']>,
       ByValid extends Has<ByFields, OrderFields>,
@@ -20417,23 +20583,23 @@ export namespace Prisma {
             ? never
             : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
         }[OrderFields]
-    >(args: SubsetIntersection<T, FavoriteCouponListGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetFavoriteCouponListGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+    >(args: SubsetIntersection<T, FavouriteCouponGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetFavouriteCouponGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
   /**
-   * Fields of the FavoriteCouponList model
+   * Fields of the FavouriteCoupon model
    */
-  readonly fields: FavoriteCouponListFieldRefs;
+  readonly fields: FavouriteCouponFieldRefs;
   }
 
   /**
-   * The delegate class that acts as a "Promise-like" for FavoriteCouponList.
+   * The delegate class that acts as a "Promise-like" for FavouriteCoupon.
    * Why is this prefixed with `Prisma__`?
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__FavoriteCouponListClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__FavouriteCouponClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     coupon<T extends CouponDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CouponDefaultArgs<ExtArgs>>): Prisma__CouponClient<$Result.GetResult<Prisma.$CouponPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -20460,424 +20626,424 @@ export namespace Prisma {
 
 
   /**
-   * Fields of the FavoriteCouponList model
+   * Fields of the FavouriteCoupon model
    */
-  interface FavoriteCouponListFieldRefs {
-    readonly id: FieldRef<"FavoriteCouponList", 'String'>
-    readonly userId: FieldRef<"FavoriteCouponList", 'String'>
-    readonly couponId: FieldRef<"FavoriteCouponList", 'String'>
-    readonly createdAt: FieldRef<"FavoriteCouponList", 'DateTime'>
+  interface FavouriteCouponFieldRefs {
+    readonly id: FieldRef<"FavouriteCoupon", 'String'>
+    readonly userId: FieldRef<"FavouriteCoupon", 'String'>
+    readonly couponId: FieldRef<"FavouriteCoupon", 'String'>
+    readonly createdAt: FieldRef<"FavouriteCoupon", 'DateTime'>
   }
     
 
   // Custom InputTypes
   /**
-   * FavoriteCouponList findUnique
+   * FavouriteCoupon findUnique
    */
-  export type FavoriteCouponListFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FavouriteCouponFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the FavoriteCouponList
+     * Select specific fields to fetch from the FavouriteCoupon
      */
-    select?: FavoriteCouponListSelect<ExtArgs> | null
+    select?: FavouriteCouponSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the FavoriteCouponList
+     * Omit specific fields from the FavouriteCoupon
      */
-    omit?: FavoriteCouponListOmit<ExtArgs> | null
+    omit?: FavouriteCouponOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: FavoriteCouponListInclude<ExtArgs> | null
+    include?: FavouriteCouponInclude<ExtArgs> | null
     /**
-     * Filter, which FavoriteCouponList to fetch.
+     * Filter, which FavouriteCoupon to fetch.
      */
-    where: FavoriteCouponListWhereUniqueInput
+    where: FavouriteCouponWhereUniqueInput
   }
 
   /**
-   * FavoriteCouponList findUniqueOrThrow
+   * FavouriteCoupon findUniqueOrThrow
    */
-  export type FavoriteCouponListFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FavouriteCouponFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the FavoriteCouponList
+     * Select specific fields to fetch from the FavouriteCoupon
      */
-    select?: FavoriteCouponListSelect<ExtArgs> | null
+    select?: FavouriteCouponSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the FavoriteCouponList
+     * Omit specific fields from the FavouriteCoupon
      */
-    omit?: FavoriteCouponListOmit<ExtArgs> | null
+    omit?: FavouriteCouponOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: FavoriteCouponListInclude<ExtArgs> | null
+    include?: FavouriteCouponInclude<ExtArgs> | null
     /**
-     * Filter, which FavoriteCouponList to fetch.
+     * Filter, which FavouriteCoupon to fetch.
      */
-    where: FavoriteCouponListWhereUniqueInput
+    where: FavouriteCouponWhereUniqueInput
   }
 
   /**
-   * FavoriteCouponList findFirst
+   * FavouriteCoupon findFirst
    */
-  export type FavoriteCouponListFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FavouriteCouponFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the FavoriteCouponList
+     * Select specific fields to fetch from the FavouriteCoupon
      */
-    select?: FavoriteCouponListSelect<ExtArgs> | null
+    select?: FavouriteCouponSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the FavoriteCouponList
+     * Omit specific fields from the FavouriteCoupon
      */
-    omit?: FavoriteCouponListOmit<ExtArgs> | null
+    omit?: FavouriteCouponOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: FavoriteCouponListInclude<ExtArgs> | null
+    include?: FavouriteCouponInclude<ExtArgs> | null
     /**
-     * Filter, which FavoriteCouponList to fetch.
+     * Filter, which FavouriteCoupon to fetch.
      */
-    where?: FavoriteCouponListWhereInput
+    where?: FavouriteCouponWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of FavoriteCouponLists to fetch.
+     * Determine the order of FavouriteCoupons to fetch.
      */
-    orderBy?: FavoriteCouponListOrderByWithRelationInput | FavoriteCouponListOrderByWithRelationInput[]
+    orderBy?: FavouriteCouponOrderByWithRelationInput | FavouriteCouponOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for FavoriteCouponLists.
+     * Sets the position for searching for FavouriteCoupons.
      */
-    cursor?: FavoriteCouponListWhereUniqueInput
+    cursor?: FavouriteCouponWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` FavoriteCouponLists from the position of the cursor.
+     * Take `±n` FavouriteCoupons from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` FavoriteCouponLists.
+     * Skip the first `n` FavouriteCoupons.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of FavoriteCouponLists.
+     * Filter by unique combinations of FavouriteCoupons.
      */
-    distinct?: FavoriteCouponListScalarFieldEnum | FavoriteCouponListScalarFieldEnum[]
+    distinct?: FavouriteCouponScalarFieldEnum | FavouriteCouponScalarFieldEnum[]
   }
 
   /**
-   * FavoriteCouponList findFirstOrThrow
+   * FavouriteCoupon findFirstOrThrow
    */
-  export type FavoriteCouponListFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FavouriteCouponFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the FavoriteCouponList
+     * Select specific fields to fetch from the FavouriteCoupon
      */
-    select?: FavoriteCouponListSelect<ExtArgs> | null
+    select?: FavouriteCouponSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the FavoriteCouponList
+     * Omit specific fields from the FavouriteCoupon
      */
-    omit?: FavoriteCouponListOmit<ExtArgs> | null
+    omit?: FavouriteCouponOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: FavoriteCouponListInclude<ExtArgs> | null
+    include?: FavouriteCouponInclude<ExtArgs> | null
     /**
-     * Filter, which FavoriteCouponList to fetch.
+     * Filter, which FavouriteCoupon to fetch.
      */
-    where?: FavoriteCouponListWhereInput
+    where?: FavouriteCouponWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of FavoriteCouponLists to fetch.
+     * Determine the order of FavouriteCoupons to fetch.
      */
-    orderBy?: FavoriteCouponListOrderByWithRelationInput | FavoriteCouponListOrderByWithRelationInput[]
+    orderBy?: FavouriteCouponOrderByWithRelationInput | FavouriteCouponOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for FavoriteCouponLists.
+     * Sets the position for searching for FavouriteCoupons.
      */
-    cursor?: FavoriteCouponListWhereUniqueInput
+    cursor?: FavouriteCouponWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` FavoriteCouponLists from the position of the cursor.
+     * Take `±n` FavouriteCoupons from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` FavoriteCouponLists.
+     * Skip the first `n` FavouriteCoupons.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of FavoriteCouponLists.
+     * Filter by unique combinations of FavouriteCoupons.
      */
-    distinct?: FavoriteCouponListScalarFieldEnum | FavoriteCouponListScalarFieldEnum[]
+    distinct?: FavouriteCouponScalarFieldEnum | FavouriteCouponScalarFieldEnum[]
   }
 
   /**
-   * FavoriteCouponList findMany
+   * FavouriteCoupon findMany
    */
-  export type FavoriteCouponListFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FavouriteCouponFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the FavoriteCouponList
+     * Select specific fields to fetch from the FavouriteCoupon
      */
-    select?: FavoriteCouponListSelect<ExtArgs> | null
+    select?: FavouriteCouponSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the FavoriteCouponList
+     * Omit specific fields from the FavouriteCoupon
      */
-    omit?: FavoriteCouponListOmit<ExtArgs> | null
+    omit?: FavouriteCouponOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: FavoriteCouponListInclude<ExtArgs> | null
+    include?: FavouriteCouponInclude<ExtArgs> | null
     /**
-     * Filter, which FavoriteCouponLists to fetch.
+     * Filter, which FavouriteCoupons to fetch.
      */
-    where?: FavoriteCouponListWhereInput
+    where?: FavouriteCouponWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of FavoriteCouponLists to fetch.
+     * Determine the order of FavouriteCoupons to fetch.
      */
-    orderBy?: FavoriteCouponListOrderByWithRelationInput | FavoriteCouponListOrderByWithRelationInput[]
+    orderBy?: FavouriteCouponOrderByWithRelationInput | FavouriteCouponOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for listing FavoriteCouponLists.
+     * Sets the position for listing FavouriteCoupons.
      */
-    cursor?: FavoriteCouponListWhereUniqueInput
+    cursor?: FavouriteCouponWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` FavoriteCouponLists from the position of the cursor.
+     * Take `±n` FavouriteCoupons from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` FavoriteCouponLists.
+     * Skip the first `n` FavouriteCoupons.
      */
     skip?: number
-    distinct?: FavoriteCouponListScalarFieldEnum | FavoriteCouponListScalarFieldEnum[]
+    distinct?: FavouriteCouponScalarFieldEnum | FavouriteCouponScalarFieldEnum[]
   }
 
   /**
-   * FavoriteCouponList create
+   * FavouriteCoupon create
    */
-  export type FavoriteCouponListCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FavouriteCouponCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the FavoriteCouponList
+     * Select specific fields to fetch from the FavouriteCoupon
      */
-    select?: FavoriteCouponListSelect<ExtArgs> | null
+    select?: FavouriteCouponSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the FavoriteCouponList
+     * Omit specific fields from the FavouriteCoupon
      */
-    omit?: FavoriteCouponListOmit<ExtArgs> | null
+    omit?: FavouriteCouponOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: FavoriteCouponListInclude<ExtArgs> | null
+    include?: FavouriteCouponInclude<ExtArgs> | null
     /**
-     * The data needed to create a FavoriteCouponList.
+     * The data needed to create a FavouriteCoupon.
      */
-    data: XOR<FavoriteCouponListCreateInput, FavoriteCouponListUncheckedCreateInput>
+    data: XOR<FavouriteCouponCreateInput, FavouriteCouponUncheckedCreateInput>
   }
 
   /**
-   * FavoriteCouponList createMany
+   * FavouriteCoupon createMany
    */
-  export type FavoriteCouponListCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FavouriteCouponCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to create many FavoriteCouponLists.
+     * The data used to create many FavouriteCoupons.
      */
-    data: FavoriteCouponListCreateManyInput | FavoriteCouponListCreateManyInput[]
+    data: FavouriteCouponCreateManyInput | FavouriteCouponCreateManyInput[]
     skipDuplicates?: boolean
   }
 
   /**
-   * FavoriteCouponList createManyAndReturn
+   * FavouriteCoupon createManyAndReturn
    */
-  export type FavoriteCouponListCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FavouriteCouponCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the FavoriteCouponList
+     * Select specific fields to fetch from the FavouriteCoupon
      */
-    select?: FavoriteCouponListSelectCreateManyAndReturn<ExtArgs> | null
+    select?: FavouriteCouponSelectCreateManyAndReturn<ExtArgs> | null
     /**
-     * Omit specific fields from the FavoriteCouponList
+     * Omit specific fields from the FavouriteCoupon
      */
-    omit?: FavoriteCouponListOmit<ExtArgs> | null
+    omit?: FavouriteCouponOmit<ExtArgs> | null
     /**
-     * The data used to create many FavoriteCouponLists.
+     * The data used to create many FavouriteCoupons.
      */
-    data: FavoriteCouponListCreateManyInput | FavoriteCouponListCreateManyInput[]
+    data: FavouriteCouponCreateManyInput | FavouriteCouponCreateManyInput[]
     skipDuplicates?: boolean
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: FavoriteCouponListIncludeCreateManyAndReturn<ExtArgs> | null
+    include?: FavouriteCouponIncludeCreateManyAndReturn<ExtArgs> | null
   }
 
   /**
-   * FavoriteCouponList update
+   * FavouriteCoupon update
    */
-  export type FavoriteCouponListUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FavouriteCouponUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the FavoriteCouponList
+     * Select specific fields to fetch from the FavouriteCoupon
      */
-    select?: FavoriteCouponListSelect<ExtArgs> | null
+    select?: FavouriteCouponSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the FavoriteCouponList
+     * Omit specific fields from the FavouriteCoupon
      */
-    omit?: FavoriteCouponListOmit<ExtArgs> | null
+    omit?: FavouriteCouponOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: FavoriteCouponListInclude<ExtArgs> | null
+    include?: FavouriteCouponInclude<ExtArgs> | null
     /**
-     * The data needed to update a FavoriteCouponList.
+     * The data needed to update a FavouriteCoupon.
      */
-    data: XOR<FavoriteCouponListUpdateInput, FavoriteCouponListUncheckedUpdateInput>
+    data: XOR<FavouriteCouponUpdateInput, FavouriteCouponUncheckedUpdateInput>
     /**
-     * Choose, which FavoriteCouponList to update.
+     * Choose, which FavouriteCoupon to update.
      */
-    where: FavoriteCouponListWhereUniqueInput
+    where: FavouriteCouponWhereUniqueInput
   }
 
   /**
-   * FavoriteCouponList updateMany
+   * FavouriteCoupon updateMany
    */
-  export type FavoriteCouponListUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FavouriteCouponUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to update FavoriteCouponLists.
+     * The data used to update FavouriteCoupons.
      */
-    data: XOR<FavoriteCouponListUpdateManyMutationInput, FavoriteCouponListUncheckedUpdateManyInput>
+    data: XOR<FavouriteCouponUpdateManyMutationInput, FavouriteCouponUncheckedUpdateManyInput>
     /**
-     * Filter which FavoriteCouponLists to update
+     * Filter which FavouriteCoupons to update
      */
-    where?: FavoriteCouponListWhereInput
+    where?: FavouriteCouponWhereInput
     /**
-     * Limit how many FavoriteCouponLists to update.
+     * Limit how many FavouriteCoupons to update.
      */
     limit?: number
   }
 
   /**
-   * FavoriteCouponList updateManyAndReturn
+   * FavouriteCoupon updateManyAndReturn
    */
-  export type FavoriteCouponListUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FavouriteCouponUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the FavoriteCouponList
+     * Select specific fields to fetch from the FavouriteCoupon
      */
-    select?: FavoriteCouponListSelectUpdateManyAndReturn<ExtArgs> | null
+    select?: FavouriteCouponSelectUpdateManyAndReturn<ExtArgs> | null
     /**
-     * Omit specific fields from the FavoriteCouponList
+     * Omit specific fields from the FavouriteCoupon
      */
-    omit?: FavoriteCouponListOmit<ExtArgs> | null
+    omit?: FavouriteCouponOmit<ExtArgs> | null
     /**
-     * The data used to update FavoriteCouponLists.
+     * The data used to update FavouriteCoupons.
      */
-    data: XOR<FavoriteCouponListUpdateManyMutationInput, FavoriteCouponListUncheckedUpdateManyInput>
+    data: XOR<FavouriteCouponUpdateManyMutationInput, FavouriteCouponUncheckedUpdateManyInput>
     /**
-     * Filter which FavoriteCouponLists to update
+     * Filter which FavouriteCoupons to update
      */
-    where?: FavoriteCouponListWhereInput
+    where?: FavouriteCouponWhereInput
     /**
-     * Limit how many FavoriteCouponLists to update.
+     * Limit how many FavouriteCoupons to update.
      */
     limit?: number
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: FavoriteCouponListIncludeUpdateManyAndReturn<ExtArgs> | null
+    include?: FavouriteCouponIncludeUpdateManyAndReturn<ExtArgs> | null
   }
 
   /**
-   * FavoriteCouponList upsert
+   * FavouriteCoupon upsert
    */
-  export type FavoriteCouponListUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FavouriteCouponUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the FavoriteCouponList
+     * Select specific fields to fetch from the FavouriteCoupon
      */
-    select?: FavoriteCouponListSelect<ExtArgs> | null
+    select?: FavouriteCouponSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the FavoriteCouponList
+     * Omit specific fields from the FavouriteCoupon
      */
-    omit?: FavoriteCouponListOmit<ExtArgs> | null
+    omit?: FavouriteCouponOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: FavoriteCouponListInclude<ExtArgs> | null
+    include?: FavouriteCouponInclude<ExtArgs> | null
     /**
-     * The filter to search for the FavoriteCouponList to update in case it exists.
+     * The filter to search for the FavouriteCoupon to update in case it exists.
      */
-    where: FavoriteCouponListWhereUniqueInput
+    where: FavouriteCouponWhereUniqueInput
     /**
-     * In case the FavoriteCouponList found by the `where` argument doesn't exist, create a new FavoriteCouponList with this data.
+     * In case the FavouriteCoupon found by the `where` argument doesn't exist, create a new FavouriteCoupon with this data.
      */
-    create: XOR<FavoriteCouponListCreateInput, FavoriteCouponListUncheckedCreateInput>
+    create: XOR<FavouriteCouponCreateInput, FavouriteCouponUncheckedCreateInput>
     /**
-     * In case the FavoriteCouponList was found with the provided `where` argument, update it with this data.
+     * In case the FavouriteCoupon was found with the provided `where` argument, update it with this data.
      */
-    update: XOR<FavoriteCouponListUpdateInput, FavoriteCouponListUncheckedUpdateInput>
+    update: XOR<FavouriteCouponUpdateInput, FavouriteCouponUncheckedUpdateInput>
   }
 
   /**
-   * FavoriteCouponList delete
+   * FavouriteCoupon delete
    */
-  export type FavoriteCouponListDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FavouriteCouponDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the FavoriteCouponList
+     * Select specific fields to fetch from the FavouriteCoupon
      */
-    select?: FavoriteCouponListSelect<ExtArgs> | null
+    select?: FavouriteCouponSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the FavoriteCouponList
+     * Omit specific fields from the FavouriteCoupon
      */
-    omit?: FavoriteCouponListOmit<ExtArgs> | null
+    omit?: FavouriteCouponOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: FavoriteCouponListInclude<ExtArgs> | null
+    include?: FavouriteCouponInclude<ExtArgs> | null
     /**
-     * Filter which FavoriteCouponList to delete.
+     * Filter which FavouriteCoupon to delete.
      */
-    where: FavoriteCouponListWhereUniqueInput
+    where: FavouriteCouponWhereUniqueInput
   }
 
   /**
-   * FavoriteCouponList deleteMany
+   * FavouriteCoupon deleteMany
    */
-  export type FavoriteCouponListDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FavouriteCouponDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which FavoriteCouponLists to delete
+     * Filter which FavouriteCoupons to delete
      */
-    where?: FavoriteCouponListWhereInput
+    where?: FavouriteCouponWhereInput
     /**
-     * Limit how many FavoriteCouponLists to delete.
+     * Limit how many FavouriteCoupons to delete.
      */
     limit?: number
   }
 
   /**
-   * FavoriteCouponList without action
+   * FavouriteCoupon without action
    */
-  export type FavoriteCouponListDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FavouriteCouponDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the FavoriteCouponList
+     * Select specific fields to fetch from the FavouriteCoupon
      */
-    select?: FavoriteCouponListSelect<ExtArgs> | null
+    select?: FavouriteCouponSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the FavoriteCouponList
+     * Omit specific fields from the FavouriteCoupon
      */
-    omit?: FavoriteCouponListOmit<ExtArgs> | null
+    omit?: FavouriteCouponOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: FavoriteCouponListInclude<ExtArgs> | null
+    include?: FavouriteCouponInclude<ExtArgs> | null
   }
 
 
@@ -21055,6 +21221,7 @@ export namespace Prisma {
     userId: 'userId',
     points: 'points',
     description: 'description',
+    couponCode: 'couponCode',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -21065,8 +21232,10 @@ export namespace Prisma {
   export const RecycleHistoryScalarFieldEnum: {
     id: 'id',
     userId: 'userId',
+    binId: 'binId',
     points: 'points',
     mediaUrl: 'mediaUrl',
+    totalCount: 'totalCount',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -21107,7 +21276,7 @@ export namespace Prisma {
     couponType: 'couponType',
     dealType: 'dealType',
     isFeatured: 'isFeatured',
-    couponCode: 'couponCode',
+    discountAmount: 'discountAmount',
     pointsToRedeem: 'pointsToRedeem',
     startDate: 'startDate',
     endDate: 'endDate',
@@ -21119,14 +21288,14 @@ export namespace Prisma {
   export type CouponScalarFieldEnum = (typeof CouponScalarFieldEnum)[keyof typeof CouponScalarFieldEnum]
 
 
-  export const FavoriteCouponListScalarFieldEnum: {
+  export const FavouriteCouponScalarFieldEnum: {
     id: 'id',
     userId: 'userId',
     couponId: 'couponId',
     createdAt: 'createdAt'
   };
 
-  export type FavoriteCouponListScalarFieldEnum = (typeof FavoriteCouponListScalarFieldEnum)[keyof typeof FavoriteCouponListScalarFieldEnum]
+  export type FavouriteCouponScalarFieldEnum = (typeof FavouriteCouponScalarFieldEnum)[keyof typeof FavouriteCouponScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -21316,14 +21485,14 @@ export namespace Prisma {
     postalCode?: StringNullableFilter<"User"> | string | null
     status?: StringFilter<"User"> | string
     state?: StringNullableFilter<"User"> | string | null
-    sessions?: SessionListRelationFilter
+    recycleHistory?: RecycleHistoryListRelationFilter
+    redeemHistory?: RedeemHistoryListRelationFilter
     accounts?: AccountListRelationFilter
-    members?: MemberListRelationFilter
+    favouriteCoupon?: FavouriteCouponListRelationFilter
     invitations?: InvitationListRelationFilter
-    FavoriteCouponList?: FavoriteCouponListListRelationFilter
-    RedeemHistory?: RedeemHistoryListRelationFilter
-    RecycleHistory?: RecycleHistoryListRelationFilter
-    UserTotalPoint?: UserTotalPointListRelationFilter
+    members?: MemberListRelationFilter
+    sessions?: SessionListRelationFilter
+    UserTotalPoint?: XOR<UserTotalPointNullableScalarRelationFilter, UserTotalPointWhereInput> | null
   }
 
   export type UserOrderByWithRelationInput = {
@@ -21345,14 +21514,14 @@ export namespace Prisma {
     postalCode?: SortOrderInput | SortOrder
     status?: SortOrder
     state?: SortOrderInput | SortOrder
-    sessions?: SessionOrderByRelationAggregateInput
+    recycleHistory?: RecycleHistoryOrderByRelationAggregateInput
+    redeemHistory?: RedeemHistoryOrderByRelationAggregateInput
     accounts?: AccountOrderByRelationAggregateInput
-    members?: MemberOrderByRelationAggregateInput
+    favouriteCoupon?: FavouriteCouponOrderByRelationAggregateInput
     invitations?: InvitationOrderByRelationAggregateInput
-    FavoriteCouponList?: FavoriteCouponListOrderByRelationAggregateInput
-    RedeemHistory?: RedeemHistoryOrderByRelationAggregateInput
-    RecycleHistory?: RecycleHistoryOrderByRelationAggregateInput
-    UserTotalPoint?: UserTotalPointOrderByRelationAggregateInput
+    members?: MemberOrderByRelationAggregateInput
+    sessions?: SessionOrderByRelationAggregateInput
+    UserTotalPoint?: UserTotalPointOrderByWithRelationInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -21377,14 +21546,14 @@ export namespace Prisma {
     postalCode?: StringNullableFilter<"User"> | string | null
     status?: StringFilter<"User"> | string
     state?: StringNullableFilter<"User"> | string | null
-    sessions?: SessionListRelationFilter
+    recycleHistory?: RecycleHistoryListRelationFilter
+    redeemHistory?: RedeemHistoryListRelationFilter
     accounts?: AccountListRelationFilter
-    members?: MemberListRelationFilter
+    favouriteCoupon?: FavouriteCouponListRelationFilter
     invitations?: InvitationListRelationFilter
-    FavoriteCouponList?: FavoriteCouponListListRelationFilter
-    RedeemHistory?: RedeemHistoryListRelationFilter
-    RecycleHistory?: RecycleHistoryListRelationFilter
-    UserTotalPoint?: UserTotalPointListRelationFilter
+    members?: MemberListRelationFilter
+    sessions?: SessionListRelationFilter
+    UserTotalPoint?: XOR<UserTotalPointNullableScalarRelationFilter, UserTotalPointWhereInput> | null
   }, "id" | "email" | "username">
 
   export type UserOrderByWithAggregationInput = {
@@ -21677,10 +21846,10 @@ export namespace Prisma {
     logo?: StringNullableFilter<"Organization"> | string | null
     createdAt?: DateTimeFilter<"Organization"> | Date | string
     metadata?: StringNullableFilter<"Organization"> | string | null
-    members?: MemberListRelationFilter
-    invitations?: InvitationListRelationFilter
-    stores?: StoreListRelationFilter
     Coupon?: CouponListRelationFilter
+    invitations?: InvitationListRelationFilter
+    members?: MemberListRelationFilter
+    stores?: StoreListRelationFilter
   }
 
   export type OrganizationOrderByWithRelationInput = {
@@ -21690,10 +21859,10 @@ export namespace Prisma {
     logo?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     metadata?: SortOrderInput | SortOrder
-    members?: MemberOrderByRelationAggregateInput
-    invitations?: InvitationOrderByRelationAggregateInput
-    stores?: StoreOrderByRelationAggregateInput
     Coupon?: CouponOrderByRelationAggregateInput
+    invitations?: InvitationOrderByRelationAggregateInput
+    members?: MemberOrderByRelationAggregateInput
+    stores?: StoreOrderByRelationAggregateInput
   }
 
   export type OrganizationWhereUniqueInput = Prisma.AtLeast<{
@@ -21706,10 +21875,10 @@ export namespace Prisma {
     logo?: StringNullableFilter<"Organization"> | string | null
     createdAt?: DateTimeFilter<"Organization"> | Date | string
     metadata?: StringNullableFilter<"Organization"> | string | null
-    members?: MemberListRelationFilter
-    invitations?: InvitationListRelationFilter
-    stores?: StoreListRelationFilter
     Coupon?: CouponListRelationFilter
+    invitations?: InvitationListRelationFilter
+    members?: MemberListRelationFilter
+    stores?: StoreListRelationFilter
   }, "id" | "slug">
 
   export type OrganizationOrderByWithAggregationInput = {
@@ -21805,8 +21974,8 @@ export namespace Prisma {
     status?: StringFilter<"Invitation"> | string
     expiresAt?: DateTimeFilter<"Invitation"> | Date | string
     inviterId?: StringFilter<"Invitation"> | string
-    organization?: XOR<OrganizationScalarRelationFilter, OrganizationWhereInput>
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    organization?: XOR<OrganizationScalarRelationFilter, OrganizationWhereInput>
   }
 
   export type InvitationOrderByWithRelationInput = {
@@ -21817,8 +21986,8 @@ export namespace Prisma {
     status?: SortOrder
     expiresAt?: SortOrder
     inviterId?: SortOrder
-    organization?: OrganizationOrderByWithRelationInput
     user?: UserOrderByWithRelationInput
+    organization?: OrganizationOrderByWithRelationInput
   }
 
   export type InvitationWhereUniqueInput = Prisma.AtLeast<{
@@ -21832,8 +22001,8 @@ export namespace Prisma {
     status?: StringFilter<"Invitation"> | string
     expiresAt?: DateTimeFilter<"Invitation"> | Date | string
     inviterId?: StringFilter<"Invitation"> | string
-    organization?: XOR<OrganizationScalarRelationFilter, OrganizationWhereInput>
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    organization?: XOR<OrganizationScalarRelationFilter, OrganizationWhereInput>
   }, "id">
 
   export type InvitationOrderByWithAggregationInput = {
@@ -21882,8 +22051,8 @@ export namespace Prisma {
     lng?: FloatFilter<"Store"> | number
     createdAt?: DateTimeFilter<"Store"> | Date | string
     updatedAt?: DateTimeFilter<"Store"> | Date | string
-    organization?: XOR<OrganizationNullableScalarRelationFilter, OrganizationWhereInput> | null
     bins?: BinListRelationFilter
+    organization?: XOR<OrganizationNullableScalarRelationFilter, OrganizationWhereInput> | null
   }
 
   export type StoreOrderByWithRelationInput = {
@@ -21903,8 +22072,8 @@ export namespace Prisma {
     lng?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    organization?: OrganizationOrderByWithRelationInput
     bins?: BinOrderByRelationAggregateInput
+    organization?: OrganizationOrderByWithRelationInput
   }
 
   export type StoreWhereUniqueInput = Prisma.AtLeast<{
@@ -21927,8 +22096,8 @@ export namespace Prisma {
     lng?: FloatFilter<"Store"> | number
     createdAt?: DateTimeFilter<"Store"> | Date | string
     updatedAt?: DateTimeFilter<"Store"> | Date | string
-    organization?: XOR<OrganizationNullableScalarRelationFilter, OrganizationWhereInput> | null
     bins?: BinListRelationFilter
+    organization?: XOR<OrganizationNullableScalarRelationFilter, OrganizationWhereInput> | null
   }, "id">
 
   export type StoreOrderByWithAggregationInput = {
@@ -22116,9 +22285,11 @@ export namespace Prisma {
     userId?: StringFilter<"RedeemHistory"> | string
     points?: IntFilter<"RedeemHistory"> | number
     description?: StringNullableFilter<"RedeemHistory"> | string | null
+    couponCode?: StringFilter<"RedeemHistory"> | string
     createdAt?: DateTimeFilter<"RedeemHistory"> | Date | string
     updatedAt?: DateTimeFilter<"RedeemHistory"> | Date | string
-    User?: XOR<UserScalarRelationFilter, UserWhereInput>
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    coupon?: XOR<CouponScalarRelationFilter, CouponWhereInput>
   }
 
   export type RedeemHistoryOrderByWithRelationInput = {
@@ -22127,9 +22298,11 @@ export namespace Prisma {
     userId?: SortOrder
     points?: SortOrder
     description?: SortOrderInput | SortOrder
+    couponCode?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    User?: UserOrderByWithRelationInput
+    user?: UserOrderByWithRelationInput
+    coupon?: CouponOrderByWithRelationInput
   }
 
   export type RedeemHistoryWhereUniqueInput = Prisma.AtLeast<{
@@ -22141,9 +22314,11 @@ export namespace Prisma {
     userId?: StringFilter<"RedeemHistory"> | string
     points?: IntFilter<"RedeemHistory"> | number
     description?: StringNullableFilter<"RedeemHistory"> | string | null
+    couponCode?: StringFilter<"RedeemHistory"> | string
     createdAt?: DateTimeFilter<"RedeemHistory"> | Date | string
     updatedAt?: DateTimeFilter<"RedeemHistory"> | Date | string
-    User?: XOR<UserScalarRelationFilter, UserWhereInput>
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    coupon?: XOR<CouponScalarRelationFilter, CouponWhereInput>
   }, "id">
 
   export type RedeemHistoryOrderByWithAggregationInput = {
@@ -22152,6 +22327,7 @@ export namespace Prisma {
     userId?: SortOrder
     points?: SortOrder
     description?: SortOrderInput | SortOrder
+    couponCode?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: RedeemHistoryCountOrderByAggregateInput
@@ -22170,6 +22346,7 @@ export namespace Prisma {
     userId?: StringWithAggregatesFilter<"RedeemHistory"> | string
     points?: IntWithAggregatesFilter<"RedeemHistory"> | number
     description?: StringNullableWithAggregatesFilter<"RedeemHistory"> | string | null
+    couponCode?: StringWithAggregatesFilter<"RedeemHistory"> | string
     createdAt?: DateTimeWithAggregatesFilter<"RedeemHistory"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"RedeemHistory"> | Date | string
   }
@@ -22180,21 +22357,27 @@ export namespace Prisma {
     NOT?: RecycleHistoryWhereInput | RecycleHistoryWhereInput[]
     id?: StringFilter<"RecycleHistory"> | string
     userId?: StringFilter<"RecycleHistory"> | string
+    binId?: StringFilter<"RecycleHistory"> | string
     points?: IntFilter<"RecycleHistory"> | number
     mediaUrl?: StringNullableFilter<"RecycleHistory"> | string | null
+    totalCount?: IntFilter<"RecycleHistory"> | number
     createdAt?: DateTimeFilter<"RecycleHistory"> | Date | string
     updatedAt?: DateTimeFilter<"RecycleHistory"> | Date | string
-    User?: XOR<UserScalarRelationFilter, UserWhereInput>
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    bin?: XOR<BinScalarRelationFilter, BinWhereInput>
   }
 
   export type RecycleHistoryOrderByWithRelationInput = {
     id?: SortOrder
     userId?: SortOrder
+    binId?: SortOrder
     points?: SortOrder
     mediaUrl?: SortOrderInput | SortOrder
+    totalCount?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    User?: UserOrderByWithRelationInput
+    user?: UserOrderByWithRelationInput
+    bin?: BinOrderByWithRelationInput
   }
 
   export type RecycleHistoryWhereUniqueInput = Prisma.AtLeast<{
@@ -22203,18 +22386,23 @@ export namespace Prisma {
     OR?: RecycleHistoryWhereInput[]
     NOT?: RecycleHistoryWhereInput | RecycleHistoryWhereInput[]
     userId?: StringFilter<"RecycleHistory"> | string
+    binId?: StringFilter<"RecycleHistory"> | string
     points?: IntFilter<"RecycleHistory"> | number
     mediaUrl?: StringNullableFilter<"RecycleHistory"> | string | null
+    totalCount?: IntFilter<"RecycleHistory"> | number
     createdAt?: DateTimeFilter<"RecycleHistory"> | Date | string
     updatedAt?: DateTimeFilter<"RecycleHistory"> | Date | string
-    User?: XOR<UserScalarRelationFilter, UserWhereInput>
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    bin?: XOR<BinScalarRelationFilter, BinWhereInput>
   }, "id">
 
   export type RecycleHistoryOrderByWithAggregationInput = {
     id?: SortOrder
     userId?: SortOrder
+    binId?: SortOrder
     points?: SortOrder
     mediaUrl?: SortOrderInput | SortOrder
+    totalCount?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: RecycleHistoryCountOrderByAggregateInput
@@ -22230,8 +22418,10 @@ export namespace Prisma {
     NOT?: RecycleHistoryScalarWhereWithAggregatesInput | RecycleHistoryScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"RecycleHistory"> | string
     userId?: StringWithAggregatesFilter<"RecycleHistory"> | string
+    binId?: StringWithAggregatesFilter<"RecycleHistory"> | string
     points?: IntWithAggregatesFilter<"RecycleHistory"> | number
     mediaUrl?: StringNullableWithAggregatesFilter<"RecycleHistory"> | string | null
+    totalCount?: IntWithAggregatesFilter<"RecycleHistory"> | number
     createdAt?: DateTimeWithAggregatesFilter<"RecycleHistory"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"RecycleHistory"> | Date | string
   }
@@ -22298,6 +22488,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"Bin"> | Date | string
     material?: XOR<MaterialScalarRelationFilter, MaterialWhereInput>
     store?: XOR<StoreScalarRelationFilter, StoreWhereInput>
+    recycleHistory?: RecycleHistoryListRelationFilter
   }
 
   export type BinOrderByWithRelationInput = {
@@ -22312,6 +22503,7 @@ export namespace Prisma {
     updatedAt?: SortOrder
     material?: MaterialOrderByWithRelationInput
     store?: StoreOrderByWithRelationInput
+    recycleHistory?: RecycleHistoryOrderByRelationAggregateInput
   }
 
   export type BinWhereUniqueInput = Prisma.AtLeast<{
@@ -22329,6 +22521,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"Bin"> | Date | string
     material?: XOR<MaterialScalarRelationFilter, MaterialWhereInput>
     store?: XOR<StoreScalarRelationFilter, StoreWhereInput>
+    recycleHistory?: RecycleHistoryListRelationFilter
   }, "id">
 
   export type BinOrderByWithAggregationInput = {
@@ -22368,40 +22561,42 @@ export namespace Prisma {
     id?: StringFilter<"Coupon"> | string
     name?: StringFilter<"Coupon"> | string
     description?: StringNullableFilter<"Coupon"> | string | null
-    imageUrl?: StringFilter<"Coupon"> | string
+    imageUrl?: StringNullableFilter<"Coupon"> | string | null
     status?: EnumStatusFilter<"Coupon"> | $Enums.Status
     couponType?: EnumCouponTypeFilter<"Coupon"> | $Enums.CouponType
     dealType?: EnumDealTypeFilter<"Coupon"> | $Enums.DealType
     isFeatured?: BoolFilter<"Coupon"> | boolean
-    couponCode?: StringFilter<"Coupon"> | string
+    discountAmount?: IntFilter<"Coupon"> | number
     pointsToRedeem?: IntFilter<"Coupon"> | number
     startDate?: DateTimeFilter<"Coupon"> | Date | string
     endDate?: DateTimeFilter<"Coupon"> | Date | string
     createdAt?: DateTimeFilter<"Coupon"> | Date | string
     updatedAt?: DateTimeFilter<"Coupon"> | Date | string
-    organizationId?: StringFilter<"Coupon"> | string
-    organization?: XOR<OrganizationScalarRelationFilter, OrganizationWhereInput>
-    FavoriteCouponList?: FavoriteCouponListListRelationFilter
+    organizationId?: StringNullableFilter<"Coupon"> | string | null
+    organization?: XOR<OrganizationNullableScalarRelationFilter, OrganizationWhereInput> | null
+    favouriteCoupon?: FavouriteCouponListRelationFilter
+    redeemHistory?: RedeemHistoryListRelationFilter
   }
 
   export type CouponOrderByWithRelationInput = {
     id?: SortOrder
     name?: SortOrder
     description?: SortOrderInput | SortOrder
-    imageUrl?: SortOrder
+    imageUrl?: SortOrderInput | SortOrder
     status?: SortOrder
     couponType?: SortOrder
     dealType?: SortOrder
     isFeatured?: SortOrder
-    couponCode?: SortOrder
+    discountAmount?: SortOrder
     pointsToRedeem?: SortOrder
     startDate?: SortOrder
     endDate?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    organizationId?: SortOrder
+    organizationId?: SortOrderInput | SortOrder
     organization?: OrganizationOrderByWithRelationInput
-    FavoriteCouponList?: FavoriteCouponListOrderByRelationAggregateInput
+    favouriteCoupon?: FavouriteCouponOrderByRelationAggregateInput
+    redeemHistory?: RedeemHistoryOrderByRelationAggregateInput
   }
 
   export type CouponWhereUniqueInput = Prisma.AtLeast<{
@@ -22411,38 +22606,39 @@ export namespace Prisma {
     NOT?: CouponWhereInput | CouponWhereInput[]
     name?: StringFilter<"Coupon"> | string
     description?: StringNullableFilter<"Coupon"> | string | null
-    imageUrl?: StringFilter<"Coupon"> | string
+    imageUrl?: StringNullableFilter<"Coupon"> | string | null
     status?: EnumStatusFilter<"Coupon"> | $Enums.Status
     couponType?: EnumCouponTypeFilter<"Coupon"> | $Enums.CouponType
     dealType?: EnumDealTypeFilter<"Coupon"> | $Enums.DealType
     isFeatured?: BoolFilter<"Coupon"> | boolean
-    couponCode?: StringFilter<"Coupon"> | string
+    discountAmount?: IntFilter<"Coupon"> | number
     pointsToRedeem?: IntFilter<"Coupon"> | number
     startDate?: DateTimeFilter<"Coupon"> | Date | string
     endDate?: DateTimeFilter<"Coupon"> | Date | string
     createdAt?: DateTimeFilter<"Coupon"> | Date | string
     updatedAt?: DateTimeFilter<"Coupon"> | Date | string
-    organizationId?: StringFilter<"Coupon"> | string
-    organization?: XOR<OrganizationScalarRelationFilter, OrganizationWhereInput>
-    FavoriteCouponList?: FavoriteCouponListListRelationFilter
+    organizationId?: StringNullableFilter<"Coupon"> | string | null
+    organization?: XOR<OrganizationNullableScalarRelationFilter, OrganizationWhereInput> | null
+    favouriteCoupon?: FavouriteCouponListRelationFilter
+    redeemHistory?: RedeemHistoryListRelationFilter
   }, "id">
 
   export type CouponOrderByWithAggregationInput = {
     id?: SortOrder
     name?: SortOrder
     description?: SortOrderInput | SortOrder
-    imageUrl?: SortOrder
+    imageUrl?: SortOrderInput | SortOrder
     status?: SortOrder
     couponType?: SortOrder
     dealType?: SortOrder
     isFeatured?: SortOrder
-    couponCode?: SortOrder
+    discountAmount?: SortOrder
     pointsToRedeem?: SortOrder
     startDate?: SortOrder
     endDate?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    organizationId?: SortOrder
+    organizationId?: SortOrderInput | SortOrder
     _count?: CouponCountOrderByAggregateInput
     _avg?: CouponAvgOrderByAggregateInput
     _max?: CouponMaxOrderByAggregateInput
@@ -22457,72 +22653,72 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"Coupon"> | string
     name?: StringWithAggregatesFilter<"Coupon"> | string
     description?: StringNullableWithAggregatesFilter<"Coupon"> | string | null
-    imageUrl?: StringWithAggregatesFilter<"Coupon"> | string
+    imageUrl?: StringNullableWithAggregatesFilter<"Coupon"> | string | null
     status?: EnumStatusWithAggregatesFilter<"Coupon"> | $Enums.Status
     couponType?: EnumCouponTypeWithAggregatesFilter<"Coupon"> | $Enums.CouponType
     dealType?: EnumDealTypeWithAggregatesFilter<"Coupon"> | $Enums.DealType
     isFeatured?: BoolWithAggregatesFilter<"Coupon"> | boolean
-    couponCode?: StringWithAggregatesFilter<"Coupon"> | string
+    discountAmount?: IntWithAggregatesFilter<"Coupon"> | number
     pointsToRedeem?: IntWithAggregatesFilter<"Coupon"> | number
     startDate?: DateTimeWithAggregatesFilter<"Coupon"> | Date | string
     endDate?: DateTimeWithAggregatesFilter<"Coupon"> | Date | string
     createdAt?: DateTimeWithAggregatesFilter<"Coupon"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Coupon"> | Date | string
-    organizationId?: StringWithAggregatesFilter<"Coupon"> | string
+    organizationId?: StringNullableWithAggregatesFilter<"Coupon"> | string | null
   }
 
-  export type FavoriteCouponListWhereInput = {
-    AND?: FavoriteCouponListWhereInput | FavoriteCouponListWhereInput[]
-    OR?: FavoriteCouponListWhereInput[]
-    NOT?: FavoriteCouponListWhereInput | FavoriteCouponListWhereInput[]
-    id?: StringFilter<"FavoriteCouponList"> | string
-    userId?: StringFilter<"FavoriteCouponList"> | string
-    couponId?: StringFilter<"FavoriteCouponList"> | string
-    createdAt?: DateTimeFilter<"FavoriteCouponList"> | Date | string
-    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  export type FavouriteCouponWhereInput = {
+    AND?: FavouriteCouponWhereInput | FavouriteCouponWhereInput[]
+    OR?: FavouriteCouponWhereInput[]
+    NOT?: FavouriteCouponWhereInput | FavouriteCouponWhereInput[]
+    id?: StringFilter<"FavouriteCoupon"> | string
+    userId?: StringFilter<"FavouriteCoupon"> | string
+    couponId?: StringFilter<"FavouriteCoupon"> | string
+    createdAt?: DateTimeFilter<"FavouriteCoupon"> | Date | string
     coupon?: XOR<CouponScalarRelationFilter, CouponWhereInput>
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }
 
-  export type FavoriteCouponListOrderByWithRelationInput = {
+  export type FavouriteCouponOrderByWithRelationInput = {
     id?: SortOrder
     userId?: SortOrder
     couponId?: SortOrder
     createdAt?: SortOrder
-    user?: UserOrderByWithRelationInput
     coupon?: CouponOrderByWithRelationInput
+    user?: UserOrderByWithRelationInput
   }
 
-  export type FavoriteCouponListWhereUniqueInput = Prisma.AtLeast<{
+  export type FavouriteCouponWhereUniqueInput = Prisma.AtLeast<{
     id?: string
-    userId_couponId?: FavoriteCouponListUserIdCouponIdCompoundUniqueInput
-    AND?: FavoriteCouponListWhereInput | FavoriteCouponListWhereInput[]
-    OR?: FavoriteCouponListWhereInput[]
-    NOT?: FavoriteCouponListWhereInput | FavoriteCouponListWhereInput[]
-    userId?: StringFilter<"FavoriteCouponList"> | string
-    couponId?: StringFilter<"FavoriteCouponList"> | string
-    createdAt?: DateTimeFilter<"FavoriteCouponList"> | Date | string
-    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    userId_couponId?: FavouriteCouponUserIdCouponIdCompoundUniqueInput
+    AND?: FavouriteCouponWhereInput | FavouriteCouponWhereInput[]
+    OR?: FavouriteCouponWhereInput[]
+    NOT?: FavouriteCouponWhereInput | FavouriteCouponWhereInput[]
+    userId?: StringFilter<"FavouriteCoupon"> | string
+    couponId?: StringFilter<"FavouriteCoupon"> | string
+    createdAt?: DateTimeFilter<"FavouriteCoupon"> | Date | string
     coupon?: XOR<CouponScalarRelationFilter, CouponWhereInput>
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }, "id" | "userId_couponId">
 
-  export type FavoriteCouponListOrderByWithAggregationInput = {
+  export type FavouriteCouponOrderByWithAggregationInput = {
     id?: SortOrder
     userId?: SortOrder
     couponId?: SortOrder
     createdAt?: SortOrder
-    _count?: FavoriteCouponListCountOrderByAggregateInput
-    _max?: FavoriteCouponListMaxOrderByAggregateInput
-    _min?: FavoriteCouponListMinOrderByAggregateInput
+    _count?: FavouriteCouponCountOrderByAggregateInput
+    _max?: FavouriteCouponMaxOrderByAggregateInput
+    _min?: FavouriteCouponMinOrderByAggregateInput
   }
 
-  export type FavoriteCouponListScalarWhereWithAggregatesInput = {
-    AND?: FavoriteCouponListScalarWhereWithAggregatesInput | FavoriteCouponListScalarWhereWithAggregatesInput[]
-    OR?: FavoriteCouponListScalarWhereWithAggregatesInput[]
-    NOT?: FavoriteCouponListScalarWhereWithAggregatesInput | FavoriteCouponListScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"FavoriteCouponList"> | string
-    userId?: StringWithAggregatesFilter<"FavoriteCouponList"> | string
-    couponId?: StringWithAggregatesFilter<"FavoriteCouponList"> | string
-    createdAt?: DateTimeWithAggregatesFilter<"FavoriteCouponList"> | Date | string
+  export type FavouriteCouponScalarWhereWithAggregatesInput = {
+    AND?: FavouriteCouponScalarWhereWithAggregatesInput | FavouriteCouponScalarWhereWithAggregatesInput[]
+    OR?: FavouriteCouponScalarWhereWithAggregatesInput[]
+    NOT?: FavouriteCouponScalarWhereWithAggregatesInput | FavouriteCouponScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"FavouriteCoupon"> | string
+    userId?: StringWithAggregatesFilter<"FavouriteCoupon"> | string
+    couponId?: StringWithAggregatesFilter<"FavouriteCoupon"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"FavouriteCoupon"> | Date | string
   }
 
   export type UserCreateInput = {
@@ -22544,14 +22740,14 @@ export namespace Prisma {
     postalCode?: string | null
     status: string
     state?: string | null
-    sessions?: SessionCreateNestedManyWithoutUserInput
+    recycleHistory?: RecycleHistoryCreateNestedManyWithoutUserInput
+    redeemHistory?: RedeemHistoryCreateNestedManyWithoutUserInput
     accounts?: AccountCreateNestedManyWithoutUserInput
-    members?: MemberCreateNestedManyWithoutUserInput
+    favouriteCoupon?: FavouriteCouponCreateNestedManyWithoutUserInput
     invitations?: InvitationCreateNestedManyWithoutUserInput
-    FavoriteCouponList?: FavoriteCouponListCreateNestedManyWithoutUserInput
-    RedeemHistory?: RedeemHistoryCreateNestedManyWithoutUserInput
-    RecycleHistory?: RecycleHistoryCreateNestedManyWithoutUserInput
-    UserTotalPoint?: UserTotalPointCreateNestedManyWithoutUserInput
+    members?: MemberCreateNestedManyWithoutUserInput
+    sessions?: SessionCreateNestedManyWithoutUserInput
+    UserTotalPoint?: UserTotalPointCreateNestedOneWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -22573,14 +22769,14 @@ export namespace Prisma {
     postalCode?: string | null
     status: string
     state?: string | null
-    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+    recycleHistory?: RecycleHistoryUncheckedCreateNestedManyWithoutUserInput
+    redeemHistory?: RedeemHistoryUncheckedCreateNestedManyWithoutUserInput
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
-    members?: MemberUncheckedCreateNestedManyWithoutUserInput
+    favouriteCoupon?: FavouriteCouponUncheckedCreateNestedManyWithoutUserInput
     invitations?: InvitationUncheckedCreateNestedManyWithoutUserInput
-    FavoriteCouponList?: FavoriteCouponListUncheckedCreateNestedManyWithoutUserInput
-    RedeemHistory?: RedeemHistoryUncheckedCreateNestedManyWithoutUserInput
-    RecycleHistory?: RecycleHistoryUncheckedCreateNestedManyWithoutUserInput
-    UserTotalPoint?: UserTotalPointUncheckedCreateNestedManyWithoutUserInput
+    members?: MemberUncheckedCreateNestedManyWithoutUserInput
+    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+    UserTotalPoint?: UserTotalPointUncheckedCreateNestedOneWithoutUserInput
   }
 
   export type UserUpdateInput = {
@@ -22602,14 +22798,14 @@ export namespace Prisma {
     postalCode?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
     state?: NullableStringFieldUpdateOperationsInput | string | null
-    sessions?: SessionUpdateManyWithoutUserNestedInput
+    recycleHistory?: RecycleHistoryUpdateManyWithoutUserNestedInput
+    redeemHistory?: RedeemHistoryUpdateManyWithoutUserNestedInput
     accounts?: AccountUpdateManyWithoutUserNestedInput
-    members?: MemberUpdateManyWithoutUserNestedInput
+    favouriteCoupon?: FavouriteCouponUpdateManyWithoutUserNestedInput
     invitations?: InvitationUpdateManyWithoutUserNestedInput
-    FavoriteCouponList?: FavoriteCouponListUpdateManyWithoutUserNestedInput
-    RedeemHistory?: RedeemHistoryUpdateManyWithoutUserNestedInput
-    RecycleHistory?: RecycleHistoryUpdateManyWithoutUserNestedInput
-    UserTotalPoint?: UserTotalPointUpdateManyWithoutUserNestedInput
+    members?: MemberUpdateManyWithoutUserNestedInput
+    sessions?: SessionUpdateManyWithoutUserNestedInput
+    UserTotalPoint?: UserTotalPointUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -22631,14 +22827,14 @@ export namespace Prisma {
     postalCode?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
     state?: NullableStringFieldUpdateOperationsInput | string | null
-    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    recycleHistory?: RecycleHistoryUncheckedUpdateManyWithoutUserNestedInput
+    redeemHistory?: RedeemHistoryUncheckedUpdateManyWithoutUserNestedInput
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
-    members?: MemberUncheckedUpdateManyWithoutUserNestedInput
+    favouriteCoupon?: FavouriteCouponUncheckedUpdateManyWithoutUserNestedInput
     invitations?: InvitationUncheckedUpdateManyWithoutUserNestedInput
-    FavoriteCouponList?: FavoriteCouponListUncheckedUpdateManyWithoutUserNestedInput
-    RedeemHistory?: RedeemHistoryUncheckedUpdateManyWithoutUserNestedInput
-    RecycleHistory?: RecycleHistoryUncheckedUpdateManyWithoutUserNestedInput
-    UserTotalPoint?: UserTotalPointUncheckedUpdateManyWithoutUserNestedInput
+    members?: MemberUncheckedUpdateManyWithoutUserNestedInput
+    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    UserTotalPoint?: UserTotalPointUncheckedUpdateOneWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -22975,10 +23171,10 @@ export namespace Prisma {
     logo?: string | null
     createdAt: Date | string
     metadata?: string | null
-    members?: MemberCreateNestedManyWithoutOrganizationInput
-    invitations?: InvitationCreateNestedManyWithoutOrganizationInput
-    stores?: StoreCreateNestedManyWithoutOrganizationInput
     Coupon?: CouponCreateNestedManyWithoutOrganizationInput
+    invitations?: InvitationCreateNestedManyWithoutOrganizationInput
+    members?: MemberCreateNestedManyWithoutOrganizationInput
+    stores?: StoreCreateNestedManyWithoutOrganizationInput
   }
 
   export type OrganizationUncheckedCreateInput = {
@@ -22988,10 +23184,10 @@ export namespace Prisma {
     logo?: string | null
     createdAt: Date | string
     metadata?: string | null
-    members?: MemberUncheckedCreateNestedManyWithoutOrganizationInput
-    invitations?: InvitationUncheckedCreateNestedManyWithoutOrganizationInput
-    stores?: StoreUncheckedCreateNestedManyWithoutOrganizationInput
     Coupon?: CouponUncheckedCreateNestedManyWithoutOrganizationInput
+    invitations?: InvitationUncheckedCreateNestedManyWithoutOrganizationInput
+    members?: MemberUncheckedCreateNestedManyWithoutOrganizationInput
+    stores?: StoreUncheckedCreateNestedManyWithoutOrganizationInput
   }
 
   export type OrganizationUpdateInput = {
@@ -23001,10 +23197,10 @@ export namespace Prisma {
     logo?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     metadata?: NullableStringFieldUpdateOperationsInput | string | null
-    members?: MemberUpdateManyWithoutOrganizationNestedInput
-    invitations?: InvitationUpdateManyWithoutOrganizationNestedInput
-    stores?: StoreUpdateManyWithoutOrganizationNestedInput
     Coupon?: CouponUpdateManyWithoutOrganizationNestedInput
+    invitations?: InvitationUpdateManyWithoutOrganizationNestedInput
+    members?: MemberUpdateManyWithoutOrganizationNestedInput
+    stores?: StoreUpdateManyWithoutOrganizationNestedInput
   }
 
   export type OrganizationUncheckedUpdateInput = {
@@ -23014,10 +23210,10 @@ export namespace Prisma {
     logo?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     metadata?: NullableStringFieldUpdateOperationsInput | string | null
-    members?: MemberUncheckedUpdateManyWithoutOrganizationNestedInput
-    invitations?: InvitationUncheckedUpdateManyWithoutOrganizationNestedInput
-    stores?: StoreUncheckedUpdateManyWithoutOrganizationNestedInput
     Coupon?: CouponUncheckedUpdateManyWithoutOrganizationNestedInput
+    invitations?: InvitationUncheckedUpdateManyWithoutOrganizationNestedInput
+    members?: MemberUncheckedUpdateManyWithoutOrganizationNestedInput
+    stores?: StoreUncheckedUpdateManyWithoutOrganizationNestedInput
   }
 
   export type OrganizationCreateManyInput = {
@@ -23107,8 +23303,8 @@ export namespace Prisma {
     role?: string | null
     status: string
     expiresAt: Date | string
-    organization: OrganizationCreateNestedOneWithoutInvitationsInput
     user: UserCreateNestedOneWithoutInvitationsInput
+    organization: OrganizationCreateNestedOneWithoutInvitationsInput
   }
 
   export type InvitationUncheckedCreateInput = {
@@ -23127,8 +23323,8 @@ export namespace Prisma {
     role?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
     expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    organization?: OrganizationUpdateOneRequiredWithoutInvitationsNestedInput
     user?: UserUpdateOneRequiredWithoutInvitationsNestedInput
+    organization?: OrganizationUpdateOneRequiredWithoutInvitationsNestedInput
   }
 
   export type InvitationUncheckedUpdateInput = {
@@ -23185,8 +23381,8 @@ export namespace Prisma {
     lng: number
     createdAt?: Date | string
     updatedAt?: Date | string
-    organization?: OrganizationCreateNestedOneWithoutStoresInput
     bins?: BinCreateNestedManyWithoutStoreInput
+    organization?: OrganizationCreateNestedOneWithoutStoresInput
   }
 
   export type StoreUncheckedCreateInput = {
@@ -23225,8 +23421,8 @@ export namespace Prisma {
     lng?: FloatFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    organization?: OrganizationUpdateOneWithoutStoresNestedInput
     bins?: BinUpdateManyWithoutStoreNestedInput
+    organization?: OrganizationUpdateOneWithoutStoresNestedInput
   }
 
   export type StoreUncheckedUpdateInput = {
@@ -23447,12 +23643,13 @@ export namespace Prisma {
 
   export type RedeemHistoryCreateInput = {
     id?: string
-    couponId: string
     points: number
     description?: string | null
+    couponCode: string
     createdAt?: Date | string
     updatedAt?: Date | string
-    User: UserCreateNestedOneWithoutRedeemHistoryInput
+    user: UserCreateNestedOneWithoutRedeemHistoryInput
+    coupon: CouponCreateNestedOneWithoutRedeemHistoryInput
   }
 
   export type RedeemHistoryUncheckedCreateInput = {
@@ -23461,18 +23658,20 @@ export namespace Prisma {
     userId: string
     points: number
     description?: string | null
+    couponCode: string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
 
   export type RedeemHistoryUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    couponId?: StringFieldUpdateOperationsInput | string
     points?: IntFieldUpdateOperationsInput | number
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    couponCode?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    User?: UserUpdateOneRequiredWithoutRedeemHistoryNestedInput
+    user?: UserUpdateOneRequiredWithoutRedeemHistoryNestedInput
+    coupon?: CouponUpdateOneRequiredWithoutRedeemHistoryNestedInput
   }
 
   export type RedeemHistoryUncheckedUpdateInput = {
@@ -23481,6 +23680,7 @@ export namespace Prisma {
     userId?: StringFieldUpdateOperationsInput | string
     points?: IntFieldUpdateOperationsInput | number
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    couponCode?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -23491,15 +23691,16 @@ export namespace Prisma {
     userId: string
     points: number
     description?: string | null
+    couponCode: string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
 
   export type RedeemHistoryUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    couponId?: StringFieldUpdateOperationsInput | string
     points?: IntFieldUpdateOperationsInput | number
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    couponCode?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -23510,6 +23711,7 @@ export namespace Prisma {
     userId?: StringFieldUpdateOperationsInput | string
     points?: IntFieldUpdateOperationsInput | number
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    couponCode?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -23518,16 +23720,20 @@ export namespace Prisma {
     id?: string
     points: number
     mediaUrl?: string | null
+    totalCount?: number
     createdAt?: Date | string
     updatedAt?: Date | string
-    User: UserCreateNestedOneWithoutRecycleHistoryInput
+    user: UserCreateNestedOneWithoutRecycleHistoryInput
+    bin: BinCreateNestedOneWithoutRecycleHistoryInput
   }
 
   export type RecycleHistoryUncheckedCreateInput = {
     id?: string
     userId: string
+    binId: string
     points: number
     mediaUrl?: string | null
+    totalCount?: number
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -23536,16 +23742,20 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     points?: IntFieldUpdateOperationsInput | number
     mediaUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    totalCount?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    User?: UserUpdateOneRequiredWithoutRecycleHistoryNestedInput
+    user?: UserUpdateOneRequiredWithoutRecycleHistoryNestedInput
+    bin?: BinUpdateOneRequiredWithoutRecycleHistoryNestedInput
   }
 
   export type RecycleHistoryUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
+    binId?: StringFieldUpdateOperationsInput | string
     points?: IntFieldUpdateOperationsInput | number
     mediaUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    totalCount?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -23553,8 +23763,10 @@ export namespace Prisma {
   export type RecycleHistoryCreateManyInput = {
     id?: string
     userId: string
+    binId: string
     points: number
     mediaUrl?: string | null
+    totalCount?: number
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -23563,6 +23775,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     points?: IntFieldUpdateOperationsInput | number
     mediaUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    totalCount?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -23570,8 +23783,10 @@ export namespace Prisma {
   export type RecycleHistoryUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
+    binId?: StringFieldUpdateOperationsInput | string
     points?: IntFieldUpdateOperationsInput | number
     mediaUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    totalCount?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -23627,6 +23842,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     material: MaterialCreateNestedOneWithoutBinsInput
     store: StoreCreateNestedOneWithoutBinsInput
+    recycleHistory?: RecycleHistoryCreateNestedManyWithoutBinInput
   }
 
   export type BinUncheckedCreateInput = {
@@ -23639,6 +23855,7 @@ export namespace Prisma {
     status?: $Enums.BinStatus
     createdAt?: Date | string
     updatedAt?: Date | string
+    recycleHistory?: RecycleHistoryUncheckedCreateNestedManyWithoutBinInput
   }
 
   export type BinUpdateInput = {
@@ -23651,6 +23868,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     material?: MaterialUpdateOneRequiredWithoutBinsNestedInput
     store?: StoreUpdateOneRequiredWithoutBinsNestedInput
+    recycleHistory?: RecycleHistoryUpdateManyWithoutBinNestedInput
   }
 
   export type BinUncheckedUpdateInput = {
@@ -23663,6 +23881,7 @@ export namespace Prisma {
     status?: EnumBinStatusFieldUpdateOperationsInput | $Enums.BinStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    recycleHistory?: RecycleHistoryUncheckedUpdateManyWithoutBinNestedInput
   }
 
   export type BinCreateManyInput = {
@@ -23703,106 +23922,110 @@ export namespace Prisma {
     id?: string
     name: string
     description?: string | null
-    imageUrl: string
+    imageUrl?: string | null
     status?: $Enums.Status
     couponType: $Enums.CouponType
     dealType: $Enums.DealType
-    isFeatured: boolean
-    couponCode: string
+    isFeatured?: boolean
+    discountAmount: number
     pointsToRedeem: number
     startDate: Date | string
     endDate: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
-    organization: OrganizationCreateNestedOneWithoutCouponInput
-    FavoriteCouponList?: FavoriteCouponListCreateNestedManyWithoutCouponInput
+    organization?: OrganizationCreateNestedOneWithoutCouponInput
+    favouriteCoupon?: FavouriteCouponCreateNestedManyWithoutCouponInput
+    redeemHistory?: RedeemHistoryCreateNestedManyWithoutCouponInput
   }
 
   export type CouponUncheckedCreateInput = {
     id?: string
     name: string
     description?: string | null
-    imageUrl: string
+    imageUrl?: string | null
     status?: $Enums.Status
     couponType: $Enums.CouponType
     dealType: $Enums.DealType
-    isFeatured: boolean
-    couponCode: string
+    isFeatured?: boolean
+    discountAmount: number
     pointsToRedeem: number
     startDate: Date | string
     endDate: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
-    organizationId: string
-    FavoriteCouponList?: FavoriteCouponListUncheckedCreateNestedManyWithoutCouponInput
+    organizationId?: string | null
+    favouriteCoupon?: FavouriteCouponUncheckedCreateNestedManyWithoutCouponInput
+    redeemHistory?: RedeemHistoryUncheckedCreateNestedManyWithoutCouponInput
   }
 
   export type CouponUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    imageUrl?: StringFieldUpdateOperationsInput | string
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     couponType?: EnumCouponTypeFieldUpdateOperationsInput | $Enums.CouponType
     dealType?: EnumDealTypeFieldUpdateOperationsInput | $Enums.DealType
     isFeatured?: BoolFieldUpdateOperationsInput | boolean
-    couponCode?: StringFieldUpdateOperationsInput | string
+    discountAmount?: IntFieldUpdateOperationsInput | number
     pointsToRedeem?: IntFieldUpdateOperationsInput | number
     startDate?: DateTimeFieldUpdateOperationsInput | Date | string
     endDate?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    organization?: OrganizationUpdateOneRequiredWithoutCouponNestedInput
-    FavoriteCouponList?: FavoriteCouponListUpdateManyWithoutCouponNestedInput
+    organization?: OrganizationUpdateOneWithoutCouponNestedInput
+    favouriteCoupon?: FavouriteCouponUpdateManyWithoutCouponNestedInput
+    redeemHistory?: RedeemHistoryUpdateManyWithoutCouponNestedInput
   }
 
   export type CouponUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    imageUrl?: StringFieldUpdateOperationsInput | string
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     couponType?: EnumCouponTypeFieldUpdateOperationsInput | $Enums.CouponType
     dealType?: EnumDealTypeFieldUpdateOperationsInput | $Enums.DealType
     isFeatured?: BoolFieldUpdateOperationsInput | boolean
-    couponCode?: StringFieldUpdateOperationsInput | string
+    discountAmount?: IntFieldUpdateOperationsInput | number
     pointsToRedeem?: IntFieldUpdateOperationsInput | number
     startDate?: DateTimeFieldUpdateOperationsInput | Date | string
     endDate?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    organizationId?: StringFieldUpdateOperationsInput | string
-    FavoriteCouponList?: FavoriteCouponListUncheckedUpdateManyWithoutCouponNestedInput
+    organizationId?: NullableStringFieldUpdateOperationsInput | string | null
+    favouriteCoupon?: FavouriteCouponUncheckedUpdateManyWithoutCouponNestedInput
+    redeemHistory?: RedeemHistoryUncheckedUpdateManyWithoutCouponNestedInput
   }
 
   export type CouponCreateManyInput = {
     id?: string
     name: string
     description?: string | null
-    imageUrl: string
+    imageUrl?: string | null
     status?: $Enums.Status
     couponType: $Enums.CouponType
     dealType: $Enums.DealType
-    isFeatured: boolean
-    couponCode: string
+    isFeatured?: boolean
+    discountAmount: number
     pointsToRedeem: number
     startDate: Date | string
     endDate: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
-    organizationId: string
+    organizationId?: string | null
   }
 
   export type CouponUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    imageUrl?: StringFieldUpdateOperationsInput | string
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     couponType?: EnumCouponTypeFieldUpdateOperationsInput | $Enums.CouponType
     dealType?: EnumDealTypeFieldUpdateOperationsInput | $Enums.DealType
     isFeatured?: BoolFieldUpdateOperationsInput | boolean
-    couponCode?: StringFieldUpdateOperationsInput | string
+    discountAmount?: IntFieldUpdateOperationsInput | number
     pointsToRedeem?: IntFieldUpdateOperationsInput | number
     startDate?: DateTimeFieldUpdateOperationsInput | Date | string
     endDate?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -23814,61 +24037,61 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    imageUrl?: StringFieldUpdateOperationsInput | string
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     couponType?: EnumCouponTypeFieldUpdateOperationsInput | $Enums.CouponType
     dealType?: EnumDealTypeFieldUpdateOperationsInput | $Enums.DealType
     isFeatured?: BoolFieldUpdateOperationsInput | boolean
-    couponCode?: StringFieldUpdateOperationsInput | string
+    discountAmount?: IntFieldUpdateOperationsInput | number
     pointsToRedeem?: IntFieldUpdateOperationsInput | number
     startDate?: DateTimeFieldUpdateOperationsInput | Date | string
     endDate?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    organizationId?: StringFieldUpdateOperationsInput | string
+    organizationId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
-  export type FavoriteCouponListCreateInput = {
+  export type FavouriteCouponCreateInput = {
     id?: string
     createdAt?: Date | string
-    user: UserCreateNestedOneWithoutFavoriteCouponListInput
-    coupon: CouponCreateNestedOneWithoutFavoriteCouponListInput
+    coupon: CouponCreateNestedOneWithoutFavouriteCouponInput
+    user: UserCreateNestedOneWithoutFavouriteCouponInput
   }
 
-  export type FavoriteCouponListUncheckedCreateInput = {
+  export type FavouriteCouponUncheckedCreateInput = {
     id?: string
     userId: string
     couponId: string
     createdAt?: Date | string
   }
 
-  export type FavoriteCouponListUpdateInput = {
+  export type FavouriteCouponUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    user?: UserUpdateOneRequiredWithoutFavoriteCouponListNestedInput
-    coupon?: CouponUpdateOneRequiredWithoutFavoriteCouponListNestedInput
+    coupon?: CouponUpdateOneRequiredWithoutFavouriteCouponNestedInput
+    user?: UserUpdateOneRequiredWithoutFavouriteCouponNestedInput
   }
 
-  export type FavoriteCouponListUncheckedUpdateInput = {
+  export type FavouriteCouponUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
     couponId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type FavoriteCouponListCreateManyInput = {
+  export type FavouriteCouponCreateManyInput = {
     id?: string
     userId: string
     couponId: string
     createdAt?: Date | string
   }
 
-  export type FavoriteCouponListUpdateManyMutationInput = {
+  export type FavouriteCouponUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type FavoriteCouponListUncheckedUpdateManyInput = {
+  export type FavouriteCouponUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
     couponId?: StringFieldUpdateOperationsInput | string
@@ -23937,34 +24160,10 @@ export namespace Prisma {
     not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
   }
 
-  export type SessionListRelationFilter = {
-    every?: SessionWhereInput
-    some?: SessionWhereInput
-    none?: SessionWhereInput
-  }
-
-  export type AccountListRelationFilter = {
-    every?: AccountWhereInput
-    some?: AccountWhereInput
-    none?: AccountWhereInput
-  }
-
-  export type MemberListRelationFilter = {
-    every?: MemberWhereInput
-    some?: MemberWhereInput
-    none?: MemberWhereInput
-  }
-
-  export type InvitationListRelationFilter = {
-    every?: InvitationWhereInput
-    some?: InvitationWhereInput
-    none?: InvitationWhereInput
-  }
-
-  export type FavoriteCouponListListRelationFilter = {
-    every?: FavoriteCouponListWhereInput
-    some?: FavoriteCouponListWhereInput
-    none?: FavoriteCouponListWhereInput
+  export type RecycleHistoryListRelationFilter = {
+    every?: RecycleHistoryWhereInput
+    some?: RecycleHistoryWhereInput
+    none?: RecycleHistoryWhereInput
   }
 
   export type RedeemHistoryListRelationFilter = {
@@ -23973,16 +24172,39 @@ export namespace Prisma {
     none?: RedeemHistoryWhereInput
   }
 
-  export type RecycleHistoryListRelationFilter = {
-    every?: RecycleHistoryWhereInput
-    some?: RecycleHistoryWhereInput
-    none?: RecycleHistoryWhereInput
+  export type AccountListRelationFilter = {
+    every?: AccountWhereInput
+    some?: AccountWhereInput
+    none?: AccountWhereInput
   }
 
-  export type UserTotalPointListRelationFilter = {
-    every?: UserTotalPointWhereInput
-    some?: UserTotalPointWhereInput
-    none?: UserTotalPointWhereInput
+  export type FavouriteCouponListRelationFilter = {
+    every?: FavouriteCouponWhereInput
+    some?: FavouriteCouponWhereInput
+    none?: FavouriteCouponWhereInput
+  }
+
+  export type InvitationListRelationFilter = {
+    every?: InvitationWhereInput
+    some?: InvitationWhereInput
+    none?: InvitationWhereInput
+  }
+
+  export type MemberListRelationFilter = {
+    every?: MemberWhereInput
+    some?: MemberWhereInput
+    none?: MemberWhereInput
+  }
+
+  export type SessionListRelationFilter = {
+    every?: SessionWhereInput
+    some?: SessionWhereInput
+    none?: SessionWhereInput
+  }
+
+  export type UserTotalPointNullableScalarRelationFilter = {
+    is?: UserTotalPointWhereInput | null
+    isNot?: UserTotalPointWhereInput | null
   }
 
   export type SortOrderInput = {
@@ -23990,23 +24212,7 @@ export namespace Prisma {
     nulls?: NullsOrder
   }
 
-  export type SessionOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
-  export type AccountOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
-  export type MemberOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
-  export type InvitationOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
-  export type FavoriteCouponListOrderByRelationAggregateInput = {
+  export type RecycleHistoryOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -24014,11 +24220,23 @@ export namespace Prisma {
     _count?: SortOrder
   }
 
-  export type RecycleHistoryOrderByRelationAggregateInput = {
+  export type AccountOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
-  export type UserTotalPointOrderByRelationAggregateInput = {
+  export type FavouriteCouponOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type InvitationOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type MemberOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type SessionOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -24284,23 +24502,23 @@ export namespace Prisma {
     updatedAt?: SortOrder
   }
 
-  export type StoreListRelationFilter = {
-    every?: StoreWhereInput
-    some?: StoreWhereInput
-    none?: StoreWhereInput
-  }
-
   export type CouponListRelationFilter = {
     every?: CouponWhereInput
     some?: CouponWhereInput
     none?: CouponWhereInput
   }
 
-  export type StoreOrderByRelationAggregateInput = {
-    _count?: SortOrder
+  export type StoreListRelationFilter = {
+    every?: StoreWhereInput
+    some?: StoreWhereInput
+    none?: StoreWhereInput
   }
 
   export type CouponOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type StoreOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -24408,15 +24626,15 @@ export namespace Prisma {
     not?: NestedFloatFilter<$PrismaModel> | number
   }
 
-  export type OrganizationNullableScalarRelationFilter = {
-    is?: OrganizationWhereInput | null
-    isNot?: OrganizationWhereInput | null
-  }
-
   export type BinListRelationFilter = {
     every?: BinWhereInput
     some?: BinWhereInput
     none?: BinWhereInput
+  }
+
+  export type OrganizationNullableScalarRelationFilter = {
+    is?: OrganizationWhereInput | null
+    isNot?: OrganizationWhereInput | null
   }
 
   export type BinOrderByRelationAggregateInput = {
@@ -24625,12 +24843,18 @@ export namespace Prisma {
     _max?: NestedIntFilter<$PrismaModel>
   }
 
+  export type CouponScalarRelationFilter = {
+    is?: CouponWhereInput
+    isNot?: CouponWhereInput
+  }
+
   export type RedeemHistoryCountOrderByAggregateInput = {
     id?: SortOrder
     couponId?: SortOrder
     userId?: SortOrder
     points?: SortOrder
     description?: SortOrder
+    couponCode?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -24645,6 +24869,7 @@ export namespace Prisma {
     userId?: SortOrder
     points?: SortOrder
     description?: SortOrder
+    couponCode?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -24655,6 +24880,7 @@ export namespace Prisma {
     userId?: SortOrder
     points?: SortOrder
     description?: SortOrder
+    couponCode?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -24663,24 +24889,34 @@ export namespace Prisma {
     points?: SortOrder
   }
 
+  export type BinScalarRelationFilter = {
+    is?: BinWhereInput
+    isNot?: BinWhereInput
+  }
+
   export type RecycleHistoryCountOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
+    binId?: SortOrder
     points?: SortOrder
     mediaUrl?: SortOrder
+    totalCount?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
 
   export type RecycleHistoryAvgOrderByAggregateInput = {
     points?: SortOrder
+    totalCount?: SortOrder
   }
 
   export type RecycleHistoryMaxOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
+    binId?: SortOrder
     points?: SortOrder
     mediaUrl?: SortOrder
+    totalCount?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -24688,14 +24924,17 @@ export namespace Prisma {
   export type RecycleHistoryMinOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
+    binId?: SortOrder
     points?: SortOrder
     mediaUrl?: SortOrder
+    totalCount?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
 
   export type RecycleHistorySumOrderByAggregateInput = {
     points?: SortOrder
+    totalCount?: SortOrder
   }
 
   export type UserTotalPointCountOrderByAggregateInput = {
@@ -24817,7 +25056,7 @@ export namespace Prisma {
     couponType?: SortOrder
     dealType?: SortOrder
     isFeatured?: SortOrder
-    couponCode?: SortOrder
+    discountAmount?: SortOrder
     pointsToRedeem?: SortOrder
     startDate?: SortOrder
     endDate?: SortOrder
@@ -24827,6 +25066,7 @@ export namespace Prisma {
   }
 
   export type CouponAvgOrderByAggregateInput = {
+    discountAmount?: SortOrder
     pointsToRedeem?: SortOrder
   }
 
@@ -24839,7 +25079,7 @@ export namespace Prisma {
     couponType?: SortOrder
     dealType?: SortOrder
     isFeatured?: SortOrder
-    couponCode?: SortOrder
+    discountAmount?: SortOrder
     pointsToRedeem?: SortOrder
     startDate?: SortOrder
     endDate?: SortOrder
@@ -24857,7 +25097,7 @@ export namespace Prisma {
     couponType?: SortOrder
     dealType?: SortOrder
     isFeatured?: SortOrder
-    couponCode?: SortOrder
+    discountAmount?: SortOrder
     pointsToRedeem?: SortOrder
     startDate?: SortOrder
     endDate?: SortOrder
@@ -24867,6 +25107,7 @@ export namespace Prisma {
   }
 
   export type CouponSumOrderByAggregateInput = {
+    discountAmount?: SortOrder
     pointsToRedeem?: SortOrder
   }
 
@@ -24900,77 +25141,30 @@ export namespace Prisma {
     _max?: NestedEnumDealTypeFilter<$PrismaModel>
   }
 
-  export type CouponScalarRelationFilter = {
-    is?: CouponWhereInput
-    isNot?: CouponWhereInput
-  }
-
-  export type FavoriteCouponListUserIdCouponIdCompoundUniqueInput = {
+  export type FavouriteCouponUserIdCouponIdCompoundUniqueInput = {
     userId: string
     couponId: string
   }
 
-  export type FavoriteCouponListCountOrderByAggregateInput = {
+  export type FavouriteCouponCountOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
     couponId?: SortOrder
     createdAt?: SortOrder
   }
 
-  export type FavoriteCouponListMaxOrderByAggregateInput = {
+  export type FavouriteCouponMaxOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
     couponId?: SortOrder
     createdAt?: SortOrder
   }
 
-  export type FavoriteCouponListMinOrderByAggregateInput = {
+  export type FavouriteCouponMinOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
     couponId?: SortOrder
     createdAt?: SortOrder
-  }
-
-  export type SessionCreateNestedManyWithoutUserInput = {
-    create?: XOR<SessionCreateWithoutUserInput, SessionUncheckedCreateWithoutUserInput> | SessionCreateWithoutUserInput[] | SessionUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: SessionCreateOrConnectWithoutUserInput | SessionCreateOrConnectWithoutUserInput[]
-    createMany?: SessionCreateManyUserInputEnvelope
-    connect?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
-  }
-
-  export type AccountCreateNestedManyWithoutUserInput = {
-    create?: XOR<AccountCreateWithoutUserInput, AccountUncheckedCreateWithoutUserInput> | AccountCreateWithoutUserInput[] | AccountUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: AccountCreateOrConnectWithoutUserInput | AccountCreateOrConnectWithoutUserInput[]
-    createMany?: AccountCreateManyUserInputEnvelope
-    connect?: AccountWhereUniqueInput | AccountWhereUniqueInput[]
-  }
-
-  export type MemberCreateNestedManyWithoutUserInput = {
-    create?: XOR<MemberCreateWithoutUserInput, MemberUncheckedCreateWithoutUserInput> | MemberCreateWithoutUserInput[] | MemberUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: MemberCreateOrConnectWithoutUserInput | MemberCreateOrConnectWithoutUserInput[]
-    createMany?: MemberCreateManyUserInputEnvelope
-    connect?: MemberWhereUniqueInput | MemberWhereUniqueInput[]
-  }
-
-  export type InvitationCreateNestedManyWithoutUserInput = {
-    create?: XOR<InvitationCreateWithoutUserInput, InvitationUncheckedCreateWithoutUserInput> | InvitationCreateWithoutUserInput[] | InvitationUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: InvitationCreateOrConnectWithoutUserInput | InvitationCreateOrConnectWithoutUserInput[]
-    createMany?: InvitationCreateManyUserInputEnvelope
-    connect?: InvitationWhereUniqueInput | InvitationWhereUniqueInput[]
-  }
-
-  export type FavoriteCouponListCreateNestedManyWithoutUserInput = {
-    create?: XOR<FavoriteCouponListCreateWithoutUserInput, FavoriteCouponListUncheckedCreateWithoutUserInput> | FavoriteCouponListCreateWithoutUserInput[] | FavoriteCouponListUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: FavoriteCouponListCreateOrConnectWithoutUserInput | FavoriteCouponListCreateOrConnectWithoutUserInput[]
-    createMany?: FavoriteCouponListCreateManyUserInputEnvelope
-    connect?: FavoriteCouponListWhereUniqueInput | FavoriteCouponListWhereUniqueInput[]
-  }
-
-  export type RedeemHistoryCreateNestedManyWithoutUserInput = {
-    create?: XOR<RedeemHistoryCreateWithoutUserInput, RedeemHistoryUncheckedCreateWithoutUserInput> | RedeemHistoryCreateWithoutUserInput[] | RedeemHistoryUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: RedeemHistoryCreateOrConnectWithoutUserInput | RedeemHistoryCreateOrConnectWithoutUserInput[]
-    createMany?: RedeemHistoryCreateManyUserInputEnvelope
-    connect?: RedeemHistoryWhereUniqueInput | RedeemHistoryWhereUniqueInput[]
   }
 
   export type RecycleHistoryCreateNestedManyWithoutUserInput = {
@@ -24980,53 +25174,52 @@ export namespace Prisma {
     connect?: RecycleHistoryWhereUniqueInput | RecycleHistoryWhereUniqueInput[]
   }
 
-  export type UserTotalPointCreateNestedManyWithoutUserInput = {
-    create?: XOR<UserTotalPointCreateWithoutUserInput, UserTotalPointUncheckedCreateWithoutUserInput> | UserTotalPointCreateWithoutUserInput[] | UserTotalPointUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: UserTotalPointCreateOrConnectWithoutUserInput | UserTotalPointCreateOrConnectWithoutUserInput[]
-    createMany?: UserTotalPointCreateManyUserInputEnvelope
-    connect?: UserTotalPointWhereUniqueInput | UserTotalPointWhereUniqueInput[]
+  export type RedeemHistoryCreateNestedManyWithoutUserInput = {
+    create?: XOR<RedeemHistoryCreateWithoutUserInput, RedeemHistoryUncheckedCreateWithoutUserInput> | RedeemHistoryCreateWithoutUserInput[] | RedeemHistoryUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: RedeemHistoryCreateOrConnectWithoutUserInput | RedeemHistoryCreateOrConnectWithoutUserInput[]
+    createMany?: RedeemHistoryCreateManyUserInputEnvelope
+    connect?: RedeemHistoryWhereUniqueInput | RedeemHistoryWhereUniqueInput[]
   }
 
-  export type SessionUncheckedCreateNestedManyWithoutUserInput = {
-    create?: XOR<SessionCreateWithoutUserInput, SessionUncheckedCreateWithoutUserInput> | SessionCreateWithoutUserInput[] | SessionUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: SessionCreateOrConnectWithoutUserInput | SessionCreateOrConnectWithoutUserInput[]
-    createMany?: SessionCreateManyUserInputEnvelope
-    connect?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
-  }
-
-  export type AccountUncheckedCreateNestedManyWithoutUserInput = {
+  export type AccountCreateNestedManyWithoutUserInput = {
     create?: XOR<AccountCreateWithoutUserInput, AccountUncheckedCreateWithoutUserInput> | AccountCreateWithoutUserInput[] | AccountUncheckedCreateWithoutUserInput[]
     connectOrCreate?: AccountCreateOrConnectWithoutUserInput | AccountCreateOrConnectWithoutUserInput[]
     createMany?: AccountCreateManyUserInputEnvelope
     connect?: AccountWhereUniqueInput | AccountWhereUniqueInput[]
   }
 
-  export type MemberUncheckedCreateNestedManyWithoutUserInput = {
-    create?: XOR<MemberCreateWithoutUserInput, MemberUncheckedCreateWithoutUserInput> | MemberCreateWithoutUserInput[] | MemberUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: MemberCreateOrConnectWithoutUserInput | MemberCreateOrConnectWithoutUserInput[]
-    createMany?: MemberCreateManyUserInputEnvelope
-    connect?: MemberWhereUniqueInput | MemberWhereUniqueInput[]
+  export type FavouriteCouponCreateNestedManyWithoutUserInput = {
+    create?: XOR<FavouriteCouponCreateWithoutUserInput, FavouriteCouponUncheckedCreateWithoutUserInput> | FavouriteCouponCreateWithoutUserInput[] | FavouriteCouponUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: FavouriteCouponCreateOrConnectWithoutUserInput | FavouriteCouponCreateOrConnectWithoutUserInput[]
+    createMany?: FavouriteCouponCreateManyUserInputEnvelope
+    connect?: FavouriteCouponWhereUniqueInput | FavouriteCouponWhereUniqueInput[]
   }
 
-  export type InvitationUncheckedCreateNestedManyWithoutUserInput = {
+  export type InvitationCreateNestedManyWithoutUserInput = {
     create?: XOR<InvitationCreateWithoutUserInput, InvitationUncheckedCreateWithoutUserInput> | InvitationCreateWithoutUserInput[] | InvitationUncheckedCreateWithoutUserInput[]
     connectOrCreate?: InvitationCreateOrConnectWithoutUserInput | InvitationCreateOrConnectWithoutUserInput[]
     createMany?: InvitationCreateManyUserInputEnvelope
     connect?: InvitationWhereUniqueInput | InvitationWhereUniqueInput[]
   }
 
-  export type FavoriteCouponListUncheckedCreateNestedManyWithoutUserInput = {
-    create?: XOR<FavoriteCouponListCreateWithoutUserInput, FavoriteCouponListUncheckedCreateWithoutUserInput> | FavoriteCouponListCreateWithoutUserInput[] | FavoriteCouponListUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: FavoriteCouponListCreateOrConnectWithoutUserInput | FavoriteCouponListCreateOrConnectWithoutUserInput[]
-    createMany?: FavoriteCouponListCreateManyUserInputEnvelope
-    connect?: FavoriteCouponListWhereUniqueInput | FavoriteCouponListWhereUniqueInput[]
+  export type MemberCreateNestedManyWithoutUserInput = {
+    create?: XOR<MemberCreateWithoutUserInput, MemberUncheckedCreateWithoutUserInput> | MemberCreateWithoutUserInput[] | MemberUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: MemberCreateOrConnectWithoutUserInput | MemberCreateOrConnectWithoutUserInput[]
+    createMany?: MemberCreateManyUserInputEnvelope
+    connect?: MemberWhereUniqueInput | MemberWhereUniqueInput[]
   }
 
-  export type RedeemHistoryUncheckedCreateNestedManyWithoutUserInput = {
-    create?: XOR<RedeemHistoryCreateWithoutUserInput, RedeemHistoryUncheckedCreateWithoutUserInput> | RedeemHistoryCreateWithoutUserInput[] | RedeemHistoryUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: RedeemHistoryCreateOrConnectWithoutUserInput | RedeemHistoryCreateOrConnectWithoutUserInput[]
-    createMany?: RedeemHistoryCreateManyUserInputEnvelope
-    connect?: RedeemHistoryWhereUniqueInput | RedeemHistoryWhereUniqueInput[]
+  export type SessionCreateNestedManyWithoutUserInput = {
+    create?: XOR<SessionCreateWithoutUserInput, SessionUncheckedCreateWithoutUserInput> | SessionCreateWithoutUserInput[] | SessionUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: SessionCreateOrConnectWithoutUserInput | SessionCreateOrConnectWithoutUserInput[]
+    createMany?: SessionCreateManyUserInputEnvelope
+    connect?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
+  }
+
+  export type UserTotalPointCreateNestedOneWithoutUserInput = {
+    create?: XOR<UserTotalPointCreateWithoutUserInput, UserTotalPointUncheckedCreateWithoutUserInput>
+    connectOrCreate?: UserTotalPointCreateOrConnectWithoutUserInput
+    connect?: UserTotalPointWhereUniqueInput
   }
 
   export type RecycleHistoryUncheckedCreateNestedManyWithoutUserInput = {
@@ -25036,11 +25229,52 @@ export namespace Prisma {
     connect?: RecycleHistoryWhereUniqueInput | RecycleHistoryWhereUniqueInput[]
   }
 
-  export type UserTotalPointUncheckedCreateNestedManyWithoutUserInput = {
-    create?: XOR<UserTotalPointCreateWithoutUserInput, UserTotalPointUncheckedCreateWithoutUserInput> | UserTotalPointCreateWithoutUserInput[] | UserTotalPointUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: UserTotalPointCreateOrConnectWithoutUserInput | UserTotalPointCreateOrConnectWithoutUserInput[]
-    createMany?: UserTotalPointCreateManyUserInputEnvelope
-    connect?: UserTotalPointWhereUniqueInput | UserTotalPointWhereUniqueInput[]
+  export type RedeemHistoryUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<RedeemHistoryCreateWithoutUserInput, RedeemHistoryUncheckedCreateWithoutUserInput> | RedeemHistoryCreateWithoutUserInput[] | RedeemHistoryUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: RedeemHistoryCreateOrConnectWithoutUserInput | RedeemHistoryCreateOrConnectWithoutUserInput[]
+    createMany?: RedeemHistoryCreateManyUserInputEnvelope
+    connect?: RedeemHistoryWhereUniqueInput | RedeemHistoryWhereUniqueInput[]
+  }
+
+  export type AccountUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<AccountCreateWithoutUserInput, AccountUncheckedCreateWithoutUserInput> | AccountCreateWithoutUserInput[] | AccountUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: AccountCreateOrConnectWithoutUserInput | AccountCreateOrConnectWithoutUserInput[]
+    createMany?: AccountCreateManyUserInputEnvelope
+    connect?: AccountWhereUniqueInput | AccountWhereUniqueInput[]
+  }
+
+  export type FavouriteCouponUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<FavouriteCouponCreateWithoutUserInput, FavouriteCouponUncheckedCreateWithoutUserInput> | FavouriteCouponCreateWithoutUserInput[] | FavouriteCouponUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: FavouriteCouponCreateOrConnectWithoutUserInput | FavouriteCouponCreateOrConnectWithoutUserInput[]
+    createMany?: FavouriteCouponCreateManyUserInputEnvelope
+    connect?: FavouriteCouponWhereUniqueInput | FavouriteCouponWhereUniqueInput[]
+  }
+
+  export type InvitationUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<InvitationCreateWithoutUserInput, InvitationUncheckedCreateWithoutUserInput> | InvitationCreateWithoutUserInput[] | InvitationUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: InvitationCreateOrConnectWithoutUserInput | InvitationCreateOrConnectWithoutUserInput[]
+    createMany?: InvitationCreateManyUserInputEnvelope
+    connect?: InvitationWhereUniqueInput | InvitationWhereUniqueInput[]
+  }
+
+  export type MemberUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<MemberCreateWithoutUserInput, MemberUncheckedCreateWithoutUserInput> | MemberCreateWithoutUserInput[] | MemberUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: MemberCreateOrConnectWithoutUserInput | MemberCreateOrConnectWithoutUserInput[]
+    createMany?: MemberCreateManyUserInputEnvelope
+    connect?: MemberWhereUniqueInput | MemberWhereUniqueInput[]
+  }
+
+  export type SessionUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<SessionCreateWithoutUserInput, SessionUncheckedCreateWithoutUserInput> | SessionCreateWithoutUserInput[] | SessionUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: SessionCreateOrConnectWithoutUserInput | SessionCreateOrConnectWithoutUserInput[]
+    createMany?: SessionCreateManyUserInputEnvelope
+    connect?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
+  }
+
+  export type UserTotalPointUncheckedCreateNestedOneWithoutUserInput = {
+    create?: XOR<UserTotalPointCreateWithoutUserInput, UserTotalPointUncheckedCreateWithoutUserInput>
+    connectOrCreate?: UserTotalPointCreateOrConnectWithoutUserInput
+    connect?: UserTotalPointWhereUniqueInput
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -25067,74 +25301,18 @@ export namespace Prisma {
     set?: Date | string | null
   }
 
-  export type SessionUpdateManyWithoutUserNestedInput = {
-    create?: XOR<SessionCreateWithoutUserInput, SessionUncheckedCreateWithoutUserInput> | SessionCreateWithoutUserInput[] | SessionUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: SessionCreateOrConnectWithoutUserInput | SessionCreateOrConnectWithoutUserInput[]
-    upsert?: SessionUpsertWithWhereUniqueWithoutUserInput | SessionUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: SessionCreateManyUserInputEnvelope
-    set?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
-    disconnect?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
-    delete?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
-    connect?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
-    update?: SessionUpdateWithWhereUniqueWithoutUserInput | SessionUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: SessionUpdateManyWithWhereWithoutUserInput | SessionUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: SessionScalarWhereInput | SessionScalarWhereInput[]
-  }
-
-  export type AccountUpdateManyWithoutUserNestedInput = {
-    create?: XOR<AccountCreateWithoutUserInput, AccountUncheckedCreateWithoutUserInput> | AccountCreateWithoutUserInput[] | AccountUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: AccountCreateOrConnectWithoutUserInput | AccountCreateOrConnectWithoutUserInput[]
-    upsert?: AccountUpsertWithWhereUniqueWithoutUserInput | AccountUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: AccountCreateManyUserInputEnvelope
-    set?: AccountWhereUniqueInput | AccountWhereUniqueInput[]
-    disconnect?: AccountWhereUniqueInput | AccountWhereUniqueInput[]
-    delete?: AccountWhereUniqueInput | AccountWhereUniqueInput[]
-    connect?: AccountWhereUniqueInput | AccountWhereUniqueInput[]
-    update?: AccountUpdateWithWhereUniqueWithoutUserInput | AccountUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: AccountUpdateManyWithWhereWithoutUserInput | AccountUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: AccountScalarWhereInput | AccountScalarWhereInput[]
-  }
-
-  export type MemberUpdateManyWithoutUserNestedInput = {
-    create?: XOR<MemberCreateWithoutUserInput, MemberUncheckedCreateWithoutUserInput> | MemberCreateWithoutUserInput[] | MemberUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: MemberCreateOrConnectWithoutUserInput | MemberCreateOrConnectWithoutUserInput[]
-    upsert?: MemberUpsertWithWhereUniqueWithoutUserInput | MemberUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: MemberCreateManyUserInputEnvelope
-    set?: MemberWhereUniqueInput | MemberWhereUniqueInput[]
-    disconnect?: MemberWhereUniqueInput | MemberWhereUniqueInput[]
-    delete?: MemberWhereUniqueInput | MemberWhereUniqueInput[]
-    connect?: MemberWhereUniqueInput | MemberWhereUniqueInput[]
-    update?: MemberUpdateWithWhereUniqueWithoutUserInput | MemberUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: MemberUpdateManyWithWhereWithoutUserInput | MemberUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: MemberScalarWhereInput | MemberScalarWhereInput[]
-  }
-
-  export type InvitationUpdateManyWithoutUserNestedInput = {
-    create?: XOR<InvitationCreateWithoutUserInput, InvitationUncheckedCreateWithoutUserInput> | InvitationCreateWithoutUserInput[] | InvitationUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: InvitationCreateOrConnectWithoutUserInput | InvitationCreateOrConnectWithoutUserInput[]
-    upsert?: InvitationUpsertWithWhereUniqueWithoutUserInput | InvitationUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: InvitationCreateManyUserInputEnvelope
-    set?: InvitationWhereUniqueInput | InvitationWhereUniqueInput[]
-    disconnect?: InvitationWhereUniqueInput | InvitationWhereUniqueInput[]
-    delete?: InvitationWhereUniqueInput | InvitationWhereUniqueInput[]
-    connect?: InvitationWhereUniqueInput | InvitationWhereUniqueInput[]
-    update?: InvitationUpdateWithWhereUniqueWithoutUserInput | InvitationUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: InvitationUpdateManyWithWhereWithoutUserInput | InvitationUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: InvitationScalarWhereInput | InvitationScalarWhereInput[]
-  }
-
-  export type FavoriteCouponListUpdateManyWithoutUserNestedInput = {
-    create?: XOR<FavoriteCouponListCreateWithoutUserInput, FavoriteCouponListUncheckedCreateWithoutUserInput> | FavoriteCouponListCreateWithoutUserInput[] | FavoriteCouponListUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: FavoriteCouponListCreateOrConnectWithoutUserInput | FavoriteCouponListCreateOrConnectWithoutUserInput[]
-    upsert?: FavoriteCouponListUpsertWithWhereUniqueWithoutUserInput | FavoriteCouponListUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: FavoriteCouponListCreateManyUserInputEnvelope
-    set?: FavoriteCouponListWhereUniqueInput | FavoriteCouponListWhereUniqueInput[]
-    disconnect?: FavoriteCouponListWhereUniqueInput | FavoriteCouponListWhereUniqueInput[]
-    delete?: FavoriteCouponListWhereUniqueInput | FavoriteCouponListWhereUniqueInput[]
-    connect?: FavoriteCouponListWhereUniqueInput | FavoriteCouponListWhereUniqueInput[]
-    update?: FavoriteCouponListUpdateWithWhereUniqueWithoutUserInput | FavoriteCouponListUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: FavoriteCouponListUpdateManyWithWhereWithoutUserInput | FavoriteCouponListUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: FavoriteCouponListScalarWhereInput | FavoriteCouponListScalarWhereInput[]
+  export type RecycleHistoryUpdateManyWithoutUserNestedInput = {
+    create?: XOR<RecycleHistoryCreateWithoutUserInput, RecycleHistoryUncheckedCreateWithoutUserInput> | RecycleHistoryCreateWithoutUserInput[] | RecycleHistoryUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: RecycleHistoryCreateOrConnectWithoutUserInput | RecycleHistoryCreateOrConnectWithoutUserInput[]
+    upsert?: RecycleHistoryUpsertWithWhereUniqueWithoutUserInput | RecycleHistoryUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: RecycleHistoryCreateManyUserInputEnvelope
+    set?: RecycleHistoryWhereUniqueInput | RecycleHistoryWhereUniqueInput[]
+    disconnect?: RecycleHistoryWhereUniqueInput | RecycleHistoryWhereUniqueInput[]
+    delete?: RecycleHistoryWhereUniqueInput | RecycleHistoryWhereUniqueInput[]
+    connect?: RecycleHistoryWhereUniqueInput | RecycleHistoryWhereUniqueInput[]
+    update?: RecycleHistoryUpdateWithWhereUniqueWithoutUserInput | RecycleHistoryUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: RecycleHistoryUpdateManyWithWhereWithoutUserInput | RecycleHistoryUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: RecycleHistoryScalarWhereInput | RecycleHistoryScalarWhereInput[]
   }
 
   export type RedeemHistoryUpdateManyWithoutUserNestedInput = {
@@ -25151,49 +25329,7 @@ export namespace Prisma {
     deleteMany?: RedeemHistoryScalarWhereInput | RedeemHistoryScalarWhereInput[]
   }
 
-  export type RecycleHistoryUpdateManyWithoutUserNestedInput = {
-    create?: XOR<RecycleHistoryCreateWithoutUserInput, RecycleHistoryUncheckedCreateWithoutUserInput> | RecycleHistoryCreateWithoutUserInput[] | RecycleHistoryUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: RecycleHistoryCreateOrConnectWithoutUserInput | RecycleHistoryCreateOrConnectWithoutUserInput[]
-    upsert?: RecycleHistoryUpsertWithWhereUniqueWithoutUserInput | RecycleHistoryUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: RecycleHistoryCreateManyUserInputEnvelope
-    set?: RecycleHistoryWhereUniqueInput | RecycleHistoryWhereUniqueInput[]
-    disconnect?: RecycleHistoryWhereUniqueInput | RecycleHistoryWhereUniqueInput[]
-    delete?: RecycleHistoryWhereUniqueInput | RecycleHistoryWhereUniqueInput[]
-    connect?: RecycleHistoryWhereUniqueInput | RecycleHistoryWhereUniqueInput[]
-    update?: RecycleHistoryUpdateWithWhereUniqueWithoutUserInput | RecycleHistoryUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: RecycleHistoryUpdateManyWithWhereWithoutUserInput | RecycleHistoryUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: RecycleHistoryScalarWhereInput | RecycleHistoryScalarWhereInput[]
-  }
-
-  export type UserTotalPointUpdateManyWithoutUserNestedInput = {
-    create?: XOR<UserTotalPointCreateWithoutUserInput, UserTotalPointUncheckedCreateWithoutUserInput> | UserTotalPointCreateWithoutUserInput[] | UserTotalPointUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: UserTotalPointCreateOrConnectWithoutUserInput | UserTotalPointCreateOrConnectWithoutUserInput[]
-    upsert?: UserTotalPointUpsertWithWhereUniqueWithoutUserInput | UserTotalPointUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: UserTotalPointCreateManyUserInputEnvelope
-    set?: UserTotalPointWhereUniqueInput | UserTotalPointWhereUniqueInput[]
-    disconnect?: UserTotalPointWhereUniqueInput | UserTotalPointWhereUniqueInput[]
-    delete?: UserTotalPointWhereUniqueInput | UserTotalPointWhereUniqueInput[]
-    connect?: UserTotalPointWhereUniqueInput | UserTotalPointWhereUniqueInput[]
-    update?: UserTotalPointUpdateWithWhereUniqueWithoutUserInput | UserTotalPointUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: UserTotalPointUpdateManyWithWhereWithoutUserInput | UserTotalPointUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: UserTotalPointScalarWhereInput | UserTotalPointScalarWhereInput[]
-  }
-
-  export type SessionUncheckedUpdateManyWithoutUserNestedInput = {
-    create?: XOR<SessionCreateWithoutUserInput, SessionUncheckedCreateWithoutUserInput> | SessionCreateWithoutUserInput[] | SessionUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: SessionCreateOrConnectWithoutUserInput | SessionCreateOrConnectWithoutUserInput[]
-    upsert?: SessionUpsertWithWhereUniqueWithoutUserInput | SessionUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: SessionCreateManyUserInputEnvelope
-    set?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
-    disconnect?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
-    delete?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
-    connect?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
-    update?: SessionUpdateWithWhereUniqueWithoutUserInput | SessionUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: SessionUpdateManyWithWhereWithoutUserInput | SessionUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: SessionScalarWhereInput | SessionScalarWhereInput[]
-  }
-
-  export type AccountUncheckedUpdateManyWithoutUserNestedInput = {
+  export type AccountUpdateManyWithoutUserNestedInput = {
     create?: XOR<AccountCreateWithoutUserInput, AccountUncheckedCreateWithoutUserInput> | AccountCreateWithoutUserInput[] | AccountUncheckedCreateWithoutUserInput[]
     connectOrCreate?: AccountCreateOrConnectWithoutUserInput | AccountCreateOrConnectWithoutUserInput[]
     upsert?: AccountUpsertWithWhereUniqueWithoutUserInput | AccountUpsertWithWhereUniqueWithoutUserInput[]
@@ -25207,21 +25343,21 @@ export namespace Prisma {
     deleteMany?: AccountScalarWhereInput | AccountScalarWhereInput[]
   }
 
-  export type MemberUncheckedUpdateManyWithoutUserNestedInput = {
-    create?: XOR<MemberCreateWithoutUserInput, MemberUncheckedCreateWithoutUserInput> | MemberCreateWithoutUserInput[] | MemberUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: MemberCreateOrConnectWithoutUserInput | MemberCreateOrConnectWithoutUserInput[]
-    upsert?: MemberUpsertWithWhereUniqueWithoutUserInput | MemberUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: MemberCreateManyUserInputEnvelope
-    set?: MemberWhereUniqueInput | MemberWhereUniqueInput[]
-    disconnect?: MemberWhereUniqueInput | MemberWhereUniqueInput[]
-    delete?: MemberWhereUniqueInput | MemberWhereUniqueInput[]
-    connect?: MemberWhereUniqueInput | MemberWhereUniqueInput[]
-    update?: MemberUpdateWithWhereUniqueWithoutUserInput | MemberUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: MemberUpdateManyWithWhereWithoutUserInput | MemberUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: MemberScalarWhereInput | MemberScalarWhereInput[]
+  export type FavouriteCouponUpdateManyWithoutUserNestedInput = {
+    create?: XOR<FavouriteCouponCreateWithoutUserInput, FavouriteCouponUncheckedCreateWithoutUserInput> | FavouriteCouponCreateWithoutUserInput[] | FavouriteCouponUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: FavouriteCouponCreateOrConnectWithoutUserInput | FavouriteCouponCreateOrConnectWithoutUserInput[]
+    upsert?: FavouriteCouponUpsertWithWhereUniqueWithoutUserInput | FavouriteCouponUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: FavouriteCouponCreateManyUserInputEnvelope
+    set?: FavouriteCouponWhereUniqueInput | FavouriteCouponWhereUniqueInput[]
+    disconnect?: FavouriteCouponWhereUniqueInput | FavouriteCouponWhereUniqueInput[]
+    delete?: FavouriteCouponWhereUniqueInput | FavouriteCouponWhereUniqueInput[]
+    connect?: FavouriteCouponWhereUniqueInput | FavouriteCouponWhereUniqueInput[]
+    update?: FavouriteCouponUpdateWithWhereUniqueWithoutUserInput | FavouriteCouponUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: FavouriteCouponUpdateManyWithWhereWithoutUserInput | FavouriteCouponUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: FavouriteCouponScalarWhereInput | FavouriteCouponScalarWhereInput[]
   }
 
-  export type InvitationUncheckedUpdateManyWithoutUserNestedInput = {
+  export type InvitationUpdateManyWithoutUserNestedInput = {
     create?: XOR<InvitationCreateWithoutUserInput, InvitationUncheckedCreateWithoutUserInput> | InvitationCreateWithoutUserInput[] | InvitationUncheckedCreateWithoutUserInput[]
     connectOrCreate?: InvitationCreateOrConnectWithoutUserInput | InvitationCreateOrConnectWithoutUserInput[]
     upsert?: InvitationUpsertWithWhereUniqueWithoutUserInput | InvitationUpsertWithWhereUniqueWithoutUserInput[]
@@ -25235,32 +25371,42 @@ export namespace Prisma {
     deleteMany?: InvitationScalarWhereInput | InvitationScalarWhereInput[]
   }
 
-  export type FavoriteCouponListUncheckedUpdateManyWithoutUserNestedInput = {
-    create?: XOR<FavoriteCouponListCreateWithoutUserInput, FavoriteCouponListUncheckedCreateWithoutUserInput> | FavoriteCouponListCreateWithoutUserInput[] | FavoriteCouponListUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: FavoriteCouponListCreateOrConnectWithoutUserInput | FavoriteCouponListCreateOrConnectWithoutUserInput[]
-    upsert?: FavoriteCouponListUpsertWithWhereUniqueWithoutUserInput | FavoriteCouponListUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: FavoriteCouponListCreateManyUserInputEnvelope
-    set?: FavoriteCouponListWhereUniqueInput | FavoriteCouponListWhereUniqueInput[]
-    disconnect?: FavoriteCouponListWhereUniqueInput | FavoriteCouponListWhereUniqueInput[]
-    delete?: FavoriteCouponListWhereUniqueInput | FavoriteCouponListWhereUniqueInput[]
-    connect?: FavoriteCouponListWhereUniqueInput | FavoriteCouponListWhereUniqueInput[]
-    update?: FavoriteCouponListUpdateWithWhereUniqueWithoutUserInput | FavoriteCouponListUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: FavoriteCouponListUpdateManyWithWhereWithoutUserInput | FavoriteCouponListUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: FavoriteCouponListScalarWhereInput | FavoriteCouponListScalarWhereInput[]
+  export type MemberUpdateManyWithoutUserNestedInput = {
+    create?: XOR<MemberCreateWithoutUserInput, MemberUncheckedCreateWithoutUserInput> | MemberCreateWithoutUserInput[] | MemberUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: MemberCreateOrConnectWithoutUserInput | MemberCreateOrConnectWithoutUserInput[]
+    upsert?: MemberUpsertWithWhereUniqueWithoutUserInput | MemberUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: MemberCreateManyUserInputEnvelope
+    set?: MemberWhereUniqueInput | MemberWhereUniqueInput[]
+    disconnect?: MemberWhereUniqueInput | MemberWhereUniqueInput[]
+    delete?: MemberWhereUniqueInput | MemberWhereUniqueInput[]
+    connect?: MemberWhereUniqueInput | MemberWhereUniqueInput[]
+    update?: MemberUpdateWithWhereUniqueWithoutUserInput | MemberUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: MemberUpdateManyWithWhereWithoutUserInput | MemberUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: MemberScalarWhereInput | MemberScalarWhereInput[]
   }
 
-  export type RedeemHistoryUncheckedUpdateManyWithoutUserNestedInput = {
-    create?: XOR<RedeemHistoryCreateWithoutUserInput, RedeemHistoryUncheckedCreateWithoutUserInput> | RedeemHistoryCreateWithoutUserInput[] | RedeemHistoryUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: RedeemHistoryCreateOrConnectWithoutUserInput | RedeemHistoryCreateOrConnectWithoutUserInput[]
-    upsert?: RedeemHistoryUpsertWithWhereUniqueWithoutUserInput | RedeemHistoryUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: RedeemHistoryCreateManyUserInputEnvelope
-    set?: RedeemHistoryWhereUniqueInput | RedeemHistoryWhereUniqueInput[]
-    disconnect?: RedeemHistoryWhereUniqueInput | RedeemHistoryWhereUniqueInput[]
-    delete?: RedeemHistoryWhereUniqueInput | RedeemHistoryWhereUniqueInput[]
-    connect?: RedeemHistoryWhereUniqueInput | RedeemHistoryWhereUniqueInput[]
-    update?: RedeemHistoryUpdateWithWhereUniqueWithoutUserInput | RedeemHistoryUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: RedeemHistoryUpdateManyWithWhereWithoutUserInput | RedeemHistoryUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: RedeemHistoryScalarWhereInput | RedeemHistoryScalarWhereInput[]
+  export type SessionUpdateManyWithoutUserNestedInput = {
+    create?: XOR<SessionCreateWithoutUserInput, SessionUncheckedCreateWithoutUserInput> | SessionCreateWithoutUserInput[] | SessionUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: SessionCreateOrConnectWithoutUserInput | SessionCreateOrConnectWithoutUserInput[]
+    upsert?: SessionUpsertWithWhereUniqueWithoutUserInput | SessionUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: SessionCreateManyUserInputEnvelope
+    set?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
+    disconnect?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
+    delete?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
+    connect?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
+    update?: SessionUpdateWithWhereUniqueWithoutUserInput | SessionUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: SessionUpdateManyWithWhereWithoutUserInput | SessionUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: SessionScalarWhereInput | SessionScalarWhereInput[]
+  }
+
+  export type UserTotalPointUpdateOneWithoutUserNestedInput = {
+    create?: XOR<UserTotalPointCreateWithoutUserInput, UserTotalPointUncheckedCreateWithoutUserInput>
+    connectOrCreate?: UserTotalPointCreateOrConnectWithoutUserInput
+    upsert?: UserTotalPointUpsertWithoutUserInput
+    disconnect?: UserTotalPointWhereInput | boolean
+    delete?: UserTotalPointWhereInput | boolean
+    connect?: UserTotalPointWhereUniqueInput
+    update?: XOR<XOR<UserTotalPointUpdateToOneWithWhereWithoutUserInput, UserTotalPointUpdateWithoutUserInput>, UserTotalPointUncheckedUpdateWithoutUserInput>
   }
 
   export type RecycleHistoryUncheckedUpdateManyWithoutUserNestedInput = {
@@ -25277,18 +25423,98 @@ export namespace Prisma {
     deleteMany?: RecycleHistoryScalarWhereInput | RecycleHistoryScalarWhereInput[]
   }
 
-  export type UserTotalPointUncheckedUpdateManyWithoutUserNestedInput = {
-    create?: XOR<UserTotalPointCreateWithoutUserInput, UserTotalPointUncheckedCreateWithoutUserInput> | UserTotalPointCreateWithoutUserInput[] | UserTotalPointUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: UserTotalPointCreateOrConnectWithoutUserInput | UserTotalPointCreateOrConnectWithoutUserInput[]
-    upsert?: UserTotalPointUpsertWithWhereUniqueWithoutUserInput | UserTotalPointUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: UserTotalPointCreateManyUserInputEnvelope
-    set?: UserTotalPointWhereUniqueInput | UserTotalPointWhereUniqueInput[]
-    disconnect?: UserTotalPointWhereUniqueInput | UserTotalPointWhereUniqueInput[]
-    delete?: UserTotalPointWhereUniqueInput | UserTotalPointWhereUniqueInput[]
-    connect?: UserTotalPointWhereUniqueInput | UserTotalPointWhereUniqueInput[]
-    update?: UserTotalPointUpdateWithWhereUniqueWithoutUserInput | UserTotalPointUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: UserTotalPointUpdateManyWithWhereWithoutUserInput | UserTotalPointUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: UserTotalPointScalarWhereInput | UserTotalPointScalarWhereInput[]
+  export type RedeemHistoryUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<RedeemHistoryCreateWithoutUserInput, RedeemHistoryUncheckedCreateWithoutUserInput> | RedeemHistoryCreateWithoutUserInput[] | RedeemHistoryUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: RedeemHistoryCreateOrConnectWithoutUserInput | RedeemHistoryCreateOrConnectWithoutUserInput[]
+    upsert?: RedeemHistoryUpsertWithWhereUniqueWithoutUserInput | RedeemHistoryUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: RedeemHistoryCreateManyUserInputEnvelope
+    set?: RedeemHistoryWhereUniqueInput | RedeemHistoryWhereUniqueInput[]
+    disconnect?: RedeemHistoryWhereUniqueInput | RedeemHistoryWhereUniqueInput[]
+    delete?: RedeemHistoryWhereUniqueInput | RedeemHistoryWhereUniqueInput[]
+    connect?: RedeemHistoryWhereUniqueInput | RedeemHistoryWhereUniqueInput[]
+    update?: RedeemHistoryUpdateWithWhereUniqueWithoutUserInput | RedeemHistoryUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: RedeemHistoryUpdateManyWithWhereWithoutUserInput | RedeemHistoryUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: RedeemHistoryScalarWhereInput | RedeemHistoryScalarWhereInput[]
+  }
+
+  export type AccountUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<AccountCreateWithoutUserInput, AccountUncheckedCreateWithoutUserInput> | AccountCreateWithoutUserInput[] | AccountUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: AccountCreateOrConnectWithoutUserInput | AccountCreateOrConnectWithoutUserInput[]
+    upsert?: AccountUpsertWithWhereUniqueWithoutUserInput | AccountUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: AccountCreateManyUserInputEnvelope
+    set?: AccountWhereUniqueInput | AccountWhereUniqueInput[]
+    disconnect?: AccountWhereUniqueInput | AccountWhereUniqueInput[]
+    delete?: AccountWhereUniqueInput | AccountWhereUniqueInput[]
+    connect?: AccountWhereUniqueInput | AccountWhereUniqueInput[]
+    update?: AccountUpdateWithWhereUniqueWithoutUserInput | AccountUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: AccountUpdateManyWithWhereWithoutUserInput | AccountUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: AccountScalarWhereInput | AccountScalarWhereInput[]
+  }
+
+  export type FavouriteCouponUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<FavouriteCouponCreateWithoutUserInput, FavouriteCouponUncheckedCreateWithoutUserInput> | FavouriteCouponCreateWithoutUserInput[] | FavouriteCouponUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: FavouriteCouponCreateOrConnectWithoutUserInput | FavouriteCouponCreateOrConnectWithoutUserInput[]
+    upsert?: FavouriteCouponUpsertWithWhereUniqueWithoutUserInput | FavouriteCouponUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: FavouriteCouponCreateManyUserInputEnvelope
+    set?: FavouriteCouponWhereUniqueInput | FavouriteCouponWhereUniqueInput[]
+    disconnect?: FavouriteCouponWhereUniqueInput | FavouriteCouponWhereUniqueInput[]
+    delete?: FavouriteCouponWhereUniqueInput | FavouriteCouponWhereUniqueInput[]
+    connect?: FavouriteCouponWhereUniqueInput | FavouriteCouponWhereUniqueInput[]
+    update?: FavouriteCouponUpdateWithWhereUniqueWithoutUserInput | FavouriteCouponUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: FavouriteCouponUpdateManyWithWhereWithoutUserInput | FavouriteCouponUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: FavouriteCouponScalarWhereInput | FavouriteCouponScalarWhereInput[]
+  }
+
+  export type InvitationUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<InvitationCreateWithoutUserInput, InvitationUncheckedCreateWithoutUserInput> | InvitationCreateWithoutUserInput[] | InvitationUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: InvitationCreateOrConnectWithoutUserInput | InvitationCreateOrConnectWithoutUserInput[]
+    upsert?: InvitationUpsertWithWhereUniqueWithoutUserInput | InvitationUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: InvitationCreateManyUserInputEnvelope
+    set?: InvitationWhereUniqueInput | InvitationWhereUniqueInput[]
+    disconnect?: InvitationWhereUniqueInput | InvitationWhereUniqueInput[]
+    delete?: InvitationWhereUniqueInput | InvitationWhereUniqueInput[]
+    connect?: InvitationWhereUniqueInput | InvitationWhereUniqueInput[]
+    update?: InvitationUpdateWithWhereUniqueWithoutUserInput | InvitationUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: InvitationUpdateManyWithWhereWithoutUserInput | InvitationUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: InvitationScalarWhereInput | InvitationScalarWhereInput[]
+  }
+
+  export type MemberUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<MemberCreateWithoutUserInput, MemberUncheckedCreateWithoutUserInput> | MemberCreateWithoutUserInput[] | MemberUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: MemberCreateOrConnectWithoutUserInput | MemberCreateOrConnectWithoutUserInput[]
+    upsert?: MemberUpsertWithWhereUniqueWithoutUserInput | MemberUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: MemberCreateManyUserInputEnvelope
+    set?: MemberWhereUniqueInput | MemberWhereUniqueInput[]
+    disconnect?: MemberWhereUniqueInput | MemberWhereUniqueInput[]
+    delete?: MemberWhereUniqueInput | MemberWhereUniqueInput[]
+    connect?: MemberWhereUniqueInput | MemberWhereUniqueInput[]
+    update?: MemberUpdateWithWhereUniqueWithoutUserInput | MemberUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: MemberUpdateManyWithWhereWithoutUserInput | MemberUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: MemberScalarWhereInput | MemberScalarWhereInput[]
+  }
+
+  export type SessionUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<SessionCreateWithoutUserInput, SessionUncheckedCreateWithoutUserInput> | SessionCreateWithoutUserInput[] | SessionUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: SessionCreateOrConnectWithoutUserInput | SessionCreateOrConnectWithoutUserInput[]
+    upsert?: SessionUpsertWithWhereUniqueWithoutUserInput | SessionUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: SessionCreateManyUserInputEnvelope
+    set?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
+    disconnect?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
+    delete?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
+    connect?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
+    update?: SessionUpdateWithWhereUniqueWithoutUserInput | SessionUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: SessionUpdateManyWithWhereWithoutUserInput | SessionUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: SessionScalarWhereInput | SessionScalarWhereInput[]
+  }
+
+  export type UserTotalPointUncheckedUpdateOneWithoutUserNestedInput = {
+    create?: XOR<UserTotalPointCreateWithoutUserInput, UserTotalPointUncheckedCreateWithoutUserInput>
+    connectOrCreate?: UserTotalPointCreateOrConnectWithoutUserInput
+    upsert?: UserTotalPointUpsertWithoutUserInput
+    disconnect?: UserTotalPointWhereInput | boolean
+    delete?: UserTotalPointWhereInput | boolean
+    connect?: UserTotalPointWhereUniqueInput
+    update?: XOR<XOR<UserTotalPointUpdateToOneWithWhereWithoutUserInput, UserTotalPointUpdateWithoutUserInput>, UserTotalPointUncheckedUpdateWithoutUserInput>
   }
 
   export type UserCreateNestedOneWithoutSessionsInput = {
@@ -25319,11 +25545,11 @@ export namespace Prisma {
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutAccountsInput, UserUpdateWithoutAccountsInput>, UserUncheckedUpdateWithoutAccountsInput>
   }
 
-  export type MemberCreateNestedManyWithoutOrganizationInput = {
-    create?: XOR<MemberCreateWithoutOrganizationInput, MemberUncheckedCreateWithoutOrganizationInput> | MemberCreateWithoutOrganizationInput[] | MemberUncheckedCreateWithoutOrganizationInput[]
-    connectOrCreate?: MemberCreateOrConnectWithoutOrganizationInput | MemberCreateOrConnectWithoutOrganizationInput[]
-    createMany?: MemberCreateManyOrganizationInputEnvelope
-    connect?: MemberWhereUniqueInput | MemberWhereUniqueInput[]
+  export type CouponCreateNestedManyWithoutOrganizationInput = {
+    create?: XOR<CouponCreateWithoutOrganizationInput, CouponUncheckedCreateWithoutOrganizationInput> | CouponCreateWithoutOrganizationInput[] | CouponUncheckedCreateWithoutOrganizationInput[]
+    connectOrCreate?: CouponCreateOrConnectWithoutOrganizationInput | CouponCreateOrConnectWithoutOrganizationInput[]
+    createMany?: CouponCreateManyOrganizationInputEnvelope
+    connect?: CouponWhereUniqueInput | CouponWhereUniqueInput[]
   }
 
   export type InvitationCreateNestedManyWithoutOrganizationInput = {
@@ -25333,35 +25559,14 @@ export namespace Prisma {
     connect?: InvitationWhereUniqueInput | InvitationWhereUniqueInput[]
   }
 
-  export type StoreCreateNestedManyWithoutOrganizationInput = {
-    create?: XOR<StoreCreateWithoutOrganizationInput, StoreUncheckedCreateWithoutOrganizationInput> | StoreCreateWithoutOrganizationInput[] | StoreUncheckedCreateWithoutOrganizationInput[]
-    connectOrCreate?: StoreCreateOrConnectWithoutOrganizationInput | StoreCreateOrConnectWithoutOrganizationInput[]
-    createMany?: StoreCreateManyOrganizationInputEnvelope
-    connect?: StoreWhereUniqueInput | StoreWhereUniqueInput[]
-  }
-
-  export type CouponCreateNestedManyWithoutOrganizationInput = {
-    create?: XOR<CouponCreateWithoutOrganizationInput, CouponUncheckedCreateWithoutOrganizationInput> | CouponCreateWithoutOrganizationInput[] | CouponUncheckedCreateWithoutOrganizationInput[]
-    connectOrCreate?: CouponCreateOrConnectWithoutOrganizationInput | CouponCreateOrConnectWithoutOrganizationInput[]
-    createMany?: CouponCreateManyOrganizationInputEnvelope
-    connect?: CouponWhereUniqueInput | CouponWhereUniqueInput[]
-  }
-
-  export type MemberUncheckedCreateNestedManyWithoutOrganizationInput = {
+  export type MemberCreateNestedManyWithoutOrganizationInput = {
     create?: XOR<MemberCreateWithoutOrganizationInput, MemberUncheckedCreateWithoutOrganizationInput> | MemberCreateWithoutOrganizationInput[] | MemberUncheckedCreateWithoutOrganizationInput[]
     connectOrCreate?: MemberCreateOrConnectWithoutOrganizationInput | MemberCreateOrConnectWithoutOrganizationInput[]
     createMany?: MemberCreateManyOrganizationInputEnvelope
     connect?: MemberWhereUniqueInput | MemberWhereUniqueInput[]
   }
 
-  export type InvitationUncheckedCreateNestedManyWithoutOrganizationInput = {
-    create?: XOR<InvitationCreateWithoutOrganizationInput, InvitationUncheckedCreateWithoutOrganizationInput> | InvitationCreateWithoutOrganizationInput[] | InvitationUncheckedCreateWithoutOrganizationInput[]
-    connectOrCreate?: InvitationCreateOrConnectWithoutOrganizationInput | InvitationCreateOrConnectWithoutOrganizationInput[]
-    createMany?: InvitationCreateManyOrganizationInputEnvelope
-    connect?: InvitationWhereUniqueInput | InvitationWhereUniqueInput[]
-  }
-
-  export type StoreUncheckedCreateNestedManyWithoutOrganizationInput = {
+  export type StoreCreateNestedManyWithoutOrganizationInput = {
     create?: XOR<StoreCreateWithoutOrganizationInput, StoreUncheckedCreateWithoutOrganizationInput> | StoreCreateWithoutOrganizationInput[] | StoreUncheckedCreateWithoutOrganizationInput[]
     connectOrCreate?: StoreCreateOrConnectWithoutOrganizationInput | StoreCreateOrConnectWithoutOrganizationInput[]
     createMany?: StoreCreateManyOrganizationInputEnvelope
@@ -25375,46 +25580,25 @@ export namespace Prisma {
     connect?: CouponWhereUniqueInput | CouponWhereUniqueInput[]
   }
 
-  export type MemberUpdateManyWithoutOrganizationNestedInput = {
-    create?: XOR<MemberCreateWithoutOrganizationInput, MemberUncheckedCreateWithoutOrganizationInput> | MemberCreateWithoutOrganizationInput[] | MemberUncheckedCreateWithoutOrganizationInput[]
-    connectOrCreate?: MemberCreateOrConnectWithoutOrganizationInput | MemberCreateOrConnectWithoutOrganizationInput[]
-    upsert?: MemberUpsertWithWhereUniqueWithoutOrganizationInput | MemberUpsertWithWhereUniqueWithoutOrganizationInput[]
-    createMany?: MemberCreateManyOrganizationInputEnvelope
-    set?: MemberWhereUniqueInput | MemberWhereUniqueInput[]
-    disconnect?: MemberWhereUniqueInput | MemberWhereUniqueInput[]
-    delete?: MemberWhereUniqueInput | MemberWhereUniqueInput[]
-    connect?: MemberWhereUniqueInput | MemberWhereUniqueInput[]
-    update?: MemberUpdateWithWhereUniqueWithoutOrganizationInput | MemberUpdateWithWhereUniqueWithoutOrganizationInput[]
-    updateMany?: MemberUpdateManyWithWhereWithoutOrganizationInput | MemberUpdateManyWithWhereWithoutOrganizationInput[]
-    deleteMany?: MemberScalarWhereInput | MemberScalarWhereInput[]
-  }
-
-  export type InvitationUpdateManyWithoutOrganizationNestedInput = {
+  export type InvitationUncheckedCreateNestedManyWithoutOrganizationInput = {
     create?: XOR<InvitationCreateWithoutOrganizationInput, InvitationUncheckedCreateWithoutOrganizationInput> | InvitationCreateWithoutOrganizationInput[] | InvitationUncheckedCreateWithoutOrganizationInput[]
     connectOrCreate?: InvitationCreateOrConnectWithoutOrganizationInput | InvitationCreateOrConnectWithoutOrganizationInput[]
-    upsert?: InvitationUpsertWithWhereUniqueWithoutOrganizationInput | InvitationUpsertWithWhereUniqueWithoutOrganizationInput[]
     createMany?: InvitationCreateManyOrganizationInputEnvelope
-    set?: InvitationWhereUniqueInput | InvitationWhereUniqueInput[]
-    disconnect?: InvitationWhereUniqueInput | InvitationWhereUniqueInput[]
-    delete?: InvitationWhereUniqueInput | InvitationWhereUniqueInput[]
     connect?: InvitationWhereUniqueInput | InvitationWhereUniqueInput[]
-    update?: InvitationUpdateWithWhereUniqueWithoutOrganizationInput | InvitationUpdateWithWhereUniqueWithoutOrganizationInput[]
-    updateMany?: InvitationUpdateManyWithWhereWithoutOrganizationInput | InvitationUpdateManyWithWhereWithoutOrganizationInput[]
-    deleteMany?: InvitationScalarWhereInput | InvitationScalarWhereInput[]
   }
 
-  export type StoreUpdateManyWithoutOrganizationNestedInput = {
+  export type MemberUncheckedCreateNestedManyWithoutOrganizationInput = {
+    create?: XOR<MemberCreateWithoutOrganizationInput, MemberUncheckedCreateWithoutOrganizationInput> | MemberCreateWithoutOrganizationInput[] | MemberUncheckedCreateWithoutOrganizationInput[]
+    connectOrCreate?: MemberCreateOrConnectWithoutOrganizationInput | MemberCreateOrConnectWithoutOrganizationInput[]
+    createMany?: MemberCreateManyOrganizationInputEnvelope
+    connect?: MemberWhereUniqueInput | MemberWhereUniqueInput[]
+  }
+
+  export type StoreUncheckedCreateNestedManyWithoutOrganizationInput = {
     create?: XOR<StoreCreateWithoutOrganizationInput, StoreUncheckedCreateWithoutOrganizationInput> | StoreCreateWithoutOrganizationInput[] | StoreUncheckedCreateWithoutOrganizationInput[]
     connectOrCreate?: StoreCreateOrConnectWithoutOrganizationInput | StoreCreateOrConnectWithoutOrganizationInput[]
-    upsert?: StoreUpsertWithWhereUniqueWithoutOrganizationInput | StoreUpsertWithWhereUniqueWithoutOrganizationInput[]
     createMany?: StoreCreateManyOrganizationInputEnvelope
-    set?: StoreWhereUniqueInput | StoreWhereUniqueInput[]
-    disconnect?: StoreWhereUniqueInput | StoreWhereUniqueInput[]
-    delete?: StoreWhereUniqueInput | StoreWhereUniqueInput[]
     connect?: StoreWhereUniqueInput | StoreWhereUniqueInput[]
-    update?: StoreUpdateWithWhereUniqueWithoutOrganizationInput | StoreUpdateWithWhereUniqueWithoutOrganizationInput[]
-    updateMany?: StoreUpdateManyWithWhereWithoutOrganizationInput | StoreUpdateManyWithWhereWithoutOrganizationInput[]
-    deleteMany?: StoreScalarWhereInput | StoreScalarWhereInput[]
   }
 
   export type CouponUpdateManyWithoutOrganizationNestedInput = {
@@ -25431,21 +25615,7 @@ export namespace Prisma {
     deleteMany?: CouponScalarWhereInput | CouponScalarWhereInput[]
   }
 
-  export type MemberUncheckedUpdateManyWithoutOrganizationNestedInput = {
-    create?: XOR<MemberCreateWithoutOrganizationInput, MemberUncheckedCreateWithoutOrganizationInput> | MemberCreateWithoutOrganizationInput[] | MemberUncheckedCreateWithoutOrganizationInput[]
-    connectOrCreate?: MemberCreateOrConnectWithoutOrganizationInput | MemberCreateOrConnectWithoutOrganizationInput[]
-    upsert?: MemberUpsertWithWhereUniqueWithoutOrganizationInput | MemberUpsertWithWhereUniqueWithoutOrganizationInput[]
-    createMany?: MemberCreateManyOrganizationInputEnvelope
-    set?: MemberWhereUniqueInput | MemberWhereUniqueInput[]
-    disconnect?: MemberWhereUniqueInput | MemberWhereUniqueInput[]
-    delete?: MemberWhereUniqueInput | MemberWhereUniqueInput[]
-    connect?: MemberWhereUniqueInput | MemberWhereUniqueInput[]
-    update?: MemberUpdateWithWhereUniqueWithoutOrganizationInput | MemberUpdateWithWhereUniqueWithoutOrganizationInput[]
-    updateMany?: MemberUpdateManyWithWhereWithoutOrganizationInput | MemberUpdateManyWithWhereWithoutOrganizationInput[]
-    deleteMany?: MemberScalarWhereInput | MemberScalarWhereInput[]
-  }
-
-  export type InvitationUncheckedUpdateManyWithoutOrganizationNestedInput = {
+  export type InvitationUpdateManyWithoutOrganizationNestedInput = {
     create?: XOR<InvitationCreateWithoutOrganizationInput, InvitationUncheckedCreateWithoutOrganizationInput> | InvitationCreateWithoutOrganizationInput[] | InvitationUncheckedCreateWithoutOrganizationInput[]
     connectOrCreate?: InvitationCreateOrConnectWithoutOrganizationInput | InvitationCreateOrConnectWithoutOrganizationInput[]
     upsert?: InvitationUpsertWithWhereUniqueWithoutOrganizationInput | InvitationUpsertWithWhereUniqueWithoutOrganizationInput[]
@@ -25459,7 +25629,21 @@ export namespace Prisma {
     deleteMany?: InvitationScalarWhereInput | InvitationScalarWhereInput[]
   }
 
-  export type StoreUncheckedUpdateManyWithoutOrganizationNestedInput = {
+  export type MemberUpdateManyWithoutOrganizationNestedInput = {
+    create?: XOR<MemberCreateWithoutOrganizationInput, MemberUncheckedCreateWithoutOrganizationInput> | MemberCreateWithoutOrganizationInput[] | MemberUncheckedCreateWithoutOrganizationInput[]
+    connectOrCreate?: MemberCreateOrConnectWithoutOrganizationInput | MemberCreateOrConnectWithoutOrganizationInput[]
+    upsert?: MemberUpsertWithWhereUniqueWithoutOrganizationInput | MemberUpsertWithWhereUniqueWithoutOrganizationInput[]
+    createMany?: MemberCreateManyOrganizationInputEnvelope
+    set?: MemberWhereUniqueInput | MemberWhereUniqueInput[]
+    disconnect?: MemberWhereUniqueInput | MemberWhereUniqueInput[]
+    delete?: MemberWhereUniqueInput | MemberWhereUniqueInput[]
+    connect?: MemberWhereUniqueInput | MemberWhereUniqueInput[]
+    update?: MemberUpdateWithWhereUniqueWithoutOrganizationInput | MemberUpdateWithWhereUniqueWithoutOrganizationInput[]
+    updateMany?: MemberUpdateManyWithWhereWithoutOrganizationInput | MemberUpdateManyWithWhereWithoutOrganizationInput[]
+    deleteMany?: MemberScalarWhereInput | MemberScalarWhereInput[]
+  }
+
+  export type StoreUpdateManyWithoutOrganizationNestedInput = {
     create?: XOR<StoreCreateWithoutOrganizationInput, StoreUncheckedCreateWithoutOrganizationInput> | StoreCreateWithoutOrganizationInput[] | StoreUncheckedCreateWithoutOrganizationInput[]
     connectOrCreate?: StoreCreateOrConnectWithoutOrganizationInput | StoreCreateOrConnectWithoutOrganizationInput[]
     upsert?: StoreUpsertWithWhereUniqueWithoutOrganizationInput | StoreUpsertWithWhereUniqueWithoutOrganizationInput[]
@@ -25485,6 +25669,48 @@ export namespace Prisma {
     update?: CouponUpdateWithWhereUniqueWithoutOrganizationInput | CouponUpdateWithWhereUniqueWithoutOrganizationInput[]
     updateMany?: CouponUpdateManyWithWhereWithoutOrganizationInput | CouponUpdateManyWithWhereWithoutOrganizationInput[]
     deleteMany?: CouponScalarWhereInput | CouponScalarWhereInput[]
+  }
+
+  export type InvitationUncheckedUpdateManyWithoutOrganizationNestedInput = {
+    create?: XOR<InvitationCreateWithoutOrganizationInput, InvitationUncheckedCreateWithoutOrganizationInput> | InvitationCreateWithoutOrganizationInput[] | InvitationUncheckedCreateWithoutOrganizationInput[]
+    connectOrCreate?: InvitationCreateOrConnectWithoutOrganizationInput | InvitationCreateOrConnectWithoutOrganizationInput[]
+    upsert?: InvitationUpsertWithWhereUniqueWithoutOrganizationInput | InvitationUpsertWithWhereUniqueWithoutOrganizationInput[]
+    createMany?: InvitationCreateManyOrganizationInputEnvelope
+    set?: InvitationWhereUniqueInput | InvitationWhereUniqueInput[]
+    disconnect?: InvitationWhereUniqueInput | InvitationWhereUniqueInput[]
+    delete?: InvitationWhereUniqueInput | InvitationWhereUniqueInput[]
+    connect?: InvitationWhereUniqueInput | InvitationWhereUniqueInput[]
+    update?: InvitationUpdateWithWhereUniqueWithoutOrganizationInput | InvitationUpdateWithWhereUniqueWithoutOrganizationInput[]
+    updateMany?: InvitationUpdateManyWithWhereWithoutOrganizationInput | InvitationUpdateManyWithWhereWithoutOrganizationInput[]
+    deleteMany?: InvitationScalarWhereInput | InvitationScalarWhereInput[]
+  }
+
+  export type MemberUncheckedUpdateManyWithoutOrganizationNestedInput = {
+    create?: XOR<MemberCreateWithoutOrganizationInput, MemberUncheckedCreateWithoutOrganizationInput> | MemberCreateWithoutOrganizationInput[] | MemberUncheckedCreateWithoutOrganizationInput[]
+    connectOrCreate?: MemberCreateOrConnectWithoutOrganizationInput | MemberCreateOrConnectWithoutOrganizationInput[]
+    upsert?: MemberUpsertWithWhereUniqueWithoutOrganizationInput | MemberUpsertWithWhereUniqueWithoutOrganizationInput[]
+    createMany?: MemberCreateManyOrganizationInputEnvelope
+    set?: MemberWhereUniqueInput | MemberWhereUniqueInput[]
+    disconnect?: MemberWhereUniqueInput | MemberWhereUniqueInput[]
+    delete?: MemberWhereUniqueInput | MemberWhereUniqueInput[]
+    connect?: MemberWhereUniqueInput | MemberWhereUniqueInput[]
+    update?: MemberUpdateWithWhereUniqueWithoutOrganizationInput | MemberUpdateWithWhereUniqueWithoutOrganizationInput[]
+    updateMany?: MemberUpdateManyWithWhereWithoutOrganizationInput | MemberUpdateManyWithWhereWithoutOrganizationInput[]
+    deleteMany?: MemberScalarWhereInput | MemberScalarWhereInput[]
+  }
+
+  export type StoreUncheckedUpdateManyWithoutOrganizationNestedInput = {
+    create?: XOR<StoreCreateWithoutOrganizationInput, StoreUncheckedCreateWithoutOrganizationInput> | StoreCreateWithoutOrganizationInput[] | StoreUncheckedCreateWithoutOrganizationInput[]
+    connectOrCreate?: StoreCreateOrConnectWithoutOrganizationInput | StoreCreateOrConnectWithoutOrganizationInput[]
+    upsert?: StoreUpsertWithWhereUniqueWithoutOrganizationInput | StoreUpsertWithWhereUniqueWithoutOrganizationInput[]
+    createMany?: StoreCreateManyOrganizationInputEnvelope
+    set?: StoreWhereUniqueInput | StoreWhereUniqueInput[]
+    disconnect?: StoreWhereUniqueInput | StoreWhereUniqueInput[]
+    delete?: StoreWhereUniqueInput | StoreWhereUniqueInput[]
+    connect?: StoreWhereUniqueInput | StoreWhereUniqueInput[]
+    update?: StoreUpdateWithWhereUniqueWithoutOrganizationInput | StoreUpdateWithWhereUniqueWithoutOrganizationInput[]
+    updateMany?: StoreUpdateManyWithWhereWithoutOrganizationInput | StoreUpdateManyWithWhereWithoutOrganizationInput[]
+    deleteMany?: StoreScalarWhereInput | StoreScalarWhereInput[]
   }
 
   export type OrganizationCreateNestedOneWithoutMembersInput = {
@@ -25515,24 +25741,16 @@ export namespace Prisma {
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutMembersInput, UserUpdateWithoutMembersInput>, UserUncheckedUpdateWithoutMembersInput>
   }
 
-  export type OrganizationCreateNestedOneWithoutInvitationsInput = {
-    create?: XOR<OrganizationCreateWithoutInvitationsInput, OrganizationUncheckedCreateWithoutInvitationsInput>
-    connectOrCreate?: OrganizationCreateOrConnectWithoutInvitationsInput
-    connect?: OrganizationWhereUniqueInput
-  }
-
   export type UserCreateNestedOneWithoutInvitationsInput = {
     create?: XOR<UserCreateWithoutInvitationsInput, UserUncheckedCreateWithoutInvitationsInput>
     connectOrCreate?: UserCreateOrConnectWithoutInvitationsInput
     connect?: UserWhereUniqueInput
   }
 
-  export type OrganizationUpdateOneRequiredWithoutInvitationsNestedInput = {
+  export type OrganizationCreateNestedOneWithoutInvitationsInput = {
     create?: XOR<OrganizationCreateWithoutInvitationsInput, OrganizationUncheckedCreateWithoutInvitationsInput>
     connectOrCreate?: OrganizationCreateOrConnectWithoutInvitationsInput
-    upsert?: OrganizationUpsertWithoutInvitationsInput
     connect?: OrganizationWhereUniqueInput
-    update?: XOR<XOR<OrganizationUpdateToOneWithWhereWithoutInvitationsInput, OrganizationUpdateWithoutInvitationsInput>, OrganizationUncheckedUpdateWithoutInvitationsInput>
   }
 
   export type UserUpdateOneRequiredWithoutInvitationsNestedInput = {
@@ -25543,10 +25761,12 @@ export namespace Prisma {
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutInvitationsInput, UserUpdateWithoutInvitationsInput>, UserUncheckedUpdateWithoutInvitationsInput>
   }
 
-  export type OrganizationCreateNestedOneWithoutStoresInput = {
-    create?: XOR<OrganizationCreateWithoutStoresInput, OrganizationUncheckedCreateWithoutStoresInput>
-    connectOrCreate?: OrganizationCreateOrConnectWithoutStoresInput
+  export type OrganizationUpdateOneRequiredWithoutInvitationsNestedInput = {
+    create?: XOR<OrganizationCreateWithoutInvitationsInput, OrganizationUncheckedCreateWithoutInvitationsInput>
+    connectOrCreate?: OrganizationCreateOrConnectWithoutInvitationsInput
+    upsert?: OrganizationUpsertWithoutInvitationsInput
     connect?: OrganizationWhereUniqueInput
+    update?: XOR<XOR<OrganizationUpdateToOneWithWhereWithoutInvitationsInput, OrganizationUpdateWithoutInvitationsInput>, OrganizationUncheckedUpdateWithoutInvitationsInput>
   }
 
   export type BinCreateNestedManyWithoutStoreInput = {
@@ -25554,6 +25774,12 @@ export namespace Prisma {
     connectOrCreate?: BinCreateOrConnectWithoutStoreInput | BinCreateOrConnectWithoutStoreInput[]
     createMany?: BinCreateManyStoreInputEnvelope
     connect?: BinWhereUniqueInput | BinWhereUniqueInput[]
+  }
+
+  export type OrganizationCreateNestedOneWithoutStoresInput = {
+    create?: XOR<OrganizationCreateWithoutStoresInput, OrganizationUncheckedCreateWithoutStoresInput>
+    connectOrCreate?: OrganizationCreateOrConnectWithoutStoresInput
+    connect?: OrganizationWhereUniqueInput
   }
 
   export type BinUncheckedCreateNestedManyWithoutStoreInput = {
@@ -25575,16 +25801,6 @@ export namespace Prisma {
     divide?: number
   }
 
-  export type OrganizationUpdateOneWithoutStoresNestedInput = {
-    create?: XOR<OrganizationCreateWithoutStoresInput, OrganizationUncheckedCreateWithoutStoresInput>
-    connectOrCreate?: OrganizationCreateOrConnectWithoutStoresInput
-    upsert?: OrganizationUpsertWithoutStoresInput
-    disconnect?: OrganizationWhereInput | boolean
-    delete?: OrganizationWhereInput | boolean
-    connect?: OrganizationWhereUniqueInput
-    update?: XOR<XOR<OrganizationUpdateToOneWithWhereWithoutStoresInput, OrganizationUpdateWithoutStoresInput>, OrganizationUncheckedUpdateWithoutStoresInput>
-  }
-
   export type BinUpdateManyWithoutStoreNestedInput = {
     create?: XOR<BinCreateWithoutStoreInput, BinUncheckedCreateWithoutStoreInput> | BinCreateWithoutStoreInput[] | BinUncheckedCreateWithoutStoreInput[]
     connectOrCreate?: BinCreateOrConnectWithoutStoreInput | BinCreateOrConnectWithoutStoreInput[]
@@ -25597,6 +25813,16 @@ export namespace Prisma {
     update?: BinUpdateWithWhereUniqueWithoutStoreInput | BinUpdateWithWhereUniqueWithoutStoreInput[]
     updateMany?: BinUpdateManyWithWhereWithoutStoreInput | BinUpdateManyWithWhereWithoutStoreInput[]
     deleteMany?: BinScalarWhereInput | BinScalarWhereInput[]
+  }
+
+  export type OrganizationUpdateOneWithoutStoresNestedInput = {
+    create?: XOR<OrganizationCreateWithoutStoresInput, OrganizationUncheckedCreateWithoutStoresInput>
+    connectOrCreate?: OrganizationCreateOrConnectWithoutStoresInput
+    upsert?: OrganizationUpsertWithoutStoresInput
+    disconnect?: OrganizationWhereInput | boolean
+    delete?: OrganizationWhereInput | boolean
+    connect?: OrganizationWhereUniqueInput
+    update?: XOR<XOR<OrganizationUpdateToOneWithWhereWithoutStoresInput, OrganizationUpdateWithoutStoresInput>, OrganizationUncheckedUpdateWithoutStoresInput>
   }
 
   export type BinUncheckedUpdateManyWithoutStoreNestedInput = {
@@ -25727,6 +25953,12 @@ export namespace Prisma {
     connect?: UserWhereUniqueInput
   }
 
+  export type CouponCreateNestedOneWithoutRedeemHistoryInput = {
+    create?: XOR<CouponCreateWithoutRedeemHistoryInput, CouponUncheckedCreateWithoutRedeemHistoryInput>
+    connectOrCreate?: CouponCreateOrConnectWithoutRedeemHistoryInput
+    connect?: CouponWhereUniqueInput
+  }
+
   export type UserUpdateOneRequiredWithoutRedeemHistoryNestedInput = {
     create?: XOR<UserCreateWithoutRedeemHistoryInput, UserUncheckedCreateWithoutRedeemHistoryInput>
     connectOrCreate?: UserCreateOrConnectWithoutRedeemHistoryInput
@@ -25735,10 +25967,24 @@ export namespace Prisma {
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutRedeemHistoryInput, UserUpdateWithoutRedeemHistoryInput>, UserUncheckedUpdateWithoutRedeemHistoryInput>
   }
 
+  export type CouponUpdateOneRequiredWithoutRedeemHistoryNestedInput = {
+    create?: XOR<CouponCreateWithoutRedeemHistoryInput, CouponUncheckedCreateWithoutRedeemHistoryInput>
+    connectOrCreate?: CouponCreateOrConnectWithoutRedeemHistoryInput
+    upsert?: CouponUpsertWithoutRedeemHistoryInput
+    connect?: CouponWhereUniqueInput
+    update?: XOR<XOR<CouponUpdateToOneWithWhereWithoutRedeemHistoryInput, CouponUpdateWithoutRedeemHistoryInput>, CouponUncheckedUpdateWithoutRedeemHistoryInput>
+  }
+
   export type UserCreateNestedOneWithoutRecycleHistoryInput = {
     create?: XOR<UserCreateWithoutRecycleHistoryInput, UserUncheckedCreateWithoutRecycleHistoryInput>
     connectOrCreate?: UserCreateOrConnectWithoutRecycleHistoryInput
     connect?: UserWhereUniqueInput
+  }
+
+  export type BinCreateNestedOneWithoutRecycleHistoryInput = {
+    create?: XOR<BinCreateWithoutRecycleHistoryInput, BinUncheckedCreateWithoutRecycleHistoryInput>
+    connectOrCreate?: BinCreateOrConnectWithoutRecycleHistoryInput
+    connect?: BinWhereUniqueInput
   }
 
   export type UserUpdateOneRequiredWithoutRecycleHistoryNestedInput = {
@@ -25747,6 +25993,14 @@ export namespace Prisma {
     upsert?: UserUpsertWithoutRecycleHistoryInput
     connect?: UserWhereUniqueInput
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutRecycleHistoryInput, UserUpdateWithoutRecycleHistoryInput>, UserUncheckedUpdateWithoutRecycleHistoryInput>
+  }
+
+  export type BinUpdateOneRequiredWithoutRecycleHistoryNestedInput = {
+    create?: XOR<BinCreateWithoutRecycleHistoryInput, BinUncheckedCreateWithoutRecycleHistoryInput>
+    connectOrCreate?: BinCreateOrConnectWithoutRecycleHistoryInput
+    upsert?: BinUpsertWithoutRecycleHistoryInput
+    connect?: BinWhereUniqueInput
+    update?: XOR<XOR<BinUpdateToOneWithWhereWithoutRecycleHistoryInput, BinUpdateWithoutRecycleHistoryInput>, BinUncheckedUpdateWithoutRecycleHistoryInput>
   }
 
   export type UserCreateNestedOneWithoutUserTotalPointInput = {
@@ -25775,6 +26029,20 @@ export namespace Prisma {
     connect?: StoreWhereUniqueInput
   }
 
+  export type RecycleHistoryCreateNestedManyWithoutBinInput = {
+    create?: XOR<RecycleHistoryCreateWithoutBinInput, RecycleHistoryUncheckedCreateWithoutBinInput> | RecycleHistoryCreateWithoutBinInput[] | RecycleHistoryUncheckedCreateWithoutBinInput[]
+    connectOrCreate?: RecycleHistoryCreateOrConnectWithoutBinInput | RecycleHistoryCreateOrConnectWithoutBinInput[]
+    createMany?: RecycleHistoryCreateManyBinInputEnvelope
+    connect?: RecycleHistoryWhereUniqueInput | RecycleHistoryWhereUniqueInput[]
+  }
+
+  export type RecycleHistoryUncheckedCreateNestedManyWithoutBinInput = {
+    create?: XOR<RecycleHistoryCreateWithoutBinInput, RecycleHistoryUncheckedCreateWithoutBinInput> | RecycleHistoryCreateWithoutBinInput[] | RecycleHistoryUncheckedCreateWithoutBinInput[]
+    connectOrCreate?: RecycleHistoryCreateOrConnectWithoutBinInput | RecycleHistoryCreateOrConnectWithoutBinInput[]
+    createMany?: RecycleHistoryCreateManyBinInputEnvelope
+    connect?: RecycleHistoryWhereUniqueInput | RecycleHistoryWhereUniqueInput[]
+  }
+
   export type EnumBinStatusFieldUpdateOperationsInput = {
     set?: $Enums.BinStatus
   }
@@ -25795,24 +26063,66 @@ export namespace Prisma {
     update?: XOR<XOR<StoreUpdateToOneWithWhereWithoutBinsInput, StoreUpdateWithoutBinsInput>, StoreUncheckedUpdateWithoutBinsInput>
   }
 
+  export type RecycleHistoryUpdateManyWithoutBinNestedInput = {
+    create?: XOR<RecycleHistoryCreateWithoutBinInput, RecycleHistoryUncheckedCreateWithoutBinInput> | RecycleHistoryCreateWithoutBinInput[] | RecycleHistoryUncheckedCreateWithoutBinInput[]
+    connectOrCreate?: RecycleHistoryCreateOrConnectWithoutBinInput | RecycleHistoryCreateOrConnectWithoutBinInput[]
+    upsert?: RecycleHistoryUpsertWithWhereUniqueWithoutBinInput | RecycleHistoryUpsertWithWhereUniqueWithoutBinInput[]
+    createMany?: RecycleHistoryCreateManyBinInputEnvelope
+    set?: RecycleHistoryWhereUniqueInput | RecycleHistoryWhereUniqueInput[]
+    disconnect?: RecycleHistoryWhereUniqueInput | RecycleHistoryWhereUniqueInput[]
+    delete?: RecycleHistoryWhereUniqueInput | RecycleHistoryWhereUniqueInput[]
+    connect?: RecycleHistoryWhereUniqueInput | RecycleHistoryWhereUniqueInput[]
+    update?: RecycleHistoryUpdateWithWhereUniqueWithoutBinInput | RecycleHistoryUpdateWithWhereUniqueWithoutBinInput[]
+    updateMany?: RecycleHistoryUpdateManyWithWhereWithoutBinInput | RecycleHistoryUpdateManyWithWhereWithoutBinInput[]
+    deleteMany?: RecycleHistoryScalarWhereInput | RecycleHistoryScalarWhereInput[]
+  }
+
+  export type RecycleHistoryUncheckedUpdateManyWithoutBinNestedInput = {
+    create?: XOR<RecycleHistoryCreateWithoutBinInput, RecycleHistoryUncheckedCreateWithoutBinInput> | RecycleHistoryCreateWithoutBinInput[] | RecycleHistoryUncheckedCreateWithoutBinInput[]
+    connectOrCreate?: RecycleHistoryCreateOrConnectWithoutBinInput | RecycleHistoryCreateOrConnectWithoutBinInput[]
+    upsert?: RecycleHistoryUpsertWithWhereUniqueWithoutBinInput | RecycleHistoryUpsertWithWhereUniqueWithoutBinInput[]
+    createMany?: RecycleHistoryCreateManyBinInputEnvelope
+    set?: RecycleHistoryWhereUniqueInput | RecycleHistoryWhereUniqueInput[]
+    disconnect?: RecycleHistoryWhereUniqueInput | RecycleHistoryWhereUniqueInput[]
+    delete?: RecycleHistoryWhereUniqueInput | RecycleHistoryWhereUniqueInput[]
+    connect?: RecycleHistoryWhereUniqueInput | RecycleHistoryWhereUniqueInput[]
+    update?: RecycleHistoryUpdateWithWhereUniqueWithoutBinInput | RecycleHistoryUpdateWithWhereUniqueWithoutBinInput[]
+    updateMany?: RecycleHistoryUpdateManyWithWhereWithoutBinInput | RecycleHistoryUpdateManyWithWhereWithoutBinInput[]
+    deleteMany?: RecycleHistoryScalarWhereInput | RecycleHistoryScalarWhereInput[]
+  }
+
   export type OrganizationCreateNestedOneWithoutCouponInput = {
     create?: XOR<OrganizationCreateWithoutCouponInput, OrganizationUncheckedCreateWithoutCouponInput>
     connectOrCreate?: OrganizationCreateOrConnectWithoutCouponInput
     connect?: OrganizationWhereUniqueInput
   }
 
-  export type FavoriteCouponListCreateNestedManyWithoutCouponInput = {
-    create?: XOR<FavoriteCouponListCreateWithoutCouponInput, FavoriteCouponListUncheckedCreateWithoutCouponInput> | FavoriteCouponListCreateWithoutCouponInput[] | FavoriteCouponListUncheckedCreateWithoutCouponInput[]
-    connectOrCreate?: FavoriteCouponListCreateOrConnectWithoutCouponInput | FavoriteCouponListCreateOrConnectWithoutCouponInput[]
-    createMany?: FavoriteCouponListCreateManyCouponInputEnvelope
-    connect?: FavoriteCouponListWhereUniqueInput | FavoriteCouponListWhereUniqueInput[]
+  export type FavouriteCouponCreateNestedManyWithoutCouponInput = {
+    create?: XOR<FavouriteCouponCreateWithoutCouponInput, FavouriteCouponUncheckedCreateWithoutCouponInput> | FavouriteCouponCreateWithoutCouponInput[] | FavouriteCouponUncheckedCreateWithoutCouponInput[]
+    connectOrCreate?: FavouriteCouponCreateOrConnectWithoutCouponInput | FavouriteCouponCreateOrConnectWithoutCouponInput[]
+    createMany?: FavouriteCouponCreateManyCouponInputEnvelope
+    connect?: FavouriteCouponWhereUniqueInput | FavouriteCouponWhereUniqueInput[]
   }
 
-  export type FavoriteCouponListUncheckedCreateNestedManyWithoutCouponInput = {
-    create?: XOR<FavoriteCouponListCreateWithoutCouponInput, FavoriteCouponListUncheckedCreateWithoutCouponInput> | FavoriteCouponListCreateWithoutCouponInput[] | FavoriteCouponListUncheckedCreateWithoutCouponInput[]
-    connectOrCreate?: FavoriteCouponListCreateOrConnectWithoutCouponInput | FavoriteCouponListCreateOrConnectWithoutCouponInput[]
-    createMany?: FavoriteCouponListCreateManyCouponInputEnvelope
-    connect?: FavoriteCouponListWhereUniqueInput | FavoriteCouponListWhereUniqueInput[]
+  export type RedeemHistoryCreateNestedManyWithoutCouponInput = {
+    create?: XOR<RedeemHistoryCreateWithoutCouponInput, RedeemHistoryUncheckedCreateWithoutCouponInput> | RedeemHistoryCreateWithoutCouponInput[] | RedeemHistoryUncheckedCreateWithoutCouponInput[]
+    connectOrCreate?: RedeemHistoryCreateOrConnectWithoutCouponInput | RedeemHistoryCreateOrConnectWithoutCouponInput[]
+    createMany?: RedeemHistoryCreateManyCouponInputEnvelope
+    connect?: RedeemHistoryWhereUniqueInput | RedeemHistoryWhereUniqueInput[]
+  }
+
+  export type FavouriteCouponUncheckedCreateNestedManyWithoutCouponInput = {
+    create?: XOR<FavouriteCouponCreateWithoutCouponInput, FavouriteCouponUncheckedCreateWithoutCouponInput> | FavouriteCouponCreateWithoutCouponInput[] | FavouriteCouponUncheckedCreateWithoutCouponInput[]
+    connectOrCreate?: FavouriteCouponCreateOrConnectWithoutCouponInput | FavouriteCouponCreateOrConnectWithoutCouponInput[]
+    createMany?: FavouriteCouponCreateManyCouponInputEnvelope
+    connect?: FavouriteCouponWhereUniqueInput | FavouriteCouponWhereUniqueInput[]
+  }
+
+  export type RedeemHistoryUncheckedCreateNestedManyWithoutCouponInput = {
+    create?: XOR<RedeemHistoryCreateWithoutCouponInput, RedeemHistoryUncheckedCreateWithoutCouponInput> | RedeemHistoryCreateWithoutCouponInput[] | RedeemHistoryUncheckedCreateWithoutCouponInput[]
+    connectOrCreate?: RedeemHistoryCreateOrConnectWithoutCouponInput | RedeemHistoryCreateOrConnectWithoutCouponInput[]
+    createMany?: RedeemHistoryCreateManyCouponInputEnvelope
+    connect?: RedeemHistoryWhereUniqueInput | RedeemHistoryWhereUniqueInput[]
   }
 
   export type EnumStatusFieldUpdateOperationsInput = {
@@ -25827,68 +26137,98 @@ export namespace Prisma {
     set?: $Enums.DealType
   }
 
-  export type OrganizationUpdateOneRequiredWithoutCouponNestedInput = {
+  export type OrganizationUpdateOneWithoutCouponNestedInput = {
     create?: XOR<OrganizationCreateWithoutCouponInput, OrganizationUncheckedCreateWithoutCouponInput>
     connectOrCreate?: OrganizationCreateOrConnectWithoutCouponInput
     upsert?: OrganizationUpsertWithoutCouponInput
+    disconnect?: OrganizationWhereInput | boolean
+    delete?: OrganizationWhereInput | boolean
     connect?: OrganizationWhereUniqueInput
     update?: XOR<XOR<OrganizationUpdateToOneWithWhereWithoutCouponInput, OrganizationUpdateWithoutCouponInput>, OrganizationUncheckedUpdateWithoutCouponInput>
   }
 
-  export type FavoriteCouponListUpdateManyWithoutCouponNestedInput = {
-    create?: XOR<FavoriteCouponListCreateWithoutCouponInput, FavoriteCouponListUncheckedCreateWithoutCouponInput> | FavoriteCouponListCreateWithoutCouponInput[] | FavoriteCouponListUncheckedCreateWithoutCouponInput[]
-    connectOrCreate?: FavoriteCouponListCreateOrConnectWithoutCouponInput | FavoriteCouponListCreateOrConnectWithoutCouponInput[]
-    upsert?: FavoriteCouponListUpsertWithWhereUniqueWithoutCouponInput | FavoriteCouponListUpsertWithWhereUniqueWithoutCouponInput[]
-    createMany?: FavoriteCouponListCreateManyCouponInputEnvelope
-    set?: FavoriteCouponListWhereUniqueInput | FavoriteCouponListWhereUniqueInput[]
-    disconnect?: FavoriteCouponListWhereUniqueInput | FavoriteCouponListWhereUniqueInput[]
-    delete?: FavoriteCouponListWhereUniqueInput | FavoriteCouponListWhereUniqueInput[]
-    connect?: FavoriteCouponListWhereUniqueInput | FavoriteCouponListWhereUniqueInput[]
-    update?: FavoriteCouponListUpdateWithWhereUniqueWithoutCouponInput | FavoriteCouponListUpdateWithWhereUniqueWithoutCouponInput[]
-    updateMany?: FavoriteCouponListUpdateManyWithWhereWithoutCouponInput | FavoriteCouponListUpdateManyWithWhereWithoutCouponInput[]
-    deleteMany?: FavoriteCouponListScalarWhereInput | FavoriteCouponListScalarWhereInput[]
+  export type FavouriteCouponUpdateManyWithoutCouponNestedInput = {
+    create?: XOR<FavouriteCouponCreateWithoutCouponInput, FavouriteCouponUncheckedCreateWithoutCouponInput> | FavouriteCouponCreateWithoutCouponInput[] | FavouriteCouponUncheckedCreateWithoutCouponInput[]
+    connectOrCreate?: FavouriteCouponCreateOrConnectWithoutCouponInput | FavouriteCouponCreateOrConnectWithoutCouponInput[]
+    upsert?: FavouriteCouponUpsertWithWhereUniqueWithoutCouponInput | FavouriteCouponUpsertWithWhereUniqueWithoutCouponInput[]
+    createMany?: FavouriteCouponCreateManyCouponInputEnvelope
+    set?: FavouriteCouponWhereUniqueInput | FavouriteCouponWhereUniqueInput[]
+    disconnect?: FavouriteCouponWhereUniqueInput | FavouriteCouponWhereUniqueInput[]
+    delete?: FavouriteCouponWhereUniqueInput | FavouriteCouponWhereUniqueInput[]
+    connect?: FavouriteCouponWhereUniqueInput | FavouriteCouponWhereUniqueInput[]
+    update?: FavouriteCouponUpdateWithWhereUniqueWithoutCouponInput | FavouriteCouponUpdateWithWhereUniqueWithoutCouponInput[]
+    updateMany?: FavouriteCouponUpdateManyWithWhereWithoutCouponInput | FavouriteCouponUpdateManyWithWhereWithoutCouponInput[]
+    deleteMany?: FavouriteCouponScalarWhereInput | FavouriteCouponScalarWhereInput[]
   }
 
-  export type FavoriteCouponListUncheckedUpdateManyWithoutCouponNestedInput = {
-    create?: XOR<FavoriteCouponListCreateWithoutCouponInput, FavoriteCouponListUncheckedCreateWithoutCouponInput> | FavoriteCouponListCreateWithoutCouponInput[] | FavoriteCouponListUncheckedCreateWithoutCouponInput[]
-    connectOrCreate?: FavoriteCouponListCreateOrConnectWithoutCouponInput | FavoriteCouponListCreateOrConnectWithoutCouponInput[]
-    upsert?: FavoriteCouponListUpsertWithWhereUniqueWithoutCouponInput | FavoriteCouponListUpsertWithWhereUniqueWithoutCouponInput[]
-    createMany?: FavoriteCouponListCreateManyCouponInputEnvelope
-    set?: FavoriteCouponListWhereUniqueInput | FavoriteCouponListWhereUniqueInput[]
-    disconnect?: FavoriteCouponListWhereUniqueInput | FavoriteCouponListWhereUniqueInput[]
-    delete?: FavoriteCouponListWhereUniqueInput | FavoriteCouponListWhereUniqueInput[]
-    connect?: FavoriteCouponListWhereUniqueInput | FavoriteCouponListWhereUniqueInput[]
-    update?: FavoriteCouponListUpdateWithWhereUniqueWithoutCouponInput | FavoriteCouponListUpdateWithWhereUniqueWithoutCouponInput[]
-    updateMany?: FavoriteCouponListUpdateManyWithWhereWithoutCouponInput | FavoriteCouponListUpdateManyWithWhereWithoutCouponInput[]
-    deleteMany?: FavoriteCouponListScalarWhereInput | FavoriteCouponListScalarWhereInput[]
+  export type RedeemHistoryUpdateManyWithoutCouponNestedInput = {
+    create?: XOR<RedeemHistoryCreateWithoutCouponInput, RedeemHistoryUncheckedCreateWithoutCouponInput> | RedeemHistoryCreateWithoutCouponInput[] | RedeemHistoryUncheckedCreateWithoutCouponInput[]
+    connectOrCreate?: RedeemHistoryCreateOrConnectWithoutCouponInput | RedeemHistoryCreateOrConnectWithoutCouponInput[]
+    upsert?: RedeemHistoryUpsertWithWhereUniqueWithoutCouponInput | RedeemHistoryUpsertWithWhereUniqueWithoutCouponInput[]
+    createMany?: RedeemHistoryCreateManyCouponInputEnvelope
+    set?: RedeemHistoryWhereUniqueInput | RedeemHistoryWhereUniqueInput[]
+    disconnect?: RedeemHistoryWhereUniqueInput | RedeemHistoryWhereUniqueInput[]
+    delete?: RedeemHistoryWhereUniqueInput | RedeemHistoryWhereUniqueInput[]
+    connect?: RedeemHistoryWhereUniqueInput | RedeemHistoryWhereUniqueInput[]
+    update?: RedeemHistoryUpdateWithWhereUniqueWithoutCouponInput | RedeemHistoryUpdateWithWhereUniqueWithoutCouponInput[]
+    updateMany?: RedeemHistoryUpdateManyWithWhereWithoutCouponInput | RedeemHistoryUpdateManyWithWhereWithoutCouponInput[]
+    deleteMany?: RedeemHistoryScalarWhereInput | RedeemHistoryScalarWhereInput[]
   }
 
-  export type UserCreateNestedOneWithoutFavoriteCouponListInput = {
-    create?: XOR<UserCreateWithoutFavoriteCouponListInput, UserUncheckedCreateWithoutFavoriteCouponListInput>
-    connectOrCreate?: UserCreateOrConnectWithoutFavoriteCouponListInput
-    connect?: UserWhereUniqueInput
+  export type FavouriteCouponUncheckedUpdateManyWithoutCouponNestedInput = {
+    create?: XOR<FavouriteCouponCreateWithoutCouponInput, FavouriteCouponUncheckedCreateWithoutCouponInput> | FavouriteCouponCreateWithoutCouponInput[] | FavouriteCouponUncheckedCreateWithoutCouponInput[]
+    connectOrCreate?: FavouriteCouponCreateOrConnectWithoutCouponInput | FavouriteCouponCreateOrConnectWithoutCouponInput[]
+    upsert?: FavouriteCouponUpsertWithWhereUniqueWithoutCouponInput | FavouriteCouponUpsertWithWhereUniqueWithoutCouponInput[]
+    createMany?: FavouriteCouponCreateManyCouponInputEnvelope
+    set?: FavouriteCouponWhereUniqueInput | FavouriteCouponWhereUniqueInput[]
+    disconnect?: FavouriteCouponWhereUniqueInput | FavouriteCouponWhereUniqueInput[]
+    delete?: FavouriteCouponWhereUniqueInput | FavouriteCouponWhereUniqueInput[]
+    connect?: FavouriteCouponWhereUniqueInput | FavouriteCouponWhereUniqueInput[]
+    update?: FavouriteCouponUpdateWithWhereUniqueWithoutCouponInput | FavouriteCouponUpdateWithWhereUniqueWithoutCouponInput[]
+    updateMany?: FavouriteCouponUpdateManyWithWhereWithoutCouponInput | FavouriteCouponUpdateManyWithWhereWithoutCouponInput[]
+    deleteMany?: FavouriteCouponScalarWhereInput | FavouriteCouponScalarWhereInput[]
   }
 
-  export type CouponCreateNestedOneWithoutFavoriteCouponListInput = {
-    create?: XOR<CouponCreateWithoutFavoriteCouponListInput, CouponUncheckedCreateWithoutFavoriteCouponListInput>
-    connectOrCreate?: CouponCreateOrConnectWithoutFavoriteCouponListInput
+  export type RedeemHistoryUncheckedUpdateManyWithoutCouponNestedInput = {
+    create?: XOR<RedeemHistoryCreateWithoutCouponInput, RedeemHistoryUncheckedCreateWithoutCouponInput> | RedeemHistoryCreateWithoutCouponInput[] | RedeemHistoryUncheckedCreateWithoutCouponInput[]
+    connectOrCreate?: RedeemHistoryCreateOrConnectWithoutCouponInput | RedeemHistoryCreateOrConnectWithoutCouponInput[]
+    upsert?: RedeemHistoryUpsertWithWhereUniqueWithoutCouponInput | RedeemHistoryUpsertWithWhereUniqueWithoutCouponInput[]
+    createMany?: RedeemHistoryCreateManyCouponInputEnvelope
+    set?: RedeemHistoryWhereUniqueInput | RedeemHistoryWhereUniqueInput[]
+    disconnect?: RedeemHistoryWhereUniqueInput | RedeemHistoryWhereUniqueInput[]
+    delete?: RedeemHistoryWhereUniqueInput | RedeemHistoryWhereUniqueInput[]
+    connect?: RedeemHistoryWhereUniqueInput | RedeemHistoryWhereUniqueInput[]
+    update?: RedeemHistoryUpdateWithWhereUniqueWithoutCouponInput | RedeemHistoryUpdateWithWhereUniqueWithoutCouponInput[]
+    updateMany?: RedeemHistoryUpdateManyWithWhereWithoutCouponInput | RedeemHistoryUpdateManyWithWhereWithoutCouponInput[]
+    deleteMany?: RedeemHistoryScalarWhereInput | RedeemHistoryScalarWhereInput[]
+  }
+
+  export type CouponCreateNestedOneWithoutFavouriteCouponInput = {
+    create?: XOR<CouponCreateWithoutFavouriteCouponInput, CouponUncheckedCreateWithoutFavouriteCouponInput>
+    connectOrCreate?: CouponCreateOrConnectWithoutFavouriteCouponInput
     connect?: CouponWhereUniqueInput
   }
 
-  export type UserUpdateOneRequiredWithoutFavoriteCouponListNestedInput = {
-    create?: XOR<UserCreateWithoutFavoriteCouponListInput, UserUncheckedCreateWithoutFavoriteCouponListInput>
-    connectOrCreate?: UserCreateOrConnectWithoutFavoriteCouponListInput
-    upsert?: UserUpsertWithoutFavoriteCouponListInput
+  export type UserCreateNestedOneWithoutFavouriteCouponInput = {
+    create?: XOR<UserCreateWithoutFavouriteCouponInput, UserUncheckedCreateWithoutFavouriteCouponInput>
+    connectOrCreate?: UserCreateOrConnectWithoutFavouriteCouponInput
     connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutFavoriteCouponListInput, UserUpdateWithoutFavoriteCouponListInput>, UserUncheckedUpdateWithoutFavoriteCouponListInput>
   }
 
-  export type CouponUpdateOneRequiredWithoutFavoriteCouponListNestedInput = {
-    create?: XOR<CouponCreateWithoutFavoriteCouponListInput, CouponUncheckedCreateWithoutFavoriteCouponListInput>
-    connectOrCreate?: CouponCreateOrConnectWithoutFavoriteCouponListInput
-    upsert?: CouponUpsertWithoutFavoriteCouponListInput
+  export type CouponUpdateOneRequiredWithoutFavouriteCouponNestedInput = {
+    create?: XOR<CouponCreateWithoutFavouriteCouponInput, CouponUncheckedCreateWithoutFavouriteCouponInput>
+    connectOrCreate?: CouponCreateOrConnectWithoutFavouriteCouponInput
+    upsert?: CouponUpsertWithoutFavouriteCouponInput
     connect?: CouponWhereUniqueInput
-    update?: XOR<XOR<CouponUpdateToOneWithWhereWithoutFavoriteCouponListInput, CouponUpdateWithoutFavoriteCouponListInput>, CouponUncheckedUpdateWithoutFavoriteCouponListInput>
+    update?: XOR<XOR<CouponUpdateToOneWithWhereWithoutFavouriteCouponInput, CouponUpdateWithoutFavouriteCouponInput>, CouponUncheckedUpdateWithoutFavouriteCouponInput>
+  }
+
+  export type UserUpdateOneRequiredWithoutFavouriteCouponNestedInput = {
+    create?: XOR<UserCreateWithoutFavouriteCouponInput, UserUncheckedCreateWithoutFavouriteCouponInput>
+    connectOrCreate?: UserCreateOrConnectWithoutFavouriteCouponInput
+    upsert?: UserUpsertWithoutFavouriteCouponInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutFavouriteCouponInput, UserUpdateWithoutFavouriteCouponInput>, UserUncheckedUpdateWithoutFavouriteCouponInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -26179,37 +26519,63 @@ export namespace Prisma {
     _max?: NestedEnumDealTypeFilter<$PrismaModel>
   }
 
-  export type SessionCreateWithoutUserInput = {
-    id: string
-    expiresAt: Date | string
-    token: string
-    createdAt: Date | string
-    updatedAt: Date | string
-    ipAddress?: string | null
-    userAgent?: string | null
-    impersonatedBy?: string | null
-    activeOrganizationId?: string | null
+  export type RecycleHistoryCreateWithoutUserInput = {
+    id?: string
+    points: number
+    mediaUrl?: string | null
+    totalCount?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    bin: BinCreateNestedOneWithoutRecycleHistoryInput
   }
 
-  export type SessionUncheckedCreateWithoutUserInput = {
-    id: string
-    expiresAt: Date | string
-    token: string
-    createdAt: Date | string
-    updatedAt: Date | string
-    ipAddress?: string | null
-    userAgent?: string | null
-    impersonatedBy?: string | null
-    activeOrganizationId?: string | null
+  export type RecycleHistoryUncheckedCreateWithoutUserInput = {
+    id?: string
+    binId: string
+    points: number
+    mediaUrl?: string | null
+    totalCount?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
-  export type SessionCreateOrConnectWithoutUserInput = {
-    where: SessionWhereUniqueInput
-    create: XOR<SessionCreateWithoutUserInput, SessionUncheckedCreateWithoutUserInput>
+  export type RecycleHistoryCreateOrConnectWithoutUserInput = {
+    where: RecycleHistoryWhereUniqueInput
+    create: XOR<RecycleHistoryCreateWithoutUserInput, RecycleHistoryUncheckedCreateWithoutUserInput>
   }
 
-  export type SessionCreateManyUserInputEnvelope = {
-    data: SessionCreateManyUserInput | SessionCreateManyUserInput[]
+  export type RecycleHistoryCreateManyUserInputEnvelope = {
+    data: RecycleHistoryCreateManyUserInput | RecycleHistoryCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type RedeemHistoryCreateWithoutUserInput = {
+    id?: string
+    points: number
+    description?: string | null
+    couponCode: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    coupon: CouponCreateNestedOneWithoutRedeemHistoryInput
+  }
+
+  export type RedeemHistoryUncheckedCreateWithoutUserInput = {
+    id?: string
+    couponId: string
+    points: number
+    description?: string | null
+    couponCode: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type RedeemHistoryCreateOrConnectWithoutUserInput = {
+    where: RedeemHistoryWhereUniqueInput
+    create: XOR<RedeemHistoryCreateWithoutUserInput, RedeemHistoryUncheckedCreateWithoutUserInput>
+  }
+
+  export type RedeemHistoryCreateManyUserInputEnvelope = {
+    data: RedeemHistoryCreateManyUserInput | RedeemHistoryCreateManyUserInput[]
     skipDuplicates?: boolean
   }
 
@@ -26253,27 +26619,25 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type MemberCreateWithoutUserInput = {
-    id: string
-    role: string
-    createdAt: Date | string
-    organization: OrganizationCreateNestedOneWithoutMembersInput
+  export type FavouriteCouponCreateWithoutUserInput = {
+    id?: string
+    createdAt?: Date | string
+    coupon: CouponCreateNestedOneWithoutFavouriteCouponInput
   }
 
-  export type MemberUncheckedCreateWithoutUserInput = {
-    id: string
-    organizationId: string
-    role: string
-    createdAt: Date | string
+  export type FavouriteCouponUncheckedCreateWithoutUserInput = {
+    id?: string
+    couponId: string
+    createdAt?: Date | string
   }
 
-  export type MemberCreateOrConnectWithoutUserInput = {
-    where: MemberWhereUniqueInput
-    create: XOR<MemberCreateWithoutUserInput, MemberUncheckedCreateWithoutUserInput>
+  export type FavouriteCouponCreateOrConnectWithoutUserInput = {
+    where: FavouriteCouponWhereUniqueInput
+    create: XOR<FavouriteCouponCreateWithoutUserInput, FavouriteCouponUncheckedCreateWithoutUserInput>
   }
 
-  export type MemberCreateManyUserInputEnvelope = {
-    data: MemberCreateManyUserInput | MemberCreateManyUserInput[]
+  export type FavouriteCouponCreateManyUserInputEnvelope = {
+    data: FavouriteCouponCreateManyUserInput | FavouriteCouponCreateManyUserInput[]
     skipDuplicates?: boolean
   }
 
@@ -26305,79 +26669,61 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type FavoriteCouponListCreateWithoutUserInput = {
-    id?: string
-    createdAt?: Date | string
-    coupon: CouponCreateNestedOneWithoutFavoriteCouponListInput
+  export type MemberCreateWithoutUserInput = {
+    id: string
+    role: string
+    createdAt: Date | string
+    organization: OrganizationCreateNestedOneWithoutMembersInput
   }
 
-  export type FavoriteCouponListUncheckedCreateWithoutUserInput = {
-    id?: string
-    couponId: string
-    createdAt?: Date | string
+  export type MemberUncheckedCreateWithoutUserInput = {
+    id: string
+    organizationId: string
+    role: string
+    createdAt: Date | string
   }
 
-  export type FavoriteCouponListCreateOrConnectWithoutUserInput = {
-    where: FavoriteCouponListWhereUniqueInput
-    create: XOR<FavoriteCouponListCreateWithoutUserInput, FavoriteCouponListUncheckedCreateWithoutUserInput>
+  export type MemberCreateOrConnectWithoutUserInput = {
+    where: MemberWhereUniqueInput
+    create: XOR<MemberCreateWithoutUserInput, MemberUncheckedCreateWithoutUserInput>
   }
 
-  export type FavoriteCouponListCreateManyUserInputEnvelope = {
-    data: FavoriteCouponListCreateManyUserInput | FavoriteCouponListCreateManyUserInput[]
+  export type MemberCreateManyUserInputEnvelope = {
+    data: MemberCreateManyUserInput | MemberCreateManyUserInput[]
     skipDuplicates?: boolean
   }
 
-  export type RedeemHistoryCreateWithoutUserInput = {
-    id?: string
-    couponId: string
-    points: number
-    description?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
+  export type SessionCreateWithoutUserInput = {
+    id: string
+    expiresAt: Date | string
+    token: string
+    createdAt: Date | string
+    updatedAt: Date | string
+    ipAddress?: string | null
+    userAgent?: string | null
+    impersonatedBy?: string | null
+    activeOrganizationId?: string | null
   }
 
-  export type RedeemHistoryUncheckedCreateWithoutUserInput = {
-    id?: string
-    couponId: string
-    points: number
-    description?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
+  export type SessionUncheckedCreateWithoutUserInput = {
+    id: string
+    expiresAt: Date | string
+    token: string
+    createdAt: Date | string
+    updatedAt: Date | string
+    ipAddress?: string | null
+    userAgent?: string | null
+    impersonatedBy?: string | null
+    activeOrganizationId?: string | null
   }
 
-  export type RedeemHistoryCreateOrConnectWithoutUserInput = {
-    where: RedeemHistoryWhereUniqueInput
-    create: XOR<RedeemHistoryCreateWithoutUserInput, RedeemHistoryUncheckedCreateWithoutUserInput>
+  export type SessionCreateOrConnectWithoutUserInput = {
+    where: SessionWhereUniqueInput
+    create: XOR<SessionCreateWithoutUserInput, SessionUncheckedCreateWithoutUserInput>
   }
 
-  export type RedeemHistoryCreateManyUserInputEnvelope = {
-    data: RedeemHistoryCreateManyUserInput | RedeemHistoryCreateManyUserInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type RecycleHistoryCreateWithoutUserInput = {
-    id?: string
-    points: number
-    mediaUrl?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type RecycleHistoryUncheckedCreateWithoutUserInput = {
-    id?: string
-    points: number
-    mediaUrl?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type RecycleHistoryCreateOrConnectWithoutUserInput = {
-    where: RecycleHistoryWhereUniqueInput
-    create: XOR<RecycleHistoryCreateWithoutUserInput, RecycleHistoryUncheckedCreateWithoutUserInput>
-  }
-
-  export type RecycleHistoryCreateManyUserInputEnvelope = {
-    data: RecycleHistoryCreateManyUserInput | RecycleHistoryCreateManyUserInput[]
+  export type SessionCreateManyUserInputEnvelope = {
+    data: SessionCreateManyUserInput | SessionCreateManyUserInput[]
     skipDuplicates?: boolean
   }
 
@@ -26396,41 +26742,64 @@ export namespace Prisma {
     create: XOR<UserTotalPointCreateWithoutUserInput, UserTotalPointUncheckedCreateWithoutUserInput>
   }
 
-  export type UserTotalPointCreateManyUserInputEnvelope = {
-    data: UserTotalPointCreateManyUserInput | UserTotalPointCreateManyUserInput[]
-    skipDuplicates?: boolean
+  export type RecycleHistoryUpsertWithWhereUniqueWithoutUserInput = {
+    where: RecycleHistoryWhereUniqueInput
+    update: XOR<RecycleHistoryUpdateWithoutUserInput, RecycleHistoryUncheckedUpdateWithoutUserInput>
+    create: XOR<RecycleHistoryCreateWithoutUserInput, RecycleHistoryUncheckedCreateWithoutUserInput>
   }
 
-  export type SessionUpsertWithWhereUniqueWithoutUserInput = {
-    where: SessionWhereUniqueInput
-    update: XOR<SessionUpdateWithoutUserInput, SessionUncheckedUpdateWithoutUserInput>
-    create: XOR<SessionCreateWithoutUserInput, SessionUncheckedCreateWithoutUserInput>
+  export type RecycleHistoryUpdateWithWhereUniqueWithoutUserInput = {
+    where: RecycleHistoryWhereUniqueInput
+    data: XOR<RecycleHistoryUpdateWithoutUserInput, RecycleHistoryUncheckedUpdateWithoutUserInput>
   }
 
-  export type SessionUpdateWithWhereUniqueWithoutUserInput = {
-    where: SessionWhereUniqueInput
-    data: XOR<SessionUpdateWithoutUserInput, SessionUncheckedUpdateWithoutUserInput>
+  export type RecycleHistoryUpdateManyWithWhereWithoutUserInput = {
+    where: RecycleHistoryScalarWhereInput
+    data: XOR<RecycleHistoryUpdateManyMutationInput, RecycleHistoryUncheckedUpdateManyWithoutUserInput>
   }
 
-  export type SessionUpdateManyWithWhereWithoutUserInput = {
-    where: SessionScalarWhereInput
-    data: XOR<SessionUpdateManyMutationInput, SessionUncheckedUpdateManyWithoutUserInput>
+  export type RecycleHistoryScalarWhereInput = {
+    AND?: RecycleHistoryScalarWhereInput | RecycleHistoryScalarWhereInput[]
+    OR?: RecycleHistoryScalarWhereInput[]
+    NOT?: RecycleHistoryScalarWhereInput | RecycleHistoryScalarWhereInput[]
+    id?: StringFilter<"RecycleHistory"> | string
+    userId?: StringFilter<"RecycleHistory"> | string
+    binId?: StringFilter<"RecycleHistory"> | string
+    points?: IntFilter<"RecycleHistory"> | number
+    mediaUrl?: StringNullableFilter<"RecycleHistory"> | string | null
+    totalCount?: IntFilter<"RecycleHistory"> | number
+    createdAt?: DateTimeFilter<"RecycleHistory"> | Date | string
+    updatedAt?: DateTimeFilter<"RecycleHistory"> | Date | string
   }
 
-  export type SessionScalarWhereInput = {
-    AND?: SessionScalarWhereInput | SessionScalarWhereInput[]
-    OR?: SessionScalarWhereInput[]
-    NOT?: SessionScalarWhereInput | SessionScalarWhereInput[]
-    id?: StringFilter<"Session"> | string
-    expiresAt?: DateTimeFilter<"Session"> | Date | string
-    token?: StringFilter<"Session"> | string
-    createdAt?: DateTimeFilter<"Session"> | Date | string
-    updatedAt?: DateTimeFilter<"Session"> | Date | string
-    ipAddress?: StringNullableFilter<"Session"> | string | null
-    userAgent?: StringNullableFilter<"Session"> | string | null
-    userId?: StringFilter<"Session"> | string
-    impersonatedBy?: StringNullableFilter<"Session"> | string | null
-    activeOrganizationId?: StringNullableFilter<"Session"> | string | null
+  export type RedeemHistoryUpsertWithWhereUniqueWithoutUserInput = {
+    where: RedeemHistoryWhereUniqueInput
+    update: XOR<RedeemHistoryUpdateWithoutUserInput, RedeemHistoryUncheckedUpdateWithoutUserInput>
+    create: XOR<RedeemHistoryCreateWithoutUserInput, RedeemHistoryUncheckedCreateWithoutUserInput>
+  }
+
+  export type RedeemHistoryUpdateWithWhereUniqueWithoutUserInput = {
+    where: RedeemHistoryWhereUniqueInput
+    data: XOR<RedeemHistoryUpdateWithoutUserInput, RedeemHistoryUncheckedUpdateWithoutUserInput>
+  }
+
+  export type RedeemHistoryUpdateManyWithWhereWithoutUserInput = {
+    where: RedeemHistoryScalarWhereInput
+    data: XOR<RedeemHistoryUpdateManyMutationInput, RedeemHistoryUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type RedeemHistoryScalarWhereInput = {
+    AND?: RedeemHistoryScalarWhereInput | RedeemHistoryScalarWhereInput[]
+    OR?: RedeemHistoryScalarWhereInput[]
+    NOT?: RedeemHistoryScalarWhereInput | RedeemHistoryScalarWhereInput[]
+    id?: StringFilter<"RedeemHistory"> | string
+    couponId?: StringFilter<"RedeemHistory"> | string
+    userId?: StringFilter<"RedeemHistory"> | string
+    points?: IntFilter<"RedeemHistory"> | number
+    description?: StringNullableFilter<"RedeemHistory"> | string | null
+    couponCode?: StringFilter<"RedeemHistory"> | string
+    createdAt?: DateTimeFilter<"RedeemHistory"> | Date | string
+    updatedAt?: DateTimeFilter<"RedeemHistory"> | Date | string
   }
 
   export type AccountUpsertWithWhereUniqueWithoutUserInput = {
@@ -26468,31 +26837,30 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"Account"> | Date | string
   }
 
-  export type MemberUpsertWithWhereUniqueWithoutUserInput = {
-    where: MemberWhereUniqueInput
-    update: XOR<MemberUpdateWithoutUserInput, MemberUncheckedUpdateWithoutUserInput>
-    create: XOR<MemberCreateWithoutUserInput, MemberUncheckedCreateWithoutUserInput>
+  export type FavouriteCouponUpsertWithWhereUniqueWithoutUserInput = {
+    where: FavouriteCouponWhereUniqueInput
+    update: XOR<FavouriteCouponUpdateWithoutUserInput, FavouriteCouponUncheckedUpdateWithoutUserInput>
+    create: XOR<FavouriteCouponCreateWithoutUserInput, FavouriteCouponUncheckedCreateWithoutUserInput>
   }
 
-  export type MemberUpdateWithWhereUniqueWithoutUserInput = {
-    where: MemberWhereUniqueInput
-    data: XOR<MemberUpdateWithoutUserInput, MemberUncheckedUpdateWithoutUserInput>
+  export type FavouriteCouponUpdateWithWhereUniqueWithoutUserInput = {
+    where: FavouriteCouponWhereUniqueInput
+    data: XOR<FavouriteCouponUpdateWithoutUserInput, FavouriteCouponUncheckedUpdateWithoutUserInput>
   }
 
-  export type MemberUpdateManyWithWhereWithoutUserInput = {
-    where: MemberScalarWhereInput
-    data: XOR<MemberUpdateManyMutationInput, MemberUncheckedUpdateManyWithoutUserInput>
+  export type FavouriteCouponUpdateManyWithWhereWithoutUserInput = {
+    where: FavouriteCouponScalarWhereInput
+    data: XOR<FavouriteCouponUpdateManyMutationInput, FavouriteCouponUncheckedUpdateManyWithoutUserInput>
   }
 
-  export type MemberScalarWhereInput = {
-    AND?: MemberScalarWhereInput | MemberScalarWhereInput[]
-    OR?: MemberScalarWhereInput[]
-    NOT?: MemberScalarWhereInput | MemberScalarWhereInput[]
-    id?: StringFilter<"Member"> | string
-    organizationId?: StringFilter<"Member"> | string
-    userId?: StringFilter<"Member"> | string
-    role?: StringFilter<"Member"> | string
-    createdAt?: DateTimeFilter<"Member"> | Date | string
+  export type FavouriteCouponScalarWhereInput = {
+    AND?: FavouriteCouponScalarWhereInput | FavouriteCouponScalarWhereInput[]
+    OR?: FavouriteCouponScalarWhereInput[]
+    NOT?: FavouriteCouponScalarWhereInput | FavouriteCouponScalarWhereInput[]
+    id?: StringFilter<"FavouriteCoupon"> | string
+    userId?: StringFilter<"FavouriteCoupon"> | string
+    couponId?: StringFilter<"FavouriteCoupon"> | string
+    createdAt?: DateTimeFilter<"FavouriteCoupon"> | Date | string
   }
 
   export type InvitationUpsertWithWhereUniqueWithoutUserInput = {
@@ -26524,112 +26892,84 @@ export namespace Prisma {
     inviterId?: StringFilter<"Invitation"> | string
   }
 
-  export type FavoriteCouponListUpsertWithWhereUniqueWithoutUserInput = {
-    where: FavoriteCouponListWhereUniqueInput
-    update: XOR<FavoriteCouponListUpdateWithoutUserInput, FavoriteCouponListUncheckedUpdateWithoutUserInput>
-    create: XOR<FavoriteCouponListCreateWithoutUserInput, FavoriteCouponListUncheckedCreateWithoutUserInput>
+  export type MemberUpsertWithWhereUniqueWithoutUserInput = {
+    where: MemberWhereUniqueInput
+    update: XOR<MemberUpdateWithoutUserInput, MemberUncheckedUpdateWithoutUserInput>
+    create: XOR<MemberCreateWithoutUserInput, MemberUncheckedCreateWithoutUserInput>
   }
 
-  export type FavoriteCouponListUpdateWithWhereUniqueWithoutUserInput = {
-    where: FavoriteCouponListWhereUniqueInput
-    data: XOR<FavoriteCouponListUpdateWithoutUserInput, FavoriteCouponListUncheckedUpdateWithoutUserInput>
+  export type MemberUpdateWithWhereUniqueWithoutUserInput = {
+    where: MemberWhereUniqueInput
+    data: XOR<MemberUpdateWithoutUserInput, MemberUncheckedUpdateWithoutUserInput>
   }
 
-  export type FavoriteCouponListUpdateManyWithWhereWithoutUserInput = {
-    where: FavoriteCouponListScalarWhereInput
-    data: XOR<FavoriteCouponListUpdateManyMutationInput, FavoriteCouponListUncheckedUpdateManyWithoutUserInput>
+  export type MemberUpdateManyWithWhereWithoutUserInput = {
+    where: MemberScalarWhereInput
+    data: XOR<MemberUpdateManyMutationInput, MemberUncheckedUpdateManyWithoutUserInput>
   }
 
-  export type FavoriteCouponListScalarWhereInput = {
-    AND?: FavoriteCouponListScalarWhereInput | FavoriteCouponListScalarWhereInput[]
-    OR?: FavoriteCouponListScalarWhereInput[]
-    NOT?: FavoriteCouponListScalarWhereInput | FavoriteCouponListScalarWhereInput[]
-    id?: StringFilter<"FavoriteCouponList"> | string
-    userId?: StringFilter<"FavoriteCouponList"> | string
-    couponId?: StringFilter<"FavoriteCouponList"> | string
-    createdAt?: DateTimeFilter<"FavoriteCouponList"> | Date | string
+  export type MemberScalarWhereInput = {
+    AND?: MemberScalarWhereInput | MemberScalarWhereInput[]
+    OR?: MemberScalarWhereInput[]
+    NOT?: MemberScalarWhereInput | MemberScalarWhereInput[]
+    id?: StringFilter<"Member"> | string
+    organizationId?: StringFilter<"Member"> | string
+    userId?: StringFilter<"Member"> | string
+    role?: StringFilter<"Member"> | string
+    createdAt?: DateTimeFilter<"Member"> | Date | string
   }
 
-  export type RedeemHistoryUpsertWithWhereUniqueWithoutUserInput = {
-    where: RedeemHistoryWhereUniqueInput
-    update: XOR<RedeemHistoryUpdateWithoutUserInput, RedeemHistoryUncheckedUpdateWithoutUserInput>
-    create: XOR<RedeemHistoryCreateWithoutUserInput, RedeemHistoryUncheckedCreateWithoutUserInput>
+  export type SessionUpsertWithWhereUniqueWithoutUserInput = {
+    where: SessionWhereUniqueInput
+    update: XOR<SessionUpdateWithoutUserInput, SessionUncheckedUpdateWithoutUserInput>
+    create: XOR<SessionCreateWithoutUserInput, SessionUncheckedCreateWithoutUserInput>
   }
 
-  export type RedeemHistoryUpdateWithWhereUniqueWithoutUserInput = {
-    where: RedeemHistoryWhereUniqueInput
-    data: XOR<RedeemHistoryUpdateWithoutUserInput, RedeemHistoryUncheckedUpdateWithoutUserInput>
+  export type SessionUpdateWithWhereUniqueWithoutUserInput = {
+    where: SessionWhereUniqueInput
+    data: XOR<SessionUpdateWithoutUserInput, SessionUncheckedUpdateWithoutUserInput>
   }
 
-  export type RedeemHistoryUpdateManyWithWhereWithoutUserInput = {
-    where: RedeemHistoryScalarWhereInput
-    data: XOR<RedeemHistoryUpdateManyMutationInput, RedeemHistoryUncheckedUpdateManyWithoutUserInput>
+  export type SessionUpdateManyWithWhereWithoutUserInput = {
+    where: SessionScalarWhereInput
+    data: XOR<SessionUpdateManyMutationInput, SessionUncheckedUpdateManyWithoutUserInput>
   }
 
-  export type RedeemHistoryScalarWhereInput = {
-    AND?: RedeemHistoryScalarWhereInput | RedeemHistoryScalarWhereInput[]
-    OR?: RedeemHistoryScalarWhereInput[]
-    NOT?: RedeemHistoryScalarWhereInput | RedeemHistoryScalarWhereInput[]
-    id?: StringFilter<"RedeemHistory"> | string
-    couponId?: StringFilter<"RedeemHistory"> | string
-    userId?: StringFilter<"RedeemHistory"> | string
-    points?: IntFilter<"RedeemHistory"> | number
-    description?: StringNullableFilter<"RedeemHistory"> | string | null
-    createdAt?: DateTimeFilter<"RedeemHistory"> | Date | string
-    updatedAt?: DateTimeFilter<"RedeemHistory"> | Date | string
+  export type SessionScalarWhereInput = {
+    AND?: SessionScalarWhereInput | SessionScalarWhereInput[]
+    OR?: SessionScalarWhereInput[]
+    NOT?: SessionScalarWhereInput | SessionScalarWhereInput[]
+    id?: StringFilter<"Session"> | string
+    expiresAt?: DateTimeFilter<"Session"> | Date | string
+    token?: StringFilter<"Session"> | string
+    createdAt?: DateTimeFilter<"Session"> | Date | string
+    updatedAt?: DateTimeFilter<"Session"> | Date | string
+    ipAddress?: StringNullableFilter<"Session"> | string | null
+    userAgent?: StringNullableFilter<"Session"> | string | null
+    userId?: StringFilter<"Session"> | string
+    impersonatedBy?: StringNullableFilter<"Session"> | string | null
+    activeOrganizationId?: StringNullableFilter<"Session"> | string | null
   }
 
-  export type RecycleHistoryUpsertWithWhereUniqueWithoutUserInput = {
-    where: RecycleHistoryWhereUniqueInput
-    update: XOR<RecycleHistoryUpdateWithoutUserInput, RecycleHistoryUncheckedUpdateWithoutUserInput>
-    create: XOR<RecycleHistoryCreateWithoutUserInput, RecycleHistoryUncheckedCreateWithoutUserInput>
-  }
-
-  export type RecycleHistoryUpdateWithWhereUniqueWithoutUserInput = {
-    where: RecycleHistoryWhereUniqueInput
-    data: XOR<RecycleHistoryUpdateWithoutUserInput, RecycleHistoryUncheckedUpdateWithoutUserInput>
-  }
-
-  export type RecycleHistoryUpdateManyWithWhereWithoutUserInput = {
-    where: RecycleHistoryScalarWhereInput
-    data: XOR<RecycleHistoryUpdateManyMutationInput, RecycleHistoryUncheckedUpdateManyWithoutUserInput>
-  }
-
-  export type RecycleHistoryScalarWhereInput = {
-    AND?: RecycleHistoryScalarWhereInput | RecycleHistoryScalarWhereInput[]
-    OR?: RecycleHistoryScalarWhereInput[]
-    NOT?: RecycleHistoryScalarWhereInput | RecycleHistoryScalarWhereInput[]
-    id?: StringFilter<"RecycleHistory"> | string
-    userId?: StringFilter<"RecycleHistory"> | string
-    points?: IntFilter<"RecycleHistory"> | number
-    mediaUrl?: StringNullableFilter<"RecycleHistory"> | string | null
-    createdAt?: DateTimeFilter<"RecycleHistory"> | Date | string
-    updatedAt?: DateTimeFilter<"RecycleHistory"> | Date | string
-  }
-
-  export type UserTotalPointUpsertWithWhereUniqueWithoutUserInput = {
-    where: UserTotalPointWhereUniqueInput
+  export type UserTotalPointUpsertWithoutUserInput = {
     update: XOR<UserTotalPointUpdateWithoutUserInput, UserTotalPointUncheckedUpdateWithoutUserInput>
     create: XOR<UserTotalPointCreateWithoutUserInput, UserTotalPointUncheckedCreateWithoutUserInput>
+    where?: UserTotalPointWhereInput
   }
 
-  export type UserTotalPointUpdateWithWhereUniqueWithoutUserInput = {
-    where: UserTotalPointWhereUniqueInput
+  export type UserTotalPointUpdateToOneWithWhereWithoutUserInput = {
+    where?: UserTotalPointWhereInput
     data: XOR<UserTotalPointUpdateWithoutUserInput, UserTotalPointUncheckedUpdateWithoutUserInput>
   }
 
-  export type UserTotalPointUpdateManyWithWhereWithoutUserInput = {
-    where: UserTotalPointScalarWhereInput
-    data: XOR<UserTotalPointUpdateManyMutationInput, UserTotalPointUncheckedUpdateManyWithoutUserInput>
+  export type UserTotalPointUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    totalPoints?: IntFieldUpdateOperationsInput | number
   }
 
-  export type UserTotalPointScalarWhereInput = {
-    AND?: UserTotalPointScalarWhereInput | UserTotalPointScalarWhereInput[]
-    OR?: UserTotalPointScalarWhereInput[]
-    NOT?: UserTotalPointScalarWhereInput | UserTotalPointScalarWhereInput[]
-    id?: StringFilter<"UserTotalPoint"> | string
-    userId?: StringFilter<"UserTotalPoint"> | string
-    totalPoints?: IntFilter<"UserTotalPoint"> | number
+  export type UserTotalPointUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    totalPoints?: IntFieldUpdateOperationsInput | number
   }
 
   export type UserCreateWithoutSessionsInput = {
@@ -26651,13 +26991,13 @@ export namespace Prisma {
     postalCode?: string | null
     status: string
     state?: string | null
+    recycleHistory?: RecycleHistoryCreateNestedManyWithoutUserInput
+    redeemHistory?: RedeemHistoryCreateNestedManyWithoutUserInput
     accounts?: AccountCreateNestedManyWithoutUserInput
-    members?: MemberCreateNestedManyWithoutUserInput
+    favouriteCoupon?: FavouriteCouponCreateNestedManyWithoutUserInput
     invitations?: InvitationCreateNestedManyWithoutUserInput
-    FavoriteCouponList?: FavoriteCouponListCreateNestedManyWithoutUserInput
-    RedeemHistory?: RedeemHistoryCreateNestedManyWithoutUserInput
-    RecycleHistory?: RecycleHistoryCreateNestedManyWithoutUserInput
-    UserTotalPoint?: UserTotalPointCreateNestedManyWithoutUserInput
+    members?: MemberCreateNestedManyWithoutUserInput
+    UserTotalPoint?: UserTotalPointCreateNestedOneWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutSessionsInput = {
@@ -26679,13 +27019,13 @@ export namespace Prisma {
     postalCode?: string | null
     status: string
     state?: string | null
+    recycleHistory?: RecycleHistoryUncheckedCreateNestedManyWithoutUserInput
+    redeemHistory?: RedeemHistoryUncheckedCreateNestedManyWithoutUserInput
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
-    members?: MemberUncheckedCreateNestedManyWithoutUserInput
+    favouriteCoupon?: FavouriteCouponUncheckedCreateNestedManyWithoutUserInput
     invitations?: InvitationUncheckedCreateNestedManyWithoutUserInput
-    FavoriteCouponList?: FavoriteCouponListUncheckedCreateNestedManyWithoutUserInput
-    RedeemHistory?: RedeemHistoryUncheckedCreateNestedManyWithoutUserInput
-    RecycleHistory?: RecycleHistoryUncheckedCreateNestedManyWithoutUserInput
-    UserTotalPoint?: UserTotalPointUncheckedCreateNestedManyWithoutUserInput
+    members?: MemberUncheckedCreateNestedManyWithoutUserInput
+    UserTotalPoint?: UserTotalPointUncheckedCreateNestedOneWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutSessionsInput = {
@@ -26723,13 +27063,13 @@ export namespace Prisma {
     postalCode?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
     state?: NullableStringFieldUpdateOperationsInput | string | null
+    recycleHistory?: RecycleHistoryUpdateManyWithoutUserNestedInput
+    redeemHistory?: RedeemHistoryUpdateManyWithoutUserNestedInput
     accounts?: AccountUpdateManyWithoutUserNestedInput
-    members?: MemberUpdateManyWithoutUserNestedInput
+    favouriteCoupon?: FavouriteCouponUpdateManyWithoutUserNestedInput
     invitations?: InvitationUpdateManyWithoutUserNestedInput
-    FavoriteCouponList?: FavoriteCouponListUpdateManyWithoutUserNestedInput
-    RedeemHistory?: RedeemHistoryUpdateManyWithoutUserNestedInput
-    RecycleHistory?: RecycleHistoryUpdateManyWithoutUserNestedInput
-    UserTotalPoint?: UserTotalPointUpdateManyWithoutUserNestedInput
+    members?: MemberUpdateManyWithoutUserNestedInput
+    UserTotalPoint?: UserTotalPointUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutSessionsInput = {
@@ -26751,13 +27091,13 @@ export namespace Prisma {
     postalCode?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
     state?: NullableStringFieldUpdateOperationsInput | string | null
+    recycleHistory?: RecycleHistoryUncheckedUpdateManyWithoutUserNestedInput
+    redeemHistory?: RedeemHistoryUncheckedUpdateManyWithoutUserNestedInput
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
-    members?: MemberUncheckedUpdateManyWithoutUserNestedInput
+    favouriteCoupon?: FavouriteCouponUncheckedUpdateManyWithoutUserNestedInput
     invitations?: InvitationUncheckedUpdateManyWithoutUserNestedInput
-    FavoriteCouponList?: FavoriteCouponListUncheckedUpdateManyWithoutUserNestedInput
-    RedeemHistory?: RedeemHistoryUncheckedUpdateManyWithoutUserNestedInput
-    RecycleHistory?: RecycleHistoryUncheckedUpdateManyWithoutUserNestedInput
-    UserTotalPoint?: UserTotalPointUncheckedUpdateManyWithoutUserNestedInput
+    members?: MemberUncheckedUpdateManyWithoutUserNestedInput
+    UserTotalPoint?: UserTotalPointUncheckedUpdateOneWithoutUserNestedInput
   }
 
   export type UserCreateWithoutAccountsInput = {
@@ -26779,13 +27119,13 @@ export namespace Prisma {
     postalCode?: string | null
     status: string
     state?: string | null
-    sessions?: SessionCreateNestedManyWithoutUserInput
-    members?: MemberCreateNestedManyWithoutUserInput
+    recycleHistory?: RecycleHistoryCreateNestedManyWithoutUserInput
+    redeemHistory?: RedeemHistoryCreateNestedManyWithoutUserInput
+    favouriteCoupon?: FavouriteCouponCreateNestedManyWithoutUserInput
     invitations?: InvitationCreateNestedManyWithoutUserInput
-    FavoriteCouponList?: FavoriteCouponListCreateNestedManyWithoutUserInput
-    RedeemHistory?: RedeemHistoryCreateNestedManyWithoutUserInput
-    RecycleHistory?: RecycleHistoryCreateNestedManyWithoutUserInput
-    UserTotalPoint?: UserTotalPointCreateNestedManyWithoutUserInput
+    members?: MemberCreateNestedManyWithoutUserInput
+    sessions?: SessionCreateNestedManyWithoutUserInput
+    UserTotalPoint?: UserTotalPointCreateNestedOneWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutAccountsInput = {
@@ -26807,13 +27147,13 @@ export namespace Prisma {
     postalCode?: string | null
     status: string
     state?: string | null
-    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
-    members?: MemberUncheckedCreateNestedManyWithoutUserInput
+    recycleHistory?: RecycleHistoryUncheckedCreateNestedManyWithoutUserInput
+    redeemHistory?: RedeemHistoryUncheckedCreateNestedManyWithoutUserInput
+    favouriteCoupon?: FavouriteCouponUncheckedCreateNestedManyWithoutUserInput
     invitations?: InvitationUncheckedCreateNestedManyWithoutUserInput
-    FavoriteCouponList?: FavoriteCouponListUncheckedCreateNestedManyWithoutUserInput
-    RedeemHistory?: RedeemHistoryUncheckedCreateNestedManyWithoutUserInput
-    RecycleHistory?: RecycleHistoryUncheckedCreateNestedManyWithoutUserInput
-    UserTotalPoint?: UserTotalPointUncheckedCreateNestedManyWithoutUserInput
+    members?: MemberUncheckedCreateNestedManyWithoutUserInput
+    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+    UserTotalPoint?: UserTotalPointUncheckedCreateNestedOneWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutAccountsInput = {
@@ -26851,13 +27191,13 @@ export namespace Prisma {
     postalCode?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
     state?: NullableStringFieldUpdateOperationsInput | string | null
-    sessions?: SessionUpdateManyWithoutUserNestedInput
-    members?: MemberUpdateManyWithoutUserNestedInput
+    recycleHistory?: RecycleHistoryUpdateManyWithoutUserNestedInput
+    redeemHistory?: RedeemHistoryUpdateManyWithoutUserNestedInput
+    favouriteCoupon?: FavouriteCouponUpdateManyWithoutUserNestedInput
     invitations?: InvitationUpdateManyWithoutUserNestedInput
-    FavoriteCouponList?: FavoriteCouponListUpdateManyWithoutUserNestedInput
-    RedeemHistory?: RedeemHistoryUpdateManyWithoutUserNestedInput
-    RecycleHistory?: RecycleHistoryUpdateManyWithoutUserNestedInput
-    UserTotalPoint?: UserTotalPointUpdateManyWithoutUserNestedInput
+    members?: MemberUpdateManyWithoutUserNestedInput
+    sessions?: SessionUpdateManyWithoutUserNestedInput
+    UserTotalPoint?: UserTotalPointUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutAccountsInput = {
@@ -26879,36 +27219,60 @@ export namespace Prisma {
     postalCode?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
     state?: NullableStringFieldUpdateOperationsInput | string | null
-    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
-    members?: MemberUncheckedUpdateManyWithoutUserNestedInput
+    recycleHistory?: RecycleHistoryUncheckedUpdateManyWithoutUserNestedInput
+    redeemHistory?: RedeemHistoryUncheckedUpdateManyWithoutUserNestedInput
+    favouriteCoupon?: FavouriteCouponUncheckedUpdateManyWithoutUserNestedInput
     invitations?: InvitationUncheckedUpdateManyWithoutUserNestedInput
-    FavoriteCouponList?: FavoriteCouponListUncheckedUpdateManyWithoutUserNestedInput
-    RedeemHistory?: RedeemHistoryUncheckedUpdateManyWithoutUserNestedInput
-    RecycleHistory?: RecycleHistoryUncheckedUpdateManyWithoutUserNestedInput
-    UserTotalPoint?: UserTotalPointUncheckedUpdateManyWithoutUserNestedInput
+    members?: MemberUncheckedUpdateManyWithoutUserNestedInput
+    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    UserTotalPoint?: UserTotalPointUncheckedUpdateOneWithoutUserNestedInput
   }
 
-  export type MemberCreateWithoutOrganizationInput = {
-    id: string
-    role: string
-    createdAt: Date | string
-    user: UserCreateNestedOneWithoutMembersInput
+  export type CouponCreateWithoutOrganizationInput = {
+    id?: string
+    name: string
+    description?: string | null
+    imageUrl?: string | null
+    status?: $Enums.Status
+    couponType: $Enums.CouponType
+    dealType: $Enums.DealType
+    isFeatured?: boolean
+    discountAmount: number
+    pointsToRedeem: number
+    startDate: Date | string
+    endDate: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    favouriteCoupon?: FavouriteCouponCreateNestedManyWithoutCouponInput
+    redeemHistory?: RedeemHistoryCreateNestedManyWithoutCouponInput
   }
 
-  export type MemberUncheckedCreateWithoutOrganizationInput = {
-    id: string
-    userId: string
-    role: string
-    createdAt: Date | string
+  export type CouponUncheckedCreateWithoutOrganizationInput = {
+    id?: string
+    name: string
+    description?: string | null
+    imageUrl?: string | null
+    status?: $Enums.Status
+    couponType: $Enums.CouponType
+    dealType: $Enums.DealType
+    isFeatured?: boolean
+    discountAmount: number
+    pointsToRedeem: number
+    startDate: Date | string
+    endDate: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    favouriteCoupon?: FavouriteCouponUncheckedCreateNestedManyWithoutCouponInput
+    redeemHistory?: RedeemHistoryUncheckedCreateNestedManyWithoutCouponInput
   }
 
-  export type MemberCreateOrConnectWithoutOrganizationInput = {
-    where: MemberWhereUniqueInput
-    create: XOR<MemberCreateWithoutOrganizationInput, MemberUncheckedCreateWithoutOrganizationInput>
+  export type CouponCreateOrConnectWithoutOrganizationInput = {
+    where: CouponWhereUniqueInput
+    create: XOR<CouponCreateWithoutOrganizationInput, CouponUncheckedCreateWithoutOrganizationInput>
   }
 
-  export type MemberCreateManyOrganizationInputEnvelope = {
-    data: MemberCreateManyOrganizationInput | MemberCreateManyOrganizationInput[]
+  export type CouponCreateManyOrganizationInputEnvelope = {
+    data: CouponCreateManyOrganizationInput | CouponCreateManyOrganizationInput[]
     skipDuplicates?: boolean
   }
 
@@ -26937,6 +27301,30 @@ export namespace Prisma {
 
   export type InvitationCreateManyOrganizationInputEnvelope = {
     data: InvitationCreateManyOrganizationInput | InvitationCreateManyOrganizationInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type MemberCreateWithoutOrganizationInput = {
+    id: string
+    role: string
+    createdAt: Date | string
+    user: UserCreateNestedOneWithoutMembersInput
+  }
+
+  export type MemberUncheckedCreateWithoutOrganizationInput = {
+    id: string
+    userId: string
+    role: string
+    createdAt: Date | string
+  }
+
+  export type MemberCreateOrConnectWithoutOrganizationInput = {
+    where: MemberWhereUniqueInput
+    create: XOR<MemberCreateWithoutOrganizationInput, MemberUncheckedCreateWithoutOrganizationInput>
+  }
+
+  export type MemberCreateManyOrganizationInputEnvelope = {
+    data: MemberCreateManyOrganizationInput | MemberCreateManyOrganizationInput[]
     skipDuplicates?: boolean
   }
 
@@ -26988,66 +27376,41 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type CouponCreateWithoutOrganizationInput = {
-    id?: string
-    name: string
-    description?: string | null
-    imageUrl: string
-    status?: $Enums.Status
-    couponType: $Enums.CouponType
-    dealType: $Enums.DealType
-    isFeatured: boolean
-    couponCode: string
-    pointsToRedeem: number
-    startDate: Date | string
-    endDate: Date | string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    FavoriteCouponList?: FavoriteCouponListCreateNestedManyWithoutCouponInput
-  }
-
-  export type CouponUncheckedCreateWithoutOrganizationInput = {
-    id?: string
-    name: string
-    description?: string | null
-    imageUrl: string
-    status?: $Enums.Status
-    couponType: $Enums.CouponType
-    dealType: $Enums.DealType
-    isFeatured: boolean
-    couponCode: string
-    pointsToRedeem: number
-    startDate: Date | string
-    endDate: Date | string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    FavoriteCouponList?: FavoriteCouponListUncheckedCreateNestedManyWithoutCouponInput
-  }
-
-  export type CouponCreateOrConnectWithoutOrganizationInput = {
+  export type CouponUpsertWithWhereUniqueWithoutOrganizationInput = {
     where: CouponWhereUniqueInput
+    update: XOR<CouponUpdateWithoutOrganizationInput, CouponUncheckedUpdateWithoutOrganizationInput>
     create: XOR<CouponCreateWithoutOrganizationInput, CouponUncheckedCreateWithoutOrganizationInput>
   }
 
-  export type CouponCreateManyOrganizationInputEnvelope = {
-    data: CouponCreateManyOrganizationInput | CouponCreateManyOrganizationInput[]
-    skipDuplicates?: boolean
+  export type CouponUpdateWithWhereUniqueWithoutOrganizationInput = {
+    where: CouponWhereUniqueInput
+    data: XOR<CouponUpdateWithoutOrganizationInput, CouponUncheckedUpdateWithoutOrganizationInput>
   }
 
-  export type MemberUpsertWithWhereUniqueWithoutOrganizationInput = {
-    where: MemberWhereUniqueInput
-    update: XOR<MemberUpdateWithoutOrganizationInput, MemberUncheckedUpdateWithoutOrganizationInput>
-    create: XOR<MemberCreateWithoutOrganizationInput, MemberUncheckedCreateWithoutOrganizationInput>
+  export type CouponUpdateManyWithWhereWithoutOrganizationInput = {
+    where: CouponScalarWhereInput
+    data: XOR<CouponUpdateManyMutationInput, CouponUncheckedUpdateManyWithoutOrganizationInput>
   }
 
-  export type MemberUpdateWithWhereUniqueWithoutOrganizationInput = {
-    where: MemberWhereUniqueInput
-    data: XOR<MemberUpdateWithoutOrganizationInput, MemberUncheckedUpdateWithoutOrganizationInput>
-  }
-
-  export type MemberUpdateManyWithWhereWithoutOrganizationInput = {
-    where: MemberScalarWhereInput
-    data: XOR<MemberUpdateManyMutationInput, MemberUncheckedUpdateManyWithoutOrganizationInput>
+  export type CouponScalarWhereInput = {
+    AND?: CouponScalarWhereInput | CouponScalarWhereInput[]
+    OR?: CouponScalarWhereInput[]
+    NOT?: CouponScalarWhereInput | CouponScalarWhereInput[]
+    id?: StringFilter<"Coupon"> | string
+    name?: StringFilter<"Coupon"> | string
+    description?: StringNullableFilter<"Coupon"> | string | null
+    imageUrl?: StringNullableFilter<"Coupon"> | string | null
+    status?: EnumStatusFilter<"Coupon"> | $Enums.Status
+    couponType?: EnumCouponTypeFilter<"Coupon"> | $Enums.CouponType
+    dealType?: EnumDealTypeFilter<"Coupon"> | $Enums.DealType
+    isFeatured?: BoolFilter<"Coupon"> | boolean
+    discountAmount?: IntFilter<"Coupon"> | number
+    pointsToRedeem?: IntFilter<"Coupon"> | number
+    startDate?: DateTimeFilter<"Coupon"> | Date | string
+    endDate?: DateTimeFilter<"Coupon"> | Date | string
+    createdAt?: DateTimeFilter<"Coupon"> | Date | string
+    updatedAt?: DateTimeFilter<"Coupon"> | Date | string
+    organizationId?: StringNullableFilter<"Coupon"> | string | null
   }
 
   export type InvitationUpsertWithWhereUniqueWithoutOrganizationInput = {
@@ -27064,6 +27427,22 @@ export namespace Prisma {
   export type InvitationUpdateManyWithWhereWithoutOrganizationInput = {
     where: InvitationScalarWhereInput
     data: XOR<InvitationUpdateManyMutationInput, InvitationUncheckedUpdateManyWithoutOrganizationInput>
+  }
+
+  export type MemberUpsertWithWhereUniqueWithoutOrganizationInput = {
+    where: MemberWhereUniqueInput
+    update: XOR<MemberUpdateWithoutOrganizationInput, MemberUncheckedUpdateWithoutOrganizationInput>
+    create: XOR<MemberCreateWithoutOrganizationInput, MemberUncheckedCreateWithoutOrganizationInput>
+  }
+
+  export type MemberUpdateWithWhereUniqueWithoutOrganizationInput = {
+    where: MemberWhereUniqueInput
+    data: XOR<MemberUpdateWithoutOrganizationInput, MemberUncheckedUpdateWithoutOrganizationInput>
+  }
+
+  export type MemberUpdateManyWithWhereWithoutOrganizationInput = {
+    where: MemberScalarWhereInput
+    data: XOR<MemberUpdateManyMutationInput, MemberUncheckedUpdateManyWithoutOrganizationInput>
   }
 
   export type StoreUpsertWithWhereUniqueWithoutOrganizationInput = {
@@ -27104,43 +27483,6 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"Store"> | Date | string
   }
 
-  export type CouponUpsertWithWhereUniqueWithoutOrganizationInput = {
-    where: CouponWhereUniqueInput
-    update: XOR<CouponUpdateWithoutOrganizationInput, CouponUncheckedUpdateWithoutOrganizationInput>
-    create: XOR<CouponCreateWithoutOrganizationInput, CouponUncheckedCreateWithoutOrganizationInput>
-  }
-
-  export type CouponUpdateWithWhereUniqueWithoutOrganizationInput = {
-    where: CouponWhereUniqueInput
-    data: XOR<CouponUpdateWithoutOrganizationInput, CouponUncheckedUpdateWithoutOrganizationInput>
-  }
-
-  export type CouponUpdateManyWithWhereWithoutOrganizationInput = {
-    where: CouponScalarWhereInput
-    data: XOR<CouponUpdateManyMutationInput, CouponUncheckedUpdateManyWithoutOrganizationInput>
-  }
-
-  export type CouponScalarWhereInput = {
-    AND?: CouponScalarWhereInput | CouponScalarWhereInput[]
-    OR?: CouponScalarWhereInput[]
-    NOT?: CouponScalarWhereInput | CouponScalarWhereInput[]
-    id?: StringFilter<"Coupon"> | string
-    name?: StringFilter<"Coupon"> | string
-    description?: StringNullableFilter<"Coupon"> | string | null
-    imageUrl?: StringFilter<"Coupon"> | string
-    status?: EnumStatusFilter<"Coupon"> | $Enums.Status
-    couponType?: EnumCouponTypeFilter<"Coupon"> | $Enums.CouponType
-    dealType?: EnumDealTypeFilter<"Coupon"> | $Enums.DealType
-    isFeatured?: BoolFilter<"Coupon"> | boolean
-    couponCode?: StringFilter<"Coupon"> | string
-    pointsToRedeem?: IntFilter<"Coupon"> | number
-    startDate?: DateTimeFilter<"Coupon"> | Date | string
-    endDate?: DateTimeFilter<"Coupon"> | Date | string
-    createdAt?: DateTimeFilter<"Coupon"> | Date | string
-    updatedAt?: DateTimeFilter<"Coupon"> | Date | string
-    organizationId?: StringFilter<"Coupon"> | string
-  }
-
   export type OrganizationCreateWithoutMembersInput = {
     id: string
     name: string
@@ -27148,9 +27490,9 @@ export namespace Prisma {
     logo?: string | null
     createdAt: Date | string
     metadata?: string | null
+    Coupon?: CouponCreateNestedManyWithoutOrganizationInput
     invitations?: InvitationCreateNestedManyWithoutOrganizationInput
     stores?: StoreCreateNestedManyWithoutOrganizationInput
-    Coupon?: CouponCreateNestedManyWithoutOrganizationInput
   }
 
   export type OrganizationUncheckedCreateWithoutMembersInput = {
@@ -27160,9 +27502,9 @@ export namespace Prisma {
     logo?: string | null
     createdAt: Date | string
     metadata?: string | null
+    Coupon?: CouponUncheckedCreateNestedManyWithoutOrganizationInput
     invitations?: InvitationUncheckedCreateNestedManyWithoutOrganizationInput
     stores?: StoreUncheckedCreateNestedManyWithoutOrganizationInput
-    Coupon?: CouponUncheckedCreateNestedManyWithoutOrganizationInput
   }
 
   export type OrganizationCreateOrConnectWithoutMembersInput = {
@@ -27189,13 +27531,13 @@ export namespace Prisma {
     postalCode?: string | null
     status: string
     state?: string | null
-    sessions?: SessionCreateNestedManyWithoutUserInput
+    recycleHistory?: RecycleHistoryCreateNestedManyWithoutUserInput
+    redeemHistory?: RedeemHistoryCreateNestedManyWithoutUserInput
     accounts?: AccountCreateNestedManyWithoutUserInput
+    favouriteCoupon?: FavouriteCouponCreateNestedManyWithoutUserInput
     invitations?: InvitationCreateNestedManyWithoutUserInput
-    FavoriteCouponList?: FavoriteCouponListCreateNestedManyWithoutUserInput
-    RedeemHistory?: RedeemHistoryCreateNestedManyWithoutUserInput
-    RecycleHistory?: RecycleHistoryCreateNestedManyWithoutUserInput
-    UserTotalPoint?: UserTotalPointCreateNestedManyWithoutUserInput
+    sessions?: SessionCreateNestedManyWithoutUserInput
+    UserTotalPoint?: UserTotalPointCreateNestedOneWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutMembersInput = {
@@ -27217,13 +27559,13 @@ export namespace Prisma {
     postalCode?: string | null
     status: string
     state?: string | null
-    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+    recycleHistory?: RecycleHistoryUncheckedCreateNestedManyWithoutUserInput
+    redeemHistory?: RedeemHistoryUncheckedCreateNestedManyWithoutUserInput
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
+    favouriteCoupon?: FavouriteCouponUncheckedCreateNestedManyWithoutUserInput
     invitations?: InvitationUncheckedCreateNestedManyWithoutUserInput
-    FavoriteCouponList?: FavoriteCouponListUncheckedCreateNestedManyWithoutUserInput
-    RedeemHistory?: RedeemHistoryUncheckedCreateNestedManyWithoutUserInput
-    RecycleHistory?: RecycleHistoryUncheckedCreateNestedManyWithoutUserInput
-    UserTotalPoint?: UserTotalPointUncheckedCreateNestedManyWithoutUserInput
+    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+    UserTotalPoint?: UserTotalPointUncheckedCreateNestedOneWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutMembersInput = {
@@ -27249,9 +27591,9 @@ export namespace Prisma {
     logo?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     metadata?: NullableStringFieldUpdateOperationsInput | string | null
+    Coupon?: CouponUpdateManyWithoutOrganizationNestedInput
     invitations?: InvitationUpdateManyWithoutOrganizationNestedInput
     stores?: StoreUpdateManyWithoutOrganizationNestedInput
-    Coupon?: CouponUpdateManyWithoutOrganizationNestedInput
   }
 
   export type OrganizationUncheckedUpdateWithoutMembersInput = {
@@ -27261,9 +27603,9 @@ export namespace Prisma {
     logo?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     metadata?: NullableStringFieldUpdateOperationsInput | string | null
+    Coupon?: CouponUncheckedUpdateManyWithoutOrganizationNestedInput
     invitations?: InvitationUncheckedUpdateManyWithoutOrganizationNestedInput
     stores?: StoreUncheckedUpdateManyWithoutOrganizationNestedInput
-    Coupon?: CouponUncheckedUpdateManyWithoutOrganizationNestedInput
   }
 
   export type UserUpsertWithoutMembersInput = {
@@ -27296,13 +27638,13 @@ export namespace Prisma {
     postalCode?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
     state?: NullableStringFieldUpdateOperationsInput | string | null
-    sessions?: SessionUpdateManyWithoutUserNestedInput
+    recycleHistory?: RecycleHistoryUpdateManyWithoutUserNestedInput
+    redeemHistory?: RedeemHistoryUpdateManyWithoutUserNestedInput
     accounts?: AccountUpdateManyWithoutUserNestedInput
+    favouriteCoupon?: FavouriteCouponUpdateManyWithoutUserNestedInput
     invitations?: InvitationUpdateManyWithoutUserNestedInput
-    FavoriteCouponList?: FavoriteCouponListUpdateManyWithoutUserNestedInput
-    RedeemHistory?: RedeemHistoryUpdateManyWithoutUserNestedInput
-    RecycleHistory?: RecycleHistoryUpdateManyWithoutUserNestedInput
-    UserTotalPoint?: UserTotalPointUpdateManyWithoutUserNestedInput
+    sessions?: SessionUpdateManyWithoutUserNestedInput
+    UserTotalPoint?: UserTotalPointUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutMembersInput = {
@@ -27324,42 +27666,13 @@ export namespace Prisma {
     postalCode?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
     state?: NullableStringFieldUpdateOperationsInput | string | null
-    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    recycleHistory?: RecycleHistoryUncheckedUpdateManyWithoutUserNestedInput
+    redeemHistory?: RedeemHistoryUncheckedUpdateManyWithoutUserNestedInput
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
+    favouriteCoupon?: FavouriteCouponUncheckedUpdateManyWithoutUserNestedInput
     invitations?: InvitationUncheckedUpdateManyWithoutUserNestedInput
-    FavoriteCouponList?: FavoriteCouponListUncheckedUpdateManyWithoutUserNestedInput
-    RedeemHistory?: RedeemHistoryUncheckedUpdateManyWithoutUserNestedInput
-    RecycleHistory?: RecycleHistoryUncheckedUpdateManyWithoutUserNestedInput
-    UserTotalPoint?: UserTotalPointUncheckedUpdateManyWithoutUserNestedInput
-  }
-
-  export type OrganizationCreateWithoutInvitationsInput = {
-    id: string
-    name: string
-    slug?: string | null
-    logo?: string | null
-    createdAt: Date | string
-    metadata?: string | null
-    members?: MemberCreateNestedManyWithoutOrganizationInput
-    stores?: StoreCreateNestedManyWithoutOrganizationInput
-    Coupon?: CouponCreateNestedManyWithoutOrganizationInput
-  }
-
-  export type OrganizationUncheckedCreateWithoutInvitationsInput = {
-    id: string
-    name: string
-    slug?: string | null
-    logo?: string | null
-    createdAt: Date | string
-    metadata?: string | null
-    members?: MemberUncheckedCreateNestedManyWithoutOrganizationInput
-    stores?: StoreUncheckedCreateNestedManyWithoutOrganizationInput
-    Coupon?: CouponUncheckedCreateNestedManyWithoutOrganizationInput
-  }
-
-  export type OrganizationCreateOrConnectWithoutInvitationsInput = {
-    where: OrganizationWhereUniqueInput
-    create: XOR<OrganizationCreateWithoutInvitationsInput, OrganizationUncheckedCreateWithoutInvitationsInput>
+    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    UserTotalPoint?: UserTotalPointUncheckedUpdateOneWithoutUserNestedInput
   }
 
   export type UserCreateWithoutInvitationsInput = {
@@ -27381,13 +27694,13 @@ export namespace Prisma {
     postalCode?: string | null
     status: string
     state?: string | null
-    sessions?: SessionCreateNestedManyWithoutUserInput
+    recycleHistory?: RecycleHistoryCreateNestedManyWithoutUserInput
+    redeemHistory?: RedeemHistoryCreateNestedManyWithoutUserInput
     accounts?: AccountCreateNestedManyWithoutUserInput
+    favouriteCoupon?: FavouriteCouponCreateNestedManyWithoutUserInput
     members?: MemberCreateNestedManyWithoutUserInput
-    FavoriteCouponList?: FavoriteCouponListCreateNestedManyWithoutUserInput
-    RedeemHistory?: RedeemHistoryCreateNestedManyWithoutUserInput
-    RecycleHistory?: RecycleHistoryCreateNestedManyWithoutUserInput
-    UserTotalPoint?: UserTotalPointCreateNestedManyWithoutUserInput
+    sessions?: SessionCreateNestedManyWithoutUserInput
+    UserTotalPoint?: UserTotalPointCreateNestedOneWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutInvitationsInput = {
@@ -27409,13 +27722,13 @@ export namespace Prisma {
     postalCode?: string | null
     status: string
     state?: string | null
-    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+    recycleHistory?: RecycleHistoryUncheckedCreateNestedManyWithoutUserInput
+    redeemHistory?: RedeemHistoryUncheckedCreateNestedManyWithoutUserInput
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
+    favouriteCoupon?: FavouriteCouponUncheckedCreateNestedManyWithoutUserInput
     members?: MemberUncheckedCreateNestedManyWithoutUserInput
-    FavoriteCouponList?: FavoriteCouponListUncheckedCreateNestedManyWithoutUserInput
-    RedeemHistory?: RedeemHistoryUncheckedCreateNestedManyWithoutUserInput
-    RecycleHistory?: RecycleHistoryUncheckedCreateNestedManyWithoutUserInput
-    UserTotalPoint?: UserTotalPointUncheckedCreateNestedManyWithoutUserInput
+    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+    UserTotalPoint?: UserTotalPointUncheckedCreateNestedOneWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutInvitationsInput = {
@@ -27423,39 +27736,33 @@ export namespace Prisma {
     create: XOR<UserCreateWithoutInvitationsInput, UserUncheckedCreateWithoutInvitationsInput>
   }
 
-  export type OrganizationUpsertWithoutInvitationsInput = {
-    update: XOR<OrganizationUpdateWithoutInvitationsInput, OrganizationUncheckedUpdateWithoutInvitationsInput>
+  export type OrganizationCreateWithoutInvitationsInput = {
+    id: string
+    name: string
+    slug?: string | null
+    logo?: string | null
+    createdAt: Date | string
+    metadata?: string | null
+    Coupon?: CouponCreateNestedManyWithoutOrganizationInput
+    members?: MemberCreateNestedManyWithoutOrganizationInput
+    stores?: StoreCreateNestedManyWithoutOrganizationInput
+  }
+
+  export type OrganizationUncheckedCreateWithoutInvitationsInput = {
+    id: string
+    name: string
+    slug?: string | null
+    logo?: string | null
+    createdAt: Date | string
+    metadata?: string | null
+    Coupon?: CouponUncheckedCreateNestedManyWithoutOrganizationInput
+    members?: MemberUncheckedCreateNestedManyWithoutOrganizationInput
+    stores?: StoreUncheckedCreateNestedManyWithoutOrganizationInput
+  }
+
+  export type OrganizationCreateOrConnectWithoutInvitationsInput = {
+    where: OrganizationWhereUniqueInput
     create: XOR<OrganizationCreateWithoutInvitationsInput, OrganizationUncheckedCreateWithoutInvitationsInput>
-    where?: OrganizationWhereInput
-  }
-
-  export type OrganizationUpdateToOneWithWhereWithoutInvitationsInput = {
-    where?: OrganizationWhereInput
-    data: XOR<OrganizationUpdateWithoutInvitationsInput, OrganizationUncheckedUpdateWithoutInvitationsInput>
-  }
-
-  export type OrganizationUpdateWithoutInvitationsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    slug?: NullableStringFieldUpdateOperationsInput | string | null
-    logo?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    metadata?: NullableStringFieldUpdateOperationsInput | string | null
-    members?: MemberUpdateManyWithoutOrganizationNestedInput
-    stores?: StoreUpdateManyWithoutOrganizationNestedInput
-    Coupon?: CouponUpdateManyWithoutOrganizationNestedInput
-  }
-
-  export type OrganizationUncheckedUpdateWithoutInvitationsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    slug?: NullableStringFieldUpdateOperationsInput | string | null
-    logo?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    metadata?: NullableStringFieldUpdateOperationsInput | string | null
-    members?: MemberUncheckedUpdateManyWithoutOrganizationNestedInput
-    stores?: StoreUncheckedUpdateManyWithoutOrganizationNestedInput
-    Coupon?: CouponUncheckedUpdateManyWithoutOrganizationNestedInput
   }
 
   export type UserUpsertWithoutInvitationsInput = {
@@ -27488,13 +27795,13 @@ export namespace Prisma {
     postalCode?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
     state?: NullableStringFieldUpdateOperationsInput | string | null
-    sessions?: SessionUpdateManyWithoutUserNestedInput
+    recycleHistory?: RecycleHistoryUpdateManyWithoutUserNestedInput
+    redeemHistory?: RedeemHistoryUpdateManyWithoutUserNestedInput
     accounts?: AccountUpdateManyWithoutUserNestedInput
+    favouriteCoupon?: FavouriteCouponUpdateManyWithoutUserNestedInput
     members?: MemberUpdateManyWithoutUserNestedInput
-    FavoriteCouponList?: FavoriteCouponListUpdateManyWithoutUserNestedInput
-    RedeemHistory?: RedeemHistoryUpdateManyWithoutUserNestedInput
-    RecycleHistory?: RecycleHistoryUpdateManyWithoutUserNestedInput
-    UserTotalPoint?: UserTotalPointUpdateManyWithoutUserNestedInput
+    sessions?: SessionUpdateManyWithoutUserNestedInput
+    UserTotalPoint?: UserTotalPointUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutInvitationsInput = {
@@ -27516,42 +27823,48 @@ export namespace Prisma {
     postalCode?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
     state?: NullableStringFieldUpdateOperationsInput | string | null
-    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    recycleHistory?: RecycleHistoryUncheckedUpdateManyWithoutUserNestedInput
+    redeemHistory?: RedeemHistoryUncheckedUpdateManyWithoutUserNestedInput
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
+    favouriteCoupon?: FavouriteCouponUncheckedUpdateManyWithoutUserNestedInput
     members?: MemberUncheckedUpdateManyWithoutUserNestedInput
-    FavoriteCouponList?: FavoriteCouponListUncheckedUpdateManyWithoutUserNestedInput
-    RedeemHistory?: RedeemHistoryUncheckedUpdateManyWithoutUserNestedInput
-    RecycleHistory?: RecycleHistoryUncheckedUpdateManyWithoutUserNestedInput
-    UserTotalPoint?: UserTotalPointUncheckedUpdateManyWithoutUserNestedInput
+    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    UserTotalPoint?: UserTotalPointUncheckedUpdateOneWithoutUserNestedInput
   }
 
-  export type OrganizationCreateWithoutStoresInput = {
-    id: string
-    name: string
-    slug?: string | null
-    logo?: string | null
-    createdAt: Date | string
-    metadata?: string | null
-    members?: MemberCreateNestedManyWithoutOrganizationInput
-    invitations?: InvitationCreateNestedManyWithoutOrganizationInput
-    Coupon?: CouponCreateNestedManyWithoutOrganizationInput
+  export type OrganizationUpsertWithoutInvitationsInput = {
+    update: XOR<OrganizationUpdateWithoutInvitationsInput, OrganizationUncheckedUpdateWithoutInvitationsInput>
+    create: XOR<OrganizationCreateWithoutInvitationsInput, OrganizationUncheckedCreateWithoutInvitationsInput>
+    where?: OrganizationWhereInput
   }
 
-  export type OrganizationUncheckedCreateWithoutStoresInput = {
-    id: string
-    name: string
-    slug?: string | null
-    logo?: string | null
-    createdAt: Date | string
-    metadata?: string | null
-    members?: MemberUncheckedCreateNestedManyWithoutOrganizationInput
-    invitations?: InvitationUncheckedCreateNestedManyWithoutOrganizationInput
-    Coupon?: CouponUncheckedCreateNestedManyWithoutOrganizationInput
+  export type OrganizationUpdateToOneWithWhereWithoutInvitationsInput = {
+    where?: OrganizationWhereInput
+    data: XOR<OrganizationUpdateWithoutInvitationsInput, OrganizationUncheckedUpdateWithoutInvitationsInput>
   }
 
-  export type OrganizationCreateOrConnectWithoutStoresInput = {
-    where: OrganizationWhereUniqueInput
-    create: XOR<OrganizationCreateWithoutStoresInput, OrganizationUncheckedCreateWithoutStoresInput>
+  export type OrganizationUpdateWithoutInvitationsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: NullableStringFieldUpdateOperationsInput | string | null
+    logo?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    metadata?: NullableStringFieldUpdateOperationsInput | string | null
+    Coupon?: CouponUpdateManyWithoutOrganizationNestedInput
+    members?: MemberUpdateManyWithoutOrganizationNestedInput
+    stores?: StoreUpdateManyWithoutOrganizationNestedInput
+  }
+
+  export type OrganizationUncheckedUpdateWithoutInvitationsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: NullableStringFieldUpdateOperationsInput | string | null
+    logo?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    metadata?: NullableStringFieldUpdateOperationsInput | string | null
+    Coupon?: CouponUncheckedUpdateManyWithoutOrganizationNestedInput
+    members?: MemberUncheckedUpdateManyWithoutOrganizationNestedInput
+    stores?: StoreUncheckedUpdateManyWithoutOrganizationNestedInput
   }
 
   export type BinCreateWithoutStoreInput = {
@@ -27563,6 +27876,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     material: MaterialCreateNestedOneWithoutBinsInput
+    recycleHistory?: RecycleHistoryCreateNestedManyWithoutBinInput
   }
 
   export type BinUncheckedCreateWithoutStoreInput = {
@@ -27574,6 +27888,7 @@ export namespace Prisma {
     status?: $Enums.BinStatus
     createdAt?: Date | string
     updatedAt?: Date | string
+    recycleHistory?: RecycleHistoryUncheckedCreateNestedManyWithoutBinInput
   }
 
   export type BinCreateOrConnectWithoutStoreInput = {
@@ -27586,39 +27901,33 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type OrganizationUpsertWithoutStoresInput = {
-    update: XOR<OrganizationUpdateWithoutStoresInput, OrganizationUncheckedUpdateWithoutStoresInput>
+  export type OrganizationCreateWithoutStoresInput = {
+    id: string
+    name: string
+    slug?: string | null
+    logo?: string | null
+    createdAt: Date | string
+    metadata?: string | null
+    Coupon?: CouponCreateNestedManyWithoutOrganizationInput
+    invitations?: InvitationCreateNestedManyWithoutOrganizationInput
+    members?: MemberCreateNestedManyWithoutOrganizationInput
+  }
+
+  export type OrganizationUncheckedCreateWithoutStoresInput = {
+    id: string
+    name: string
+    slug?: string | null
+    logo?: string | null
+    createdAt: Date | string
+    metadata?: string | null
+    Coupon?: CouponUncheckedCreateNestedManyWithoutOrganizationInput
+    invitations?: InvitationUncheckedCreateNestedManyWithoutOrganizationInput
+    members?: MemberUncheckedCreateNestedManyWithoutOrganizationInput
+  }
+
+  export type OrganizationCreateOrConnectWithoutStoresInput = {
+    where: OrganizationWhereUniqueInput
     create: XOR<OrganizationCreateWithoutStoresInput, OrganizationUncheckedCreateWithoutStoresInput>
-    where?: OrganizationWhereInput
-  }
-
-  export type OrganizationUpdateToOneWithWhereWithoutStoresInput = {
-    where?: OrganizationWhereInput
-    data: XOR<OrganizationUpdateWithoutStoresInput, OrganizationUncheckedUpdateWithoutStoresInput>
-  }
-
-  export type OrganizationUpdateWithoutStoresInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    slug?: NullableStringFieldUpdateOperationsInput | string | null
-    logo?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    metadata?: NullableStringFieldUpdateOperationsInput | string | null
-    members?: MemberUpdateManyWithoutOrganizationNestedInput
-    invitations?: InvitationUpdateManyWithoutOrganizationNestedInput
-    Coupon?: CouponUpdateManyWithoutOrganizationNestedInput
-  }
-
-  export type OrganizationUncheckedUpdateWithoutStoresInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    slug?: NullableStringFieldUpdateOperationsInput | string | null
-    logo?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    metadata?: NullableStringFieldUpdateOperationsInput | string | null
-    members?: MemberUncheckedUpdateManyWithoutOrganizationNestedInput
-    invitations?: InvitationUncheckedUpdateManyWithoutOrganizationNestedInput
-    Coupon?: CouponUncheckedUpdateManyWithoutOrganizationNestedInput
   }
 
   export type BinUpsertWithWhereUniqueWithoutStoreInput = {
@@ -27652,6 +27961,41 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"Bin"> | Date | string
   }
 
+  export type OrganizationUpsertWithoutStoresInput = {
+    update: XOR<OrganizationUpdateWithoutStoresInput, OrganizationUncheckedUpdateWithoutStoresInput>
+    create: XOR<OrganizationCreateWithoutStoresInput, OrganizationUncheckedCreateWithoutStoresInput>
+    where?: OrganizationWhereInput
+  }
+
+  export type OrganizationUpdateToOneWithWhereWithoutStoresInput = {
+    where?: OrganizationWhereInput
+    data: XOR<OrganizationUpdateWithoutStoresInput, OrganizationUncheckedUpdateWithoutStoresInput>
+  }
+
+  export type OrganizationUpdateWithoutStoresInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: NullableStringFieldUpdateOperationsInput | string | null
+    logo?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    metadata?: NullableStringFieldUpdateOperationsInput | string | null
+    Coupon?: CouponUpdateManyWithoutOrganizationNestedInput
+    invitations?: InvitationUpdateManyWithoutOrganizationNestedInput
+    members?: MemberUpdateManyWithoutOrganizationNestedInput
+  }
+
+  export type OrganizationUncheckedUpdateWithoutStoresInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: NullableStringFieldUpdateOperationsInput | string | null
+    logo?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    metadata?: NullableStringFieldUpdateOperationsInput | string | null
+    Coupon?: CouponUncheckedUpdateManyWithoutOrganizationNestedInput
+    invitations?: InvitationUncheckedUpdateManyWithoutOrganizationNestedInput
+    members?: MemberUncheckedUpdateManyWithoutOrganizationNestedInput
+  }
+
   export type BinCreateWithoutMaterialInput = {
     id?: string
     number: string
@@ -27661,6 +28005,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     store: StoreCreateNestedOneWithoutBinsInput
+    recycleHistory?: RecycleHistoryCreateNestedManyWithoutBinInput
   }
 
   export type BinUncheckedCreateWithoutMaterialInput = {
@@ -27672,6 +28017,7 @@ export namespace Prisma {
     status?: $Enums.BinStatus
     createdAt?: Date | string
     updatedAt?: Date | string
+    recycleHistory?: RecycleHistoryUncheckedCreateNestedManyWithoutBinInput
   }
 
   export type BinCreateOrConnectWithoutMaterialInput = {
@@ -27831,13 +28177,13 @@ export namespace Prisma {
     postalCode?: string | null
     status: string
     state?: string | null
-    sessions?: SessionCreateNestedManyWithoutUserInput
+    recycleHistory?: RecycleHistoryCreateNestedManyWithoutUserInput
     accounts?: AccountCreateNestedManyWithoutUserInput
-    members?: MemberCreateNestedManyWithoutUserInput
+    favouriteCoupon?: FavouriteCouponCreateNestedManyWithoutUserInput
     invitations?: InvitationCreateNestedManyWithoutUserInput
-    FavoriteCouponList?: FavoriteCouponListCreateNestedManyWithoutUserInput
-    RecycleHistory?: RecycleHistoryCreateNestedManyWithoutUserInput
-    UserTotalPoint?: UserTotalPointCreateNestedManyWithoutUserInput
+    members?: MemberCreateNestedManyWithoutUserInput
+    sessions?: SessionCreateNestedManyWithoutUserInput
+    UserTotalPoint?: UserTotalPointCreateNestedOneWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutRedeemHistoryInput = {
@@ -27859,18 +28205,61 @@ export namespace Prisma {
     postalCode?: string | null
     status: string
     state?: string | null
-    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+    recycleHistory?: RecycleHistoryUncheckedCreateNestedManyWithoutUserInput
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
-    members?: MemberUncheckedCreateNestedManyWithoutUserInput
+    favouriteCoupon?: FavouriteCouponUncheckedCreateNestedManyWithoutUserInput
     invitations?: InvitationUncheckedCreateNestedManyWithoutUserInput
-    FavoriteCouponList?: FavoriteCouponListUncheckedCreateNestedManyWithoutUserInput
-    RecycleHistory?: RecycleHistoryUncheckedCreateNestedManyWithoutUserInput
-    UserTotalPoint?: UserTotalPointUncheckedCreateNestedManyWithoutUserInput
+    members?: MemberUncheckedCreateNestedManyWithoutUserInput
+    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+    UserTotalPoint?: UserTotalPointUncheckedCreateNestedOneWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutRedeemHistoryInput = {
     where: UserWhereUniqueInput
     create: XOR<UserCreateWithoutRedeemHistoryInput, UserUncheckedCreateWithoutRedeemHistoryInput>
+  }
+
+  export type CouponCreateWithoutRedeemHistoryInput = {
+    id?: string
+    name: string
+    description?: string | null
+    imageUrl?: string | null
+    status?: $Enums.Status
+    couponType: $Enums.CouponType
+    dealType: $Enums.DealType
+    isFeatured?: boolean
+    discountAmount: number
+    pointsToRedeem: number
+    startDate: Date | string
+    endDate: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    organization?: OrganizationCreateNestedOneWithoutCouponInput
+    favouriteCoupon?: FavouriteCouponCreateNestedManyWithoutCouponInput
+  }
+
+  export type CouponUncheckedCreateWithoutRedeemHistoryInput = {
+    id?: string
+    name: string
+    description?: string | null
+    imageUrl?: string | null
+    status?: $Enums.Status
+    couponType: $Enums.CouponType
+    dealType: $Enums.DealType
+    isFeatured?: boolean
+    discountAmount: number
+    pointsToRedeem: number
+    startDate: Date | string
+    endDate: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    organizationId?: string | null
+    favouriteCoupon?: FavouriteCouponUncheckedCreateNestedManyWithoutCouponInput
+  }
+
+  export type CouponCreateOrConnectWithoutRedeemHistoryInput = {
+    where: CouponWhereUniqueInput
+    create: XOR<CouponCreateWithoutRedeemHistoryInput, CouponUncheckedCreateWithoutRedeemHistoryInput>
   }
 
   export type UserUpsertWithoutRedeemHistoryInput = {
@@ -27903,13 +28292,13 @@ export namespace Prisma {
     postalCode?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
     state?: NullableStringFieldUpdateOperationsInput | string | null
-    sessions?: SessionUpdateManyWithoutUserNestedInput
+    recycleHistory?: RecycleHistoryUpdateManyWithoutUserNestedInput
     accounts?: AccountUpdateManyWithoutUserNestedInput
-    members?: MemberUpdateManyWithoutUserNestedInput
+    favouriteCoupon?: FavouriteCouponUpdateManyWithoutUserNestedInput
     invitations?: InvitationUpdateManyWithoutUserNestedInput
-    FavoriteCouponList?: FavoriteCouponListUpdateManyWithoutUserNestedInput
-    RecycleHistory?: RecycleHistoryUpdateManyWithoutUserNestedInput
-    UserTotalPoint?: UserTotalPointUpdateManyWithoutUserNestedInput
+    members?: MemberUpdateManyWithoutUserNestedInput
+    sessions?: SessionUpdateManyWithoutUserNestedInput
+    UserTotalPoint?: UserTotalPointUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutRedeemHistoryInput = {
@@ -27931,13 +28320,62 @@ export namespace Prisma {
     postalCode?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
     state?: NullableStringFieldUpdateOperationsInput | string | null
-    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    recycleHistory?: RecycleHistoryUncheckedUpdateManyWithoutUserNestedInput
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
-    members?: MemberUncheckedUpdateManyWithoutUserNestedInput
+    favouriteCoupon?: FavouriteCouponUncheckedUpdateManyWithoutUserNestedInput
     invitations?: InvitationUncheckedUpdateManyWithoutUserNestedInput
-    FavoriteCouponList?: FavoriteCouponListUncheckedUpdateManyWithoutUserNestedInput
-    RecycleHistory?: RecycleHistoryUncheckedUpdateManyWithoutUserNestedInput
-    UserTotalPoint?: UserTotalPointUncheckedUpdateManyWithoutUserNestedInput
+    members?: MemberUncheckedUpdateManyWithoutUserNestedInput
+    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    UserTotalPoint?: UserTotalPointUncheckedUpdateOneWithoutUserNestedInput
+  }
+
+  export type CouponUpsertWithoutRedeemHistoryInput = {
+    update: XOR<CouponUpdateWithoutRedeemHistoryInput, CouponUncheckedUpdateWithoutRedeemHistoryInput>
+    create: XOR<CouponCreateWithoutRedeemHistoryInput, CouponUncheckedCreateWithoutRedeemHistoryInput>
+    where?: CouponWhereInput
+  }
+
+  export type CouponUpdateToOneWithWhereWithoutRedeemHistoryInput = {
+    where?: CouponWhereInput
+    data: XOR<CouponUpdateWithoutRedeemHistoryInput, CouponUncheckedUpdateWithoutRedeemHistoryInput>
+  }
+
+  export type CouponUpdateWithoutRedeemHistoryInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    couponType?: EnumCouponTypeFieldUpdateOperationsInput | $Enums.CouponType
+    dealType?: EnumDealTypeFieldUpdateOperationsInput | $Enums.DealType
+    isFeatured?: BoolFieldUpdateOperationsInput | boolean
+    discountAmount?: IntFieldUpdateOperationsInput | number
+    pointsToRedeem?: IntFieldUpdateOperationsInput | number
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    organization?: OrganizationUpdateOneWithoutCouponNestedInput
+    favouriteCoupon?: FavouriteCouponUpdateManyWithoutCouponNestedInput
+  }
+
+  export type CouponUncheckedUpdateWithoutRedeemHistoryInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    couponType?: EnumCouponTypeFieldUpdateOperationsInput | $Enums.CouponType
+    dealType?: EnumDealTypeFieldUpdateOperationsInput | $Enums.DealType
+    isFeatured?: BoolFieldUpdateOperationsInput | boolean
+    discountAmount?: IntFieldUpdateOperationsInput | number
+    pointsToRedeem?: IntFieldUpdateOperationsInput | number
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    organizationId?: NullableStringFieldUpdateOperationsInput | string | null
+    favouriteCoupon?: FavouriteCouponUncheckedUpdateManyWithoutCouponNestedInput
   }
 
   export type UserCreateWithoutRecycleHistoryInput = {
@@ -27959,13 +28397,13 @@ export namespace Prisma {
     postalCode?: string | null
     status: string
     state?: string | null
-    sessions?: SessionCreateNestedManyWithoutUserInput
+    redeemHistory?: RedeemHistoryCreateNestedManyWithoutUserInput
     accounts?: AccountCreateNestedManyWithoutUserInput
-    members?: MemberCreateNestedManyWithoutUserInput
+    favouriteCoupon?: FavouriteCouponCreateNestedManyWithoutUserInput
     invitations?: InvitationCreateNestedManyWithoutUserInput
-    FavoriteCouponList?: FavoriteCouponListCreateNestedManyWithoutUserInput
-    RedeemHistory?: RedeemHistoryCreateNestedManyWithoutUserInput
-    UserTotalPoint?: UserTotalPointCreateNestedManyWithoutUserInput
+    members?: MemberCreateNestedManyWithoutUserInput
+    sessions?: SessionCreateNestedManyWithoutUserInput
+    UserTotalPoint?: UserTotalPointCreateNestedOneWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutRecycleHistoryInput = {
@@ -27987,18 +28425,47 @@ export namespace Prisma {
     postalCode?: string | null
     status: string
     state?: string | null
-    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+    redeemHistory?: RedeemHistoryUncheckedCreateNestedManyWithoutUserInput
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
-    members?: MemberUncheckedCreateNestedManyWithoutUserInput
+    favouriteCoupon?: FavouriteCouponUncheckedCreateNestedManyWithoutUserInput
     invitations?: InvitationUncheckedCreateNestedManyWithoutUserInput
-    FavoriteCouponList?: FavoriteCouponListUncheckedCreateNestedManyWithoutUserInput
-    RedeemHistory?: RedeemHistoryUncheckedCreateNestedManyWithoutUserInput
-    UserTotalPoint?: UserTotalPointUncheckedCreateNestedManyWithoutUserInput
+    members?: MemberUncheckedCreateNestedManyWithoutUserInput
+    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+    UserTotalPoint?: UserTotalPointUncheckedCreateNestedOneWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutRecycleHistoryInput = {
     where: UserWhereUniqueInput
     create: XOR<UserCreateWithoutRecycleHistoryInput, UserUncheckedCreateWithoutRecycleHistoryInput>
+  }
+
+  export type BinCreateWithoutRecycleHistoryInput = {
+    id?: string
+    number: string
+    description?: string | null
+    imageUrl?: string | null
+    status?: $Enums.BinStatus
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    material: MaterialCreateNestedOneWithoutBinsInput
+    store: StoreCreateNestedOneWithoutBinsInput
+  }
+
+  export type BinUncheckedCreateWithoutRecycleHistoryInput = {
+    id?: string
+    number: string
+    materialId: string
+    storeId: string
+    description?: string | null
+    imageUrl?: string | null
+    status?: $Enums.BinStatus
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type BinCreateOrConnectWithoutRecycleHistoryInput = {
+    where: BinWhereUniqueInput
+    create: XOR<BinCreateWithoutRecycleHistoryInput, BinUncheckedCreateWithoutRecycleHistoryInput>
   }
 
   export type UserUpsertWithoutRecycleHistoryInput = {
@@ -28031,13 +28498,13 @@ export namespace Prisma {
     postalCode?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
     state?: NullableStringFieldUpdateOperationsInput | string | null
-    sessions?: SessionUpdateManyWithoutUserNestedInput
+    redeemHistory?: RedeemHistoryUpdateManyWithoutUserNestedInput
     accounts?: AccountUpdateManyWithoutUserNestedInput
-    members?: MemberUpdateManyWithoutUserNestedInput
+    favouriteCoupon?: FavouriteCouponUpdateManyWithoutUserNestedInput
     invitations?: InvitationUpdateManyWithoutUserNestedInput
-    FavoriteCouponList?: FavoriteCouponListUpdateManyWithoutUserNestedInput
-    RedeemHistory?: RedeemHistoryUpdateManyWithoutUserNestedInput
-    UserTotalPoint?: UserTotalPointUpdateManyWithoutUserNestedInput
+    members?: MemberUpdateManyWithoutUserNestedInput
+    sessions?: SessionUpdateManyWithoutUserNestedInput
+    UserTotalPoint?: UserTotalPointUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutRecycleHistoryInput = {
@@ -28059,13 +28526,48 @@ export namespace Prisma {
     postalCode?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
     state?: NullableStringFieldUpdateOperationsInput | string | null
-    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    redeemHistory?: RedeemHistoryUncheckedUpdateManyWithoutUserNestedInput
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
-    members?: MemberUncheckedUpdateManyWithoutUserNestedInput
+    favouriteCoupon?: FavouriteCouponUncheckedUpdateManyWithoutUserNestedInput
     invitations?: InvitationUncheckedUpdateManyWithoutUserNestedInput
-    FavoriteCouponList?: FavoriteCouponListUncheckedUpdateManyWithoutUserNestedInput
-    RedeemHistory?: RedeemHistoryUncheckedUpdateManyWithoutUserNestedInput
-    UserTotalPoint?: UserTotalPointUncheckedUpdateManyWithoutUserNestedInput
+    members?: MemberUncheckedUpdateManyWithoutUserNestedInput
+    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    UserTotalPoint?: UserTotalPointUncheckedUpdateOneWithoutUserNestedInput
+  }
+
+  export type BinUpsertWithoutRecycleHistoryInput = {
+    update: XOR<BinUpdateWithoutRecycleHistoryInput, BinUncheckedUpdateWithoutRecycleHistoryInput>
+    create: XOR<BinCreateWithoutRecycleHistoryInput, BinUncheckedCreateWithoutRecycleHistoryInput>
+    where?: BinWhereInput
+  }
+
+  export type BinUpdateToOneWithWhereWithoutRecycleHistoryInput = {
+    where?: BinWhereInput
+    data: XOR<BinUpdateWithoutRecycleHistoryInput, BinUncheckedUpdateWithoutRecycleHistoryInput>
+  }
+
+  export type BinUpdateWithoutRecycleHistoryInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    number?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumBinStatusFieldUpdateOperationsInput | $Enums.BinStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    material?: MaterialUpdateOneRequiredWithoutBinsNestedInput
+    store?: StoreUpdateOneRequiredWithoutBinsNestedInput
+  }
+
+  export type BinUncheckedUpdateWithoutRecycleHistoryInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    number?: StringFieldUpdateOperationsInput | string
+    materialId?: StringFieldUpdateOperationsInput | string
+    storeId?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumBinStatusFieldUpdateOperationsInput | $Enums.BinStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type UserCreateWithoutUserTotalPointInput = {
@@ -28087,13 +28589,13 @@ export namespace Prisma {
     postalCode?: string | null
     status: string
     state?: string | null
-    sessions?: SessionCreateNestedManyWithoutUserInput
+    recycleHistory?: RecycleHistoryCreateNestedManyWithoutUserInput
+    redeemHistory?: RedeemHistoryCreateNestedManyWithoutUserInput
     accounts?: AccountCreateNestedManyWithoutUserInput
-    members?: MemberCreateNestedManyWithoutUserInput
+    favouriteCoupon?: FavouriteCouponCreateNestedManyWithoutUserInput
     invitations?: InvitationCreateNestedManyWithoutUserInput
-    FavoriteCouponList?: FavoriteCouponListCreateNestedManyWithoutUserInput
-    RedeemHistory?: RedeemHistoryCreateNestedManyWithoutUserInput
-    RecycleHistory?: RecycleHistoryCreateNestedManyWithoutUserInput
+    members?: MemberCreateNestedManyWithoutUserInput
+    sessions?: SessionCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutUserTotalPointInput = {
@@ -28115,13 +28617,13 @@ export namespace Prisma {
     postalCode?: string | null
     status: string
     state?: string | null
-    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+    recycleHistory?: RecycleHistoryUncheckedCreateNestedManyWithoutUserInput
+    redeemHistory?: RedeemHistoryUncheckedCreateNestedManyWithoutUserInput
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
-    members?: MemberUncheckedCreateNestedManyWithoutUserInput
+    favouriteCoupon?: FavouriteCouponUncheckedCreateNestedManyWithoutUserInput
     invitations?: InvitationUncheckedCreateNestedManyWithoutUserInput
-    FavoriteCouponList?: FavoriteCouponListUncheckedCreateNestedManyWithoutUserInput
-    RedeemHistory?: RedeemHistoryUncheckedCreateNestedManyWithoutUserInput
-    RecycleHistory?: RecycleHistoryUncheckedCreateNestedManyWithoutUserInput
+    members?: MemberUncheckedCreateNestedManyWithoutUserInput
+    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutUserTotalPointInput = {
@@ -28159,13 +28661,13 @@ export namespace Prisma {
     postalCode?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
     state?: NullableStringFieldUpdateOperationsInput | string | null
-    sessions?: SessionUpdateManyWithoutUserNestedInput
+    recycleHistory?: RecycleHistoryUpdateManyWithoutUserNestedInput
+    redeemHistory?: RedeemHistoryUpdateManyWithoutUserNestedInput
     accounts?: AccountUpdateManyWithoutUserNestedInput
-    members?: MemberUpdateManyWithoutUserNestedInput
+    favouriteCoupon?: FavouriteCouponUpdateManyWithoutUserNestedInput
     invitations?: InvitationUpdateManyWithoutUserNestedInput
-    FavoriteCouponList?: FavoriteCouponListUpdateManyWithoutUserNestedInput
-    RedeemHistory?: RedeemHistoryUpdateManyWithoutUserNestedInput
-    RecycleHistory?: RecycleHistoryUpdateManyWithoutUserNestedInput
+    members?: MemberUpdateManyWithoutUserNestedInput
+    sessions?: SessionUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutUserTotalPointInput = {
@@ -28187,13 +28689,13 @@ export namespace Prisma {
     postalCode?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
     state?: NullableStringFieldUpdateOperationsInput | string | null
-    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    recycleHistory?: RecycleHistoryUncheckedUpdateManyWithoutUserNestedInput
+    redeemHistory?: RedeemHistoryUncheckedUpdateManyWithoutUserNestedInput
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
-    members?: MemberUncheckedUpdateManyWithoutUserNestedInput
+    favouriteCoupon?: FavouriteCouponUncheckedUpdateManyWithoutUserNestedInput
     invitations?: InvitationUncheckedUpdateManyWithoutUserNestedInput
-    FavoriteCouponList?: FavoriteCouponListUncheckedUpdateManyWithoutUserNestedInput
-    RedeemHistory?: RedeemHistoryUncheckedUpdateManyWithoutUserNestedInput
-    RecycleHistory?: RecycleHistoryUncheckedUpdateManyWithoutUserNestedInput
+    members?: MemberUncheckedUpdateManyWithoutUserNestedInput
+    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type MaterialCreateWithoutBinsInput = {
@@ -28260,6 +28762,36 @@ export namespace Prisma {
   export type StoreCreateOrConnectWithoutBinsInput = {
     where: StoreWhereUniqueInput
     create: XOR<StoreCreateWithoutBinsInput, StoreUncheckedCreateWithoutBinsInput>
+  }
+
+  export type RecycleHistoryCreateWithoutBinInput = {
+    id?: string
+    points: number
+    mediaUrl?: string | null
+    totalCount?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    user: UserCreateNestedOneWithoutRecycleHistoryInput
+  }
+
+  export type RecycleHistoryUncheckedCreateWithoutBinInput = {
+    id?: string
+    userId: string
+    points: number
+    mediaUrl?: string | null
+    totalCount?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type RecycleHistoryCreateOrConnectWithoutBinInput = {
+    where: RecycleHistoryWhereUniqueInput
+    create: XOR<RecycleHistoryCreateWithoutBinInput, RecycleHistoryUncheckedCreateWithoutBinInput>
+  }
+
+  export type RecycleHistoryCreateManyBinInputEnvelope = {
+    data: RecycleHistoryCreateManyBinInput | RecycleHistoryCreateManyBinInput[]
+    skipDuplicates?: boolean
   }
 
   export type MaterialUpsertWithoutBinsInput = {
@@ -28340,6 +28872,22 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type RecycleHistoryUpsertWithWhereUniqueWithoutBinInput = {
+    where: RecycleHistoryWhereUniqueInput
+    update: XOR<RecycleHistoryUpdateWithoutBinInput, RecycleHistoryUncheckedUpdateWithoutBinInput>
+    create: XOR<RecycleHistoryCreateWithoutBinInput, RecycleHistoryUncheckedCreateWithoutBinInput>
+  }
+
+  export type RecycleHistoryUpdateWithWhereUniqueWithoutBinInput = {
+    where: RecycleHistoryWhereUniqueInput
+    data: XOR<RecycleHistoryUpdateWithoutBinInput, RecycleHistoryUncheckedUpdateWithoutBinInput>
+  }
+
+  export type RecycleHistoryUpdateManyWithWhereWithoutBinInput = {
+    where: RecycleHistoryScalarWhereInput
+    data: XOR<RecycleHistoryUpdateManyMutationInput, RecycleHistoryUncheckedUpdateManyWithoutBinInput>
+  }
+
   export type OrganizationCreateWithoutCouponInput = {
     id: string
     name: string
@@ -28347,8 +28895,8 @@ export namespace Prisma {
     logo?: string | null
     createdAt: Date | string
     metadata?: string | null
-    members?: MemberCreateNestedManyWithoutOrganizationInput
     invitations?: InvitationCreateNestedManyWithoutOrganizationInput
+    members?: MemberCreateNestedManyWithoutOrganizationInput
     stores?: StoreCreateNestedManyWithoutOrganizationInput
   }
 
@@ -28359,8 +28907,8 @@ export namespace Prisma {
     logo?: string | null
     createdAt: Date | string
     metadata?: string | null
-    members?: MemberUncheckedCreateNestedManyWithoutOrganizationInput
     invitations?: InvitationUncheckedCreateNestedManyWithoutOrganizationInput
+    members?: MemberUncheckedCreateNestedManyWithoutOrganizationInput
     stores?: StoreUncheckedCreateNestedManyWithoutOrganizationInput
   }
 
@@ -28369,25 +28917,55 @@ export namespace Prisma {
     create: XOR<OrganizationCreateWithoutCouponInput, OrganizationUncheckedCreateWithoutCouponInput>
   }
 
-  export type FavoriteCouponListCreateWithoutCouponInput = {
+  export type FavouriteCouponCreateWithoutCouponInput = {
     id?: string
     createdAt?: Date | string
-    user: UserCreateNestedOneWithoutFavoriteCouponListInput
+    user: UserCreateNestedOneWithoutFavouriteCouponInput
   }
 
-  export type FavoriteCouponListUncheckedCreateWithoutCouponInput = {
+  export type FavouriteCouponUncheckedCreateWithoutCouponInput = {
     id?: string
     userId: string
     createdAt?: Date | string
   }
 
-  export type FavoriteCouponListCreateOrConnectWithoutCouponInput = {
-    where: FavoriteCouponListWhereUniqueInput
-    create: XOR<FavoriteCouponListCreateWithoutCouponInput, FavoriteCouponListUncheckedCreateWithoutCouponInput>
+  export type FavouriteCouponCreateOrConnectWithoutCouponInput = {
+    where: FavouriteCouponWhereUniqueInput
+    create: XOR<FavouriteCouponCreateWithoutCouponInput, FavouriteCouponUncheckedCreateWithoutCouponInput>
   }
 
-  export type FavoriteCouponListCreateManyCouponInputEnvelope = {
-    data: FavoriteCouponListCreateManyCouponInput | FavoriteCouponListCreateManyCouponInput[]
+  export type FavouriteCouponCreateManyCouponInputEnvelope = {
+    data: FavouriteCouponCreateManyCouponInput | FavouriteCouponCreateManyCouponInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type RedeemHistoryCreateWithoutCouponInput = {
+    id?: string
+    points: number
+    description?: string | null
+    couponCode: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    user: UserCreateNestedOneWithoutRedeemHistoryInput
+  }
+
+  export type RedeemHistoryUncheckedCreateWithoutCouponInput = {
+    id?: string
+    userId: string
+    points: number
+    description?: string | null
+    couponCode: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type RedeemHistoryCreateOrConnectWithoutCouponInput = {
+    where: RedeemHistoryWhereUniqueInput
+    create: XOR<RedeemHistoryCreateWithoutCouponInput, RedeemHistoryUncheckedCreateWithoutCouponInput>
+  }
+
+  export type RedeemHistoryCreateManyCouponInputEnvelope = {
+    data: RedeemHistoryCreateManyCouponInput | RedeemHistoryCreateManyCouponInput[]
     skipDuplicates?: boolean
   }
 
@@ -28409,8 +28987,8 @@ export namespace Prisma {
     logo?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     metadata?: NullableStringFieldUpdateOperationsInput | string | null
-    members?: MemberUpdateManyWithoutOrganizationNestedInput
     invitations?: InvitationUpdateManyWithoutOrganizationNestedInput
+    members?: MemberUpdateManyWithoutOrganizationNestedInput
     stores?: StoreUpdateManyWithoutOrganizationNestedInput
   }
 
@@ -28421,253 +28999,281 @@ export namespace Prisma {
     logo?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     metadata?: NullableStringFieldUpdateOperationsInput | string | null
-    members?: MemberUncheckedUpdateManyWithoutOrganizationNestedInput
     invitations?: InvitationUncheckedUpdateManyWithoutOrganizationNestedInput
+    members?: MemberUncheckedUpdateManyWithoutOrganizationNestedInput
     stores?: StoreUncheckedUpdateManyWithoutOrganizationNestedInput
   }
 
-  export type FavoriteCouponListUpsertWithWhereUniqueWithoutCouponInput = {
-    where: FavoriteCouponListWhereUniqueInput
-    update: XOR<FavoriteCouponListUpdateWithoutCouponInput, FavoriteCouponListUncheckedUpdateWithoutCouponInput>
-    create: XOR<FavoriteCouponListCreateWithoutCouponInput, FavoriteCouponListUncheckedCreateWithoutCouponInput>
+  export type FavouriteCouponUpsertWithWhereUniqueWithoutCouponInput = {
+    where: FavouriteCouponWhereUniqueInput
+    update: XOR<FavouriteCouponUpdateWithoutCouponInput, FavouriteCouponUncheckedUpdateWithoutCouponInput>
+    create: XOR<FavouriteCouponCreateWithoutCouponInput, FavouriteCouponUncheckedCreateWithoutCouponInput>
   }
 
-  export type FavoriteCouponListUpdateWithWhereUniqueWithoutCouponInput = {
-    where: FavoriteCouponListWhereUniqueInput
-    data: XOR<FavoriteCouponListUpdateWithoutCouponInput, FavoriteCouponListUncheckedUpdateWithoutCouponInput>
+  export type FavouriteCouponUpdateWithWhereUniqueWithoutCouponInput = {
+    where: FavouriteCouponWhereUniqueInput
+    data: XOR<FavouriteCouponUpdateWithoutCouponInput, FavouriteCouponUncheckedUpdateWithoutCouponInput>
   }
 
-  export type FavoriteCouponListUpdateManyWithWhereWithoutCouponInput = {
-    where: FavoriteCouponListScalarWhereInput
-    data: XOR<FavoriteCouponListUpdateManyMutationInput, FavoriteCouponListUncheckedUpdateManyWithoutCouponInput>
+  export type FavouriteCouponUpdateManyWithWhereWithoutCouponInput = {
+    where: FavouriteCouponScalarWhereInput
+    data: XOR<FavouriteCouponUpdateManyMutationInput, FavouriteCouponUncheckedUpdateManyWithoutCouponInput>
   }
 
-  export type UserCreateWithoutFavoriteCouponListInput = {
-    id: string
-    name: string
-    email: string
-    emailVerified: boolean
-    image?: string | null
-    createdAt: Date | string
-    updatedAt: Date | string
-    role?: string | null
-    banned?: boolean | null
-    banReason?: string | null
-    banExpires?: Date | string | null
-    username?: string | null
-    displayUsername?: string | null
-    phoneNumber?: string | null
-    address?: string | null
-    postalCode?: string | null
-    status: string
-    state?: string | null
-    sessions?: SessionCreateNestedManyWithoutUserInput
-    accounts?: AccountCreateNestedManyWithoutUserInput
-    members?: MemberCreateNestedManyWithoutUserInput
-    invitations?: InvitationCreateNestedManyWithoutUserInput
-    RedeemHistory?: RedeemHistoryCreateNestedManyWithoutUserInput
-    RecycleHistory?: RecycleHistoryCreateNestedManyWithoutUserInput
-    UserTotalPoint?: UserTotalPointCreateNestedManyWithoutUserInput
+  export type RedeemHistoryUpsertWithWhereUniqueWithoutCouponInput = {
+    where: RedeemHistoryWhereUniqueInput
+    update: XOR<RedeemHistoryUpdateWithoutCouponInput, RedeemHistoryUncheckedUpdateWithoutCouponInput>
+    create: XOR<RedeemHistoryCreateWithoutCouponInput, RedeemHistoryUncheckedCreateWithoutCouponInput>
   }
 
-  export type UserUncheckedCreateWithoutFavoriteCouponListInput = {
-    id: string
-    name: string
-    email: string
-    emailVerified: boolean
-    image?: string | null
-    createdAt: Date | string
-    updatedAt: Date | string
-    role?: string | null
-    banned?: boolean | null
-    banReason?: string | null
-    banExpires?: Date | string | null
-    username?: string | null
-    displayUsername?: string | null
-    phoneNumber?: string | null
-    address?: string | null
-    postalCode?: string | null
-    status: string
-    state?: string | null
-    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
-    accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
-    members?: MemberUncheckedCreateNestedManyWithoutUserInput
-    invitations?: InvitationUncheckedCreateNestedManyWithoutUserInput
-    RedeemHistory?: RedeemHistoryUncheckedCreateNestedManyWithoutUserInput
-    RecycleHistory?: RecycleHistoryUncheckedCreateNestedManyWithoutUserInput
-    UserTotalPoint?: UserTotalPointUncheckedCreateNestedManyWithoutUserInput
+  export type RedeemHistoryUpdateWithWhereUniqueWithoutCouponInput = {
+    where: RedeemHistoryWhereUniqueInput
+    data: XOR<RedeemHistoryUpdateWithoutCouponInput, RedeemHistoryUncheckedUpdateWithoutCouponInput>
   }
 
-  export type UserCreateOrConnectWithoutFavoriteCouponListInput = {
-    where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutFavoriteCouponListInput, UserUncheckedCreateWithoutFavoriteCouponListInput>
+  export type RedeemHistoryUpdateManyWithWhereWithoutCouponInput = {
+    where: RedeemHistoryScalarWhereInput
+    data: XOR<RedeemHistoryUpdateManyMutationInput, RedeemHistoryUncheckedUpdateManyWithoutCouponInput>
   }
 
-  export type CouponCreateWithoutFavoriteCouponListInput = {
+  export type CouponCreateWithoutFavouriteCouponInput = {
     id?: string
     name: string
     description?: string | null
-    imageUrl: string
+    imageUrl?: string | null
     status?: $Enums.Status
     couponType: $Enums.CouponType
     dealType: $Enums.DealType
-    isFeatured: boolean
-    couponCode: string
+    isFeatured?: boolean
+    discountAmount: number
     pointsToRedeem: number
     startDate: Date | string
     endDate: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
-    organization: OrganizationCreateNestedOneWithoutCouponInput
+    organization?: OrganizationCreateNestedOneWithoutCouponInput
+    redeemHistory?: RedeemHistoryCreateNestedManyWithoutCouponInput
   }
 
-  export type CouponUncheckedCreateWithoutFavoriteCouponListInput = {
+  export type CouponUncheckedCreateWithoutFavouriteCouponInput = {
     id?: string
     name: string
     description?: string | null
-    imageUrl: string
+    imageUrl?: string | null
     status?: $Enums.Status
     couponType: $Enums.CouponType
     dealType: $Enums.DealType
-    isFeatured: boolean
-    couponCode: string
+    isFeatured?: boolean
+    discountAmount: number
     pointsToRedeem: number
     startDate: Date | string
     endDate: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
-    organizationId: string
+    organizationId?: string | null
+    redeemHistory?: RedeemHistoryUncheckedCreateNestedManyWithoutCouponInput
   }
 
-  export type CouponCreateOrConnectWithoutFavoriteCouponListInput = {
+  export type CouponCreateOrConnectWithoutFavouriteCouponInput = {
     where: CouponWhereUniqueInput
-    create: XOR<CouponCreateWithoutFavoriteCouponListInput, CouponUncheckedCreateWithoutFavoriteCouponListInput>
+    create: XOR<CouponCreateWithoutFavouriteCouponInput, CouponUncheckedCreateWithoutFavouriteCouponInput>
   }
 
-  export type UserUpsertWithoutFavoriteCouponListInput = {
-    update: XOR<UserUpdateWithoutFavoriteCouponListInput, UserUncheckedUpdateWithoutFavoriteCouponListInput>
-    create: XOR<UserCreateWithoutFavoriteCouponListInput, UserUncheckedCreateWithoutFavoriteCouponListInput>
-    where?: UserWhereInput
-  }
-
-  export type UserUpdateToOneWithWhereWithoutFavoriteCouponListInput = {
-    where?: UserWhereInput
-    data: XOR<UserUpdateWithoutFavoriteCouponListInput, UserUncheckedUpdateWithoutFavoriteCouponListInput>
-  }
-
-  export type UserUpdateWithoutFavoriteCouponListInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    emailVerified?: BoolFieldUpdateOperationsInput | boolean
-    image?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    role?: NullableStringFieldUpdateOperationsInput | string | null
-    banned?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    banReason?: NullableStringFieldUpdateOperationsInput | string | null
-    banExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    username?: NullableStringFieldUpdateOperationsInput | string | null
-    displayUsername?: NullableStringFieldUpdateOperationsInput | string | null
-    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
-    address?: NullableStringFieldUpdateOperationsInput | string | null
-    postalCode?: NullableStringFieldUpdateOperationsInput | string | null
-    status?: StringFieldUpdateOperationsInput | string
-    state?: NullableStringFieldUpdateOperationsInput | string | null
-    sessions?: SessionUpdateManyWithoutUserNestedInput
-    accounts?: AccountUpdateManyWithoutUserNestedInput
-    members?: MemberUpdateManyWithoutUserNestedInput
-    invitations?: InvitationUpdateManyWithoutUserNestedInput
-    RedeemHistory?: RedeemHistoryUpdateManyWithoutUserNestedInput
-    RecycleHistory?: RecycleHistoryUpdateManyWithoutUserNestedInput
-    UserTotalPoint?: UserTotalPointUpdateManyWithoutUserNestedInput
-  }
-
-  export type UserUncheckedUpdateWithoutFavoriteCouponListInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    emailVerified?: BoolFieldUpdateOperationsInput | boolean
-    image?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    role?: NullableStringFieldUpdateOperationsInput | string | null
-    banned?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    banReason?: NullableStringFieldUpdateOperationsInput | string | null
-    banExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    username?: NullableStringFieldUpdateOperationsInput | string | null
-    displayUsername?: NullableStringFieldUpdateOperationsInput | string | null
-    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
-    address?: NullableStringFieldUpdateOperationsInput | string | null
-    postalCode?: NullableStringFieldUpdateOperationsInput | string | null
-    status?: StringFieldUpdateOperationsInput | string
-    state?: NullableStringFieldUpdateOperationsInput | string | null
-    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
-    accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
-    members?: MemberUncheckedUpdateManyWithoutUserNestedInput
-    invitations?: InvitationUncheckedUpdateManyWithoutUserNestedInput
-    RedeemHistory?: RedeemHistoryUncheckedUpdateManyWithoutUserNestedInput
-    RecycleHistory?: RecycleHistoryUncheckedUpdateManyWithoutUserNestedInput
-    UserTotalPoint?: UserTotalPointUncheckedUpdateManyWithoutUserNestedInput
-  }
-
-  export type CouponUpsertWithoutFavoriteCouponListInput = {
-    update: XOR<CouponUpdateWithoutFavoriteCouponListInput, CouponUncheckedUpdateWithoutFavoriteCouponListInput>
-    create: XOR<CouponCreateWithoutFavoriteCouponListInput, CouponUncheckedCreateWithoutFavoriteCouponListInput>
-    where?: CouponWhereInput
-  }
-
-  export type CouponUpdateToOneWithWhereWithoutFavoriteCouponListInput = {
-    where?: CouponWhereInput
-    data: XOR<CouponUpdateWithoutFavoriteCouponListInput, CouponUncheckedUpdateWithoutFavoriteCouponListInput>
-  }
-
-  export type CouponUpdateWithoutFavoriteCouponListInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    imageUrl?: StringFieldUpdateOperationsInput | string
-    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
-    couponType?: EnumCouponTypeFieldUpdateOperationsInput | $Enums.CouponType
-    dealType?: EnumDealTypeFieldUpdateOperationsInput | $Enums.DealType
-    isFeatured?: BoolFieldUpdateOperationsInput | boolean
-    couponCode?: StringFieldUpdateOperationsInput | string
-    pointsToRedeem?: IntFieldUpdateOperationsInput | number
-    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    endDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    organization?: OrganizationUpdateOneRequiredWithoutCouponNestedInput
-  }
-
-  export type CouponUncheckedUpdateWithoutFavoriteCouponListInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    imageUrl?: StringFieldUpdateOperationsInput | string
-    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
-    couponType?: EnumCouponTypeFieldUpdateOperationsInput | $Enums.CouponType
-    dealType?: EnumDealTypeFieldUpdateOperationsInput | $Enums.DealType
-    isFeatured?: BoolFieldUpdateOperationsInput | boolean
-    couponCode?: StringFieldUpdateOperationsInput | string
-    pointsToRedeem?: IntFieldUpdateOperationsInput | number
-    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    endDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    organizationId?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type SessionCreateManyUserInput = {
+  export type UserCreateWithoutFavouriteCouponInput = {
     id: string
-    expiresAt: Date | string
-    token: string
+    name: string
+    email: string
+    emailVerified: boolean
+    image?: string | null
     createdAt: Date | string
     updatedAt: Date | string
-    ipAddress?: string | null
-    userAgent?: string | null
-    impersonatedBy?: string | null
-    activeOrganizationId?: string | null
+    role?: string | null
+    banned?: boolean | null
+    banReason?: string | null
+    banExpires?: Date | string | null
+    username?: string | null
+    displayUsername?: string | null
+    phoneNumber?: string | null
+    address?: string | null
+    postalCode?: string | null
+    status: string
+    state?: string | null
+    recycleHistory?: RecycleHistoryCreateNestedManyWithoutUserInput
+    redeemHistory?: RedeemHistoryCreateNestedManyWithoutUserInput
+    accounts?: AccountCreateNestedManyWithoutUserInput
+    invitations?: InvitationCreateNestedManyWithoutUserInput
+    members?: MemberCreateNestedManyWithoutUserInput
+    sessions?: SessionCreateNestedManyWithoutUserInput
+    UserTotalPoint?: UserTotalPointCreateNestedOneWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutFavouriteCouponInput = {
+    id: string
+    name: string
+    email: string
+    emailVerified: boolean
+    image?: string | null
+    createdAt: Date | string
+    updatedAt: Date | string
+    role?: string | null
+    banned?: boolean | null
+    banReason?: string | null
+    banExpires?: Date | string | null
+    username?: string | null
+    displayUsername?: string | null
+    phoneNumber?: string | null
+    address?: string | null
+    postalCode?: string | null
+    status: string
+    state?: string | null
+    recycleHistory?: RecycleHistoryUncheckedCreateNestedManyWithoutUserInput
+    redeemHistory?: RedeemHistoryUncheckedCreateNestedManyWithoutUserInput
+    accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
+    invitations?: InvitationUncheckedCreateNestedManyWithoutUserInput
+    members?: MemberUncheckedCreateNestedManyWithoutUserInput
+    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+    UserTotalPoint?: UserTotalPointUncheckedCreateNestedOneWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutFavouriteCouponInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutFavouriteCouponInput, UserUncheckedCreateWithoutFavouriteCouponInput>
+  }
+
+  export type CouponUpsertWithoutFavouriteCouponInput = {
+    update: XOR<CouponUpdateWithoutFavouriteCouponInput, CouponUncheckedUpdateWithoutFavouriteCouponInput>
+    create: XOR<CouponCreateWithoutFavouriteCouponInput, CouponUncheckedCreateWithoutFavouriteCouponInput>
+    where?: CouponWhereInput
+  }
+
+  export type CouponUpdateToOneWithWhereWithoutFavouriteCouponInput = {
+    where?: CouponWhereInput
+    data: XOR<CouponUpdateWithoutFavouriteCouponInput, CouponUncheckedUpdateWithoutFavouriteCouponInput>
+  }
+
+  export type CouponUpdateWithoutFavouriteCouponInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    couponType?: EnumCouponTypeFieldUpdateOperationsInput | $Enums.CouponType
+    dealType?: EnumDealTypeFieldUpdateOperationsInput | $Enums.DealType
+    isFeatured?: BoolFieldUpdateOperationsInput | boolean
+    discountAmount?: IntFieldUpdateOperationsInput | number
+    pointsToRedeem?: IntFieldUpdateOperationsInput | number
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    organization?: OrganizationUpdateOneWithoutCouponNestedInput
+    redeemHistory?: RedeemHistoryUpdateManyWithoutCouponNestedInput
+  }
+
+  export type CouponUncheckedUpdateWithoutFavouriteCouponInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    couponType?: EnumCouponTypeFieldUpdateOperationsInput | $Enums.CouponType
+    dealType?: EnumDealTypeFieldUpdateOperationsInput | $Enums.DealType
+    isFeatured?: BoolFieldUpdateOperationsInput | boolean
+    discountAmount?: IntFieldUpdateOperationsInput | number
+    pointsToRedeem?: IntFieldUpdateOperationsInput | number
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    organizationId?: NullableStringFieldUpdateOperationsInput | string | null
+    redeemHistory?: RedeemHistoryUncheckedUpdateManyWithoutCouponNestedInput
+  }
+
+  export type UserUpsertWithoutFavouriteCouponInput = {
+    update: XOR<UserUpdateWithoutFavouriteCouponInput, UserUncheckedUpdateWithoutFavouriteCouponInput>
+    create: XOR<UserCreateWithoutFavouriteCouponInput, UserUncheckedCreateWithoutFavouriteCouponInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutFavouriteCouponInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutFavouriteCouponInput, UserUncheckedUpdateWithoutFavouriteCouponInput>
+  }
+
+  export type UserUpdateWithoutFavouriteCouponInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    emailVerified?: BoolFieldUpdateOperationsInput | boolean
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    role?: NullableStringFieldUpdateOperationsInput | string | null
+    banned?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    banReason?: NullableStringFieldUpdateOperationsInput | string | null
+    banExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    username?: NullableStringFieldUpdateOperationsInput | string | null
+    displayUsername?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    postalCode?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    state?: NullableStringFieldUpdateOperationsInput | string | null
+    recycleHistory?: RecycleHistoryUpdateManyWithoutUserNestedInput
+    redeemHistory?: RedeemHistoryUpdateManyWithoutUserNestedInput
+    accounts?: AccountUpdateManyWithoutUserNestedInput
+    invitations?: InvitationUpdateManyWithoutUserNestedInput
+    members?: MemberUpdateManyWithoutUserNestedInput
+    sessions?: SessionUpdateManyWithoutUserNestedInput
+    UserTotalPoint?: UserTotalPointUpdateOneWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutFavouriteCouponInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    emailVerified?: BoolFieldUpdateOperationsInput | boolean
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    role?: NullableStringFieldUpdateOperationsInput | string | null
+    banned?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    banReason?: NullableStringFieldUpdateOperationsInput | string | null
+    banExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    username?: NullableStringFieldUpdateOperationsInput | string | null
+    displayUsername?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    postalCode?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    state?: NullableStringFieldUpdateOperationsInput | string | null
+    recycleHistory?: RecycleHistoryUncheckedUpdateManyWithoutUserNestedInput
+    redeemHistory?: RedeemHistoryUncheckedUpdateManyWithoutUserNestedInput
+    accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
+    invitations?: InvitationUncheckedUpdateManyWithoutUserNestedInput
+    members?: MemberUncheckedUpdateManyWithoutUserNestedInput
+    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    UserTotalPoint?: UserTotalPointUncheckedUpdateOneWithoutUserNestedInput
+  }
+
+  export type RecycleHistoryCreateManyUserInput = {
+    id?: string
+    binId: string
+    points: number
+    mediaUrl?: string | null
+    totalCount?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type RedeemHistoryCreateManyUserInput = {
+    id?: string
+    couponId: string
+    points: number
+    description?: string | null
+    couponCode: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type AccountCreateManyUserInput = {
@@ -28685,11 +29291,10 @@ export namespace Prisma {
     updatedAt: Date | string
   }
 
-  export type MemberCreateManyUserInput = {
-    id: string
-    organizationId: string
-    role: string
-    createdAt: Date | string
+  export type FavouriteCouponCreateManyUserInput = {
+    id?: string
+    couponId: string
+    createdAt?: Date | string
   }
 
   export type InvitationCreateManyUserInput = {
@@ -28701,68 +29306,83 @@ export namespace Prisma {
     expiresAt: Date | string
   }
 
-  export type FavoriteCouponListCreateManyUserInput = {
-    id?: string
-    couponId: string
-    createdAt?: Date | string
+  export type MemberCreateManyUserInput = {
+    id: string
+    organizationId: string
+    role: string
+    createdAt: Date | string
   }
 
-  export type RedeemHistoryCreateManyUserInput = {
-    id?: string
-    couponId: string
-    points: number
-    description?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
+  export type SessionCreateManyUserInput = {
+    id: string
+    expiresAt: Date | string
+    token: string
+    createdAt: Date | string
+    updatedAt: Date | string
+    ipAddress?: string | null
+    userAgent?: string | null
+    impersonatedBy?: string | null
+    activeOrganizationId?: string | null
   }
 
-  export type RecycleHistoryCreateManyUserInput = {
-    id?: string
-    points: number
-    mediaUrl?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type UserTotalPointCreateManyUserInput = {
-    id?: string
-    totalPoints?: number
-  }
-
-  export type SessionUpdateWithoutUserInput = {
+  export type RecycleHistoryUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
-    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    token?: StringFieldUpdateOperationsInput | string
+    points?: IntFieldUpdateOperationsInput | number
+    mediaUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    totalCount?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
-    userAgent?: NullableStringFieldUpdateOperationsInput | string | null
-    impersonatedBy?: NullableStringFieldUpdateOperationsInput | string | null
-    activeOrganizationId?: NullableStringFieldUpdateOperationsInput | string | null
+    bin?: BinUpdateOneRequiredWithoutRecycleHistoryNestedInput
   }
 
-  export type SessionUncheckedUpdateWithoutUserInput = {
+  export type RecycleHistoryUncheckedUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
-    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    token?: StringFieldUpdateOperationsInput | string
+    binId?: StringFieldUpdateOperationsInput | string
+    points?: IntFieldUpdateOperationsInput | number
+    mediaUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    totalCount?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
-    userAgent?: NullableStringFieldUpdateOperationsInput | string | null
-    impersonatedBy?: NullableStringFieldUpdateOperationsInput | string | null
-    activeOrganizationId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
-  export type SessionUncheckedUpdateManyWithoutUserInput = {
+  export type RecycleHistoryUncheckedUpdateManyWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
-    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    token?: StringFieldUpdateOperationsInput | string
+    binId?: StringFieldUpdateOperationsInput | string
+    points?: IntFieldUpdateOperationsInput | number
+    mediaUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    totalCount?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
-    userAgent?: NullableStringFieldUpdateOperationsInput | string | null
-    impersonatedBy?: NullableStringFieldUpdateOperationsInput | string | null
-    activeOrganizationId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type RedeemHistoryUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    points?: IntFieldUpdateOperationsInput | number
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    couponCode?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    coupon?: CouponUpdateOneRequiredWithoutRedeemHistoryNestedInput
+  }
+
+  export type RedeemHistoryUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    couponId?: StringFieldUpdateOperationsInput | string
+    points?: IntFieldUpdateOperationsInput | number
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    couponCode?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RedeemHistoryUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    couponId?: StringFieldUpdateOperationsInput | string
+    points?: IntFieldUpdateOperationsInput | number
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    couponCode?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type AccountUpdateWithoutUserInput = {
@@ -28810,24 +29430,21 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type MemberUpdateWithoutUserInput = {
+  export type FavouriteCouponUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
-    role?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    organization?: OrganizationUpdateOneRequiredWithoutMembersNestedInput
+    coupon?: CouponUpdateOneRequiredWithoutFavouriteCouponNestedInput
   }
 
-  export type MemberUncheckedUpdateWithoutUserInput = {
+  export type FavouriteCouponUncheckedUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
-    organizationId?: StringFieldUpdateOperationsInput | string
-    role?: StringFieldUpdateOperationsInput | string
+    couponId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type MemberUncheckedUpdateManyWithoutUserInput = {
+  export type FavouriteCouponUncheckedUpdateManyWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
-    organizationId?: StringFieldUpdateOperationsInput | string
-    role?: StringFieldUpdateOperationsInput | string
+    couponId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -28858,95 +29475,78 @@ export namespace Prisma {
     expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type FavoriteCouponListUpdateWithoutUserInput = {
+  export type MemberUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
+    role?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    coupon?: CouponUpdateOneRequiredWithoutFavoriteCouponListNestedInput
+    organization?: OrganizationUpdateOneRequiredWithoutMembersNestedInput
   }
 
-  export type FavoriteCouponListUncheckedUpdateWithoutUserInput = {
+  export type MemberUncheckedUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
-    couponId?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type FavoriteCouponListUncheckedUpdateManyWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    couponId?: StringFieldUpdateOperationsInput | string
+    organizationId?: StringFieldUpdateOperationsInput | string
+    role?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type RedeemHistoryUpdateWithoutUserInput = {
+  export type MemberUncheckedUpdateManyWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
-    couponId?: StringFieldUpdateOperationsInput | string
-    points?: IntFieldUpdateOperationsInput | number
-    description?: NullableStringFieldUpdateOperationsInput | string | null
+    organizationId?: StringFieldUpdateOperationsInput | string
+    role?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type RedeemHistoryUncheckedUpdateWithoutUserInput = {
+  export type SessionUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
-    couponId?: StringFieldUpdateOperationsInput | string
-    points?: IntFieldUpdateOperationsInput | number
-    description?: NullableStringFieldUpdateOperationsInput | string | null
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    token?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    userAgent?: NullableStringFieldUpdateOperationsInput | string | null
+    impersonatedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    activeOrganizationId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
-  export type RedeemHistoryUncheckedUpdateManyWithoutUserInput = {
+  export type SessionUncheckedUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
-    couponId?: StringFieldUpdateOperationsInput | string
-    points?: IntFieldUpdateOperationsInput | number
-    description?: NullableStringFieldUpdateOperationsInput | string | null
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    token?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    userAgent?: NullableStringFieldUpdateOperationsInput | string | null
+    impersonatedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    activeOrganizationId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
-  export type RecycleHistoryUpdateWithoutUserInput = {
+  export type SessionUncheckedUpdateManyWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
-    points?: IntFieldUpdateOperationsInput | number
-    mediaUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    token?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    userAgent?: NullableStringFieldUpdateOperationsInput | string | null
+    impersonatedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    activeOrganizationId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
-  export type RecycleHistoryUncheckedUpdateWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    points?: IntFieldUpdateOperationsInput | number
-    mediaUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type RecycleHistoryUncheckedUpdateManyWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    points?: IntFieldUpdateOperationsInput | number
-    mediaUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type UserTotalPointUpdateWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    totalPoints?: IntFieldUpdateOperationsInput | number
-  }
-
-  export type UserTotalPointUncheckedUpdateWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    totalPoints?: IntFieldUpdateOperationsInput | number
-  }
-
-  export type UserTotalPointUncheckedUpdateManyWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    totalPoints?: IntFieldUpdateOperationsInput | number
-  }
-
-  export type MemberCreateManyOrganizationInput = {
-    id: string
-    userId: string
-    role: string
-    createdAt: Date | string
+  export type CouponCreateManyOrganizationInput = {
+    id?: string
+    name: string
+    description?: string | null
+    imageUrl?: string | null
+    status?: $Enums.Status
+    couponType: $Enums.CouponType
+    dealType: $Enums.DealType
+    isFeatured?: boolean
+    discountAmount: number
+    pointsToRedeem: number
+    startDate: Date | string
+    endDate: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type InvitationCreateManyOrganizationInput = {
@@ -28956,6 +29556,13 @@ export namespace Prisma {
     status: string
     expiresAt: Date | string
     inviterId: string
+  }
+
+  export type MemberCreateManyOrganizationInput = {
+    id: string
+    userId: string
+    role: string
+    createdAt: Date | string
   }
 
   export type StoreCreateManyOrganizationInput = {
@@ -28976,42 +29583,59 @@ export namespace Prisma {
     updatedAt?: Date | string
   }
 
-  export type CouponCreateManyOrganizationInput = {
-    id?: string
-    name: string
-    description?: string | null
-    imageUrl: string
-    status?: $Enums.Status
-    couponType: $Enums.CouponType
-    dealType: $Enums.DealType
-    isFeatured: boolean
-    couponCode: string
-    pointsToRedeem: number
-    startDate: Date | string
-    endDate: Date | string
-    createdAt?: Date | string
-    updatedAt?: Date | string
+  export type CouponUpdateWithoutOrganizationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    couponType?: EnumCouponTypeFieldUpdateOperationsInput | $Enums.CouponType
+    dealType?: EnumDealTypeFieldUpdateOperationsInput | $Enums.DealType
+    isFeatured?: BoolFieldUpdateOperationsInput | boolean
+    discountAmount?: IntFieldUpdateOperationsInput | number
+    pointsToRedeem?: IntFieldUpdateOperationsInput | number
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    favouriteCoupon?: FavouriteCouponUpdateManyWithoutCouponNestedInput
+    redeemHistory?: RedeemHistoryUpdateManyWithoutCouponNestedInput
   }
 
-  export type MemberUpdateWithoutOrganizationInput = {
+  export type CouponUncheckedUpdateWithoutOrganizationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    role?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    couponType?: EnumCouponTypeFieldUpdateOperationsInput | $Enums.CouponType
+    dealType?: EnumDealTypeFieldUpdateOperationsInput | $Enums.DealType
+    isFeatured?: BoolFieldUpdateOperationsInput | boolean
+    discountAmount?: IntFieldUpdateOperationsInput | number
+    pointsToRedeem?: IntFieldUpdateOperationsInput | number
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    user?: UserUpdateOneRequiredWithoutMembersNestedInput
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    favouriteCoupon?: FavouriteCouponUncheckedUpdateManyWithoutCouponNestedInput
+    redeemHistory?: RedeemHistoryUncheckedUpdateManyWithoutCouponNestedInput
   }
 
-  export type MemberUncheckedUpdateWithoutOrganizationInput = {
+  export type CouponUncheckedUpdateManyWithoutOrganizationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    userId?: StringFieldUpdateOperationsInput | string
-    role?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    couponType?: EnumCouponTypeFieldUpdateOperationsInput | $Enums.CouponType
+    dealType?: EnumDealTypeFieldUpdateOperationsInput | $Enums.DealType
+    isFeatured?: BoolFieldUpdateOperationsInput | boolean
+    discountAmount?: IntFieldUpdateOperationsInput | number
+    pointsToRedeem?: IntFieldUpdateOperationsInput | number
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type MemberUncheckedUpdateManyWithoutOrganizationInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    userId?: StringFieldUpdateOperationsInput | string
-    role?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type InvitationUpdateWithoutOrganizationInput = {
@@ -29039,6 +29663,27 @@ export namespace Prisma {
     status?: StringFieldUpdateOperationsInput | string
     expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
     inviterId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type MemberUpdateWithoutOrganizationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    role?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutMembersNestedInput
+  }
+
+  export type MemberUncheckedUpdateWithoutOrganizationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    role?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MemberUncheckedUpdateManyWithoutOrganizationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    role?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type StoreUpdateWithoutOrganizationInput = {
@@ -29097,59 +29742,6 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type CouponUpdateWithoutOrganizationInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    imageUrl?: StringFieldUpdateOperationsInput | string
-    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
-    couponType?: EnumCouponTypeFieldUpdateOperationsInput | $Enums.CouponType
-    dealType?: EnumDealTypeFieldUpdateOperationsInput | $Enums.DealType
-    isFeatured?: BoolFieldUpdateOperationsInput | boolean
-    couponCode?: StringFieldUpdateOperationsInput | string
-    pointsToRedeem?: IntFieldUpdateOperationsInput | number
-    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    endDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    FavoriteCouponList?: FavoriteCouponListUpdateManyWithoutCouponNestedInput
-  }
-
-  export type CouponUncheckedUpdateWithoutOrganizationInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    imageUrl?: StringFieldUpdateOperationsInput | string
-    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
-    couponType?: EnumCouponTypeFieldUpdateOperationsInput | $Enums.CouponType
-    dealType?: EnumDealTypeFieldUpdateOperationsInput | $Enums.DealType
-    isFeatured?: BoolFieldUpdateOperationsInput | boolean
-    couponCode?: StringFieldUpdateOperationsInput | string
-    pointsToRedeem?: IntFieldUpdateOperationsInput | number
-    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    endDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    FavoriteCouponList?: FavoriteCouponListUncheckedUpdateManyWithoutCouponNestedInput
-  }
-
-  export type CouponUncheckedUpdateManyWithoutOrganizationInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    imageUrl?: StringFieldUpdateOperationsInput | string
-    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
-    couponType?: EnumCouponTypeFieldUpdateOperationsInput | $Enums.CouponType
-    dealType?: EnumDealTypeFieldUpdateOperationsInput | $Enums.DealType
-    isFeatured?: BoolFieldUpdateOperationsInput | boolean
-    couponCode?: StringFieldUpdateOperationsInput | string
-    pointsToRedeem?: IntFieldUpdateOperationsInput | number
-    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    endDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
   export type BinCreateManyStoreInput = {
     id?: string
     number: string
@@ -29170,6 +29762,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     material?: MaterialUpdateOneRequiredWithoutBinsNestedInput
+    recycleHistory?: RecycleHistoryUpdateManyWithoutBinNestedInput
   }
 
   export type BinUncheckedUpdateWithoutStoreInput = {
@@ -29181,6 +29774,7 @@ export namespace Prisma {
     status?: EnumBinStatusFieldUpdateOperationsInput | $Enums.BinStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    recycleHistory?: RecycleHistoryUncheckedUpdateManyWithoutBinNestedInput
   }
 
   export type BinUncheckedUpdateManyWithoutStoreInput = {
@@ -29214,6 +29808,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     store?: StoreUpdateOneRequiredWithoutBinsNestedInput
+    recycleHistory?: RecycleHistoryUpdateManyWithoutBinNestedInput
   }
 
   export type BinUncheckedUpdateWithoutMaterialInput = {
@@ -29225,6 +29820,7 @@ export namespace Prisma {
     status?: EnumBinStatusFieldUpdateOperationsInput | $Enums.BinStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    recycleHistory?: RecycleHistoryUncheckedUpdateManyWithoutBinNestedInput
   }
 
   export type BinUncheckedUpdateManyWithoutMaterialInput = {
@@ -29272,28 +29868,108 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type FavoriteCouponListCreateManyCouponInput = {
+  export type RecycleHistoryCreateManyBinInput = {
+    id?: string
+    userId: string
+    points: number
+    mediaUrl?: string | null
+    totalCount?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type RecycleHistoryUpdateWithoutBinInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    points?: IntFieldUpdateOperationsInput | number
+    mediaUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    totalCount?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutRecycleHistoryNestedInput
+  }
+
+  export type RecycleHistoryUncheckedUpdateWithoutBinInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    points?: IntFieldUpdateOperationsInput | number
+    mediaUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    totalCount?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RecycleHistoryUncheckedUpdateManyWithoutBinInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    points?: IntFieldUpdateOperationsInput | number
+    mediaUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    totalCount?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FavouriteCouponCreateManyCouponInput = {
     id?: string
     userId: string
     createdAt?: Date | string
   }
 
-  export type FavoriteCouponListUpdateWithoutCouponInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    user?: UserUpdateOneRequiredWithoutFavoriteCouponListNestedInput
+  export type RedeemHistoryCreateManyCouponInput = {
+    id?: string
+    userId: string
+    points: number
+    description?: string | null
+    couponCode: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
-  export type FavoriteCouponListUncheckedUpdateWithoutCouponInput = {
+  export type FavouriteCouponUpdateWithoutCouponInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutFavouriteCouponNestedInput
+  }
+
+  export type FavouriteCouponUncheckedUpdateWithoutCouponInput = {
     id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type FavoriteCouponListUncheckedUpdateManyWithoutCouponInput = {
+  export type FavouriteCouponUncheckedUpdateManyWithoutCouponInput = {
     id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RedeemHistoryUpdateWithoutCouponInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    points?: IntFieldUpdateOperationsInput | number
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    couponCode?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutRedeemHistoryNestedInput
+  }
+
+  export type RedeemHistoryUncheckedUpdateWithoutCouponInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    points?: IntFieldUpdateOperationsInput | number
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    couponCode?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RedeemHistoryUncheckedUpdateManyWithoutCouponInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    points?: IntFieldUpdateOperationsInput | number
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    couponCode?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
 

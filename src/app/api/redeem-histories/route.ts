@@ -3,8 +3,9 @@ import prisma from '@/lib/prisma';
 import { getSession } from '@/lib/servers/sessions';
 import { NextResponse, NextRequest } from 'next/server';
 import { createPaginator } from 'prisma-pagination';
-import type { Bin, Prisma } from '@prisma-gen/client';
-import { binSchema } from '@/schemas/schema';
+import type { Prisma, RedeemHistory } from '@prisma-gen/client';
+import { redeemHistorySchema } from '@/schemas/schema';
+import { generateSecureCouponCode } from '@/services/coupons.services';
 
 const paginate = createPaginator({ perPage: 10, page: 1 });
 
@@ -25,7 +26,7 @@ export async function GET(request: NextRequest) {
       body: {
         role: session.user.role,
         permission: {
-          bin: ['list'],
+          redeemHistory: ['list'],
         },
       },
     });
@@ -49,19 +50,17 @@ export async function GET(request: NextRequest) {
       50
     );
 
-    const binsResult = await paginate<Bin, Prisma.BinFindManyArgs>(
-      prisma.bin,
+    const redeemHistoriesResult = await paginate<
+      RedeemHistory,
+      Prisma.RedeemHistoryFindManyArgs
+    >(
+      prisma.redeemHistory,
       {
         orderBy: {
           createdAt: 'desc',
         },
-        include: {
-          material: {
-            include: {
-              rewardRule: true,
-            },
-          },
-          store: true,
+        where: {
+          userId: session.user.id,
         },
       },
       {
@@ -69,7 +68,8 @@ export async function GET(request: NextRequest) {
         perPage: perPage,
       }
     );
-    return NextResponse.json(binsResult, { status: 200 });
+
+    return NextResponse.json(redeemHistoriesResult, { status: 200 });
   } catch (error) {
     console.error(error);
     return NextResponse.json(
@@ -98,7 +98,7 @@ export async function POST(request: NextRequest) {
       body: {
         role: session.user.role,
         permission: {
-          bin: ['create'],
+          redeemHistory: ['create'],
         },
       },
     });
@@ -114,7 +114,7 @@ export async function POST(request: NextRequest) {
 
     const body = await request.json();
 
-    const validatedBody = binSchema.safeParse(body);
+    const validatedBody = redeemHistorySchema.safeParse(body);
 
     if (validatedBody.error) {
       return NextResponse.json(
@@ -126,21 +126,83 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const bin = await prisma.bin.create({
-      data: validatedBody.data,
-      include: {
-        material: {
-          include: {
-            rewardRule: true,
-          },
+    const coupon = await prisma.coupon.findUnique({
+      where: {
+        id: validatedBody.data.couponId,
+      },
+    });
+
+    if (!coupon) {
+      return NextResponse.json({ error: 'Coupon not found' }, { status: 404 });
+    }
+
+    if (coupon.dealType === 'NOPOINTS') {
+      return NextResponse.json(
+        { error: 'Coupon is not redeemable' },
+        { status: 403 }
+      );
+    }
+
+    const userTotalPoint = await prisma.userTotalPoint.findUnique({
+      where: {
+        userId: session.user.id,
+      },
+    });
+
+    if (!userTotalPoint) {
+      return NextResponse.json(
+        { error: 'You have no points to redeem' },
+        { status: 400 }
+      );
+    }
+
+    if (userTotalPoint.totalPoints === 0) {
+      return NextResponse.json(
+        { error: 'You have no points to redeem' },
+        { status: 400 }
+      );
+    }
+
+    if (userTotalPoint.totalPoints < coupon.pointsToRedeem) {
+      return NextResponse.json(
+        {
+          error: `You need ${
+            coupon.pointsToRedeem - userTotalPoint.totalPoints
+          } points to redeem this coupon`,
         },
-        store: true,
+        { status: 400 }
+      );
+    }
+
+    if (coupon.status === 'INACTIVE') {
+      return NextResponse.json(
+        { error: 'Coupon is not active' },
+        { status: 400 }
+      );
+    }
+
+    if (!coupon.pointsToRedeem) {
+      return NextResponse.json(
+        { error: 'Coupon does not have points to redeem' },
+        { status: 400 }
+      );
+    }
+
+    const couponCode = generateSecureCouponCode();
+
+    const redeemHistory = await prisma.redeemHistory.create({
+      data: {
+        couponId: validatedBody.data.couponId,
+        userId: session.user.id,
+        points: coupon.pointsToRedeem,
+        couponCode,
+        description: validatedBody.data.description,
       },
     });
 
     return NextResponse.json(
       {
-        data: bin,
+        data: redeemHistory,
       },
       { status: 201 }
     );

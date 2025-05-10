@@ -18,7 +18,6 @@ export default function Users() {
     fetchUsers();
   }, []);
 
-
   const columns = [
     { key: 'userName', header: 'User Name' },
     { key: 'emailAddress', header: 'Email Address' },

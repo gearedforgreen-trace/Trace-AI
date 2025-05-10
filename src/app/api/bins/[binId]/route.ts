@@ -38,7 +38,7 @@ export async function GET(
       },
     });
 
-      if (!hasDetailPermission.success) {
+    if (!hasDetailPermission.success) {
       return NextResponse.json(
         {
           error: 'Forbidden',
@@ -49,8 +49,8 @@ export async function GET(
 
     const bin = await prisma.bin.findUnique({
       where: { id: binId },
-      include:{
-        material:true,
+      include: {
+        material: true,
         store: true,
       },
     });
@@ -124,8 +124,12 @@ export async function PUT(
     const bin = await prisma.bin.update({
       where: { id: binId },
       data: validatedBody.data,
-      include:{
-        material:true,
+      include: {
+        material: {
+          include: {
+            rewardRule: true,
+          },
+        },
         store: true,
       },
     });
@@ -175,6 +179,14 @@ export async function DELETE(
 
     const deletedBin = await prisma.bin.delete({
       where: { id: binId },
+      include: {
+        material: {
+          include: {
+            rewardRule: true,
+          },
+        },
+        store: true,
+      },
     });
 
     return NextResponse.json(

@@ -250,6 +250,7 @@ exports.Prisma.RedeemHistoryScalarFieldEnum = {
   userId: 'userId',
   points: 'points',
   description: 'description',
+  couponCode: 'couponCode',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -257,8 +258,10 @@ exports.Prisma.RedeemHistoryScalarFieldEnum = {
 exports.Prisma.RecycleHistoryScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
+  binId: 'binId',
   points: 'points',
   mediaUrl: 'mediaUrl',
+  totalCount: 'totalCount',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -290,7 +293,7 @@ exports.Prisma.CouponScalarFieldEnum = {
   couponType: 'couponType',
   dealType: 'dealType',
   isFeatured: 'isFeatured',
-  couponCode: 'couponCode',
+  discountAmount: 'discountAmount',
   pointsToRedeem: 'pointsToRedeem',
   startDate: 'startDate',
   endDate: 'endDate',
@@ -299,7 +302,7 @@ exports.Prisma.CouponScalarFieldEnum = {
   organizationId: 'organizationId'
 };
 
-exports.Prisma.FavoriteCouponListScalarFieldEnum = {
+exports.Prisma.FavouriteCouponScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
   couponId: 'couponId',
@@ -361,7 +364,7 @@ exports.Prisma.ModelName = {
   UserTotalPoint: 'UserTotalPoint',
   Bin: 'Bin',
   Coupon: 'Coupon',
-  FavoriteCouponList: 'FavoriteCouponList'
+  FavouriteCoupon: 'FavouriteCoupon'
 };
 
 /**

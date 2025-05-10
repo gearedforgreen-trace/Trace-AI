@@ -13,32 +13,32 @@ datasource db {
 }
 
 model User {
-  id                 String               @id
-  name               String
-  email              String               @unique
-  emailVerified      Boolean
-  image              String?
-  createdAt          DateTime
-  updatedAt          DateTime
-  role               String?
-  banned             Boolean?
-  banReason          String?
-  banExpires         DateTime?
-  username           String?              @unique
-  displayUsername    String?
-  phoneNumber        String?
-  address            String?
-  postalCode         String?
-  status             String
-  state              String?
-  RecycleHistory     RecycleHistory[]
-  RedeemHistory      RedeemHistory[]
-  accounts           Account[]
-  FavoriteCouponList FavoriteCouponList[]
-  invitations        Invitation[]
-  members            Member[]
-  sessions           Session[]
-  UserTotalPoint     UserTotalPoint?
+  id              String            @id
+  name            String
+  email           String            @unique
+  emailVerified   Boolean
+  image           String?
+  createdAt       DateTime
+  updatedAt       DateTime
+  role            String?
+  banned          Boolean?
+  banReason       String?
+  banExpires      DateTime?
+  username        String?           @unique
+  displayUsername String?
+  phoneNumber     String?
+  address         String?
+  postalCode      String?
+  status          String
+  state           String?
+  recycleHistory  RecycleHistory[]
+  redeemHistory   RedeemHistory[]
+  accounts        Account[]
+  favouriteCoupon FavouriteCoupon[]
+  invitations     Invitation[]
+  members         Member[]
+  sessions        Session[]
+  UserTotalPoint  UserTotalPoint?
 
   @@map("user")
 }
@@ -185,19 +185,24 @@ model RedeemHistory {
   userId      String
   points      Int
   description String?
+  couponCode  String
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
-  User        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  coupon      Coupon   @relation(fields: [couponId], references: [id], onDelete: Cascade)
 }
 
 model RecycleHistory {
-  id        String   @id @default(uuid())
-  userId    String
-  points    Int
-  mediaUrl  String?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  User      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  id         String   @id @default(uuid())
+  userId     String
+  binId      String
+  points     Int
+  mediaUrl   String?
+  totalCount Int      @default(0)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  bin        Bin      @relation(fields: [binId], references: [id], onDelete: Cascade)
 }
 
 model UserTotalPoint {
@@ -210,44 +215,45 @@ model UserTotalPoint {
 }
 
 model Bin {
-  id          String    @id @default(ulid())
-  number      String
-  materialId  String
-  storeId     String
-  description String?
-  imageUrl    String?
-  status      BinStatus @default(ACTIVE)
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
-  material    Material  @relation(fields: [materialId], references: [id])
-  store       Store     @relation(fields: [storeId], references: [id], onDelete: Cascade)
+  id             String           @id @default(ulid())
+  number         String
+  materialId     String
+  storeId        String
+  description    String?
+  imageUrl       String?
+  status         BinStatus        @default(ACTIVE)
+  createdAt      DateTime         @default(now())
+  updatedAt      DateTime         @updatedAt
+  material       Material         @relation(fields: [materialId], references: [id])
+  store          Store            @relation(fields: [storeId], references: [id], onDelete: Cascade)
+  recycleHistory RecycleHistory[]
 
   @@map("bin")
 }
 
 model Coupon {
-  id                 String               @id @default(ulid())
-  name               String
-  description        String?
-  imageUrl           String
-  status             Status               @default(ACTIVE)
-  couponType         CouponType
-  dealType           DealType
-  isFeatured         Boolean
-  couponCode         String
-  pointsToRedeem     Int
-  startDate          DateTime
-  endDate            DateTime
-  createdAt          DateTime             @default(now())
-  updatedAt          DateTime             @updatedAt
-  organizationId     String
-  organization       Organization         @relation(fields: [organizationId], references: [id], onDelete: Cascade)
-  FavoriteCouponList FavoriteCouponList[]
-
+  id              String            @id @default(ulid())
+  name            String
+  description     String?
+  imageUrl        String?
+  status          Status            @default(ACTIVE)
+  couponType      CouponType
+  dealType        DealType
+  isFeatured      Boolean           @default(false)
+  discountAmount  Int
+  pointsToRedeem  Int
+  startDate       DateTime
+  endDate         DateTime
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
+  organizationId  String?
+  organization    Organization?     @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  favouriteCoupon FavouriteCoupon[]
+  redeemHistory   RedeemHistory[]
   @@map("coupon")
 }
 
-model FavoriteCouponList {
+model FavouriteCoupon {
   id        String   @id @default(ulid())
   userId    String
   couponId  String
@@ -256,7 +262,7 @@ model FavoriteCouponList {
   user      User     @relation(fields: [userId], references: [id])
 
   @@unique([userId, couponId])
-  @@map("favorite_coupon_list")
+  @@map("favourite_coupon")
 }
 
 enum StoreStatus {

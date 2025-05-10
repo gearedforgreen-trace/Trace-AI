@@ -220,8 +220,8 @@ model Store {
   // status         Status       @default(ACTIVE)
   createdAt      DateTime     @default(now())
   updatedAt      DateTime     @updatedAt
-  organizationId String
-  Organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  organizationId String?
+  Organization   Organization? @relation(fields: [organizationId], references: [id], onDelete: Cascade)
   Bin            Bin[]
   address1       String
   address2       String?
@@ -249,7 +249,7 @@ model Bin {
   Organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
 }
 
-model FavoriteList {
+model FavouriteList {
   id String @id @default(uuid())
   // userId
   // coupon
