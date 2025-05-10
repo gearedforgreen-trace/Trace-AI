@@ -6,20 +6,22 @@ prisma.$use(
   async (params: Prisma.MiddlewareParams, next: (arg0: any) => any) => {
     if (params.model === 'RecycleHistory' && params.action === 'create') {
       const { userId, points } = params.args.data;
-      await prisma.userTotalPoint.update({
+
+      await prisma.userTotalPoint.upsert({
         where: { userId },
-        data: { totalPoints: { increment: points } },
+        update: { totalPoints: { increment: points } },
+        create: { userId, totalPoints: points },
       });
     }
 
     if (params.model === 'RedeemHistory' && params.action === 'create') {
       const { userId, points } = params.args.data;
-      await prisma.userTotalPoint.update({
+      await prisma.userTotalPoint.upsert({
         where: { userId },
-        data: { totalPoints: { decrement: points } },
+        update: { totalPoints: { decrement: points } },
+        create: { userId, totalPoints: points },
       });
     }
-
     return next(params);
   }
 );

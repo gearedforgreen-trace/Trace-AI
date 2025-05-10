@@ -111,7 +111,7 @@ export type Organization = {
     metadata: string | null;
 };
 export type RecycleHistory = {
-    id: string;
+    id: Generated<string>;
     userId: string;
     binId: string;
     points: number;
@@ -121,7 +121,7 @@ export type RecycleHistory = {
     updatedAt: Timestamp;
 };
 export type RedeemHistory = {
-    id: string;
+    id: Generated<string>;
     couponId: string;
     userId: string;
     points: number;
@@ -132,6 +132,7 @@ export type RedeemHistory = {
 };
 export type RewardRules = {
     id: Generated<string>;
+    name: string;
     description: string | null;
     unitType: string;
     unit: number;

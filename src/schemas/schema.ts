@@ -80,6 +80,13 @@ export const storeSchema = z.object({
 export const storeUpdateSchema = storeSchema.partial();
 
 export const rewardRuleSchema = z.object({
+  name: z
+    .string({
+      required_error: 'Name is required',
+    })
+    .min(1, 'Name cannot be empty')
+    .max(50, 'Name cannot exceed 50 characters')
+    .trim(),
   point: z
     .number({
       required_error: 'Points value is required',

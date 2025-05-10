@@ -168,6 +168,7 @@ model Material {
 
 model RewardRules {
   id          String     @id @default(ulid())
+  name        String
   description String?
   unitType    String
   unit        Int
@@ -180,7 +181,7 @@ model RewardRules {
 }
 
 model RedeemHistory {
-  id          String   @id @default(uuid())
+  id          String   @id @default(ulid())
   couponId    String
   userId      String
   points      Int
@@ -193,7 +194,7 @@ model RedeemHistory {
 }
 
 model RecycleHistory {
-  id         String   @id @default(uuid())
+  id         String   @id @default(ulid())
   userId     String
   binId      String
   points     Int

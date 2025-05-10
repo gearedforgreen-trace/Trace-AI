@@ -31,7 +31,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"Shanto Islam\",\r\n    \"username\": \"ishantoz\",\r\n    \"email\": \"ishanto412@gmail.com\",\r\n    \"address\": \"Asdsd\",\r\n    \"postalCode\": \"12312\",\r\n    \"phoneNumber\": \"091230120123\",\r\n    \"state\": \"ASDaasd\",\r\n    \"password\": \"password\"\r\n}",
+							"raw": "{\r\n    \"name\": \"Noraml User\",\r\n    \"username\": \"username\",\r\n    \"email\": \"user@yopmail.com\",\r\n    \"address\": \"Asdsd\",\r\n    \"postalCode\": \"12312\",\r\n    \"phoneNumber\": \"091230120123\",\r\n    \"state\": \"ASDaasd\",\r\n    \"password\": \"password\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -78,7 +78,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"email\": \"ishanto412@gmail.com\",\n  \"password\": \"password\"\n}",
+							"raw": "{\n  \"email\": \"admin@yopmail.com\",\n  \"password\": \"password\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -384,7 +384,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"number\": \"123123\",\r\n    \"description\": \"asd\",\r\n    \"materialId\": \"01JTX3DQNSMX6ZYV343HB9YYJA\",\r\n    \"storeId\": \"01JTWRPAYJGGNME6HPM6GAAF3K\"\r\n}",
+							"raw": "{\r\n    \"number\": \"0182139123\",\r\n    \"description\": \"asdasdasdasdasdasdasd asd asd \",\r\n    \"materialId\": \"01JTXC5A0868N7Y8Y1Q30V741M\",\r\n    \"storeId\": \"01JTXC2Z1S0YXQVTCNAM8CPASB\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -638,6 +638,16 @@
 				{
 					"name": "Details Reward Rule",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{B_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -780,11 +790,21 @@
 				{
 					"name": "Update Coupons",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{B_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "PUT",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{}",
+							"raw": "{\r\n  \"pointsToRedeem\": 400\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -792,13 +812,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{GFG_API}}/coupons/12312313123",
+							"raw": "{{GFG_API}}/coupons/01JTXADRDSXSA24K90K283RT65",
 							"host": [
 								"{{GFG_API}}"
 							],
 							"path": [
 								"coupons",
-								"12312313123"
+								"01JTXADRDSXSA24K90K283RT65"
 							]
 						}
 					},
@@ -997,7 +1017,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"couponId\": \"01JTWZ2X5X8WA20VAP95VN0GMD\"\r\n}",
+							"raw": "{\r\n    \"binId\": \"01JTXC5A0868N7Y8Y1Q30V741M\",\r\n    \"totalCount\": 2\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"

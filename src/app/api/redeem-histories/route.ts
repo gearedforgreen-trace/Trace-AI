@@ -62,6 +62,9 @@ export async function GET(request: NextRequest) {
         where: {
           userId: session.user.id,
         },
+        include: {
+          coupon: true,
+        },
       },
       {
         page: page,
@@ -136,49 +139,44 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Coupon not found' }, { status: 404 });
     }
 
-    if (coupon.dealType === 'NOPOINTS') {
-      return NextResponse.json(
-        { error: 'Coupon is not redeemable' },
-        { status: 403 }
-      );
-    }
-
-    const userTotalPoint = await prisma.userTotalPoint.findUnique({
-      where: {
-        userId: session.user.id,
-      },
-    });
-
-    if (!userTotalPoint) {
-      return NextResponse.json(
-        { error: 'You have no points to redeem' },
-        { status: 400 }
-      );
-    }
-
-    if (userTotalPoint.totalPoints === 0) {
-      return NextResponse.json(
-        { error: 'You have no points to redeem' },
-        { status: 400 }
-      );
-    }
-
-    if (userTotalPoint.totalPoints < coupon.pointsToRedeem) {
-      return NextResponse.json(
-        {
-          error: `You need ${
-            coupon.pointsToRedeem - userTotalPoint.totalPoints
-          } points to redeem this coupon`,
-        },
-        { status: 400 }
-      );
-    }
-
     if (coupon.status === 'INACTIVE') {
       return NextResponse.json(
         { error: 'Coupon is not active' },
         { status: 400 }
       );
+    }
+
+    if (coupon.dealType === 'POINTS') {
+      const userTotalPoint = await prisma.userTotalPoint.findUnique({
+        where: {
+          userId: session.user.id,
+        },
+      });
+
+      if (!userTotalPoint) {
+        return NextResponse.json(
+          { error: 'You have no points to redeem' },
+          { status: 400 }
+        );
+      }
+
+      if (userTotalPoint.totalPoints === 0) {
+        return NextResponse.json(
+          { error: 'You have no points to redeem' },
+          { status: 400 }
+        );
+      }
+
+      if (userTotalPoint.totalPoints < coupon.pointsToRedeem) {
+        return NextResponse.json(
+          {
+            error: `You need ${
+              coupon.pointsToRedeem - userTotalPoint.totalPoints
+            } points to redeem this coupon`,
+          },
+          { status: 400 }
+        );
+      }
     }
 
     if (!coupon.pointsToRedeem) {
@@ -190,13 +188,21 @@ export async function POST(request: NextRequest) {
 
     const couponCode = generateSecureCouponCode();
 
+    let points = coupon.pointsToRedeem;
+    if (coupon.dealType === 'NOPOINTS') {
+      points = 0;
+    }
+
     const redeemHistory = await prisma.redeemHistory.create({
       data: {
         couponId: validatedBody.data.couponId,
         userId: session.user.id,
-        points: coupon.pointsToRedeem,
+        points,
         couponCode,
         description: validatedBody.data.description,
+      },
+      include: {
+        coupon: true,
       },
     });
 

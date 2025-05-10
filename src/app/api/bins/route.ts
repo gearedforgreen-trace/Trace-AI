@@ -126,6 +126,32 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    const store = await prisma.store.findUnique({
+      where: {
+        id: validatedBody.data.storeId,
+      },
+    });
+
+    if (!store) {
+      return NextResponse.json(
+        { error: 'Store not found' },
+        { status: 404 }
+      );
+    }
+
+    const material = await prisma.material.findUnique({
+      where: {
+        id: validatedBody.data.materialId,
+      },
+    });
+
+    if (!material) {
+      return NextResponse.json(
+        { error: 'Material not found' },
+        { status: 404 }
+      );
+    }
+
     const bin = await prisma.bin.create({
       data: validatedBody.data,
       include: {

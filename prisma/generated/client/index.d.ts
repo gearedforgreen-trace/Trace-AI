@@ -13085,6 +13085,7 @@ export namespace Prisma {
 
   export type RewardRulesMinAggregateOutputType = {
     id: string | null
+    name: string | null
     description: string | null
     unitType: string | null
     unit: number | null
@@ -13095,6 +13096,7 @@ export namespace Prisma {
 
   export type RewardRulesMaxAggregateOutputType = {
     id: string | null
+    name: string | null
     description: string | null
     unitType: string | null
     unit: number | null
@@ -13105,6 +13107,7 @@ export namespace Prisma {
 
   export type RewardRulesCountAggregateOutputType = {
     id: number
+    name: number
     description: number
     unitType: number
     unit: number
@@ -13127,6 +13130,7 @@ export namespace Prisma {
 
   export type RewardRulesMinAggregateInputType = {
     id?: true
+    name?: true
     description?: true
     unitType?: true
     unit?: true
@@ -13137,6 +13141,7 @@ export namespace Prisma {
 
   export type RewardRulesMaxAggregateInputType = {
     id?: true
+    name?: true
     description?: true
     unitType?: true
     unit?: true
@@ -13147,6 +13152,7 @@ export namespace Prisma {
 
   export type RewardRulesCountAggregateInputType = {
     id?: true
+    name?: true
     description?: true
     unitType?: true
     unit?: true
@@ -13244,6 +13250,7 @@ export namespace Prisma {
 
   export type RewardRulesGroupByOutputType = {
     id: string
+    name: string
     description: string | null
     unitType: string
     unit: number
@@ -13273,6 +13280,7 @@ export namespace Prisma {
 
   export type RewardRulesSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    name?: boolean
     description?: boolean
     unitType?: boolean
     unit?: boolean
@@ -13285,6 +13293,7 @@ export namespace Prisma {
 
   export type RewardRulesSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    name?: boolean
     description?: boolean
     unitType?: boolean
     unit?: boolean
@@ -13295,6 +13304,7 @@ export namespace Prisma {
 
   export type RewardRulesSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    name?: boolean
     description?: boolean
     unitType?: boolean
     unit?: boolean
@@ -13305,6 +13315,7 @@ export namespace Prisma {
 
   export type RewardRulesSelectScalar = {
     id?: boolean
+    name?: boolean
     description?: boolean
     unitType?: boolean
     unit?: boolean
@@ -13313,7 +13324,7 @@ export namespace Prisma {
     updatedAt?: boolean
   }
 
-  export type RewardRulesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "description" | "unitType" | "unit" | "point" | "createdAt" | "updatedAt", ExtArgs["result"]["rewardRules"]>
+  export type RewardRulesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "description" | "unitType" | "unit" | "point" | "createdAt" | "updatedAt", ExtArgs["result"]["rewardRules"]>
   export type RewardRulesInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     materials?: boolean | RewardRules$materialsArgs<ExtArgs>
     _count?: boolean | RewardRulesCountOutputTypeDefaultArgs<ExtArgs>
@@ -13328,6 +13339,7 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
+      name: string
       description: string | null
       unitType: string
       unit: number
@@ -13759,6 +13771,7 @@ export namespace Prisma {
    */
   interface RewardRulesFieldRefs {
     readonly id: FieldRef<"RewardRules", 'String'>
+    readonly name: FieldRef<"RewardRules", 'String'>
     readonly description: FieldRef<"RewardRules", 'String'>
     readonly unitType: FieldRef<"RewardRules", 'String'>
     readonly unit: FieldRef<"RewardRules", 'Int'>
@@ -21204,6 +21217,7 @@ export namespace Prisma {
 
   export const RewardRulesScalarFieldEnum: {
     id: 'id',
+    name: 'name',
     description: 'description',
     unitType: 'unitType',
     unit: 'unit',
@@ -22214,6 +22228,7 @@ export namespace Prisma {
     OR?: RewardRulesWhereInput[]
     NOT?: RewardRulesWhereInput | RewardRulesWhereInput[]
     id?: StringFilter<"RewardRules"> | string
+    name?: StringFilter<"RewardRules"> | string
     description?: StringNullableFilter<"RewardRules"> | string | null
     unitType?: StringFilter<"RewardRules"> | string
     unit?: IntFilter<"RewardRules"> | number
@@ -22225,6 +22240,7 @@ export namespace Prisma {
 
   export type RewardRulesOrderByWithRelationInput = {
     id?: SortOrder
+    name?: SortOrder
     description?: SortOrderInput | SortOrder
     unitType?: SortOrder
     unit?: SortOrder
@@ -22239,6 +22255,7 @@ export namespace Prisma {
     AND?: RewardRulesWhereInput | RewardRulesWhereInput[]
     OR?: RewardRulesWhereInput[]
     NOT?: RewardRulesWhereInput | RewardRulesWhereInput[]
+    name?: StringFilter<"RewardRules"> | string
     description?: StringNullableFilter<"RewardRules"> | string | null
     unitType?: StringFilter<"RewardRules"> | string
     unit?: IntFilter<"RewardRules"> | number
@@ -22250,6 +22267,7 @@ export namespace Prisma {
 
   export type RewardRulesOrderByWithAggregationInput = {
     id?: SortOrder
+    name?: SortOrder
     description?: SortOrderInput | SortOrder
     unitType?: SortOrder
     unit?: SortOrder
@@ -22268,6 +22286,7 @@ export namespace Prisma {
     OR?: RewardRulesScalarWhereWithAggregatesInput[]
     NOT?: RewardRulesScalarWhereWithAggregatesInput | RewardRulesScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"RewardRules"> | string
+    name?: StringWithAggregatesFilter<"RewardRules"> | string
     description?: StringNullableWithAggregatesFilter<"RewardRules"> | string | null
     unitType?: StringWithAggregatesFilter<"RewardRules"> | string
     unit?: IntWithAggregatesFilter<"RewardRules"> | number
@@ -23569,6 +23588,7 @@ export namespace Prisma {
 
   export type RewardRulesCreateInput = {
     id?: string
+    name: string
     description?: string | null
     unitType: string
     unit: number
@@ -23580,6 +23600,7 @@ export namespace Prisma {
 
   export type RewardRulesUncheckedCreateInput = {
     id?: string
+    name: string
     description?: string | null
     unitType: string
     unit: number
@@ -23591,6 +23612,7 @@ export namespace Prisma {
 
   export type RewardRulesUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     unitType?: StringFieldUpdateOperationsInput | string
     unit?: IntFieldUpdateOperationsInput | number
@@ -23602,6 +23624,7 @@ export namespace Prisma {
 
   export type RewardRulesUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     unitType?: StringFieldUpdateOperationsInput | string
     unit?: IntFieldUpdateOperationsInput | number
@@ -23613,6 +23636,7 @@ export namespace Prisma {
 
   export type RewardRulesCreateManyInput = {
     id?: string
+    name: string
     description?: string | null
     unitType: string
     unit: number
@@ -23623,6 +23647,7 @@ export namespace Prisma {
 
   export type RewardRulesUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     unitType?: StringFieldUpdateOperationsInput | string
     unit?: IntFieldUpdateOperationsInput | number
@@ -23633,6 +23658,7 @@ export namespace Prisma {
 
   export type RewardRulesUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     unitType?: StringFieldUpdateOperationsInput | string
     unit?: IntFieldUpdateOperationsInput | number
@@ -24789,6 +24815,7 @@ export namespace Prisma {
 
   export type RewardRulesCountOrderByAggregateInput = {
     id?: SortOrder
+    name?: SortOrder
     description?: SortOrder
     unitType?: SortOrder
     unit?: SortOrder
@@ -24804,6 +24831,7 @@ export namespace Prisma {
 
   export type RewardRulesMaxOrderByAggregateInput = {
     id?: SortOrder
+    name?: SortOrder
     description?: SortOrder
     unitType?: SortOrder
     unit?: SortOrder
@@ -24814,6 +24842,7 @@ export namespace Prisma {
 
   export type RewardRulesMinOrderByAggregateInput = {
     id?: SortOrder
+    name?: SortOrder
     description?: SortOrder
     unitType?: SortOrder
     unit?: SortOrder
@@ -28032,6 +28061,7 @@ export namespace Prisma {
 
   export type RewardRulesCreateWithoutMaterialsInput = {
     id?: string
+    name: string
     description?: string | null
     unitType: string
     unit: number
@@ -28042,6 +28072,7 @@ export namespace Prisma {
 
   export type RewardRulesUncheckedCreateWithoutMaterialsInput = {
     id?: string
+    name: string
     description?: string | null
     unitType: string
     unit: number
@@ -28084,6 +28115,7 @@ export namespace Prisma {
 
   export type RewardRulesUpdateWithoutMaterialsInput = {
     id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     unitType?: StringFieldUpdateOperationsInput | string
     unit?: IntFieldUpdateOperationsInput | number
@@ -28094,6 +28126,7 @@ export namespace Prisma {
 
   export type RewardRulesUncheckedUpdateWithoutMaterialsInput = {
     id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     unitType?: StringFieldUpdateOperationsInput | string
     unit?: IntFieldUpdateOperationsInput | number

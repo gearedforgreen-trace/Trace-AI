@@ -129,16 +129,29 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    const rewardRule = await prisma.rewardRules.findUnique({
+      where: {
+        id: validatedBody.data.rewardRuleId,
+      },
+    });
+
+    if (!rewardRule) {
+      return NextResponse.json(
+        { error: 'Reward rule not found' },
+        { status: 404 }
+      );
+    }
+
     const material = await prisma.material.create({
       data: validatedBody.data,
-      include:{
+      include: {
         rewardRule: {
           omit: {
             createdAt: true,
             updatedAt: true,
           },
         },
-      }
+      },
     });
 
     return NextResponse.json(

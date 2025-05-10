@@ -164,7 +164,7 @@ export async function POST(request: NextRequest) {
         userId: session.user.id,
         binId: validatedBody.data.binId,
         points: totalPoints,
-        mediaUrl: validatedBody.data.mediaUrl,
+        mediaUrl: validatedBody.data.mediaUrl ?? undefined,
       },
       include: {
         bin: {

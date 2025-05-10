@@ -236,6 +236,7 @@ exports.Prisma.MaterialScalarFieldEnum = {
 
 exports.Prisma.RewardRulesScalarFieldEnum = {
   id: 'id',
+  name: 'name',
   description: 'description',
   unitType: 'unitType',
   unit: 'unit',
