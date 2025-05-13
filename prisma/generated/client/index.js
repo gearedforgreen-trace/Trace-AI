@@ -351,7 +351,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "C:\\Users\\shanto\\projects\\uqidev\\gearforgreen\\prisma\\generated\\client",
+      "value": "/Users/kawsar/Desktop/projects/trace/trace-backend/prisma/generated/client",
       "fromEnvVar": null
     },
     "config": {
@@ -360,12 +360,12 @@ const config = {
     "binaryTargets": [
       {
         "fromEnvVar": null,
-        "value": "windows",
+        "value": "darwin-arm64",
         "native": true
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "C:\\Users\\shanto\\projects\\uqidev\\gearforgreen\\prisma\\schema.prisma",
+    "sourceFilePath": "/Users/kawsar/Desktop/projects/trace/trace-backend/prisma/schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
