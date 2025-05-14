@@ -1,11 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import { Plus } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { useEntityCrud } from "@/hooks/use-entity-crud";
+import { EntityHeader } from "@/components/ui/entity-header";
+import { ConfirmationDialog } from "@/components/ui/confirmation-dialog";
+import type { IStore } from "@/types";
 import { StoresTable } from "./stores-table";
-import { StoreModal } from "./stores-modal";
-import { IStore } from "@/types";
+import { StoreFormModal } from "./store-form-modal";
 
 // Mock data for demonstration
 const mockStores: IStore[] = [
@@ -87,84 +88,56 @@ const mockStores: IStore[] = [
 ];
 
 export default function StoresClient() {
-  const [stores, setStores] = useState<IStore[]>(mockStores);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [currentStore, setCurrentStore] = useState<IStore | null>(null);
-  const [currentPage, setCurrentPage] = useState(1);
-  const storesPerPage = 5;
+  const [searchTerm, setSearchTerm] = useState("");
 
-  // Calculate pagination
-  const indexOfLastStore = currentPage * storesPerPage;
-  const indexOfFirstStore = indexOfLastStore - storesPerPage;
-  const currentStores = stores.slice(indexOfFirstStore, indexOfLastStore);
-  const totalPages = Math.ceil(stores.length / storesPerPage);
-
-  const handleEdit = (store: IStore) => {
-    setCurrentStore(store);
-    setIsModalOpen(true);
-  };
-
-  const handleDelete = (storeId: string) => {
-    setStores(stores.filter((store) => store.id !== storeId));
-  };
-
-  const handleSave = (updatedStore: IStore) => {
-    if (currentStore) {
-      // Update existing store
-      setStores(
-        stores.map((store) =>
-          store.id === updatedStore.id ? updatedStore : store
-        )
-      );
-    } else {
-      // Add new store
-      const newStore = {
-        ...updatedStore,
-        id: (stores.length + 1).toString(),
-        organizationId: "org_123",
-      };
-      setStores([...stores, newStore]);
-    }
-    setIsModalOpen(false);
-    setCurrentStore(null);
-  };
-
-  const handlePageChange = (page: number) => {
-    setCurrentPage(page);
-  };
+  const {
+    entities: stores,
+    currentEntity: currentStore,
+    isModalOpen,
+    isDeleteDialogOpen,
+    entityToDelete,
+    openCreateModal,
+    openEditModal,
+    closeModal,
+    openDeleteDialog,
+    closeDeleteDialog,
+    handleSave,
+    handleDelete,
+  } = useEntityCrud<IStore>({
+    initialEntities: mockStores,
+  });
 
   return (
     <div className="space-y-4">
-      <div className="flex justify-end">
-        <Button
-          onClick={() => {
-            setCurrentStore(null);
-            setIsModalOpen(true);
-          }}
-          className="bg-green-600 hover:bg-green-700"
-        >
-          <Plus className="mr-2 h-4 w-4" />
-          Add Store
-        </Button>
-      </div>
-
-      <StoresTable
-        stores={currentStores}
-        onEdit={handleEdit}
-        onDelete={handleDelete}
-        currentPage={currentPage}
-        totalPages={totalPages}
-        onPageChange={handlePageChange}
+      <EntityHeader
+        title="Store Locations"
+        description="Manage your store locations and details"
+        onAdd={openCreateModal}
+        addButtonText="Add Store"
       />
 
-      <StoreModal
+      <StoresTable
+        stores={stores}
+        onEdit={openEditModal}
+        onDelete={openDeleteDialog}
+        searchTerm={searchTerm}
+        onSearchChange={setSearchTerm}
+      />
+
+      <StoreFormModal
         isOpen={isModalOpen}
-        onClose={() => {
-          setIsModalOpen(false);
-          setCurrentStore(null);
-        }}
+        onClose={closeModal}
         store={currentStore}
         onSave={handleSave}
+      />
+
+      <ConfirmationDialog
+        isOpen={isDeleteDialogOpen}
+        onClose={closeDeleteDialog}
+        onConfirm={handleDelete}
+        title="Are you sure?"
+        description={`This will permanently delete the store "${entityToDelete?.name}". This action cannot be undone.`}
+        confirmText="Delete"
       />
     </div>
   );

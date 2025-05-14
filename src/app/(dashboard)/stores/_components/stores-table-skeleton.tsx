@@ -19,10 +19,13 @@ export function StoresTableSkeleton() {
         <Skeleton className="h-10 w-[120px]" />
       </div>
 
+      <Skeleton className="h-10 w-full" />
+
       <div className="rounded-md border">
         <Table>
           <TableHeader>
             <TableRow>
+              <TableHead className="w-[80px]">Image</TableHead>
               <TableHead>Name</TableHead>
               <TableHead>Status</TableHead>
               <TableHead className="hidden md:table-cell">Location</TableHead>
@@ -35,6 +38,9 @@ export function StoresTableSkeleton() {
           <TableBody>
             {Array.from({ length: 5 }).map((_, index) => (
               <TableRow key={index}>
+                <TableCell>
+                  <Skeleton className="h-10 w-10 rounded-md" />
+                </TableCell>
                 <TableCell>
                   <Skeleton className="h-5 w-[150px]" />
                 </TableCell>

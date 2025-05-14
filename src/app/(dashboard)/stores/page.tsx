@@ -1,6 +1,6 @@
 import { Suspense } from "react";
-import StoresClient from "./_components/stores-client";
 import { StoresTableSkeleton } from "./_components/stores-table-skeleton";
+import StoresClient from "./_components/stores-client";
 
 export default function StoresPage() {
   return (
