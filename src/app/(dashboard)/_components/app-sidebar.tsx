@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
-import type * as React from 'react';
-import SiteBrand from '@/components/site-brand';
+import type * as React from "react";
+import SiteBrand from "@/components/site-brand";
 
-import { NavMain } from './nav-main';
-import { NavUser } from './nav-user';
+import { NavMain } from "./nav-main";
+import { NavUser } from "./nav-user";
 import {
   Sidebar,
   SidebarContent,
@@ -12,54 +12,60 @@ import {
   SidebarHeader,
   SidebarRail,
   useSidebar,
-} from '@/components/ui/sidebar';
+} from "@/components/ui/sidebar";
 import {
   AnalyticsIcon,
   UsersIcon,
   CouponsIcon,
+  StoreIcon,
   QRCodesBinsIcon,
   RewardPointsIcon,
   DashboardIcon,
-} from '@/components/icons/sidebar-icons';
-import { cn } from '@/lib/utils';
-import { Separator } from '@/components/ui/separator';
+} from "@/components/icons/sidebar-icons";
+import { cn } from "@/lib/utils";
+import { Separator } from "@/components/ui/separator";
 
 // This is sample data.
 const data = {
   user: {
-    name: 'John Doe',
-    email: 'john@example.com',
-    avatar: 'https://avatars.githubusercontent.com/u/124599?v=4',
+    name: "John Doe",
+    email: "john@example.com",
+    avatar: "https://avatars.githubusercontent.com/u/124599?v=4",
   },
   navMain: [
     {
-      title: 'Dashboard',
-      url: '/',
+      title: "Dashboard",
+      url: "/",
       icon: <DashboardIcon />,
     },
     {
-      title: 'Analytics',
-      url: '/analytics',
+      title: "Analytics",
+      url: "/analytics",
       icon: <AnalyticsIcon />,
     },
     {
-      title: 'Users',
-      url: '/users',
+      title: "Users",
+      url: "/users",
       icon: <UsersIcon />,
     },
     {
-      title: 'Coupons',
-      url: '/coupons',
+      title: "Coupons",
+      url: "/coupons",
       icon: <CouponsIcon />,
     },
     {
-      title: 'QR Codes (Bins)',
-      url: '/qr-codes',
+      title: "Stores",
+      url: "/stores",
+      icon: <StoreIcon />,
+    },
+    {
+      title: "QR Codes (Bins)",
+      url: "/qr-codes",
       icon: <QRCodesBinsIcon />,
     },
     {
-      title: 'Reward Points',
-      url: '/reward-points',
+      title: "Reward Points",
+      url: "/reward-points",
       icon: <RewardPointsIcon />,
     },
   ],
@@ -68,16 +74,16 @@ const data = {
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const { state } = useSidebar();
 
-  const isCollapsed = state === 'collapsed';
+  const isCollapsed = state === "collapsed";
 
   return (
     <Sidebar collapsible="icon" {...props} variant="floating">
       <SidebarHeader className="pb-0">
         <SiteBrand
           className={cn({
-            'p-2': !isCollapsed,
-            'p-0.5': isCollapsed,
-            'justify-center': isCollapsed,
+            "p-2": !isCollapsed,
+            "p-0.5": isCollapsed,
+            "justify-center": isCollapsed,
           })}
           hideWordmark={isCollapsed}
         />

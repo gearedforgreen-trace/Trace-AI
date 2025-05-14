@@ -66,6 +66,24 @@ export function CouponsIcon() {
   );
 }
 
+export function StoreIcon() {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+    >
+      <g fill="none">
+        <path
+          fill="currentColor"
+          d="M4 4h16a1 1 0 0 1 1 1v2a4.002 4.002 0 0 1-3 3.874V19a1 1 0 0 1-1 1h-4v-5H9v5H6a1 1 0 0 1-1-1v-8.126A4.002 4.002 0 0 1 2 7V5a1 1 0 0 1 1-1Zm1 3.5a2.5 2.5 0 0 0 5 0V6H5v1.5Zm6 0a2.5 2.5 0 0 0 5 0V6h-5v1.5Zm6 0a2.5 2.5 0 0 0 5 0V6h-5v1.5Z"
+        />
+      </g>
+    </svg>
+  );
+}
+
 export function QRCodesBinsIcon() {
   return (
     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
