@@ -29,22 +29,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-
-interface IStore {
-  id: string;
-  name: string;
-  description: string;
-  imageUrl: string;
-  status: "active" | "inactive";
-  address: string;
-  city: string;
-  state: string;
-  zip: string;
-  country: string;
-  lat: number;
-  lng: number;
-  organizationId?: string;
-}
+import { IStore } from "@/types";
 
 const formSchema = z.object({
   id: z.string().optional(),

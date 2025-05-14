@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
 import { Edit, Trash2, ChevronLeft, ChevronRight } from "lucide-react";
 import {
   Table,
@@ -23,22 +22,7 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
-
-interface IStore {
-  id: string;
-  name: string;
-  description: string;
-  imageUrl: string;
-  status: "active" | "inactive";
-  address: string;
-  city: string;
-  state: string;
-  zip: string;
-  country: string;
-  lat: number;
-  lng: number;
-  organizationId?: string;
-}
+import { IStore } from "@/types";
 
 interface StoresTableProps {
   stores: IStore[];

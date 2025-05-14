@@ -5,22 +5,7 @@ import { Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { StoresTable } from "./stores-table";
 import { StoreModal } from "./stores-modal";
-
-interface IStore {
-  id: string;
-  name: string;
-  description: string;
-  imageUrl: string;
-  status: "active" | "inactive";
-  address: string;
-  city: string;
-  state: string;
-  zip: string;
-  country: string;
-  lat: number;
-  lng: number;
-  organizationId?: string;
-}
+import { IStore } from "@/types";
 
 // Mock data for demonstration
 const mockStores: IStore[] = [
