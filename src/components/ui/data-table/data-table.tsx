@@ -20,7 +20,7 @@ import { DataTablePagination } from "./data-table-pagination";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
-  data: TData[];
+  data: TData[] | null;
   pageSize?: number;
   searchKey?: string;
   searchValue?: string;
@@ -41,10 +41,10 @@ export function DataTable<TData, TValue>({
   // Filter data if search is provided
   const filteredData =
     searchKey && searchValue
-      ? data.filter((item: any) =>
+      ? (data ?? []).filter((item: any) =>
           item[searchKey]?.toLowerCase().includes(searchValue.toLowerCase())
         )
-      : data;
+      : data ?? [];
 
   const table = useReactTable({
     data: filteredData,

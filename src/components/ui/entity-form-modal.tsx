@@ -3,12 +3,7 @@
 import type React from "react";
 
 import { useEffect } from "react";
-import {
-  DefaultValues,
-  FieldValues,
-  useForm,
-  UseFormReturn,
-} from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import type { z } from "zod";
 import {
@@ -21,7 +16,11 @@ import {
 import { Form } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
 
-interface EntityFormModalProps<TFormSchema, TEntity> {
+import type { DefaultValues } from "react-hook-form";
+
+import type { UseFormReturn } from "react-hook-form";
+
+interface IEntityFormModalProps<TFormSchema extends FieldValues, TEntity> {
   isOpen: boolean;
   onClose: () => void;
   title: string;
@@ -29,16 +28,15 @@ interface EntityFormModalProps<TFormSchema, TEntity> {
   formSchema: z.ZodType<any>;
   defaultValues: DefaultValues<TFormSchema>;
   onSubmit: (data: TEntity) => void;
-  renderForm: (form: ReturnType<typeof useForm>) => React.ReactNode;
-  submitButtonText?: string;
+  renderForm: (form: UseFormReturn<TFormSchema>) => React.ReactNode;
+  submitButtonText?: string | React.ReactNode;
   cancelButtonText?: string;
   submitButtonClassName?: string;
 }
 
-export function EntityFormModal<
-  TFormSchema extends Record<string, any>,
-  TEntity
->({
+import type { FieldValues } from "react-hook-form";
+
+export function EntityFormModal<TFormSchema extends FieldValues, TEntity>({
   isOpen,
   onClose,
   title,
@@ -50,7 +48,7 @@ export function EntityFormModal<
   submitButtonText = "Save",
   cancelButtonText = "Cancel",
   submitButtonClassName = "bg-green-600 hover:bg-green-700",
-}: EntityFormModalProps<TFormSchema, TEntity>) {
+}: IEntityFormModalProps<TFormSchema, TEntity>) {
   const form = useForm<TFormSchema>({
     resolver: zodResolver(formSchema),
     defaultValues,
@@ -61,7 +59,7 @@ export function EntityFormModal<
       // Cast entity to the form schema type and reset the form
       form.reset(entity as unknown as TFormSchema);
     } else {
-      form.reset(defaultValues as TFormSchema);
+      form.reset(defaultValues);
     }
   }, [entity, form, defaultValues]);
 
@@ -80,7 +78,7 @@ export function EntityFormModal<
             onSubmit={form.handleSubmit(handleSubmit)}
             className="space-y-6"
           >
-            {renderForm(form as unknown as UseFormReturn<FieldValues>)}
+            {renderForm(form)}
             <DialogFooter>
               <Button type="button" variant="outline" onClick={onClose}>
                 {cancelButtonText}

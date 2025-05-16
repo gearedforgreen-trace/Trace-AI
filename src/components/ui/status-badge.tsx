@@ -1,6 +1,6 @@
 import { Badge } from "@/components/ui/badge";
 
-interface StatusBadgeProps {
+interface IStatusBadgeProps {
   status: string;
   statusMap?: Record<
     string,
@@ -23,12 +23,15 @@ export function StatusBadge({
     inactive: {
       label: "Inactive",
       variant: "secondary",
-      className: "bg-gray-500 text-white",
+      className: "bg-gray-500",
     },
   },
-}: StatusBadgeProps) {
-  const statusConfig = statusMap[status] || {
-    label: status,
+}: IStatusBadgeProps) {
+  // Convert status to lowercase for consistent mapping
+  const normalizedStatus = status?.toLowerCase() || "inactive";
+
+  const statusConfig = statusMap[normalizedStatus] || {
+    label: status || "Unknown",
     variant: "outline",
   };
 

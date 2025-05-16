@@ -12,7 +12,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
-interface DataTableActionsProps<TData> {
+interface IDataTableActionsProps<TData> {
   row: Row<TData>;
   onEdit?: (data: TData) => void;
   onDelete?: (data: TData) => void;
@@ -28,7 +28,7 @@ export function DataTableActions<TData>({
   onEdit,
   onDelete,
   actions = [],
-}: DataTableActionsProps<TData>) {
+}: IDataTableActionsProps<TData>) {
   const rowData = row.original;
 
   // If we have only edit and delete actions, show them directly
