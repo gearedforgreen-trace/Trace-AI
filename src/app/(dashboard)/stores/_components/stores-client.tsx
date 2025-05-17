@@ -53,8 +53,11 @@ export default function StoresClient() {
     // Only allow closing if not currently submitting
     if (!isSubmitting) {
       setIsModalOpen(false);
-      setCurrentStore(null);
-      setFormError(null);
+      // Only clear current store after modal is closed
+      setTimeout(() => {
+        setCurrentStore(null);
+        setFormError(null);
+      }, 300);
     }
   };
 

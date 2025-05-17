@@ -74,7 +74,7 @@ export function StoreFormModal({
     city: "",
     state: "",
     zip: "",
-    country: "USA",
+    country: "",
     lat: 0,
     lng: 0,
   };
