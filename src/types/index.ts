@@ -54,5 +54,43 @@ export interface IUser {
   createdAt: string;
 }
 
+// New interfaces for Bins module
+export interface IMaterial {
+  id: string;
+  name: string;
+  description: string | null;
+  createdAt: string;
+  updatedAt: string;
+  rewardRuleId: string | null;
+  rewardRule?: IRewardRule;
+}
+
+export interface IRewardRule {
+  id: string;
+  description: string | null;
+  unitType: string;
+  unit: number;
+  point: number;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface IBin {
+  id: string;
+  number: string;
+  materialId: string;
+  storeId: string;
+  description: string | null;
+  imageUrl: string | null;
+  status: string;
+  createdAt: string;
+  updatedAt: string;
+  material?: IMaterial;
+  store?: IStore;
+}
+
 export type Store = IStore;
 export type Product = IProduct;
+export type Bin = IBin;
+export type Material = IMaterial;
+export type RewardRule = IRewardRule;

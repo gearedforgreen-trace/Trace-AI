@@ -84,6 +84,24 @@ export function StoreIcon() {
   );
 }
 
+export function BinIcon() {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+    >
+      <g fill="none">
+        <path
+          fill="currentColor"
+          d="M9 3a1 1 0 0 0-1 1v1H5a1 1 0 1 0 0 2h.4l.86 12.05A2 2 0 0 0 8.25 21h7.5a2 2 0 0 0 1.99-1.95L18.6 7H19a1 1 0 1 0 0-2h-3V4a1 1 0 0 0-1-1H9Zm1 2h4v1h-4V5Zm-1.75 14L7.4 7h9.2l-.85 12H8.25ZM10 9a1 1 0 0 1 1 1v6a1 1 0 1 1-2 0v-6a1 1 0 0 1 1-1Zm4 0a1 1 0 0 1 1 1v6a1 1 0 1 1-2 0v-6a1 1 0 0 1 1-1Z"
+        />
+      </g>
+    </svg>
+  );
+}
+
 export function QRCodesBinsIcon() {
   return (
     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
