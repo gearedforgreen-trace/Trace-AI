@@ -21,6 +21,7 @@ import {
   QRCodesBinsIcon,
   RewardPointsIcon,
   DashboardIcon,
+  BinIcon,
 } from "@/components/icons/sidebar-icons";
 import { cn } from "@/lib/utils";
 import { Separator } from "@/components/ui/separator";
@@ -49,14 +50,19 @@ const data = {
       icon: <UsersIcon />,
     },
     {
-      title: "Coupons",
-      url: "/coupons",
-      icon: <CouponsIcon />,
-    },
-    {
       title: "Stores",
       url: "/stores",
       icon: <StoreIcon />,
+    },
+    {
+      title: "Bins",
+      url: "/bins",
+      icon: <BinIcon />,
+    },
+    {
+      title: "Coupons",
+      url: "/coupons",
+      icon: <CouponsIcon />,
     },
     {
       title: "QR Codes (Bins)",
