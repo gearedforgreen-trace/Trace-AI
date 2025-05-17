@@ -102,6 +102,24 @@ export function BinIcon() {
   );
 }
 
+export function MaterialsIcon() {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+    >
+      <g fill="none">
+        <path
+          fill="currentColor"
+          d="M3.8 7.2 12 3l8.2 4.2a1 1 0 0 1 0 1.8L12 13 3.8 9a1 1 0 0 1 0-1.8Zm0 5L12 16l8.2-3.8a1 1 0 0 0 0-1.8L12 14 3.8 10.4a1 1 0 0 0 0 1.8Zm0 4.5L12 19.5l8.2-2.8a1 1 0 0 0 0-1.4L12 18 3.8 15.5a1 1 0 0 0 0 1.4Z"
+        />
+      </g>
+    </svg>
+  );
+}
+
 export function QRCodesBinsIcon() {
   return (
     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
