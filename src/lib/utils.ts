@@ -1,26 +1,26 @@
-import { clsx, type ClassValue } from "clsx"
-import { twMerge } from "tailwind-merge"
+import { clsx, type ClassValue } from "clsx";
+import { twMerge } from "tailwind-merge";
+
+import { format } from "date-fns";
 
 export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs))
+  return twMerge(clsx(inputs));
 }
 
 export function delay(ms: number) {
-  return new Promise((resolve) => setTimeout(resolve, ms))
+  return new Promise((resolve) => setTimeout(resolve, ms));
 }
-
 
 export function isActivePath(
   path: string,
   url: string,
   strict: boolean = false
 ): boolean {
-  if (url === '/') {
-    return path === '/';
+  if (url === "/") {
+    return path === "/";
   }
   return strict ? path === url : path.startsWith(url);
 }
-
 
 export function getNameInitials(
   name: string,
@@ -28,11 +28,20 @@ export function getNameInitials(
   uppercase: boolean = true
 ): string {
   const initials = name
-    .split(' ')
+    .split(" ")
     .map((part) => part.at(0))
     .filter(Boolean) // Remove any undefined values if only one name exists
     .slice(0, length) // Take only the first two initials
-    .join('');
+    .join("");
 
   return uppercase ? initials.toUpperCase() : initials;
+}
+
+export function formatDate(date: string | Date): string {
+  try {
+    return format(new Date(date), "MMMM d, yyyy");
+  } catch (error) {
+    console.error("Error formatting date:", error);
+    return "Invalid Date";
+  }
 }

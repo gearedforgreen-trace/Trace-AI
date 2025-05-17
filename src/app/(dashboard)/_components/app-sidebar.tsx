@@ -22,6 +22,7 @@ import {
   RewardPointsIcon,
   DashboardIcon,
   BinIcon,
+  MaterialsIcon,
 } from "@/components/icons/sidebar-icons";
 import { cn } from "@/lib/utils";
 import { Separator } from "@/components/ui/separator";
@@ -58,6 +59,11 @@ const data = {
       title: "Bins",
       url: "/bins",
       icon: <BinIcon />,
+    },
+    {
+      title: "Materials",
+      url: "/materials",
+      icon: <MaterialsIcon />,
     },
     {
       title: "Coupons",
