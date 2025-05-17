@@ -35,7 +35,10 @@ const storeFormSchema = z.object({
   address2: z.string().nullable(),
   city: z.string().min(1, "City is required"),
   state: z.string().min(1, "State is required"),
-  zip: z.string().min(1, "ZIP code is required"),
+  zip: z
+    .string()
+    .min(1, "ZIP code is required")
+    .min(5, "Must be at least 5 characters"),
   country: z.string().min(1, "Country is required"),
   lat: z.number(),
   lng: z.number(),
@@ -74,7 +77,7 @@ export function StoreFormModal({
     city: "",
     state: "",
     zip: "",
-    country: "USA",
+    country: "",
     lat: 0,
     lng: 0,
   };

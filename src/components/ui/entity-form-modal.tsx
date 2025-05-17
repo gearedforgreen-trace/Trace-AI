@@ -2,8 +2,13 @@
 
 import type React from "react";
 
-import { useEffect } from "react";
-import { useForm } from "react-hook-form";
+import { useEffect, useRef } from "react";
+import {
+  useForm,
+  type UseFormReturn,
+  type FieldValues,
+  type DefaultValues,
+} from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import type { z } from "zod";
 import {
@@ -15,10 +20,6 @@ import {
 } from "@/components/ui/dialog";
 import { Form } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
-
-import type { DefaultValues } from "react-hook-form";
-
-import type { UseFormReturn } from "react-hook-form";
 
 interface IEntityFormModalProps<TFormSchema extends FieldValues, TEntity> {
   isOpen: boolean;
@@ -33,8 +34,6 @@ interface IEntityFormModalProps<TFormSchema extends FieldValues, TEntity> {
   cancelButtonText?: string;
   submitButtonClassName?: string;
 }
-
-import type { FieldValues } from "react-hook-form";
 
 export function EntityFormModal<TFormSchema extends FieldValues, TEntity>({
   isOpen,
@@ -54,17 +53,53 @@ export function EntityFormModal<TFormSchema extends FieldValues, TEntity>({
     defaultValues,
   });
 
-  useEffect(() => {
-    if (entity) {
-      // Cast entity to the form schema type and reset the form
-      form.reset(entity as unknown as TFormSchema);
-    } else {
-      form.reset(defaultValues);
-    }
-  }, [entity, form, defaultValues]);
+  // Use refs to track previous values and submission state
+  const prevEntityRef = useRef<TEntity | null>(null);
+  const prevOpenRef = useRef<boolean>(false);
+  const isSubmittingRef = useRef<boolean>(false);
 
-  const handleSubmit = (data: TFormSchema) => {
-    onSubmit(data as unknown as TEntity);
+  // Only reset the form when entity changes or modal opens/closes
+  // but not during form submission
+  useEffect(() => {
+    const entityChanged = entity !== prevEntityRef.current;
+    const openStateChanged = isOpen !== prevOpenRef.current;
+
+    // Only reset if the entity changed or the modal was just opened
+    // and we're not in the middle of a submission
+    if (
+      (entityChanged || (openStateChanged && isOpen)) &&
+      !isSubmittingRef.current
+    ) {
+      if (entity) {
+        // Cast entity to the form schema type and reset the form
+        form.reset(entity as unknown as TFormSchema);
+      } else {
+        form.reset(defaultValues);
+      }
+
+      // Update refs
+      prevEntityRef.current = entity;
+    }
+
+    // Always update the open state ref
+    prevOpenRef.current = isOpen;
+  }, [entity, form, defaultValues, isOpen]);
+
+  const handleSubmit = async (data: TFormSchema) => {
+    // Set submitting flag to prevent form reset during submission
+    isSubmittingRef.current = true;
+
+    try {
+      await onSubmit(data as unknown as TEntity);
+      // Only reset the form on successful submission
+      // The parent component will close the modal on success
+    } catch (error) {
+      // Don't reset the form on error
+      console.error("Form submission error:", error);
+    } finally {
+      // Reset submitting flag
+      isSubmittingRef.current = false;
+    }
   };
 
   return (

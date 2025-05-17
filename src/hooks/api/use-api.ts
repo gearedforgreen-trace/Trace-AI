@@ -89,6 +89,8 @@ export function useApiCrud<T extends { id?: string }>(
     perPage: 20,
     total: 0,
     lastPage: 1,
+    prev: null as number | null,
+    next: null as number | null,
   });
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
@@ -106,6 +108,8 @@ export function useApiCrud<T extends { id?: string }>(
           perPage: response.meta.perPage,
           total: response.meta.total,
           lastPage: response.meta.lastPage,
+          prev: response.meta.prev,
+          next: response.meta.next,
         });
         return response;
       } catch (err) {
@@ -128,8 +132,8 @@ export function useApiCrud<T extends { id?: string }>(
 
   // Load entities on mount
   useEffect(() => {
-    fetchEntities(pagination.currentPage, pagination.perPage);
-  }, [fetchEntities, pagination.currentPage, pagination.perPage]);
+    fetchEntities(1, 20);
+  }, [fetchEntities]);
 
   // Create entity
   const createEntity = async (data: Partial<T>): Promise<T | null> => {
@@ -216,7 +220,21 @@ export function useApiCrud<T extends { id?: string }>(
   // Change page
   const changePage = (page: number) => {
     if (page < 1 || page > pagination.lastPage) return;
-    setPagination((prev) => ({ ...prev, currentPage: page }));
+    fetchEntities(page, pagination.perPage);
+  };
+
+  // Go to next page
+  const goToNextPage = () => {
+    if (pagination.next) {
+      fetchEntities(pagination.next, pagination.perPage);
+    }
+  };
+
+  // Go to previous page
+  const goToPrevPage = () => {
+    if (pagination.prev) {
+      fetchEntities(pagination.prev, pagination.perPage);
+    }
   };
 
   return {
@@ -228,6 +246,8 @@ export function useApiCrud<T extends { id?: string }>(
     updateEntity,
     deleteEntity,
     changePage,
+    goToNextPage,
+    goToPrevPage,
     refetch: () => fetchEntities(pagination.currentPage, pagination.perPage),
   };
 }
