@@ -4,40 +4,25 @@ import { useMemo } from "react";
 import type { ColumnDef } from "@tanstack/react-table";
 import { DataTable } from "@/components/ui/data-table/data-table";
 import { DataTableActions } from "@/components/ui/data-table/data-table-actions";
-import { EntityImage } from "@/components/ui/entity-image";
 import { StatusBadge } from "@/components/ui/status-badge";
-import { Input } from "@/components/ui/input";
-import { Search } from "lucide-react";
+import { Skeleton } from "@/components/ui/skeleton";
 import type { IStore } from "@/types";
 
-interface StoresTableProps {
+interface IStoresTableProps {
   stores: IStore[];
+  isLoading?: boolean;
   onEdit: (store: IStore) => void;
   onDelete: (store: IStore) => void;
-  searchTerm: string;
-  onSearchChange: (value: string) => void;
 }
 
 export function StoresTable({
   stores,
+  isLoading = false,
   onEdit,
   onDelete,
-  searchTerm,
-  onSearchChange,
-}: StoresTableProps) {
+}: IStoresTableProps) {
   const columns = useMemo<ColumnDef<IStore>[]>(
     () => [
-      {
-        accessorKey: "imageUrl",
-        header: "Image",
-        cell: ({ row }) => (
-          <EntityImage
-            src={row.original.imageUrl}
-            alt={row.original.name}
-            size={40}
-          />
-        ),
-      },
       {
         accessorKey: "name",
         header: "Name",
@@ -48,7 +33,12 @@ export function StoresTable({
       {
         accessorKey: "status",
         header: "Status",
-        cell: ({ row }) => <StatusBadge status={row.getValue("status")} />,
+        cell: ({ row }) => {
+          // Convert status to lowercase for the StatusBadge component
+          const status =
+            (row.getValue("status") as string)?.toLowerCase() || "inactive";
+          return <StatusBadge status={status} />;
+        },
       },
       {
         accessorKey: "location",
@@ -64,7 +54,7 @@ export function StoresTable({
         header: "Description",
         cell: ({ row }) => (
           <div className="hidden lg:block max-w-[300px] truncate">
-            {row.original.description}
+            {row.original.description || "No description"}
           </div>
         ),
       },
@@ -82,32 +72,17 @@ export function StoresTable({
     [onEdit, onDelete]
   );
 
-  // Filter data based on search term
-  const filteredData = useMemo(() => {
-    if (!searchTerm) return stores;
-
-    return stores.filter(
-      (store) =>
-        store.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        store.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        store.city.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        store.state.toLowerCase().includes(searchTerm.toLowerCase())
+  if (isLoading) {
+    return (
+      <div className="space-y-4">
+        <Skeleton className="h-[400px] w-full" />
+      </div>
     );
-  }, [stores, searchTerm]);
+  }
 
   return (
     <div className="space-y-4">
-      <div className="relative">
-        <Search className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
-        <Input
-          placeholder="Search stores..."
-          value={searchTerm}
-          onChange={(e) => onSearchChange(e.target.value)}
-          className="pl-8"
-        />
-      </div>
-
-      <DataTable columns={columns} data={filteredData} />
+      <DataTable columns={columns} data={stores} />
     </div>
   );
 }

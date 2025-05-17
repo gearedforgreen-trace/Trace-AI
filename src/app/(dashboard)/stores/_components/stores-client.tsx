@@ -1,127 +1,167 @@
 "use client";
 
-import { useState } from "react";
-import { useEntityCrud } from "@/hooks/use-entity-crud";
+import { useState, useEffect } from "react";
+import { useApiCrud } from "@/hooks/api/use-api";
+import { ApiService } from "@/lib/api/api-service";
 import { EntityHeader } from "@/components/ui/entity-header";
 import { ConfirmationDialog } from "@/components/ui/confirmation-dialog";
+import { useToast } from "@/components/ui/use-toast";
+import { ApiError } from "@/lib/api/error-handler";
 import type { IStore } from "@/types";
-import { StoresTable } from "./stores-table";
 import { StoreFormModal } from "./store-form-modal";
+import { StoresTable } from "./stores-table";
 
-// Mock data for demonstration
-const mockStores: IStore[] = [
-  {
-    id: "1",
-    name: "Downtown Market",
-    description: "Premium grocery store in the heart of downtown",
-    imageUrl: "/placeholder.svg?height=40&width=40",
-    status: "active",
-    address: "123 Main Street",
-    city: "New York",
-    state: "NY",
-    zip: "10001",
-    country: "USA",
-    lat: 40.7128,
-    lng: -74.006,
-    organizationId: "org_123",
-  },
-  {
-    id: "2",
-    name: "Westside Pharmacy",
-    description: "24/7 pharmacy with prescription services",
-    imageUrl: "/placeholder.svg?height=40&width=40",
-    status: "active",
-    address: "456 West Avenue",
-    city: "Los Angeles",
-    state: "CA",
-    zip: "90001",
-    country: "USA",
-    lat: 34.0522,
-    lng: -118.2437,
-    organizationId: "org_123",
-  },
-  {
-    id: "3",
-    name: "Northside Electronics",
-    description: "Electronics and gadgets store",
-    imageUrl: "/placeholder.svg?height=40&width=40",
-    status: "inactive",
-    address: "789 North Blvd",
-    city: "Chicago",
-    state: "IL",
-    zip: "60007",
-    country: "USA",
-    lat: 41.8781,
-    lng: -87.6298,
-    organizationId: "org_123",
-  },
-  {
-    id: "4",
-    name: "Eastside Cafe",
-    description: "Cozy cafe with fresh pastries",
-    imageUrl: "/placeholder.svg?height=40&width=40",
-    status: "active",
-    address: "321 East Road",
-    city: "Boston",
-    state: "MA",
-    zip: "02108",
-    country: "USA",
-    lat: 42.3601,
-    lng: -71.0589,
-    organizationId: "org_123",
-  },
-  {
-    id: "5",
-    name: "Southside Apparel",
-    description: "Fashion and clothing store",
-    imageUrl: "/placeholder.svg?height=40&width=40",
-    status: "active",
-    address: "654 South Street",
-    city: "Miami",
-    state: "FL",
-    zip: "33101",
-    country: "USA",
-    lat: 25.7617,
-    lng: -80.1918,
-    organizationId: "org_123",
-  },
-];
+// Create a stores API service
+const storesApi = new ApiService<IStore>("/stores");
 
 export default function StoresClient() {
-  const [searchTerm, setSearchTerm] = useState("");
+  const { toast } = useToast();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
+  const [currentStore, setCurrentStore] = useState<IStore | null>(null);
+  const [storeToDelete, setStoreToDelete] = useState<IStore | null>(null);
+  const [formError, setFormError] = useState<string | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
+  // Use the CRUD hook for stores
   const {
     entities: stores,
-    currentEntity: currentStore,
-    isModalOpen,
-    isDeleteDialogOpen,
-    entityToDelete,
-    openCreateModal,
-    openEditModal,
-    closeModal,
-    openDeleteDialog,
-    closeDeleteDialog,
-    handleSave,
-    handleDelete,
-  } = useEntityCrud<IStore>({
-    initialEntities: mockStores,
-  });
+    pagination,
+    isLoading,
+    error,
+    createEntity,
+    updateEntity,
+    deleteEntity,
+    changePage,
+    refetch,
+  } = useApiCrud<IStore>(storesApi);
+
+  // Modal handlers
+  const openCreateModal = () => {
+    setCurrentStore(null);
+    setFormError(null);
+    setIsModalOpen(true);
+  };
+
+  const openEditModal = (store: IStore) => {
+    setCurrentStore(store);
+    setFormError(null);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    // Only allow closing if not currently submitting
+    if (!isSubmitting) {
+      setIsModalOpen(false);
+      setCurrentStore(null);
+      setFormError(null);
+    }
+  };
+
+  // Delete dialog handlers
+  const openDeleteDialog = (store: IStore) => {
+    setStoreToDelete(store);
+    setIsDeleteDialogOpen(true);
+  };
+
+  const closeDeleteDialog = () => {
+    setIsDeleteDialogOpen(false);
+    setStoreToDelete(null);
+  };
+
+  // Save handler with improved error handling
+  const handleSave = async (store: IStore) => {
+    setIsSubmitting(true);
+    setFormError(null);
+
+    try {
+      if (currentStore?.id) {
+        // Update existing store
+        const result = await updateEntity({ id: currentStore.id, data: store });
+        if (result) {
+          toast({
+            title: "Success",
+            description: "Store updated successfully",
+          });
+          setIsModalOpen(false); // Only close modal on success
+        }
+      } else {
+        // Create new store
+        const result = await createEntity(store);
+        if (result) {
+          toast({
+            title: "Success",
+            description: "Store created successfully",
+          });
+          setIsModalOpen(false); // Only close modal on success
+        }
+      }
+    } catch (err) {
+      // Handle the error but keep the modal open
+      const errorMessage =
+        err instanceof ApiError
+          ? err.message
+          : "Failed to save store. Please try again.";
+
+      setFormError(errorMessage);
+
+      toast({
+        title: "Error",
+        description: errorMessage,
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  // Delete handler
+  const handleDelete = async () => {
+    if (!storeToDelete?.id) return;
+
+    try {
+      const success = await deleteEntity(storeToDelete.id);
+      if (success) {
+        toast({ title: "Success", description: "Store deleted successfully" });
+        closeDeleteDialog();
+      } else {
+        throw new Error("Failed to delete store");
+      }
+    } catch (error) {
+      toast({
+        title: "Error",
+        description:
+          error instanceof Error ? error.message : "Failed to delete store",
+        variant: "destructive",
+      });
+    }
+  };
+
+  // Show error toast when error changes
+  useEffect(() => {
+    if (error) {
+      toast({
+        title: "Error",
+        description: "Failed to load stores",
+        variant: "destructive",
+      });
+    }
+  }, [error, toast]);
 
   return (
     <div className="space-y-4">
       <EntityHeader
         title="Store Locations"
-        description="Manage your store locations and details"
+        description={`Manage your store locations (${pagination.total} total)`}
         onAdd={openCreateModal}
         addButtonText="Add Store"
       />
 
       <StoresTable
         stores={stores}
+        isLoading={isLoading}
         onEdit={openEditModal}
         onDelete={openDeleteDialog}
-        searchTerm={searchTerm}
-        onSearchChange={setSearchTerm}
       />
 
       <StoreFormModal
@@ -129,6 +169,8 @@ export default function StoresClient() {
         onClose={closeModal}
         store={currentStore}
         onSave={handleSave}
+        isLoading={isSubmitting}
+        error={formError}
       />
 
       <ConfirmationDialog
@@ -136,7 +178,7 @@ export default function StoresClient() {
         onClose={closeDeleteDialog}
         onConfirm={handleDelete}
         title="Are you sure?"
-        description={`This will permanently delete the store "${entityToDelete?.name}". This action cannot be undone.`}
+        description={`This will permanently delete the store "${storeToDelete?.name}". This action cannot be undone.`}
         confirmText="Delete"
       />
     </div>

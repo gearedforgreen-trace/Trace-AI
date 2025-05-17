@@ -5,7 +5,7 @@ import type React from "react";
 import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
 
-interface EntityHeaderProps {
+interface IEntityHeaderProps {
   title: string;
   description?: string;
   onAdd?: () => void;
@@ -23,7 +23,7 @@ export function EntityHeader({
   addButtonIcon = <Plus className="mr-2 h-4 w-4" />,
   addButtonClassName = "bg-green-600 hover:bg-green-700",
   children,
-}: EntityHeaderProps) {
+}: IEntityHeaderProps) {
   return (
     <div className="flex justify-between items-center">
       <div>

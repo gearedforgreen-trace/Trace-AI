@@ -11,7 +11,7 @@ import {
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
 
-interface ConfirmationDialogProps {
+interface IConfirmationDialogProps {
   isOpen: boolean;
   onClose: () => void;
   onConfirm: () => void;
@@ -31,7 +31,7 @@ export function ConfirmationDialog({
   confirmText = "Confirm",
   cancelText = "Cancel",
   confirmButtonClassName = "bg-red-500 hover:bg-red-600",
-}: ConfirmationDialogProps) {
+}: IConfirmationDialogProps) {
   return (
     <AlertDialog open={isOpen} onOpenChange={onClose}>
       <AlertDialogContent>
