@@ -13,9 +13,11 @@ export class ApiService<T> {
   // Get all items with pagination
   async getAll(page = 1, perPage = 20): Promise<IApiResponse<T>> {
     try {
+      console.log(`Fetching page ${page} with ${perPage} items per page`);
       const response = await api.get<IApiResponse<T>>(this.endpoint, {
         params: { page, perPage },
       });
+      console.log("API Response:", response.data);
       return response.data;
     } catch (error) {
       console.error(`Error fetching ${this.endpoint}:`, error);

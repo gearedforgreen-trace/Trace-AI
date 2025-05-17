@@ -151,6 +151,23 @@ export default function StoresClient() {
     }
   }, [error, toast]);
 
+  // Handle page change
+  const handlePageChange = (page: number) => {
+    changePage(page);
+  };
+
+  // Add pagination information to the console for debugging
+  useEffect(() => {
+    console.log("Pagination info:", {
+      currentPage: pagination.currentPage,
+      lastPage: pagination.lastPage,
+      total: pagination.total,
+      perPage: pagination.perPage,
+      prev: pagination.prev,
+      next: pagination.next,
+    });
+  }, [pagination]);
+
   return (
     <div className="space-y-4">
       <EntityHeader
@@ -165,6 +182,15 @@ export default function StoresClient() {
         isLoading={isLoading}
         onEdit={openEditModal}
         onDelete={openDeleteDialog}
+        pagination={{
+          currentPage: pagination.currentPage,
+          perPage: pagination.perPage,
+          total: pagination.total,
+          lastPage: pagination.lastPage,
+          prev: pagination.prev,
+          next: pagination.next,
+        }}
+        onPageChange={handlePageChange}
       />
 
       <StoreFormModal
