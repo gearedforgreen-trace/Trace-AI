@@ -55,6 +55,16 @@ export interface IUser {
 }
 
 // New interfaces for Bins module
+export interface IOrganization {
+  id: string;
+  name: string;
+  slug: string | null;
+  logo: string | null;
+  createdAt: string;
+  updatedAt: string;
+  metadata: string | null;
+}
+
 export interface IMaterial {
   id: string;
   name: string;
@@ -94,3 +104,4 @@ export type Product = IProduct;
 export type Bin = IBin;
 export type Material = IMaterial;
 export type RewardRule = IRewardRule;
+export type Organization = IOrganization;

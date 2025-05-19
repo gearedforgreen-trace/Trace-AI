@@ -23,6 +23,7 @@ import {
   DashboardIcon,
   BinIcon,
   MaterialsIcon,
+  OrganizationsIcon,
 } from "@/components/icons/sidebar-icons";
 import { cn } from "@/lib/utils";
 import { Separator } from "@/components/ui/separator";
@@ -44,6 +45,11 @@ const data = {
       title: "Analytics",
       url: "/analytics",
       icon: <AnalyticsIcon />,
+    },
+    {
+      title: "Organizations",
+      url: "/organizations",
+      icon: <OrganizationsIcon />,
     },
     {
       title: "Users",

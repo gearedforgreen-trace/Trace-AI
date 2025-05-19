@@ -55,6 +55,10 @@ export const ac = createAccessControl(statement);
 export const admin = ac.newRole({
   user: [...statement.user],
   session: [...statement.session],
+  organization: [...statement.organization],
+  member: [...statement.member],
+  invitation: [...statement.invitation],
+  team: [...statement.team],
   store: [...statement.store],
   rewardRule: [...statement.rewardRule],
   material: [...statement.material],

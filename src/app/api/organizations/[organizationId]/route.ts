@@ -1,0 +1,153 @@
+import { auth } from '@/lib/auth';
+import prisma from '@/lib/prisma';
+import { getSession } from '@/lib/servers/sessions';
+import { NextResponse, NextRequest } from 'next/server';
+import { organizationSchema } from '@/schemas/organization.schema';
+
+export async function PUT(
+  request: NextRequest,
+  context: { params: Promise<{ organizationId: string }> }
+) {
+  try {
+    const { organizationId } = await context.params;
+    const session = await getSession();
+
+    if (!session || !session.user.role) {
+      return NextResponse.json(
+        {
+          error: 'Unauthorized',
+        },
+        { status: 401 }
+      );
+    }
+
+    const hasUpdatePermission = await auth.api.userHasPermission({
+      body: {
+        role: session.user.role as 'admin' | 'user',
+        permission: {
+          organization: ['update'],
+        },
+      },
+    });
+
+    if (!hasUpdatePermission.success) {
+      return NextResponse.json(
+        {
+          error: 'Forbidden',
+        },
+        { status: 403 }
+      );
+    }
+
+    const body = await request.json();
+
+    const validatedBody = organizationSchema.safeParse(body);
+
+    if (validatedBody.error) {
+      return NextResponse.json(
+        {
+          error: 'Unprocessable Content',
+          details: validatedBody.error.flatten().fieldErrors,
+        },
+        { status: 422 }
+      );
+    }
+
+    const organization = await prisma.organization.update({
+      where: {
+        id: organizationId,
+      },
+      data: {
+        name: validatedBody.data.name,
+        slug: validatedBody.data.slug || null,
+        logo: validatedBody.data.logo || null,
+        metadata: validatedBody.data.metadata ? JSON.stringify(validatedBody.data.metadata) : null,
+      },
+    });
+
+    return NextResponse.json(
+      {
+        data: organization,
+      },
+      { status: 200 }
+    );
+  } catch (error: any) {
+    console.error(error);
+    if (error.code === 'P2025') {
+      return NextResponse.json(
+        {
+          error: 'Not Found',
+        },
+        { status: 404 }
+      );
+    }
+    return NextResponse.json(
+      { error: 'Internal Server Error' },
+      { status: 500 }
+    );
+  }
+}
+
+export async function DELETE(
+  request: NextRequest,
+  context: { params: Promise<{ organizationId: string }> }
+) {
+  try {
+    const { organizationId } = await context.params;
+    const session = await getSession();
+
+    if (!session || !session.user.role) {
+      return NextResponse.json(
+        {
+          error: 'Unauthorized',
+        },
+        { status: 401 }
+      );
+    }
+
+    const hasDeletePermission = await auth.api.userHasPermission({
+      body: {
+        role: session.user.role as 'admin' | 'user',
+        permission: {
+          organization: ['delete'],
+        },
+      },
+    });
+
+    if (!hasDeletePermission.success) {
+      return NextResponse.json(
+        {
+          error: 'Forbidden',
+        },
+        { status: 403 }
+      );
+    }
+
+    await prisma.organization.delete({
+      where: {
+        id: organizationId,
+      },
+    });
+
+    return NextResponse.json(
+      {
+        message: 'Organization deleted successfully',
+      },
+      { status: 200 }
+    );
+  } catch (error: any) {
+    console.error(error);
+    if (error.code === 'P2025') {
+      return NextResponse.json(
+        {
+          error: 'Not Found',
+        },
+        { status: 404 }
+      );
+    }
+    return NextResponse.json(
+      { error: 'Internal Server Error' },
+      { status: 500 }
+    );
+  }
+}

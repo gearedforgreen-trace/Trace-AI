@@ -151,3 +151,19 @@ export function RewardPointsIcon() {
     </svg>
   );
 }
+
+export function OrganizationsIcon() {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+    >
+      <path
+        fill="currentColor"
+        d="M3 21V3h9v5h9v13H3zm2-2h4v-2H5v2zm0-4h4v-2H5v2zm0-4h4v-2H5v2zm0-4h4V5H5v2zm6 12h4v-2h-4v2zm0-4h4v-2h-4v2zm0-4h4v-2h-4v2zm0-4h4V5h-4v2zm6 12h2v-2h-2v2zm0-4h2v-2h-2v2zm0-4h2v-2h-2v2z"
+      />
+    </svg>
+  );
+}
