@@ -6,10 +6,10 @@ import { organizationSchema } from '@/schemas/organization.schema';
 
 export async function GET(
   request: NextRequest,
-  context: { params: Promise<{ organizationId: string }> }
+  { params }: { params: { organizationId: string } }
 ) {
   try {
-    const { organizationId } = await context.params;
+    const { organizationId } = await params;
     const session = await getSession();
 
     if (!session || !session.user.role) {
@@ -76,10 +76,10 @@ export async function GET(
 
 export async function PUT(
   request: NextRequest,
-  context: { params: Promise<{ organizationId: string }> }
+  { params }: { params: { organizationId: string } }
 ) {
   try {
-    const { organizationId } = await context.params;
+    const { organizationId } = await params;
     const session = await getSession();
 
     if (!session || !session.user.role) {
@@ -160,10 +160,10 @@ export async function PUT(
 
 export async function DELETE(
   request: NextRequest,
-  context: { params: Promise<{ organizationId: string }> }
+  { params }: { params: { organizationId: string } }
 ) {
   try {
-    const { organizationId } = await context.params;
+    const { organizationId } = await params;
     const session = await getSession();
 
     if (!session || !session.user.role) {

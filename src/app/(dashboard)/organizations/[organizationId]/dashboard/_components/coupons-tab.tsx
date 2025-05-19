@@ -6,11 +6,14 @@ import { Button } from "@/components/ui/button";
 import { Plus, Ticket, Info } from "lucide-react";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Card, CardContent } from "@/components/ui/card";
-import { ApiService } from "@/lib/api/api-service";
-import { useApiCrud } from "@/hooks/api/use-api";
 import { ConfirmationDialog } from "@/components/ui/confirmation-dialog";
-import { ApiError } from "@/lib/api/error-handler";
 import type { Coupon } from "@/types";
+import { 
+  useGetCouponsQuery, 
+  useCreateCouponMutation, 
+  useUpdateCouponMutation, 
+  useDeleteCouponMutation 
+} from "@/store/api/couponsApi";
 
 interface CouponsTabProps {
   organizationId: string;
@@ -24,22 +27,23 @@ export default function CouponsTab({ organizationId }: CouponsTabProps) {
   const [couponToDelete, setCouponToDelete] = useState<Coupon | null>(null);
   const [formError, setFormError] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [page, setPage] = useState(1);
+  const perPage = 10;
 
-  // Create a coupons API service with organization filter
-  const couponsApi = new ApiService<Coupon>(`/coupons?organizationId=${organizationId}`);
+  // Use RTK Query hooks
+  const { 
+    data: couponsData, 
+    isLoading, 
+    error 
+  } = useGetCouponsQuery({ 
+    organizationId, 
+    page, 
+    perPage 
+  });
 
-  // Use the CRUD hook for coupons
-  const {
-    entities: coupons,
-    pagination,
-    isLoading,
-    error,
-    createEntity,
-    updateEntity,
-    deleteEntity,
-    changePage,
-    refetch,
-  } = useApiCrud<Coupon>(couponsApi);
+  const [createCoupon] = useCreateCouponMutation();
+  const [updateCoupon] = useUpdateCouponMutation();
+  const [deleteCoupon] = useDeleteCouponMutation();
 
   // Modal handlers
   const openCreateModal = () => {
@@ -89,28 +93,29 @@ export default function CouponsTab({ organizationId }: CouponsTabProps) {
 
       if (currentCoupon?.id) {
         // Update existing coupon
-        const result = await updateEntity({ id: currentCoupon.id, data: couponWithOrg });
-        if (result) {
-          toast({
-            title: "Success",
-            description: "Coupon updated successfully",
-          });
-          setIsModalOpen(false);
-        }
+        await updateCoupon({ 
+          id: currentCoupon.id, 
+          coupon: couponWithOrg 
+        }).unwrap();
+        
+        toast({
+          title: "Success",
+          description: "Coupon updated successfully",
+        });
+        setIsModalOpen(false);
       } else {
         // Create new coupon
-        const result = await createEntity(couponWithOrg);
-        if (result) {
-          toast({
-            title: "Success",
-            description: "Coupon created successfully",
-          });
-          setIsModalOpen(false);
-        }
+        await createCoupon(couponWithOrg).unwrap();
+        
+        toast({
+          title: "Success",
+          description: "Coupon created successfully",
+        });
+        setIsModalOpen(false);
       }
     } catch (err) {
       const errorMessage =
-        err instanceof ApiError
+        err instanceof Error
           ? err.message
           : "Failed to save coupon. Please try again.";
 
@@ -131,13 +136,9 @@ export default function CouponsTab({ organizationId }: CouponsTabProps) {
     if (!couponToDelete?.id) return;
 
     try {
-      const success = await deleteEntity(couponToDelete.id);
-      if (success) {
-        toast({ title: "Success", description: "Coupon deleted successfully" });
-        closeDeleteDialog();
-      } else {
-        throw new Error("Failed to delete coupon");
-      }
+      await deleteCoupon(couponToDelete.id).unwrap();
+      toast({ title: "Success", description: "Coupon deleted successfully" });
+      closeDeleteDialog();
     } catch (error) {
       toast({
         title: "Error",
@@ -160,9 +161,20 @@ export default function CouponsTab({ organizationId }: CouponsTabProps) {
   }, [error, toast]);
 
   // Handle page change
-  const handlePageChange = (page: number) => {
-    changePage(page);
+  const handlePageChange = (newPage: number) => {
+    setPage(newPage);
   };
+
+  const pagination = couponsData?.meta || {
+    currentPage: 1,
+    perPage: 10,
+    total: 0,
+    lastPage: 1,
+    prev: null,
+    next: null
+  };
+
+  const coupons = couponsData?.data || [];
 
   // Show grid view of coupons
   return (

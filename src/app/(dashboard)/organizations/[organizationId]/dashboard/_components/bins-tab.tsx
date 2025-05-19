@@ -5,13 +5,17 @@ import { useToast } from "@/components/ui/use-toast";
 import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
 import { Skeleton } from "@/components/ui/skeleton";
-import { ApiService } from "@/lib/api/api-service";
-import { useApiCrud } from "@/hooks/api/use-api";
 import { BinFormModal } from "@/app/(dashboard)/bins/_components/bin-form-modal";
 import { BinsTable } from "@/app/(dashboard)/bins/_components/bins-table";
 import { ConfirmationDialog } from "@/components/ui/confirmation-dialog";
-import { ApiError } from "@/lib/api/error-handler";
-import type { Bin, Store } from "@/types";
+import type { Bin, Store, Material } from "@/types";
+import { 
+  useGetBinsQuery, 
+  useCreateBinMutation, 
+  useUpdateBinMutation, 
+  useDeleteBinMutation 
+} from "@/store/api/binsApi";
+import { useGetMaterialsQuery } from "@/store/api/materialsApi";
 
 interface BinsTabProps {
   organizationId: string;
@@ -26,44 +30,31 @@ export default function BinsTab({ organizationId, stores }: BinsTabProps) {
   const [binToDelete, setBinToDelete] = useState<Bin | null>(null);
   const [formError, setFormError] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [materials, setMaterials] = useState<any[]>([]);
+  const [page, setPage] = useState(1);
+  const perPage = 10;
 
   // Get store IDs from this organization
   const storeIds = stores.map(store => store.id);
-  const storeIdsParam = storeIds.length > 0 ? `storeIds=${storeIds.join(',')}` : '';
   
-  // Create a bins API service with store filter
-  const binsApi = new ApiService<Bin>(`/bins?${storeIdsParam}`);
+  // Use RTK Query hooks
+  const { 
+    data: binsData, 
+    isLoading, 
+    error 
+  } = useGetBinsQuery(
+    storeIds.length > 0 ? { storeIds, page, perPage } : undefined,
+    { skip: storeIds.length === 0 }
+  );
 
-  // Use the CRUD hook for bins
-  const {
-    entities: bins,
-    pagination,
-    isLoading,
-    error,
-    createEntity,
-    updateEntity,
-    deleteEntity,
-    changePage,
-    refetch,
-  } = useApiCrud<Bin>(binsApi);
+  // Use RTK Query to fetch materials for dropdown
+  const { 
+    data: materialsData,
+    isLoading: isLoadingMaterials 
+  } = useGetMaterialsQuery({});
 
-  // Fetch materials for dropdown
-  useEffect(() => {
-    const fetchMaterials = async () => {
-      try {
-        const response = await fetch('/api/materials');
-        if (response.ok) {
-          const data = await response.json();
-          setMaterials(data.data || []);
-        }
-      } catch (error) {
-        console.error("Failed to fetch materials:", error);
-      }
-    };
-
-    fetchMaterials();
-  }, []);
+  const [createBin] = useCreateBinMutation();
+  const [updateBin] = useUpdateBinMutation();
+  const [deleteBin] = useDeleteBinMutation();
 
   // Modal handlers
   const openCreateModal = () => {
@@ -107,28 +98,29 @@ export default function BinsTab({ organizationId, stores }: BinsTabProps) {
     try {
       if (currentBin?.id) {
         // Update existing bin
-        const result = await updateEntity({ id: currentBin.id, data: bin });
-        if (result) {
-          toast({
-            title: "Success",
-            description: "Bin updated successfully",
-          });
-          setIsModalOpen(false);
-        }
+        await updateBin({ 
+          id: currentBin.id, 
+          bin 
+        }).unwrap();
+        
+        toast({
+          title: "Success",
+          description: "Bin updated successfully",
+        });
+        setIsModalOpen(false);
       } else {
         // Create new bin
-        const result = await createEntity(bin);
-        if (result) {
-          toast({
-            title: "Success",
-            description: "Bin created successfully",
-          });
-          setIsModalOpen(false);
-        }
+        await createBin(bin).unwrap();
+        
+        toast({
+          title: "Success",
+          description: "Bin created successfully",
+        });
+        setIsModalOpen(false);
       }
     } catch (err) {
       const errorMessage =
-        err instanceof ApiError
+        err instanceof Error
           ? err.message
           : "Failed to save bin. Please try again.";
 
@@ -149,13 +141,9 @@ export default function BinsTab({ organizationId, stores }: BinsTabProps) {
     if (!binToDelete?.id) return;
 
     try {
-      const success = await deleteEntity(binToDelete.id);
-      if (success) {
-        toast({ title: "Success", description: "Bin deleted successfully" });
-        closeDeleteDialog();
-      } else {
-        throw new Error("Failed to delete bin");
-      }
+      await deleteBin(binToDelete.id).unwrap();
+      toast({ title: "Success", description: "Bin deleted successfully" });
+      closeDeleteDialog();
     } catch (error) {
       toast({
         title: "Error",
@@ -178,8 +166,8 @@ export default function BinsTab({ organizationId, stores }: BinsTabProps) {
   }, [error, toast]);
 
   // Handle page change
-  const handlePageChange = (page: number) => {
-    changePage(page);
+  const handlePageChange = (newPage: number) => {
+    setPage(newPage);
   };
 
   if (stores.length === 0) {
@@ -195,6 +183,15 @@ export default function BinsTab({ organizationId, stores }: BinsTabProps) {
     );
   }
 
+  const pagination = binsData?.meta || {
+    currentPage: 1,
+    perPage: 10,
+    total: 0,
+    lastPage: 1,
+    prev: null,
+    next: null
+  };
+
   return (
     <div className="space-y-4">
       <div className="flex justify-between items-center">
@@ -208,7 +205,7 @@ export default function BinsTab({ organizationId, stores }: BinsTabProps) {
         <Skeleton className="h-[400px] w-full" />
       ) : (
         <BinsTable
-          bins={bins}
+          bins={binsData?.data || []}
           isLoading={isLoading}
           onEdit={openEditModal}
           onDelete={openDeleteDialog}
@@ -232,7 +229,7 @@ export default function BinsTab({ organizationId, stores }: BinsTabProps) {
         isLoading={isSubmitting}
         error={formError}
         stores={stores}
-        materials={materials}
+        materials={materialsData?.data || []}
       />
 
       <ConfirmationDialog

@@ -1,0 +1,89 @@
+import { baseApi } from './baseApi';
+import type { Bin } from '@/types';
+import { 
+  ApiPaginatedResponse, 
+  ApiEntityResponse,
+  PaginationParams 
+} from '@/types/api';
+
+// API parameters
+interface GetBinsParams extends PaginationParams {
+  storeIds?: string[];
+}
+
+// Bins API
+export const binsApi = baseApi.injectEndpoints({
+  endpoints: (builder) => ({
+    // Get all bins with pagination and optional filtering
+    getBins: builder.query<ApiPaginatedResponse<Bin>, GetBinsParams | void>({
+      query: (params: GetBinsParams = {}) => {
+        const { page = 1, perPage = 20, storeIds } = params;
+        let url = `bins?page=${page}&perPage=${perPage}`;
+        if (storeIds && storeIds.length > 0) {
+          url += `&storeIds=${storeIds.join(',')}`;
+        }
+        return url;
+      },
+      providesTags: (result) => 
+        result 
+          ? [
+              ...result.data.map(({ id }) => ({ type: 'Bin' as const, id })),
+              { type: 'Bin', id: 'LIST' },
+            ]
+          : [{ type: 'Bin', id: 'LIST' }],
+    }),
+    
+    // Get single bin by ID
+    getBin: builder.query<Bin, string>({
+      query: (id) => `bins/${id}`,
+      transformResponse: (response: ApiEntityResponse<Bin>) => response.data,
+      providesTags: (result, error, id) => [{ type: 'Bin', id }],
+    }),
+    
+    // Create new bin
+    createBin: builder.mutation<Bin, Partial<Bin>>({
+      query: (bin) => ({
+        url: 'bins',
+        method: 'POST',
+        body: bin,
+      }),
+      transformResponse: (response: ApiEntityResponse<Bin>) => response.data,
+      invalidatesTags: [{ type: 'Bin', id: 'LIST' }],
+    }),
+    
+    // Update bin
+    updateBin: builder.mutation<Bin, { id: string; bin: Partial<Bin> }>({
+      query: ({ id, bin }) => ({
+        url: `bins/${id}`,
+        method: 'PUT',
+        body: bin,
+      }),
+      transformResponse: (response: ApiEntityResponse<Bin>) => response.data,
+      invalidatesTags: (result, error, { id }) => [
+        { type: 'Bin', id },
+        { type: 'Bin', id: 'LIST' },
+      ],
+    }),
+    
+    // Delete bin
+    deleteBin: builder.mutation<void, string>({
+      query: (id) => ({
+        url: `bins/${id}`,
+        method: 'DELETE',
+      }),
+      invalidatesTags: (result, error, id) => [
+        { type: 'Bin', id },
+        { type: 'Bin', id: 'LIST' },
+      ],
+    }),
+  }),
+});
+
+// Export hooks for usage in components
+export const {
+  useGetBinsQuery,
+  useGetBinQuery,
+  useCreateBinMutation,
+  useUpdateBinMutation,
+  useDeleteBinMutation,
+} = binsApi;

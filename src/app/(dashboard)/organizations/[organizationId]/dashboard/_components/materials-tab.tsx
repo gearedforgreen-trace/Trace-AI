@@ -5,27 +5,27 @@ import { useToast } from "@/components/ui/use-toast";
 import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
 import { Skeleton } from "@/components/ui/skeleton";
-import { StoreFormModal } from "@/app/(dashboard)/stores/_components/store-form-modal";
-import { StoresTable } from "@/app/(dashboard)/stores/_components/stores-table";
+import { MaterialFormModal } from "@/app/(dashboard)/materials/_components/material-form-modal";
+import { MaterialsTable } from "@/app/(dashboard)/materials/_components/materials-table";
 import { ConfirmationDialog } from "@/components/ui/confirmation-dialog";
-import type { Store } from "@/types";
+import type { Material } from "@/types";
 import { 
-  useGetStoresQuery, 
-  useCreateStoreMutation, 
-  useUpdateStoreMutation, 
-  useDeleteStoreMutation 
-} from "@/store/api/storesApi";
+  useGetMaterialsQuery, 
+  useCreateMaterialMutation, 
+  useUpdateMaterialMutation, 
+  useDeleteMaterialMutation 
+} from "@/store/api/materialsApi";
 
-interface StoresTabProps {
+interface MaterialsTabProps {
   organizationId: string;
 }
 
-export default function StoresTab({ organizationId }: StoresTabProps) {
+export default function MaterialsTab({ organizationId }: MaterialsTabProps) {
   const { toast } = useToast();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
-  const [currentStore, setCurrentStore] = useState<Store | null>(null);
-  const [storeToDelete, setStoreToDelete] = useState<Store | null>(null);
+  const [currentMaterial, setCurrentMaterial] = useState<Material | null>(null);
+  const [materialToDelete, setMaterialToDelete] = useState<Material | null>(null);
   const [formError, setFormError] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [page, setPage] = useState(1);
@@ -33,28 +33,27 @@ export default function StoresTab({ organizationId }: StoresTabProps) {
 
   // Use RTK Query hooks
   const { 
-    data: storesData, 
+    data: materialsData, 
     isLoading, 
     error 
-  } = useGetStoresQuery({ 
-    organizationId, 
+  } = useGetMaterialsQuery({ 
     page, 
     perPage 
   });
 
-  const [createStore] = useCreateStoreMutation();
-  const [updateStore] = useUpdateStoreMutation();
-  const [deleteStore] = useDeleteStoreMutation();
+  const [createMaterial] = useCreateMaterialMutation();
+  const [updateMaterial] = useUpdateMaterialMutation();
+  const [deleteMaterial] = useDeleteMaterialMutation();
 
   // Modal handlers
   const openCreateModal = () => {
-    setCurrentStore(null);
+    setCurrentMaterial(null);
     setFormError(null);
     setIsModalOpen(true);
   };
 
-  const openEditModal = (store: Store) => {
-    setCurrentStore(store);
+  const openEditModal = (material: Material) => {
+    setCurrentMaterial(material);
     setFormError(null);
     setIsModalOpen(true);
   };
@@ -63,62 +62,56 @@ export default function StoresTab({ organizationId }: StoresTabProps) {
     if (!isSubmitting) {
       setIsModalOpen(false);
       setTimeout(() => {
-        setCurrentStore(null);
+        setCurrentMaterial(null);
         setFormError(null);
       }, 300);
     }
   };
 
   // Delete dialog handlers
-  const openDeleteDialog = (store: Store) => {
-    setStoreToDelete(store);
+  const openDeleteDialog = (material: Material) => {
+    setMaterialToDelete(material);
     setIsDeleteDialogOpen(true);
   };
 
   const closeDeleteDialog = () => {
     setIsDeleteDialogOpen(false);
-    setStoreToDelete(null);
+    setMaterialToDelete(null);
   };
 
-  // Save handler with improved error handling
-  const handleSave = async (store: Store) => {
+  // Save handler
+  const handleSave = async (material: Material) => {
     setIsSubmitting(true);
     setFormError(null);
 
     try {
-      // Add organizationId to the store data
-      const storeWithOrg = {
-        ...store,
-        organizationId,
-      };
-
-      if (currentStore?.id) {
-        // Update existing store
-        await updateStore({ 
-          id: currentStore.id, 
-          store: storeWithOrg 
+      if (currentMaterial?.id) {
+        // Update existing material
+        await updateMaterial({ 
+          id: currentMaterial.id, 
+          material 
         }).unwrap();
         
         toast({
           title: "Success",
-          description: "Store updated successfully",
+          description: "Material updated successfully",
         });
         setIsModalOpen(false);
       } else {
-        // Create new store
-        await createStore(storeWithOrg).unwrap();
+        // Create new material
+        await createMaterial(material).unwrap();
         
         toast({
           title: "Success",
-          description: "Store created successfully",
+          description: "Material created successfully",
         });
         setIsModalOpen(false);
       }
     } catch (err) {
-      const errorMessage = 
-        err instanceof Error 
-          ? err.message 
-          : "Failed to save store. Please try again.";
+      const errorMessage =
+        err instanceof Error
+          ? err.message
+          : "Failed to save material. Please try again.";
 
       setFormError(errorMessage);
 
@@ -134,17 +127,17 @@ export default function StoresTab({ organizationId }: StoresTabProps) {
 
   // Delete handler
   const handleDelete = async () => {
-    if (!storeToDelete?.id) return;
+    if (!materialToDelete?.id) return;
 
     try {
-      await deleteStore(storeToDelete.id).unwrap();
-      toast({ title: "Success", description: "Store deleted successfully" });
+      await deleteMaterial(materialToDelete.id).unwrap();
+      toast({ title: "Success", description: "Material deleted successfully" });
       closeDeleteDialog();
     } catch (error) {
       toast({
         title: "Error",
         description:
-          error instanceof Error ? error.message : "Failed to delete store",
+          error instanceof Error ? error.message : "Failed to delete material",
         variant: "destructive",
       });
     }
@@ -155,7 +148,7 @@ export default function StoresTab({ organizationId }: StoresTabProps) {
     if (error) {
       toast({
         title: "Error",
-        description: "Failed to load stores",
+        description: "Failed to load materials",
         variant: "destructive",
       });
     }
@@ -166,7 +159,7 @@ export default function StoresTab({ organizationId }: StoresTabProps) {
     setPage(newPage);
   };
 
-  const pagination = storesData?.meta || {
+  const pagination = materialsData?.meta || {
     currentPage: 1,
     perPage: 10,
     total: 0,
@@ -178,17 +171,17 @@ export default function StoresTab({ organizationId }: StoresTabProps) {
   return (
     <div className="space-y-4">
       <div className="flex justify-between items-center">
-        <h3 className="text-lg font-medium">Stores</h3>
+        <h3 className="text-lg font-medium">Materials</h3>
         <Button onClick={openCreateModal}>
-          <Plus className="mr-2 h-4 w-4" /> Add Store
+          <Plus className="mr-2 h-4 w-4" /> Add Material
         </Button>
       </div>
 
       {isLoading ? (
         <Skeleton className="h-[400px] w-full" />
       ) : (
-        <StoresTable
-          stores={storesData?.data || []}
+        <MaterialsTable
+          materials={materialsData?.data || []}
           isLoading={isLoading}
           onEdit={openEditModal}
           onDelete={openDeleteDialog}
@@ -204,10 +197,10 @@ export default function StoresTab({ organizationId }: StoresTabProps) {
         />
       )}
 
-      <StoreFormModal
+      <MaterialFormModal
         isOpen={isModalOpen}
         onClose={closeModal}
-        store={currentStore}
+        material={currentMaterial}
         onSave={handleSave}
         isLoading={isSubmitting}
         error={formError}
@@ -218,7 +211,7 @@ export default function StoresTab({ organizationId }: StoresTabProps) {
         onClose={closeDeleteDialog}
         onConfirm={handleDelete}
         title="Are you sure?"
-        description={`This will permanently delete the store "${storeToDelete?.name}". This action cannot be undone.`}
+        description={`This will permanently delete the material "${materialToDelete?.name}". This action cannot be undone.`}
         confirmText="Delete"
       />
     </div>

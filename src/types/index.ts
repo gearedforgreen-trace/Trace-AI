@@ -99,9 +99,73 @@ export interface IBin {
   store?: IStore;
 }
 
+// Define Coupon interface
+export interface ICoupon {
+  id: string;
+  name: string;
+  description: string | null;
+  imageUrl: string | null;
+  status: string;
+  couponType: string;
+  dealType: string;
+  isFeatured: boolean;
+  discountAmount: number;
+  pointsToRedeem: number;
+  startDate: string;
+  endDate: string;
+  createdAt: string;
+  updatedAt: string;
+  organizationId: string | null;
+  organization?: IOrganization;
+  redeemHistory?: IRedeemHistory[];
+  favouriteCoupon?: IFavouriteCoupon[];
+}
+
+// Define RecycleHistory interface
+export interface IRecycleHistory {
+  id: string;
+  userId: string;
+  binId: string;
+  points: number;
+  mediaUrl: string | null;
+  totalCount: number;
+  createdAt: string;
+  updatedAt: string;
+  bin?: IBin;
+  user?: IUser;
+}
+
+// Define RedeemHistory interface
+export interface IRedeemHistory {
+  id: string;
+  couponId: string;
+  userId: string;
+  points: number;
+  description: string | null;
+  couponCode: string;
+  createdAt: string;
+  updatedAt: string;
+  coupon?: ICoupon;
+  user?: IUser;
+}
+
+// Define FavouriteCoupon interface
+export interface IFavouriteCoupon {
+  id: string;
+  userId: string;
+  couponId: string;
+  createdAt: string;
+  coupon?: ICoupon;
+  user?: IUser;
+}
+
 export type Store = IStore;
 export type Product = IProduct;
 export type Bin = IBin;
 export type Material = IMaterial;
 export type RewardRule = IRewardRule;
 export type Organization = IOrganization;
+export type Coupon = ICoupon;
+export type RecycleHistory = IRecycleHistory;
+export type RedeemHistory = IRedeemHistory;
+export type FavouriteCoupon = IFavouriteCoupon;

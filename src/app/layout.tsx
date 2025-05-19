@@ -4,6 +4,7 @@ import './globals.css';
 import { Toaster } from "@/components/ui/sonner"
 import { ThemeProvider } from '@/providers/theme-provider';
 import ProgressLoader from '@/providers/progress-loader';
+import ReduxProvider from '@/providers/redux-provider';
 
 const nunito = Nunito({
   variable: '--font-nunito',
@@ -33,17 +34,19 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${nunito.variable} ${mulish.variable} antialiased`}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="light"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <ProgressLoader>
-            {children}
-          </ProgressLoader>
-          <Toaster />
-        </ThemeProvider>
+        <ReduxProvider>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="light"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <ProgressLoader>
+              {children}
+            </ProgressLoader>
+            <Toaster />
+          </ThemeProvider>
+        </ReduxProvider>
       </body>
     </html>
   );

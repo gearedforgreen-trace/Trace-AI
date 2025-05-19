@@ -50,7 +50,16 @@ export async function GET(
     const material = await prisma.material.findUnique({
       where: { id: materialId },
       include:{
-        rewardRule: true,
+        rewardRule: {
+          select: {
+            id: true,
+            name: true,
+            description: true,
+            unitType: true,
+            unit: true,
+            point: true,
+          },
+        },
       },
     });
 
@@ -127,7 +136,16 @@ export async function PUT(
       where: { id: materialId },
       data: validatedBody.data,
       include:{
-        rewardRule: true,
+        rewardRule: {
+          select: {
+            id: true,
+            name: true,
+            description: true,
+            unitType: true,
+            unit: true,
+            point: true,
+          },
+        },
       },
     });
 

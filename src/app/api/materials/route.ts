@@ -60,9 +60,13 @@ export async function GET(request: NextRequest) {
         },
         include: {
           rewardRule: {
-            omit: {
-              createdAt: true,
-              updatedAt: true,
+            select: {
+              id: true,
+              name: true,
+              description: true,
+              unitType: true,
+              unit: true,
+              point: true,
             },
           },
         },
@@ -146,9 +150,13 @@ export async function POST(request: NextRequest) {
       data: validatedBody.data,
       include: {
         rewardRule: {
-          omit: {
-            createdAt: true,
-            updatedAt: true,
+          select: {
+            id: true,
+            name: true,
+            description: true,
+            unitType: true,
+            unit: true,
+            point: true,
           },
         },
       },

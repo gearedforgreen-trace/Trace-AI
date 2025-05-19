@@ -8,8 +8,8 @@ interface OrganizationDashboardProps {
   };
 }
 
-export default function OrganizationDashboardPage({ params }: OrganizationDashboardProps) {
-  const { organizationId } = params;
+export default async function OrganizationDashboardPage({ params }: OrganizationDashboardProps) {
+  const { organizationId } = await params;
   
   return (
     <div className="flex-1 space-y-4 p-8 pt-6">

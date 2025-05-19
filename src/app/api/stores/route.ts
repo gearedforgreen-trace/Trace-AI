@@ -58,6 +58,33 @@ export async function GET(request: NextRequest) {
       where.organizationId = organizationId;
     }
 
+    console.log('Query parameters:', {
+      organizationId,
+      page,
+      perPage
+    });
+    console.log('Where clause:', where);
+
+    // First check if any stores exist with this organization ID
+    const storeCount = await prisma.store.count({
+      where: {
+        organizationId
+      }
+    });
+    
+    console.log('Store count with this organization ID:', storeCount);
+
+    // Also check if the organization exists
+    const organization = organizationId 
+      ? await prisma.organization.findUnique({
+          where: {
+            id: organizationId
+          }
+        })
+      : null;
+    
+    console.log('Organization exists:', !!organization);
+
     const storesResult = await paginate<Store, Prisma.StoreFindManyArgs>(
       prisma.store,
       {

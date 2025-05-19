@@ -117,3 +117,40 @@ The application requires these environment variables:
 - When relations don't exist in the schema, use separate queries with findMany() and create lookup maps
 
 - Always check the Prisma schema before assuming relations exist
+
+### Next.js API Routes
+
+- Always await the `params` object in dynamic route handlers - Next.js requires this to properly extract route parameters, e.g.:
+  ```typescript
+  export async function GET(
+    request: NextRequest, 
+    { params }: { params: { id: string } }
+  ) {
+    const { id } = await params; // IMPORTANT: Always await params
+    // Rest of the handler...
+  }
+  ```
+
+- When using Prisma's `include` with related models, use `select` for field filtering rather than `omit`:
+  ```typescript
+  // CORRECT
+  include: {
+    relatedModel: {
+      select: {
+        id: true,
+        name: true,
+        // Only include fields you need
+      }
+    }
+  }
+  
+  // INCORRECT - Prisma doesn't support this
+  include: {
+    relatedModel: {
+      omit: {
+        createdAt: true,
+        updatedAt: true
+      }
+    }
+  }
+  ```
