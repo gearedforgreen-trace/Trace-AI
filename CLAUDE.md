@@ -67,6 +67,49 @@ The application follows a consistent pattern for API routes:
 4. Database operations through Prisma
 5. Standardized error responses
 
+### User Authentication in API Routes
+When working with API routes, use the following pattern to get the current user session:
+
+```typescript
+// Import the auth object and headers from Next.js
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
+
+// Get the session in your API route
+const session = await auth.api.getSession({
+  headers: await headers(),
+});
+
+// Check if the user is authenticated
+if (!session) {
+  return new NextResponse(
+    JSON.stringify({ message: "Unauthorized" }),
+    { status: 401 }
+  );
+}
+```
+
+### Prisma Client Initialization
+
+When working directly with Prisma in API routes, use this pattern to initialize the PrismaClient:
+
+```typescript
+import { PrismaClient } from '@prisma/client';
+const prisma = new PrismaClient();
+
+// Now you can use prisma in your API route
+// Example: const users = await prisma.user.findMany();
+```
+
+However, to prevent multiple instances of PrismaClient in development, prefer using the singleton instance from `src/lib/prisma.ts`:
+
+```typescript
+import { prisma } from "@/lib/prisma";
+
+// Now you can use the prisma client singleton
+// Example: const users = await prisma.user.findMany();
+```
+
 ### Component Architecture
 - Page components are client-side (`"use client"`) for interactivity
 - Business logic encapsulated in custom hooks (e.g., `useApiCrud`)
