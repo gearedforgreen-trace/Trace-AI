@@ -3,7 +3,9 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
-
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { toast } from 'sonner';
 
 import { Button } from '@/components/ui/button';
 import { InputPassword } from '@/components/ui/input-password';
@@ -17,6 +19,7 @@ import {
 } from '@/components/ui/form';
 import { InputIcon } from '@/components/ui/input-icon';
 import { passwordRegex } from "@/lib/password";
+import { authClient } from '@/lib/auth-client';
 
 
 const SignupSchema = z.object({
@@ -53,7 +56,8 @@ const SignupSchema = z.object({
 });
 
 export default function SingupForm() {
-
+  const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
 
   const form = useForm<z.infer<typeof SignupSchema>>({
     resolver: zodResolver(SignupSchema),
@@ -66,7 +70,27 @@ export default function SingupForm() {
   });
 
   async function onSubmit(values: z.infer<typeof SignupSchema>) {
-    console.log(values);
+    try {
+      setIsLoading(true);
+      
+      const response = await authClient.signUp.email({
+        email: values.email,
+        password: values.password,
+        name: values.name,
+      });
+
+      if (response.error) {
+        toast.error(response.error.message ?? 'Failed to create account');
+        return;
+      }
+
+      toast.success('Account created successfully!');
+      router.push('/sign-in');
+    } catch (error) {
+      toast.error('Something went wrong, please try again');
+    } finally {
+      setIsLoading(false);
+    }
   }
 
   return (
@@ -133,8 +157,8 @@ export default function SingupForm() {
           />
         </div>
         <div className="mt-5 flex flex-col sm:mt-4">
-          <Button type="submit" color="gradient" size="sm" >
-            Signup
+          <Button type="submit" color="gradient" size="sm" disabled={isLoading}>
+            {isLoading ? 'Creating account...' : 'Signup'}
           </Button>
         </div>
       </form>

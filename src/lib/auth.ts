@@ -12,56 +12,54 @@ import {
 
 import { admin, ac, user } from '@/auth/user-permissions';
 import prisma from "./prisma";
-
-
 export const auth = betterAuth({
   database: prismaAdapter(prisma, {
     provider: 'postgresql',
   }),
-  baseURL: process.env.NEXT_PUBLIC_BASE_URL ?? 'http://localhost:3000',
-  trustedOrigins: [process.env.NEXT_PUBLIC_BASE_URL ?? 'http://localhost:3000'],
+  baseURL: process.env.NEXT_PUBLIC_BASE_URL ?? 'http://localhost:3001',
+  trustedOrigins: [process.env.NEXT_PUBLIC_BASE_URL ?? 'http://localhost:3001'],
   user: {
     additionalFields: {
-      phoneNumber: {
-        type: 'string',
-        required: false,
-        validator: {
-          input: z.string().optional(),
-        },
-      },
-      address: {
-        type: 'string',
-        required: false,
-        validator: {
-          input: z.string().optional(),
-        },
-      },
-      postalCode: {
-        type: 'string',
-        required: false,
-        validator: {
-          input: z
-            .string()
-            .regex(/^\d{5}$/)
-            .optional(),
-        },
-      },
-      state: {
-        type: 'string',
-        required: false,
-        validator: {
-          input: z.string().optional(),
-        },
-      },
-      status: {
-        type: ['pending', 'active', 'suspended', 'banned'],
-        required: true,
-        defaultValue: 'active',
-        input: false,
-        validator: {
-          input: z.enum(['pending', 'active', 'suspended', 'banned']),
-        },
-      },
+      // phoneNumber: {
+      //   type: 'string',
+      //   required: false,
+      //   validator: {
+      //     input: z.string().optional(),
+      //   },
+      // },
+      // address: {
+      //   type: 'string',
+      //   required: false,
+      //   validator: {
+      //     input: z.string().optional(),
+      //   },
+      // },
+      // postalCode: {
+      //   type: 'string',
+      //   required: false,
+      //   validator: {
+      //     input: z
+      //       .string()
+      //       .regex(/^\d{5}$/)
+      //       .optional(),
+      //   },
+      // },
+      // state: {
+      //   type: 'string',
+      //   required: false,
+      //   validator: {
+      //     input: z.string().optional(),
+      //   },
+      // },
+      // status: {
+      //   type: ['pending', 'active', 'suspended', 'banned'],
+      //   required: true,
+      //   defaultValue: 'active',
+      //   input: false,
+      //   validator: {
+      //     input: z.enum(['pending', 'active', 'suspended', 'banned']),
+      //   },
+      // },
     },
   },
   emailAndPassword: {
