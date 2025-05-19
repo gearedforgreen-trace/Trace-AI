@@ -49,9 +49,19 @@ export async function GET(request: NextRequest) {
       50
     );
 
+    // Check for organizationId filter
+    const organizationId = request.nextUrl.searchParams.get('organizationId');
+    
+    const where: Prisma.StoreWhereInput = {};
+    
+    if (organizationId) {
+      where.organizationId = organizationId;
+    }
+
     const storesResult = await paginate<Store, Prisma.StoreFindManyArgs>(
       prisma.store,
       {
+        where,
         orderBy: {
           createdAt: 'desc',
         },
@@ -118,8 +128,14 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // Make sure organizationId is a valid UUID or null
+    const data = {
+      ...validatedBody.data,
+      organizationId: validatedBody.data.organizationId || null,
+    };
+
     const store = await prisma.store.create({
-      data: validatedBody.data,
+      data,
     });
 
     return NextResponse.json(

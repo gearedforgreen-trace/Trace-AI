@@ -27,11 +27,24 @@ export async function GET(request: NextRequest) {
       50
     );
 
+    // Check for organizationId filter
+    const organizationId = request.nextUrl.searchParams.get('organizationId');
+    
+    const where: Prisma.CouponWhereInput = {};
+    
+    if (organizationId) {
+      where.organizationId = organizationId;
+    }
+
     const coupons = await paginate<Coupon, Prisma.CouponFindManyArgs>(
       prisma.coupon,
       {
+        where,
         orderBy: {
           createdAt: 'desc',
+        },
+        include: {
+          organization: true,
         },
       },
       {
@@ -75,8 +88,17 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // Make sure organizationId is a valid UUID or null
+    const data = {
+      ...validatedBody.data,
+      organizationId: validatedBody.data.organizationId || null,
+    };
+
     const coupon = await prisma.coupon.create({
-      data: validatedBody.data,
+      data,
+      include: {
+        organization: true,
+      },
     });
 
     return NextResponse.json(

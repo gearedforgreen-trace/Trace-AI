@@ -49,9 +49,22 @@ export async function GET(request: NextRequest) {
       50
     );
 
+    // Check for storeIds filter
+    const storeIdsParam = request.nextUrl.searchParams.get('storeIds');
+    
+    const where: Prisma.BinWhereInput = {};
+    
+    if (storeIdsParam) {
+      const storeIds = storeIdsParam.split(',');
+      if (storeIds.length > 0) {
+        where.storeId = { in: storeIds };
+      }
+    }
+
     const binsResult = await paginate<Bin, Prisma.BinFindManyArgs>(
       prisma.bin,
       {
+        where,
         orderBy: {
           createdAt: 'desc',
         },

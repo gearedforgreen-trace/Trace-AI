@@ -4,6 +4,76 @@ import { getSession } from '@/lib/servers/sessions';
 import { NextResponse, NextRequest } from 'next/server';
 import { organizationSchema } from '@/schemas/organization.schema';
 
+export async function GET(
+  request: NextRequest,
+  context: { params: Promise<{ organizationId: string }> }
+) {
+  try {
+    const { organizationId } = await context.params;
+    const session = await getSession();
+
+    if (!session || !session.user.role) {
+      return NextResponse.json(
+        {
+          error: 'Unauthorized',
+        },
+        { status: 401 }
+      );
+    }
+
+    // Admin can access any organization
+    if (session.user.role !== "admin") {
+      // For regular users, check if they're a member of this organization
+      const memberCheck = await prisma.member.findFirst({
+        where: {
+          organizationId: organizationId,
+          userId: session.user.id,
+        },
+      });
+
+      if (!memberCheck) {
+        return NextResponse.json(
+          {
+            error: 'Forbidden',
+          },
+          { status: 403 }
+        );
+      }
+    }
+
+    const organization = await prisma.organization.findUnique({
+      where: {
+        id: organizationId,
+      },
+      include: {
+        members: true,
+      },
+    });
+
+    if (!organization) {
+      return NextResponse.json(
+        {
+          error: 'Not Found',
+        },
+        { status: 404 }
+      );
+    }
+
+    return NextResponse.json(
+      {
+        data: organization,
+      },
+      { status: 200 }
+    );
+  } catch (error) {
+    console.error(error);
+    return NextResponse.json(
+      { error: 'Internal Server Error' },
+      { status: 500 }
+    );
+  }
+}
+
 export async function PUT(
   request: NextRequest,
   context: { params: Promise<{ organizationId: string }> }

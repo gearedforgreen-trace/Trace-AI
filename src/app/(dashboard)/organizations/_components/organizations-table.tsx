@@ -8,8 +8,9 @@ import { Skeleton } from "@/components/ui/skeleton";
 import type { Organization } from "@/types";
 import { DataTablePagination } from "@/components/ui/data-table/data-table-pagination";
 import { Button } from "@/components/ui/button";
-import { Edit, Trash2, Building } from "lucide-react";
+import { Edit, Trash2, Building, ExternalLink } from "lucide-react";
 import { format } from "date-fns";
+import Link from "next/link";
 
 interface IOrganizationsTableProps {
   organizations: Organization[];
@@ -78,7 +79,13 @@ export function OrganizationsTable({
                       )}
                     </td>
                     <td className="p-4 align-middle font-medium">
-                      {organization.name}
+                      <Link 
+                        href={`/organizations/${organization.id}/dashboard`}
+                        className="hover:underline flex items-center gap-2"
+                      >
+                        {organization.name}
+                        <ExternalLink className="h-3 w-3" />
+                      </Link>
                     </td>
                     <td className="p-4 align-middle text-gray-500">
                       {organization.slug || "-"}
@@ -155,7 +162,13 @@ export function OrganizationsTable({
       accessorKey: "name",
       header: "Name",
       cell: ({ row }) => (
-        <div className="font-medium">{row.getValue("name")}</div>
+        <Link 
+          href={`/organizations/${row.original.id}/dashboard`}
+          className="font-medium hover:underline flex items-center gap-2"
+        >
+          {row.getValue("name")}
+          <ExternalLink className="h-3 w-3" />
+        </Link>
       ),
     },
     {
