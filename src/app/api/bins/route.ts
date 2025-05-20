@@ -49,8 +49,9 @@ export async function GET(request: NextRequest) {
       50
     );
 
-    // Check for storeIds filter
+    // Check for storeIds and organizationId filters
     const storeIdsParam = request.nextUrl.searchParams.get('storeIds');
+    const organizationId = request.nextUrl.searchParams.get('organizationId');
     
     const where: Prisma.BinWhereInput = {};
     
@@ -59,6 +60,12 @@ export async function GET(request: NextRequest) {
       if (storeIds.length > 0) {
         where.storeId = { in: storeIds };
       }
+    }
+    
+    if (organizationId) {
+      where.store = {
+        organizationId: organizationId
+      };
     }
 
     const binsResult = await paginate<Bin, Prisma.BinFindManyArgs>(

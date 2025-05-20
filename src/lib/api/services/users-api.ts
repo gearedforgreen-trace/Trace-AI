@@ -48,6 +48,39 @@ export class UsersApiService extends ApiService<User> {
     super("users");
   }
 
+  // Get single user by ID
+  async getUser(id: string): Promise<User> {
+    try {
+      const response = await this.request<{ data: User }>("GET", `/${id}`);
+      return response.data;
+    } catch (error) {
+      console.error("Error in getUser:", error);
+      throw error;
+    }
+  }
+
+  // Update user
+  async updateUser(id: string, userData: Partial<User>): Promise<User> {
+    try {
+      const response = await this.request<{ data: User }>("PUT", `/${id}`, userData);
+      return response.data;
+    } catch (error) {
+      console.error("Error in updateUser:", error);
+      throw error;
+    }
+  }
+
+  // Update user status specifically (suspend, activate, ban)
+  async updateUserStatus(id: string, status: "active" | "suspended" | "banned"): Promise<User> {
+    try {
+      const response = await this.request<{ data: User }>("PUT", `/${id}`, { status });
+      return response.data;
+    } catch (error) {
+      console.error("Error in updateUserStatus:", error);
+      throw error;
+    }
+  }
+
   // Get users with filters
   async getUsers(filters: UserFilterParams = {}): Promise<{
     data: User[];

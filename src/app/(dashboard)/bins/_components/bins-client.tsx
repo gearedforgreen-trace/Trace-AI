@@ -1,18 +1,17 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
-import { useApiCrud } from "@/hooks/api/use-api";
-import { ApiService } from "@/lib/api/api-service";
+import { useState, useCallback } from "react";
+import { useGetBinsQuery, useCreateBinMutation, useUpdateBinMutation, useDeleteBinMutation } from "@/store/api/binsApi";
+import { useGetOrganizationsQuery } from "@/store/api/organizationsApi";
 import { EntityHeader } from "@/components/ui/entity-header";
 import { ConfirmationDialog } from "@/components/ui/confirmation-dialog";
 import { useToast } from "@/components/ui/use-toast";
-import { ApiError } from "@/lib/api/error-handler";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Button } from "@/components/ui/button";
+import { Plus } from "lucide-react";
 import type { IBin } from "@/types";
 import { BinFormModal } from "./bin-form-modal";
 import { BinsTable } from "./bins-table";
-
-// Create a bins API service
-const binsApi = new ApiService<IBin>("/bins");
 
 export default function BinsClient() {
   const { toast } = useToast();
@@ -21,20 +20,44 @@ export default function BinsClient() {
   const [currentBin, setCurrentBin] = useState<IBin | null>(null);
   const [binToDelete, setBinToDelete] = useState<IBin | null>(null);
   const [formError, setFormError] = useState<string | null>(null);
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [selectedOrganizationId, setSelectedOrganizationId] = useState<string>("all");
+  const perPage = 20;
 
-  // Use the CRUD hook for bins
+  // RTK Query hooks
   const {
-    entities: bins,
-    pagination,
-    isLoading,
-    error,
-    createEntity,
-    updateEntity,
-    deleteEntity,
-    changePage,
-    refetch,
-  } = useApiCrud<IBin>(binsApi);
+    data: binsResponse,
+    isLoading: isLoadingBins,
+    error: binsError,
+    isFetching: isFetchingBins,
+  } = useGetBinsQuery({
+    page: currentPage,
+    perPage,
+    ...(selectedOrganizationId !== "all" && { organizationId: selectedOrganizationId }),
+  });
+
+  const {
+    data: organizationsResponse,
+  } = useGetOrganizationsQuery({
+    page: 1,
+    perPage: 100,
+  });
+
+  const [createBin, { isLoading: isCreating }] = useCreateBinMutation();
+  const [updateBin, { isLoading: isUpdating }] = useUpdateBinMutation();
+  const [deleteBin, { isLoading: isDeleting }] = useDeleteBinMutation();
+
+  const bins = binsResponse?.data || [];
+  const pagination = binsResponse?.meta || {
+    currentPage: 1,
+    perPage: 20,
+    total: 0,
+    lastPage: 1,
+    prev: null,
+    next: null,
+  };
+
+  const organizations = organizationsResponse?.data || [];
 
   // Modal handlers
   const openCreateModal = useCallback(() => {
@@ -50,16 +73,15 @@ export default function BinsClient() {
   }, []);
 
   const closeModal = useCallback(() => {
-    // Only allow closing if not currently submitting
+    const isSubmitting = isCreating || isUpdating;
     if (!isSubmitting) {
       setIsModalOpen(false);
-      // Only clear current bin after modal is closed
       setTimeout(() => {
         setCurrentBin(null);
         setFormError(null);
       }, 300);
     }
-  }, [isSubmitting]);
+  }, [isCreating, isUpdating]);
 
   // Delete dialog handlers
   const openDeleteDialog = useCallback((bin: IBin) => {
@@ -75,50 +97,40 @@ export default function BinsClient() {
   // Save handler with improved error handling
   const handleSave = useCallback(
     async (bin: IBin) => {
-      setIsSubmitting(true);
       setFormError(null);
 
       try {
         if (currentBin?.id) {
           // Update existing bin
-          const result = await updateEntity({ id: currentBin.id, data: bin });
-          if (result) {
-            toast({
-              title: "Success",
-              description: "Bin updated successfully",
-            });
-            setIsModalOpen(false); // Only close modal on success
-          }
+          await updateBin({ id: currentBin.id, bin }).unwrap();
+          toast({
+            title: "Success",
+            description: "Bin updated successfully",
+          });
         } else {
           // Create new bin
-          const result = await createEntity(bin);
-          if (result) {
-            toast({
-              title: "Success",
-              description: "Bin created successfully",
-            });
-            setIsModalOpen(false); // Only close modal on success
-          }
+          await createBin(bin).unwrap();
+          toast({
+            title: "Success",
+            description: "Bin created successfully",
+          });
         }
-      } catch (err) {
-        // Handle the error but keep the modal open
-        const errorMessage =
-          err instanceof ApiError
-            ? err.message
-            : "Failed to save bin. Please try again.";
-
+        setIsModalOpen(false);
+        setTimeout(() => {
+          setCurrentBin(null);
+          setFormError(null);
+        }, 300);
+      } catch (err: any) {
+        const errorMessage = err?.data?.error || err?.message || "Failed to save bin. Please try again.";
         setFormError(errorMessage);
-
         toast({
           title: "Error",
           description: errorMessage,
           variant: "destructive",
         });
-      } finally {
-        setIsSubmitting(false);
       }
     },
-    [createEntity, currentBin, toast, updateEntity]
+    [createBin, currentBin, toast, updateBin]
   );
 
   // Delete handler
@@ -126,50 +138,70 @@ export default function BinsClient() {
     if (!binToDelete?.id) return;
 
     try {
-      const success = await deleteEntity(binToDelete.id);
-      if (success) {
-        toast({ title: "Success", description: "Bin deleted successfully" });
-        closeDeleteDialog();
-      } else {
-        throw new Error("Failed to delete bin");
-      }
-    } catch (error) {
+      await deleteBin(binToDelete.id).unwrap();
+      toast({ title: "Success", description: "Bin deleted successfully" });
+      closeDeleteDialog();
+    } catch (err: any) {
+      const errorMessage = err?.data?.error || err?.message || "Failed to delete bin";
       toast({
         title: "Error",
-        description:
-          error instanceof Error ? error.message : "Failed to delete bin",
+        description: errorMessage,
         variant: "destructive",
       });
     }
-  }, [binToDelete, closeDeleteDialog, deleteEntity, toast]);
-
-  // Show error toast when error changes
-  useEffect(() => {
-    if (error) {
-      toast({
-        title: "Error",
-        description: "Failed to load bins",
-        variant: "destructive",
-      });
-    }
-  }, [error, toast]);
+  }, [binToDelete, closeDeleteDialog, deleteBin, toast]);
 
   // Handle page change
-  const handlePageChange = useCallback(
-    (page: number) => {
-      changePage(page);
-    },
-    [changePage]
-  );
+  const handlePageChange = useCallback((page: number) => {
+    setCurrentPage(page);
+  }, []);
+
+  // Handle organization filter change
+  const handleOrganizationChange = useCallback((value: string) => {
+    setSelectedOrganizationId(value);
+    setCurrentPage(1); // Reset to first page when filter changes
+  }, []);
+
+  // Show error toast for fetch errors
+  if (binsError) {
+    toast({
+      title: "Error",
+      description: "Failed to load bins",
+      variant: "destructive",
+    });
+  }
+
+  const isLoading = isLoadingBins || isFetchingBins;
 
   return (
     <div className="space-y-4">
-      <EntityHeader
-        title="Recycling Bins"
-        description={`Manage your recycling bins (${pagination.total} total)`}
-        onAdd={openCreateModal}
-        addButtonText="Add Bin"
-      />
+      <div className="flex items-center justify-between">
+        <EntityHeader
+          title="Recycling Bins"
+          description={`Manage your recycling bins (${pagination.total} total)`}
+        />
+        
+        <div className="flex items-center space-x-2">
+          <Select value={selectedOrganizationId} onValueChange={handleOrganizationChange}>
+            <SelectTrigger className="w-[250px]">
+              <SelectValue placeholder="Filter by organization" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="all">All Organizations</SelectItem>
+              {organizations.map((org) => (
+                <SelectItem key={org.id} value={org.id}>
+                  {org.name}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+          
+          <Button onClick={openCreateModal} className="bg-green-600 hover:bg-green-700">
+            <Plus className="mr-2 h-4 w-4" />
+            Add Bin
+          </Button>
+        </div>
+      </div>
 
       <BinsTable
         bins={bins}
@@ -192,7 +224,7 @@ export default function BinsClient() {
         onClose={closeModal}
         bin={currentBin}
         onSave={handleSave}
-        isLoading={isSubmitting}
+        isLoading={isCreating || isUpdating}
         error={formError}
       />
 

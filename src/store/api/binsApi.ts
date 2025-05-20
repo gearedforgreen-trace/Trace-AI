@@ -9,6 +9,7 @@ import {
 // API parameters
 interface GetBinsParams extends PaginationParams {
   storeIds?: string[];
+  organizationId?: string;
 }
 
 // Bins API
@@ -17,10 +18,13 @@ export const binsApi = baseApi.injectEndpoints({
     // Get all bins with pagination and optional filtering
     getBins: builder.query<ApiPaginatedResponse<Bin>, GetBinsParams | void>({
       query: (params: GetBinsParams = {}) => {
-        const { page = 1, perPage = 20, storeIds } = params;
+        const { page = 1, perPage = 20, storeIds, organizationId } = params;
         let url = `bins?page=${page}&perPage=${perPage}`;
         if (storeIds && storeIds.length > 0) {
           url += `&storeIds=${storeIds.join(',')}`;
+        }
+        if (organizationId) {
+          url += `&organizationId=${organizationId}`;
         }
         return url;
       },

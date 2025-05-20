@@ -92,12 +92,23 @@ export async function GET(request: NextRequest) {
         orderBy: {
           createdAt: 'desc',
         },
+        include: {
+          organization: true,
+        },
       },
       {
         page: page,
         perPage: perPage,
       }
     );
+    
+    // Add organization name to each store for easier access in frontend
+    if (storesResult.data) {
+      storesResult.data = storesResult.data.map(store => ({
+        ...store,
+        organizationName: store.organization?.name || null
+      }));
+    }
     return NextResponse.json(storesResult, { status: 200 });
   } catch (error) {
     console.error(error);

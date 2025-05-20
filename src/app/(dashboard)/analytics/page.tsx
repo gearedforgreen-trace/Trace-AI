@@ -1,7 +1,8 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useAnalytics } from '@/hooks/api/use-analytics';
+import { organizationsApi } from '@/lib/api/services/organizations-api';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { CalendarIcon, Users, Store, Recycle, Award } from "lucide-react";
@@ -11,6 +12,7 @@ import { format } from "date-fns";
 import { Calendar } from "@/components/ui/calendar";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Skeleton } from "@/components/ui/skeleton";
+import type { IOrganization } from "@/types";
 
 // Import analytics components
 import UsersByOrganizationChart from './_components/users-by-organization-chart';
@@ -23,6 +25,8 @@ import PointsOverview from './_components/points-overview';
 export default function AnalyticsPage() {
   // Filter state
   const [organizationId, setOrganizationId] = useState<string | undefined>(undefined);
+  const [organizations, setOrganizations] = useState<IOrganization[]>([]);
+  const [isLoadingOrganizations, setIsLoadingOrganizations] = useState(true);
   const [dateRange, setDateRange] = useState<{
     from: Date;
     to: Date;
@@ -30,6 +34,32 @@ export default function AnalyticsPage() {
     from: new Date(new Date().setMonth(new Date().getMonth() - 1)),
     to: new Date(),
   });
+
+  // Fetch organizations
+  useEffect(() => {
+    const fetchOrganizations = async () => {
+      setIsLoadingOrganizations(true);
+      try {
+        // Try getting organizations directly first, but this requires admin access
+        let result = await organizationsApi.getAllOrganizations();
+        
+        // If that fails (zero results), try getting organizations from stores
+        if (!result.length) {
+          result = await organizationsApi.getOrganizationsFromStores();
+        }
+        
+        setOrganizations(result);
+      } catch (err) {
+        console.error("Error fetching organizations for analytics:", err);
+        // Set empty array on error to avoid breaking the UI
+        setOrganizations([]);
+      } finally {
+        setIsLoadingOrganizations(false);
+      }
+    };
+
+    fetchOrganizations();
+  }, []);
 
   // Fetch analytics data
   const { data, isLoading, error } = useAnalytics({
@@ -111,18 +141,28 @@ export default function AnalyticsPage() {
           {/* Organization filter */}
           <Select 
             value={organizationId || 'all'}
-            onValueChange={(value) => setOrganizationId(value === 'all' ? undefined : value)}>
+            onValueChange={(value) => setOrganizationId(value === 'all' ? undefined : value)}
+            disabled={isLoadingOrganizations}
+          >
             <SelectTrigger className="w-[200px]">
               <SelectValue placeholder="All Organizations" />
             </SelectTrigger>
             <SelectContent>
               <SelectItem value="all">All Organizations</SelectItem>
-              {/* Dynamically populate organizations when data is available */}
-              {displayData?.usersByOrganization.map((org) => (
-                <SelectItem key={org.organizationId} value={org.organizationId}>
-                  {org.organizationName}
+              {/* Show real organizations from the API */}
+              {organizations.map((org) => (
+                <SelectItem key={org.id} value={org.id}>
+                  {org.name}
                 </SelectItem>
               ))}
+              {/* Fallback: Show mock organizations if no real ones are available */}
+              {organizations.length === 0 && !isLoadingOrganizations && 
+                displayData?.usersByOrganization.map((org) => (
+                  <SelectItem key={org.organizationId} value={org.organizationId}>
+                    {org.organizationName}
+                  </SelectItem>
+                ))
+              }
             </SelectContent>
           </Select>
           

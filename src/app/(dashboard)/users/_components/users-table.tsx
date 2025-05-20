@@ -31,9 +31,15 @@ import {
   Info,
   MoreHorizontal,
   User,
-  Building2
+  Building2,
+  Eye,
+  Edit
 } from "lucide-react";
-import { UserFilterParams } from "@/lib/api/services/users-api";
+import { UserFilterParams, UsersApiService, User as UserType } from "@/lib/api/services/users-api";
+import { ViewProfileModal } from "./view-profile-modal";
+import { EditProfileModal } from "./edit-profile-modal";
+import { UserStatusConfirmationDialog, UserStatusAction } from "./user-status-confirmation-dialog";
+import { useToast } from "@/components/ui/use-toast";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import {
@@ -45,6 +51,17 @@ import {
 
 export default function UsersTable() {
   const [searchValue, setSearchValue] = useState("");
+  const [selectedUser, setSelectedUser] = useState<UserType | null>(null);
+  const [isViewModalOpen, setIsViewModalOpen] = useState(false);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [isUpdating, setIsUpdating] = useState(false);
+  const [isStatusConfirmationOpen, setIsStatusConfirmationOpen] = useState(false);
+  const [pendingStatusAction, setPendingStatusAction] = useState<UserStatusAction | null>(null);
+  const [userForStatusChange, setUserForStatusChange] = useState<UserType | null>(null);
+  const [isUpdatingStatus, setIsUpdatingStatus] = useState(false);
+
+  const { toast } = useToast();
+  const usersApi = new UsersApiService();
   
   const {
     users,
@@ -55,6 +72,7 @@ export default function UsersTable() {
     filterOptions,
     updateFilters,
     changePage,
+    refetch,
   } = useUsers();
 
   // Handle search input
@@ -87,6 +105,105 @@ export default function UsersTable() {
       sortBy: field,
       sortOrder: newSortOrder,
     });
+  };
+
+  // Handle view profile
+  const handleViewProfile = (user: UserType) => {
+    setSelectedUser(user);
+    setIsViewModalOpen(true);
+  };
+
+  // Handle edit profile
+  const handleEditProfile = (user: UserType) => {
+    setSelectedUser(user);
+    setIsEditModalOpen(true);
+  };
+
+  // Handle save user changes
+  const handleSaveUser = async (userId: string, userData: Partial<UserType>) => {
+    setIsUpdating(true);
+    try {
+      await usersApi.updateUser(userId, userData);
+      // Refresh the users list
+      await refetch();
+      toast({
+        title: "Success",
+        description: "User profile updated successfully.",
+      });
+    } catch (error) {
+      console.error("Error updating user:", error);
+      toast({
+        title: "Error",
+        description: "Failed to update user profile. Please try again.",
+        variant: "destructive",
+      });
+      throw error;
+    } finally {
+      setIsUpdating(false);
+    }
+  };
+
+  // Close modals
+  const closeViewModal = () => {
+    setIsViewModalOpen(false);
+    setSelectedUser(null);
+  };
+
+  const closeEditModal = () => {
+    setIsEditModalOpen(false);
+    setSelectedUser(null);
+  };
+
+  // Handle status change actions (suspend, activate, ban)
+  const handleStatusChange = (user: UserType, action: UserStatusAction) => {
+    setUserForStatusChange(user);
+    setPendingStatusAction(action);
+    setIsStatusConfirmationOpen(true);
+  };
+
+  // Handle status change confirmation
+  const confirmStatusChange = async () => {
+    if (!userForStatusChange || !pendingStatusAction) return;
+
+    setIsUpdatingStatus(true);
+    try {
+      const newStatus = pendingStatusAction === "activate" ? "active" : pendingStatusAction === "suspend" ? "suspended" : "banned";
+      
+      await usersApi.updateUserStatus(userForStatusChange.id, newStatus);
+      
+      // Refresh the users list
+      await refetch();
+      
+      // Close confirmation dialog
+      setIsStatusConfirmationOpen(false);
+      setUserForStatusChange(null);
+      setPendingStatusAction(null);
+      
+      const actionText = pendingStatusAction === "activate" ? "activated" : pendingStatusAction === "suspend" ? "suspended" : "banned";
+      
+      toast({
+        title: "Success",
+        description: `User has been ${actionText} successfully.`,
+      });
+    } catch (error) {
+      console.error("Error updating user status:", error);
+      toast({
+        title: "Error",
+        description: "Failed to update user status. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsUpdatingStatus(false);
+    }
+  };
+
+  // Close status confirmation dialog
+  const closeStatusConfirmation = () => {
+    if (!isUpdatingStatus) {
+      setIsStatusConfirmationOpen(false);
+      setUserForStatusChange(null);
+      setPendingStatusAction(null);
+    }
   };
 
   // Get initials for avatar
@@ -376,20 +493,37 @@ export default function UsersTable() {
                           </Button>
                         </DropdownMenuTrigger>
                         <DropdownMenuContent align="end">
-                          <DropdownMenuItem>View Profile</DropdownMenuItem>
-                          <DropdownMenuItem>Edit User</DropdownMenuItem>
+                          <DropdownMenuItem onClick={() => handleViewProfile(user)}>
+                            <Eye className="mr-2 h-4 w-4" />
+                            View Profile
+                          </DropdownMenuItem>
+                          <DropdownMenuItem onClick={() => handleEditProfile(user)}>
+                            <Edit className="mr-2 h-4 w-4" />
+                            Edit User
+                          </DropdownMenuItem>
                           {user.status === "active" ? (
-                            <DropdownMenuItem className="text-amber-600">
+                            <DropdownMenuItem 
+                              className="text-amber-600"
+                              onClick={() => handleStatusChange(user, "suspend")}
+                            >
                               Suspend User
                             </DropdownMenuItem>
                           ) : user.status === "suspended" ? (
-                            <DropdownMenuItem className="text-green-600">
+                            <DropdownMenuItem 
+                              className="text-green-600"
+                              onClick={() => handleStatusChange(user, "activate")}
+                            >
                               Activate User
                             </DropdownMenuItem>
                           ) : null}
-                          <DropdownMenuItem className="text-red-600">
-                            Ban User
-                          </DropdownMenuItem>
+                          {user.status !== "banned" && (
+                            <DropdownMenuItem 
+                              className="text-red-600"
+                              onClick={() => handleStatusChange(user, "ban")}
+                            >
+                              Ban User
+                            </DropdownMenuItem>
+                          )}
                         </DropdownMenuContent>
                       </DropdownMenu>
                     </TableCell>
@@ -459,6 +593,30 @@ export default function UsersTable() {
           </div>
         </div>
       </CardContent>
+
+      {/* Modals */}
+      <ViewProfileModal
+        isOpen={isViewModalOpen}
+        onClose={closeViewModal}
+        user={selectedUser}
+      />
+
+      <EditProfileModal
+        isOpen={isEditModalOpen}
+        onClose={closeEditModal}
+        user={selectedUser}
+        onSave={handleSaveUser}
+        isLoading={isUpdating}
+      />
+
+      <UserStatusConfirmationDialog
+        isOpen={isStatusConfirmationOpen}
+        onClose={closeStatusConfirmation}
+        onConfirm={confirmStatusChange}
+        user={userForStatusChange}
+        action={pendingStatusAction!}
+        isLoading={isUpdatingStatus}
+      />
     </Card>
   );
 }

@@ -108,15 +108,23 @@ export function useApiMutation<T, P>(apiMethod: (params: P) => Promise<T>) {
   return { data, isLoading, error, mutate };
 }
 
+export interface CrudOptions {
+  params?: Record<string, any>;
+  initialPage?: number;
+  initialPerPage?: number;
+}
+
 // Hook for CRUD operations on an entity with pagination
 export function useApiCrud<T extends { id?: string }>(
-  apiService: ApiService<T>
+  apiService: ApiService<T>,
+  options: CrudOptions = {}
 ) {
+  const { params, initialPage = 1, initialPerPage = 20 } = options;
   // State for entities and pagination
   const [entities, setEntities] = useState<T[]>([]);
   const [pagination, setPagination] = useState({
-    currentPage: 1,
-    perPage: 20,
+    currentPage: initialPage,
+    perPage: initialPerPage,
     total: 0,
     lastPage: 1,
     prev: null as number | null,
@@ -127,7 +135,7 @@ export function useApiCrud<T extends { id?: string }>(
   const isMountedRef = useRef(true);
   const initialFetchDoneRef = useRef(false);
 
-  // Fetch entities with pagination
+  // Fetch entities with pagination and filtering
   const fetchEntities = useCallback(
     async (page = 1, perPage = 20) => {
       if (!isMountedRef.current) return null;
@@ -135,7 +143,34 @@ export function useApiCrud<T extends { id?: string }>(
       setIsLoading(true);
       setError(null);
       try {
-        const response = await apiService.getAll(page, perPage);
+        let response;
+        
+        // If we have filter params, make a custom API call
+        if (params && Object.keys(params).length > 0) {
+          // Create query parameters including pagination and filters
+          const queryParams = new URLSearchParams();
+          queryParams.set('page', page.toString());
+          queryParams.set('perPage', perPage.toString());
+          
+          // Add filter parameters
+          Object.entries(params).forEach(([key, value]) => {
+            if (value !== undefined && value !== null) {
+              queryParams.set(key, value.toString());
+            }
+          });
+
+          // Import axios for direct API call
+          const axios = (await import('axios')).default;
+          
+          const apiResponse = await axios.get<IApiResponse<T>>(
+            `${apiService.endpoint}?${queryParams.toString()}`
+          );
+          response = apiResponse.data;
+        } else {
+          // Use the standard getAll method without filters
+          response = await apiService.getAll(page, perPage);
+        }
+        
         if (isMountedRef.current) {
           setEntities(response.data);
           setPagination({
@@ -169,22 +204,25 @@ export function useApiCrud<T extends { id?: string }>(
         }
       }
     },
-    [apiService]
+    [apiService, params]
   );
 
-  // Load entities on mount
+  // Load entities on mount and when params change
   useEffect(() => {
     isMountedRef.current = true;
 
+    // Reset initial fetch flag when params change
+    initialFetchDoneRef.current = false;
+    
     if (!initialFetchDoneRef.current) {
-      fetchEntities(1, 20);
+      fetchEntities(initialPage, initialPerPage);
       initialFetchDoneRef.current = true;
     }
 
     return () => {
       isMountedRef.current = false;
     };
-  }, [fetchEntities]);
+  }, [fetchEntities, initialPage, initialPerPage]);
 
   // Create entity
   const createEntity = useCallback(
