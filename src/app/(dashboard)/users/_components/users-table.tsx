@@ -22,13 +22,11 @@ import { Card, CardContent } from "@/components/ui/card";
 import { useUsers } from "@/hooks/api/use-users";
 import { Skeleton } from "@/components/ui/skeleton";
 import { 
-  ChevronDown, 
   ChevronLeft, 
   ChevronRight, 
   ArrowUpDown,
   Search,
   X,
-  Info,
   MoreHorizontal,
   User,
   Building2,

@@ -165,7 +165,7 @@ export function ViewProfileModal({ isOpen, onClose, user }: ViewProfileModalProp
               </CardHeader>
               <CardContent>
                 <div className="space-y-3">
-                  {user.organizations.map((org, index) => (
+                  {user.organizations.map((org) => (
                     <div key={org.id} className="flex items-center justify-between">
                       <div>
                         <p className="font-medium">{org.name}</p>

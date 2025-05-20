@@ -171,7 +171,7 @@ export function EditProfileModal({
         title: "Success",
         description: "User profile updated successfully.",
       });
-    } catch (error) {
+    } catch {
       toast({
         title: "Error",
         description: "Failed to update user profile. Please try again.",
