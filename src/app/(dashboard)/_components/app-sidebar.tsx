@@ -76,16 +76,7 @@ const data = {
       url: "/coupons",
       icon: <CouponsIcon />,
     },
-    {
-      title: "QR Codes (Bins)",
-      url: "/qr-codes",
-      icon: <QRCodesBinsIcon />,
-    },
-    {
-      title: "Reward Points",
-      url: "/reward-points",
-      icon: <RewardPointsIcon />,
-    },
+ 
   ],
 };
 
