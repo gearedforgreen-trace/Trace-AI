@@ -19,6 +19,8 @@ export const baseApi = createApi({
     'RecycleHistory',
     'RedeemHistory',
     'RewardRule',
+    'Analytics',
+    'Dashboard',
   ],
   endpoints: () => ({}), // Empty endpoints - will be extended by injected endpoints
 });
