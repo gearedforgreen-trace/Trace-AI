@@ -76,8 +76,7 @@ export default function OrganizationDashboardClient({
   // Fetch coupons data for this organization
   const { 
     data: couponsData, 
-    isLoading: isLoadingCoupons,
-    error: couponsError 
+    isLoading: isLoadingCoupons
   } = useGetCouponsQuery({ organizationId });
   
   // Fetch materials data

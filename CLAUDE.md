@@ -281,6 +281,8 @@ The application requires these environment variables:
 
 ### Critical Rules - DO NOT VIOLATE
 
+- **When debugging issues, focus on fixing the existing implementation, not replacing it**
+
 - **NEVER create mock data or simplified components** unless explicitly told to do so
 
 - **NEVER replace existing complex components with simplified versions** - always fix the actual problem

@@ -14,6 +14,7 @@ import {
   useUpdateCouponMutation, 
   useDeleteCouponMutation 
 } from "@/store/api/couponsApi";
+import { CouponFormModal } from "./coupon-form-modal";
 
 interface CouponsTabProps {
   organizationId: string;
@@ -290,15 +291,14 @@ export default function CouponsTab({ organizationId }: CouponsTabProps) {
         </div>
       )}
 
-      {/* TODO: Add CouponFormModal when it exists */}
-      {/* <CouponFormModal
+      <CouponFormModal
         isOpen={isModalOpen}
         onClose={closeModal}
         coupon={currentCoupon}
         onSave={handleSave}
         isLoading={isSubmitting}
         error={formError}
-      /> */}
+      />
 
       <ConfirmationDialog
         isOpen={isDeleteDialogOpen}

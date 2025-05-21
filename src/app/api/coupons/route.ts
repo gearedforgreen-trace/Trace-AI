@@ -52,6 +52,7 @@ export async function GET(request: NextRequest) {
         perPage: perPage,
       }
     );
+
     return NextResponse.json(coupons, { status: 200 });
   } catch (error) {
     console.error(error);

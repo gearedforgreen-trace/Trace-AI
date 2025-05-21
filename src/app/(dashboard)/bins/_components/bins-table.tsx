@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import type { ColumnDef } from "@tanstack/react-table";
 import { DataTable } from "@/components/ui/data-table/data-table";
 import { DataTableActions } from "@/components/ui/data-table/data-table-actions";
@@ -10,6 +10,8 @@ import type { IBin } from "@/types";
 import { DataTablePagination } from "@/components/ui/data-table/data-table-pagination";
 import { Button } from "@/components/ui/button";
 import { Edit, Trash2 } from "lucide-react";
+import { QRCodeComponent } from "@/components/ui/qr-code";
+import { QRCodeModal } from "@/components/ui/qr-code-modal";
 
 interface IBinsTableProps {
   bins: IBin[];
@@ -35,6 +37,25 @@ export function BinsTable({
   pagination,
   onPageChange,
 }: IBinsTableProps) {
+  const [qrModalOpen, setQrModalOpen] = useState(false);
+  const [selectedBin, setSelectedBin] = useState<IBin | null>(null);
+  const [selectedBinUrl, setSelectedBinUrl] = useState<string>("");
+
+  const openQrModal = (bin: IBin) => {
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || window.location.origin;
+    const binUrl = `${baseUrl}/bins/${bin.id}`;
+    console.log("Opening QR modal with URL:", binUrl);
+    setSelectedBin(bin);
+    setSelectedBinUrl(binUrl);
+    setQrModalOpen(true);
+  };
+
+  const closeQrModal = () => {
+    setQrModalOpen(false);
+    setSelectedBin(null);
+    setSelectedBinUrl("");
+  };
+
   const columns = useMemo<ColumnDef<IBin>[]>(
     () => [
       {
@@ -75,6 +96,24 @@ export function BinsTable({
         ),
       },
       {
+        id: "qrCode",
+        header: "QR Code",
+        cell: ({ row }) => {
+          const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || (typeof window !== 'undefined' ? window.location.origin : 'http://localhost:3000');
+          const binUrl = `${baseUrl}/bins/${row.original.id}`;
+          return (
+            <div className="flex justify-center">
+              <QRCodeComponent 
+                value={binUrl} 
+                size={64} 
+                clickable={true}
+                onClick={() => openQrModal(row.original)}
+              />
+            </div>
+          );
+        },
+      },
+      {
         id: "actions",
         cell: ({ row }) => (
           <DataTableActions
@@ -85,7 +124,7 @@ export function BinsTable({
         ),
       },
     ],
-    [onEdit, onDelete]
+    [onEdit, onDelete, openQrModal]
   );
 
   if (isLoading) {
@@ -111,6 +150,7 @@ export function BinsTable({
                 <th className="h-10 px-4 text-left font-medium hidden lg:table-cell">
                   Description
                 </th>
+                <th className="h-10 px-4 text-center font-medium">QR Code</th>
                 <th className="h-10 px-4 text-right font-medium">Actions</th>
               </tr>
             </thead>
@@ -132,6 +172,14 @@ export function BinsTable({
                     </td>
                     <td className="p-4 align-middle hidden lg:table-cell max-w-[300px] truncate">
                       {bin.description || "No description"}
+                    </td>
+                    <td className="p-4 align-middle text-center">
+                      <QRCodeComponent 
+                        value={`${process.env.NEXT_PUBLIC_BASE_URL || (typeof window !== 'undefined' ? window.location.origin : 'http://localhost:3000')}/bins/${bin.id}`} 
+                        size={64} 
+                        clickable={true}
+                        onClick={() => openQrModal(bin)}
+                      />
                     </td>
                     <td className="p-4 align-middle text-right">
                       <div className="flex justify-end gap-2">
@@ -158,7 +206,7 @@ export function BinsTable({
                 ))
               ) : (
                 <tr>
-                  <td colSpan={6} className="h-24 text-center">
+                  <td colSpan={7} className="h-24 text-center">
                     No results found.
                   </td>
                 </tr>
@@ -174,6 +222,14 @@ export function BinsTable({
           onPageChange={onPageChange}
           isExternalPagination={true}
         />
+        
+        <QRCodeModal
+          isOpen={qrModalOpen}
+          onClose={closeQrModal}
+          value={selectedBinUrl}
+          title={`QR Code - Bin ${selectedBin?.number || ""}`}
+          binNumber={selectedBin?.number || ""}
+        />
       </div>
     );
   }
@@ -182,6 +238,14 @@ export function BinsTable({
   return (
     <div className="space-y-4">
       <DataTable columns={columns} data={bins} pageSize={20} />
+      
+      <QRCodeModal
+        isOpen={qrModalOpen}
+        onClose={closeQrModal}
+        value={selectedBinUrl}
+        title={`QR Code - Bin ${selectedBin?.number || ""}`}
+        binNumber={selectedBin?.number || ""}
+      />
     </div>
   );
 }

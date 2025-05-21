@@ -159,11 +159,12 @@ export const couponBaseSchema = z.object({
     .optional()
     .nullable(),
   imageUrl: z
-    .string({
-      required_error: 'Image URL is required',
-    })
-    .url('Please provide a valid image URL')
-    .max(2048, 'Image URL cannot exceed 2048 characters')
+    .string()
+    .max(15000000, 'Image data cannot exceed 15MB when encoded') // ~10MB base64 encoded
+    .refine(
+      (val) => !val || val.startsWith('data:image/'),
+      'Image must be a valid data URL starting with data:image/'
+    )
     .optional()
     .nullable(),
   couponType: z.enum(['FIXED', 'PERCENTAGE']),
@@ -199,6 +200,11 @@ export const couponBaseSchema = z.object({
     .datetime({
       message: 'End date must be a valid date',
     }),
+  organizationId: z
+    .string()
+    .uuid('Organization ID must be a valid UUID')
+    .optional()
+    .nullable(),
 });
 
 export const couponCreateSchema = couponBaseSchema.refine(
