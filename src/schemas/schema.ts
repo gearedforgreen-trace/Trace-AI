@@ -75,6 +75,11 @@ export const storeSchema = z.object({
     })
     .min(-180, 'Longitude must be between -180 and 180')
     .max(180, 'Longitude must be between -180 and 180'),
+  organizationId: z
+    .string()
+    .uuid('Organization ID must be a valid UUID')
+    .optional()
+    .nullable(),
 });
 
 export const storeUpdateSchema = storeSchema.partial();

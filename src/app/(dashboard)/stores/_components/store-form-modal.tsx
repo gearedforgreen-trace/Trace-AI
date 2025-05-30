@@ -1,45 +1,46 @@
-"use client";
+'use client';
 
-import { z } from "zod";
+import { z } from 'zod';
 import {
   FormControl,
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
+} from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
-import { EntityFormModal } from "@/components/ui/entity-form-modal";
-import { Loader2 } from "lucide-react";
-import { Alert, AlertDescription } from "@/components/ui/alert";
-import { AlertCircle } from "lucide-react";
-import type { IStore } from "@/types";
+} from '@/components/ui/select';
+import { EntityFormModal } from '@/components/ui/entity-form-modal';
+import { Loader2 } from 'lucide-react';
+import { Alert, AlertDescription } from '@/components/ui/alert';
+import { AlertCircle } from 'lucide-react';
+import type { IStore } from '@/types';
+import { useGetOrganizationsQuery } from "@/store/api/organizationsApi";
 
 // Updated schema to match the API response structure
 const storeFormSchema = z.object({
   id: z.string().optional(),
-  name: z.string().min(1, "Store name is required"),
+  name: z.string().min(1, 'Store name is required'),
   description: z.string().nullable(),
   imageUrl: z.string().nullable(),
   status: z.string(),
   organizationId: z.string().nullable(),
-  address1: z.string().min(1, "Address is required"),
+  address1: z.string().min(1, 'Address is required'),
   address2: z.string().nullable(),
-  city: z.string().min(1, "City is required"),
-  state: z.string().min(1, "State is required"),
+  city: z.string().min(1, 'City is required'),
+  state: z.string().min(1, 'State is required'),
   zip: z
     .string()
-    .min(1, "ZIP code is required")
-    .min(5, "Must be at least 5 characters"),
-  country: z.string().min(1, "Country is required"),
+    .min(1, 'ZIP code is required')
+    .min(5, 'Must be at least 5 characters'),
+  country: z.string().min(1, 'Country is required'),
   lat: z.number(),
   lng: z.number(),
   createdAt: z.string().optional(),
@@ -67,26 +68,40 @@ export function StoreFormModal({
 }: IStoreFormModalProps) {
   // Updated default values to match the API response structure
   const defaultValues: TStoreFormValues = {
-    name: "",
+    name: '',
     description: null,
     imageUrl: null,
-    status: "ACTIVE",
-    organizationId: null,
-    address1: "",
+    status: 'ACTIVE',
+    organizationId: store?.organizationId || null,
+    address1: '',
     address2: null,
-    city: "",
-    state: "",
-    zip: "",
-    country: "",
+    city: '',
+    state: '',
+    zip: '',
+    country: '',
     lat: 0,
     lng: 0,
   };
 
+  // RTK Query for organizations
+  const {
+    data: organizationsResponse,
+    isLoading: isLoadingOrganizations,
+    error: organizationsError,
+  } = useGetOrganizationsQuery({ perPage: 100 });
+
+  const organizations = organizationsResponse?.data || [];
+
+  if (organizationsError) {
+    return <div>Error: Something went wrong</div>;
+  }
+
   return (
     <EntityFormModal<TStoreFormValues, IStore>
       isOpen={isOpen}
+      loading={isLoadingOrganizations}
       onClose={onClose}
-      title={store ? "Edit Store" : "Add New Store"}
+      title={store ? 'Edit Store' : 'Add New Store'}
       entity={store}
       formSchema={storeFormSchema}
       defaultValues={defaultValues}
@@ -95,12 +110,12 @@ export function StoreFormModal({
         isLoading ? (
           <>
             <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-            {store ? "Updating..." : "Creating..."}
+            {store ? 'Updating...' : 'Creating...'}
           </>
         ) : store ? (
-          "Update Store"
+          'Update Store'
         ) : (
-          "Create Store"
+          'Create Store'
         )
       }
       renderForm={(form) => (
@@ -112,7 +127,7 @@ export function StoreFormModal({
             </Alert>
           )}
 
-          <div className="grid grid-cols-2 gap-4">
+          <div className="sm:grid grid-cols-1 sm:grid-cols-2 gap-6 max-sm:space-y-6">
             <FormField
               control={form.control}
               name="name"
@@ -133,15 +148,47 @@ export function StoreFormModal({
 
             <FormField
               control={form.control}
+              name="organizationId"
+              render={({ field }) => (
+                <FormItem className="col-span-2">
+                  <FormLabel optional>Organization</FormLabel>
+                  <Select
+                    onValueChange={field.onChange}
+                    disabled={isLoading}
+                    defaultValue={store?.organizationId || undefined}
+                  >
+                    <FormControl>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Select organization" />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      {organizations.map((organization) => (
+                        <SelectItem
+                          key={organization.id}
+                          value={organization.id}
+                        >
+                          {organization.name}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
               name="description"
               render={({ field }) => (
                 <FormItem className="col-span-2">
-                  <FormLabel>Description</FormLabel>
+                  <FormLabel optional>Description</FormLabel>
                   <FormControl>
                     <Textarea
                       placeholder="Enter store description"
                       {...field}
-                      value={field.value || ""}
+                      value={field.value || ''}
                       rows={3}
                       disabled={isLoading}
                     />
@@ -224,7 +271,7 @@ export function StoreFormModal({
                     <Input
                       placeholder="Apartment, suite, etc. (optional)"
                       {...field}
-                      value={field.value || ""}
+                      value={field.value || ''}
                       disabled={isLoading}
                     />
                   </FormControl>

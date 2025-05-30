@@ -45,7 +45,7 @@ export default function BinsClient() {
 
   const [createBin, { isLoading: isCreating }] = useCreateBinMutation();
   const [updateBin, { isLoading: isUpdating }] = useUpdateBinMutation();
-  const [deleteBin, { isLoading: isDeleting }] = useDeleteBinMutation();
+  const [deleteBin, { isLoading: isDeleing }] = useDeleteBinMutation();
 
   const bins = binsResponse?.data || [];
   const pagination = binsResponse?.meta || {
@@ -97,6 +97,7 @@ export default function BinsClient() {
   // Save handler with improved error handling
   const handleSave = useCallback(
     async (bin: IBin) => {
+      console.log("bin", bin);
       setFormError(null);
 
       try {

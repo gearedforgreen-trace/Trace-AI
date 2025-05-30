@@ -27,6 +27,7 @@ export interface IStore {
   lat: number;
   lng: number;
   createdAt: string;
+  organizationName?: string;
   updatedAt: string;
 }
 
@@ -90,6 +91,7 @@ export interface IBin {
   number: string;
   materialId: string;
   storeId: string;
+  organizationId: string | null;
   description: string | null;
   imageUrl: string | null;
   status: string;
@@ -97,6 +99,7 @@ export interface IBin {
   updatedAt: string;
   material?: IMaterial;
   store?: IStore;
+  organizationName?: string;
 }
 
 // Define Coupon interface

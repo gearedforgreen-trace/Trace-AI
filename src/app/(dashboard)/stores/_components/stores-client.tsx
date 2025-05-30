@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { EntityHeader } from "@/components/ui/entity-header";
 import { ConfirmationDialog } from "@/components/ui/confirmation-dialog";
 import { useToast } from "@/components/ui/use-toast";
-import type { IStore, IOrganization } from "@/types";
+import type { IStore } from "@/types";
 import { StoreFormModal } from "./store-form-modal";
 import { StoresTable } from "./stores-table";
 import { StoresMap } from "./stores-map";
@@ -61,7 +61,7 @@ export default function StoresClient() {
   // RTK Query mutations
   const [createStore, { isLoading: isCreating }] = useCreateStoreMutation();
   const [updateStore, { isLoading: isUpdating }] = useUpdateStoreMutation();
-  const [deleteStore, { isLoading: isDeleting }] = useDeleteStoreMutation();
+  const [deleteStore] = useDeleteStoreMutation();
 
   // Derived data
   const stores = storesResponse?.data || [];
@@ -222,9 +222,14 @@ export default function StoresClient() {
         addButtonText="Add Store"
       />
 
+    
+
+      {/* Map component */}
+      <StoresMap stores={stores} />
+
       <div className="flex items-center gap-4 mb-4">
-        <Card className="w-full">
-          <CardContent className="p-4">
+      <Card className="w-full">
+          <CardContent >
             <div className="flex flex-wrap items-center gap-4">
               <div className="flex flex-col gap-1">
                 <label htmlFor="org-select" className="text-sm font-medium">
@@ -252,9 +257,6 @@ export default function StoresClient() {
           </CardContent>
         </Card>
       </div>
-
-      {/* Map component */}
-      <StoresMap stores={stores} />
 
       <StoresTable
         stores={stores}
@@ -288,7 +290,6 @@ export default function StoresClient() {
         title="Are you sure?"
         description={`This will permanently delete the store "${storeToDelete?.name}". This action cannot be undone.`}
         confirmText="Delete"
-        isLoading={isDeleting}
       />
     </div>
   );

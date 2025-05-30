@@ -67,14 +67,15 @@ export function OrganizationsTable({
                   <tr key={organization.id} className="border-b">
                     <td className="p-4 align-middle">
                       {organization.logo ? (
+                        // eslint-disable-next-line @next/next/no-img-element
                         <img 
                           src={organization.logo} 
                           alt={organization.name}
                           className="h-8 w-8 rounded-md object-cover"
                         />
                       ) : (
-                        <div className="h-8 w-8 rounded-md bg-gray-200 flex items-center justify-center">
-                          <Building className="h-4 w-4 text-gray-500" />
+                        <div className="h-8 w-8 rounded-md  flex items-center justify-center">
+                          <Building className="h-4 w-4 " />
                         </div>
                       )}
                     </td>
@@ -87,7 +88,7 @@ export function OrganizationsTable({
                         <ExternalLink className="h-3 w-3" />
                       </Link>
                     </td>
-                    <td className="p-4 align-middle text-gray-500">
+                    <td className="p-4 align-middle ">
                       {organization.slug || "-"}
                     </td>
                     <td className="p-4 align-middle hidden md:table-cell">
@@ -152,8 +153,8 @@ export function OrganizationsTable({
             className="h-8 w-8 rounded-md object-cover"
           />
         ) : (
-          <div className="h-8 w-8 rounded-md bg-gray-200 flex items-center justify-center">
-            <Building className="h-4 w-4 text-gray-500" />
+          <div className="h-8 w-8 rounded-md  flex items-center justify-center">
+            <Building className="h-4 w-4 " />
           </div>
         );
       },
@@ -175,7 +176,7 @@ export function OrganizationsTable({
       accessorKey: "slug",
       header: "Slug",
       cell: ({ row }) => (
-        <div className="text-gray-500">{row.getValue("slug") || "-"}</div>
+        <div className="">{row.getValue("slug") || "-"}</div>
       ),
     },
     {

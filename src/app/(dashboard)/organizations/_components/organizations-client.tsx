@@ -33,7 +33,6 @@ export default function OrganizationsClient() {
     updateEntity,
     deleteEntity,
     changePage,
-    refetch,
   } = useApiCrud<Organization>(organizationsApi);
 
   // Modal handlers

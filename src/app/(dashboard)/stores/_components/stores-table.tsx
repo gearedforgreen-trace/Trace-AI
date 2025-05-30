@@ -1,16 +1,17 @@
-"use client";
+'use client';
 
-import { useMemo } from "react";
-import type { ColumnDef } from "@tanstack/react-table";
-import { DataTable } from "@/components/ui/data-table/data-table";
-import { DataTableActions } from "@/components/ui/data-table/data-table-actions";
-import { StatusBadge } from "@/components/ui/status-badge";
-import { Skeleton } from "@/components/ui/skeleton";
-import type { IStore } from "@/types";
-import { DataTablePagination } from "@/components/ui/data-table/data-table-pagination";
+import { useMemo } from 'react';
+import type { ColumnDef } from '@tanstack/react-table';
+import { DataTable } from '@/components/ui/data-table/data-table';
+import { DataTableActions } from '@/components/ui/data-table/data-table-actions';
+import { StatusBadge } from '@/components/ui/status-badge';
+import { Skeleton } from '@/components/ui/skeleton';
+import type { IStore } from '@/types';
+import { DataTablePagination } from '@/components/ui/data-table/data-table-pagination';
 // Import Button, Edit, and Trash2 components
-import { Button } from "@/components/ui/button";
-import { Edit, Trash2 } from "lucide-react";
+import { Button } from '@/components/ui/button';
+import { Edit, ExternalLink, Trash2 } from 'lucide-react';
+import Link from "next/link";
 
 interface IStoresTableProps {
   stores: IStore[];
@@ -39,24 +40,24 @@ export function StoresTable({
   const columns = useMemo<ColumnDef<IStore>[]>(
     () => [
       {
-        accessorKey: "name",
-        header: "Name",
+        accessorKey: 'name',
+        header: 'Name',
         cell: ({ row }) => (
-          <div className="font-medium">{row.getValue("name")}</div>
+          <div className="font-medium">{row.getValue('name')}</div>
         ),
       },
       {
-        accessorKey: "status",
-        header: "Status",
+        accessorKey: 'status',
+        header: 'Status',
         cell: ({ row }) => {
           // Convert status to lowercase for the StatusBadge component
-          const status = (row.getValue("status") as string).toLowerCase();
+          const status = (row.getValue('status') as string).toLowerCase();
           return <StatusBadge status={status} />;
         },
       },
       {
-        accessorKey: "location",
-        header: "Location",
+        accessorKey: 'location',
+        header: 'Location',
         cell: ({ row }) => (
           <div className="hidden md:block">
             {row.original.city}, {row.original.state}
@@ -64,16 +65,16 @@ export function StoresTable({
         ),
       },
       {
-        accessorKey: "description",
-        header: "Description",
+        accessorKey: 'description',
+        header: 'Description',
         cell: ({ row }) => (
           <div className="hidden lg:block max-w-[300px] truncate">
-            {row.original.description || "No description"}
+            {row.original.description || 'No description'}
           </div>
         ),
       },
       {
-        id: "actions",
+        id: 'actions',
         cell: ({ row }) => (
           <DataTableActions
             row={row}
@@ -103,6 +104,7 @@ export function StoresTable({
             <thead className="border-b bg-muted/50">
               <tr>
                 <th className="h-10 px-4 text-left font-medium">Name</th>
+                <th className="h-10 px-4 text-left font-medium">Organization</th>
                 <th className="h-10 px-4 text-left font-medium">Status</th>
                 <th className="h-10 px-4 text-left font-medium hidden md:table-cell">
                   Location
@@ -115,11 +117,25 @@ export function StoresTable({
             </thead>
             <tbody>
               {stores.length > 0 ? (
-                stores.map((store) => (
+                stores.map((store: any) => (
                   <tr key={store.id} className="border-b">
                     <td className="p-4 align-middle font-medium">
                       {store.name}
                     </td>
+                    <td className="p-4 align-middle font-medium">
+                      {store.organizationName ? (
+                        <Link
+                          href={`/organizations/${store.organizationId}/dashboard`}
+                          className="hover:underline flex items-center gap-2"
+                      >
+                        {store.organizationName}
+                          <ExternalLink className="h-3 w-3" />
+                        </Link>
+                      ) : (
+                        ''
+                      )}
+                    </td>
+
                     <td className="p-4 align-middle">
                       <StatusBadge status={store.status.toLowerCase()} />
                     </td>
@@ -127,7 +143,7 @@ export function StoresTable({
                       {store.city}, {store.state}
                     </td>
                     <td className="p-4 align-middle hidden lg:table-cell max-w-[300px] truncate">
-                      {store.description || "No description"}
+                      {store.description || 'No description'}
                     </td>
                     <td className="p-4 align-middle text-right">
                       <div className="flex justify-end gap-2">
