@@ -72,6 +72,11 @@ const data = {
       icon: <MaterialsIcon />,
     },
     {
+      title: "Reward Rules",
+      url: "/reward-rules",
+      icon: <RewardPointsIcon />,
+    },
+    {
       title: "Coupons",
       url: "/coupons",
       icon: <CouponsIcon />,

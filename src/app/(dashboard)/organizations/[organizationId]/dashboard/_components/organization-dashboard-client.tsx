@@ -185,35 +185,27 @@ export default function OrganizationDashboardClient({
         </Card>
       </div>
 
+     <div>
       <Tabs value={activeTab} onValueChange={handleTabChange} className="w-full">
-        <TabsList className="grid w-full grid-cols-5">
-          <TabsTrigger value="stores">Stores</TabsTrigger>
-          <TabsTrigger value="bins">Bins</TabsTrigger>
-          <TabsTrigger value="materials">Materials</TabsTrigger>
-          <TabsTrigger value="reward-rules">Reward Rules</TabsTrigger>
-          <TabsTrigger value="coupons">Coupons</TabsTrigger>
-        </TabsList>
-        
-        <TabsContent value="stores" className="space-y-4 mt-4">
-          <StoresTab organizationId={organizationId} />
-        </TabsContent>
-        
-        <TabsContent value="bins" className="space-y-4 mt-4">
-          <BinsTab organizationId={organizationId} stores={storesData?.data || []} />
-        </TabsContent>
-        
-        <TabsContent value="materials" className="space-y-4 mt-4">
-          <MaterialsTab organizationId={organizationId} />
-        </TabsContent>
-        
-        <TabsContent value="reward-rules" className="space-y-4 mt-4">
-          <RewardRulesTab organizationId={organizationId} />
-        </TabsContent>
-        
-        <TabsContent value="coupons" className="space-y-4 mt-4">
-          <CouponsTab organizationId={organizationId} />
-        </TabsContent>
-      </Tabs>
+          <TabsList className="grid grid-cols-3 w-full">
+            <TabsTrigger value="stores">Stores</TabsTrigger>
+            <TabsTrigger value="bins">Bins</TabsTrigger>
+            <TabsTrigger value="coupons">Coupons</TabsTrigger>
+          </TabsList>
+          
+          <TabsContent value="stores" className="space-y-4 mt-4">
+            <StoresTab organizationId={organizationId} />
+          </TabsContent>
+          
+          <TabsContent value="bins" className="space-y-4 mt-4">
+            <BinsTab organizationId={organizationId} stores={storesData?.data || []} />
+          </TabsContent>
+          
+          <TabsContent value="coupons" className="space-y-4 mt-4">
+            <CouponsTab organizationId={organizationId} />
+          </TabsContent>
+        </Tabs>
+     </div>
     </div>
   );
 }

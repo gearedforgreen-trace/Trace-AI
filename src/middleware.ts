@@ -41,5 +41,7 @@ export const config = {
     '/reward-points',
     '/organization',
     '/organization/:path*',
+    '/reward-rules',
+    '/reward-rules/:path*',
   ],
 };

@@ -2,6 +2,7 @@
   "name": "geared-for-green",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "prisma generate && next dev",
     "build": "prisma generate && next build",
@@ -11,7 +12,7 @@
     "prisma-format": "npx prisma format",
     "prisma-migrate-dev": "npx prisma migrate dev",
     "prisma-studio": "npx prisma studio",
-    "prisma-seed": "npx prisma db seed",
+    "prisma-seed": "node --loader ts-node/esm ./prisma/seed.ts",
     "vercel-build": "prisma generate && prisma migrate deploy && next build"
   },
   "dependencies": {
