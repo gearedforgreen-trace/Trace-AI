@@ -60,7 +60,6 @@ export function MaterialFormModal({
   useEffect(() => {
     const fetchRewardRules = async () => {
       if (!isOpen) return;
-
       setIsLoadingRewardRules(true);
       try {
         const response = await rewardRulesApi.getAll();
@@ -86,6 +85,7 @@ export function MaterialFormModal({
     <EntityFormModal<TMaterialFormValues, IMaterial>
       isOpen={isOpen}
       onClose={onClose}
+      loading={isLoadingRewardRules}
       title={material ? "Edit Material" : "Add New Material"}
       entity={material}
       formSchema={materialFormSchema}

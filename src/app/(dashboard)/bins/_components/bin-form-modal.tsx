@@ -22,7 +22,6 @@ import { Loader2, AlertCircle } from 'lucide-react';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import type { IBin, IMaterial, IStore } from '@/types';
 import { ApiService } from '@/lib/api/api-service';
-import { useGetOrganizationsQuery } from "@/store/api/organizationsApi";
 
 // Create API services for materials and stores
 const materialsApi = new ApiService<IMaterial>('/materials');
@@ -34,7 +33,6 @@ const binFormSchema = z.object({
   number: z.string().min(1, 'Bin number is required'),
   materialId: z.string().min(1, 'Material is required'),
   storeId: z.string().min(1, 'Store is required'),
-  organizationId: z.string().min(1, 'Organization is required').optional().nullable(),
   description: z.string().min(1, 'Description is required'), // Changed from nullable to required
   imageUrl: z.string().nullable(),
   status: z.string(),
@@ -112,7 +110,10 @@ export function BinFormModal({
       entity={bin}
       formSchema={binFormSchema}
       defaultValues={defaultValues}
-      onSubmit={onSave}
+      onSubmit={(data) => {
+        console.log("data", data);
+        onSave(data);
+      }}
       submitButtonText={
         isLoading ? (
           <>

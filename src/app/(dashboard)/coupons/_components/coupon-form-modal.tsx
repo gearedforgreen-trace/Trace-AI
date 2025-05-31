@@ -1,37 +1,44 @@
-"use client";
+/* eslint-disable @next/next/no-img-element */
+'use client';
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
   DialogFooter,
-} from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
+} from '@/components/ui/dialog';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Textarea } from '@/components/ui/textarea';
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
-import { Switch } from "@/components/ui/switch";
-import { Calendar } from "@/components/ui/calendar";
+} from '@/components/ui/select';
+import { Switch } from '@/components/ui/switch';
+import { Calendar } from '@/components/ui/calendar';
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/components/ui/popover";
-import { CalendarIcon, Loader2, Upload, X, Image as ImageIcon } from "lucide-react";
-import { format } from "date-fns";
-import { cn } from "@/lib/utils";
-import { useToast } from "@/components/ui/use-toast";
-import { useGetOrganizationsQuery } from "@/store/api/organizationsApi";
-import type { Coupon } from "@/types";
+} from '@/components/ui/popover';
+import {
+  CalendarIcon,
+  Loader2,
+  Upload,
+  X,
+  Image as ImageIcon,
+} from 'lucide-react';
+import { format } from 'date-fns';
+import { cn } from '@/lib/utils';
+import { useToast } from '@/components/ui/use-toast';
+import { useGetOrganizationsQuery } from '@/store/api/organizationsApi';
+import type { Coupon } from '@/types';
 
 interface CouponFormModalProps {
   isOpen: boolean;
@@ -46,8 +53,8 @@ interface CouponFormData {
   name: string;
   description: string;
   imageUrl: string;
-  couponType: "FIXED" | "PERCENTAGE";
-  dealType: "NOPOINTS" | "POINTS";
+  couponType: 'FIXED' | 'PERCENTAGE';
+  dealType: 'NOPOINTS' | 'POINTS';
   isFeatured: boolean;
   discountAmount: number;
   pointsToRedeem: number;
@@ -57,7 +64,13 @@ interface CouponFormData {
 }
 
 const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB in bytes
-const ACCEPTED_IMAGE_TYPES = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp', 'image/gif'];
+const ACCEPTED_IMAGE_TYPES = [
+  'image/jpeg',
+  'image/jpg',
+  'image/png',
+  'image/webp',
+  'image/gif',
+];
 
 export function CouponFormModal({
   isOpen,
@@ -69,25 +82,23 @@ export function CouponFormModal({
 }: CouponFormModalProps) {
   const { toast } = useToast();
   const [formData, setFormData] = useState<CouponFormData>({
-    name: "",
-    description: "",
-    imageUrl: "",
-    couponType: "FIXED",
-    dealType: "POINTS",
+    name: '',
+    description: '',
+    imageUrl: '',
+    couponType: 'FIXED',
+    dealType: 'POINTS',
     isFeatured: false,
     discountAmount: 0,
     pointsToRedeem: 0,
     startDate: undefined,
     endDate: undefined,
-    organizationId: "",
+    organizationId: '',
   });
   const [formErrors, setFormErrors] = useState<Partial<CouponFormData>>({});
   const [uploadingImage, setUploadingImage] = useState(false);
 
   // Get organizations for the dropdown
-  const {
-    data: organizationsResponse,
-  } = useGetOrganizationsQuery({
+  const { data: organizationsResponse } = useGetOrganizationsQuery({
     page: 1,
     perPage: 100,
   });
@@ -98,31 +109,31 @@ export function CouponFormModal({
   useEffect(() => {
     if (coupon) {
       setFormData({
-        name: coupon.name || "",
-        description: coupon.description || "",
-        imageUrl: coupon.imageUrl || "",
-        couponType: coupon.couponType || "FIXED",
-        dealType: coupon.dealType || "POINTS",
+        name: coupon.name || '',
+        description: coupon.description || '',
+        imageUrl: coupon.imageUrl || '',
+        couponType: coupon.couponType || 'FIXED',
+        dealType: coupon.dealType || 'POINTS',
         isFeatured: coupon.isFeatured || false,
         discountAmount: coupon.discountAmount || 0,
         pointsToRedeem: coupon.pointsToRedeem || 0,
         startDate: coupon.startDate ? new Date(coupon.startDate) : undefined,
         endDate: coupon.endDate ? new Date(coupon.endDate) : undefined,
-        organizationId: coupon.organizationId || "",
+        organizationId: coupon.organizationId || '',
       });
     } else {
       setFormData({
-        name: "",
-        description: "",
-        imageUrl: "",
-        couponType: "FIXED",
-        dealType: "POINTS",
+        name: '',
+        description: '',
+        imageUrl: '',
+        couponType: 'FIXED',
+        dealType: 'POINTS',
         isFeatured: false,
         discountAmount: 0,
         pointsToRedeem: 0,
         startDate: undefined,
         endDate: undefined,
-        organizationId: "",
+        organizationId: '',
       });
     }
     setFormErrors({});
@@ -130,24 +141,27 @@ export function CouponFormModal({
 
   // Handle form field changes
   const handleChange = (field: keyof CouponFormData, value: any) => {
-    setFormData(prev => ({ ...prev, [field]: value }));
+    setFormData((prev) => ({ ...prev, [field]: value }));
     // Clear error for this field
     if (formErrors[field]) {
-      setFormErrors(prev => ({ ...prev, [field]: undefined }));
+      setFormErrors((prev) => ({ ...prev, [field]: undefined }));
     }
   };
 
   // Handle image file upload
-  const handleImageUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleImageUpload = async (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
     const file = event.target.files?.[0];
     if (!file) return;
 
     // Validate file type
     if (!ACCEPTED_IMAGE_TYPES.includes(file.type)) {
       toast({
-        title: "Invalid file type",
-        description: "Please select a valid image file (JPEG, PNG, WebP, or GIF)",
-        variant: "destructive",
+        title: 'Invalid file type',
+        description:
+          'Please select a valid image file (JPEG, PNG, WebP, or GIF)',
+        variant: 'destructive',
       });
       return;
     }
@@ -155,9 +169,9 @@ export function CouponFormModal({
     // Validate file size
     if (file.size > MAX_FILE_SIZE) {
       toast({
-        title: "File too large",
-        description: "Please select an image smaller than 10MB",
-        variant: "destructive",
+        title: 'File too large',
+        description: 'Please select an image smaller than 10MB',
+        variant: 'destructive',
       });
       return;
     }
@@ -166,16 +180,16 @@ export function CouponFormModal({
     try {
       // Convert to data URL
       const dataUrl = await fileToDataUrl(file);
-      handleChange("imageUrl", dataUrl);
+      handleChange('imageUrl', dataUrl);
       toast({
-        title: "Image uploaded successfully",
+        title: 'Image uploaded successfully',
         description: `${file.name} has been uploaded`,
       });
     } catch {
       toast({
-        title: "Upload failed",
-        description: "Failed to process the image. Please try again.",
-        variant: "destructive",
+        title: 'Upload failed',
+        description: 'Failed to process the image. Please try again.',
+        variant: 'destructive',
       });
     } finally {
       setUploadingImage(false);
@@ -201,7 +215,7 @@ export function CouponFormModal({
 
   // Remove uploaded image
   const handleRemoveImage = () => {
-    handleChange("imageUrl", "");
+    handleChange('imageUrl', '');
   };
 
   // Validate form
@@ -209,39 +223,43 @@ export function CouponFormModal({
     const errors: Partial<CouponFormData> = {};
 
     if (!formData.name.trim()) {
-      errors.name = "Coupon name is required";
+      errors.name = 'Coupon name is required';
     }
 
     if (!formData.organizationId) {
-      errors.organizationId = "Organization is required";
+      errors.organizationId = 'Organization is required';
     }
 
     if (formData.discountAmount < 0) {
-      errors.discountAmount = "Discount amount cannot be negative";
+      errors.discountAmount = 'Discount amount cannot be negative';
     }
 
-    if (formData.couponType === "PERCENTAGE" && formData.discountAmount > 100) {
-      errors.discountAmount = "Percentage discount cannot exceed 100%";
+    if (formData.couponType === 'PERCENTAGE' && formData.discountAmount > 100) {
+      errors.discountAmount = 'Percentage discount cannot exceed 100%';
     }
 
     if (formData.pointsToRedeem < 0) {
-      errors.pointsToRedeem = "Points to redeem cannot be negative";
+      errors.pointsToRedeem = 'Points to redeem cannot be negative';
     }
 
     if (!formData.startDate) {
-      errors.startDate = "Start date is required";
+      errors.startDate = 'Start date is required';
     }
 
     if (!formData.endDate) {
-      errors.endDate = "End date is required";
+      errors.endDate = 'End date is required';
     }
 
-    if (formData.startDate && formData.endDate && formData.startDate >= formData.endDate) {
-      errors.endDate = "End date must be after start date";
+    if (
+      formData.startDate &&
+      formData.endDate &&
+      formData.startDate >= formData.endDate
+    ) {
+      errors.endDate = 'End date must be after start date';
     }
 
     if (formData.imageUrl && !formData.imageUrl.startsWith('data:image/')) {
-      errors.imageUrl = "Please upload a valid image file";
+      errors.imageUrl = 'Please upload a valid image file';
     }
 
     setFormErrors(errors);
@@ -275,7 +293,7 @@ export function CouponFormModal({
       await onSave(couponData);
     } catch (err) {
       // Error handling is done in parent component
-      console.error("Error saving coupon:", err);
+      console.error('Error saving coupon:', err);
     }
   };
 
@@ -291,11 +309,11 @@ export function CouponFormModal({
       <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle>
-            {coupon ? "Edit Coupon" : "Create New Coupon"}
+            {coupon ? 'Edit Coupon' : 'Create New Coupon'}
           </DialogTitle>
         </DialogHeader>
 
-        <form onSubmit={handleSubmit} className="space-y-6">
+        <form onSubmit={handleSubmit} className="space-y-3">
           {/* Basic Information */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="space-y-2">
@@ -303,7 +321,7 @@ export function CouponFormModal({
               <Input
                 id="name"
                 value={formData.name}
-                onChange={(e) => handleChange("name", e.target.value)}
+                onChange={(e) => handleChange('name', e.target.value)}
                 placeholder="Enter coupon name"
                 disabled={isLoading}
               />
@@ -316,7 +334,7 @@ export function CouponFormModal({
               <Label htmlFor="organizationId">Organization *</Label>
               <Select
                 value={formData.organizationId}
-                onValueChange={(value) => handleChange("organizationId", value)}
+                onValueChange={(value) => handleChange('organizationId', value)}
                 disabled={isLoading}
               >
                 <SelectTrigger>
@@ -331,14 +349,16 @@ export function CouponFormModal({
                 </SelectContent>
               </Select>
               {formErrors.organizationId && (
-                <p className="text-sm text-red-500">{formErrors.organizationId}</p>
+                <p className="text-sm text-red-500">
+                  {formErrors.organizationId}
+                </p>
               )}
             </div>
           </div>
 
           <div className="space-y-2">
             <Label>Coupon Image</Label>
-            
+
             {/* Image Upload Area */}
             {!formData.imageUrl ? (
               <div className="relative">
@@ -353,28 +373,26 @@ export function CouponFormModal({
                 <label
                   htmlFor="image-upload"
                   className={cn(
-                    "flex flex-col items-center justify-center w-full h-32 border-2 border-dashed rounded-lg cursor-pointer transition-colors",
-                    uploadingImage || isLoading
-                      ? "border-gray-300 bg-gray-50 cursor-not-allowed"
-                      : "border-gray-300 bg-gray-50 hover:bg-gray-100 hover:border-gray-400"
+                    'flex flex-col items-center justify-center w-full h-32 border-2 border-dashed rounded-lg cursor-pointer transition-colors'
                   )}
                 >
                   <div className="flex flex-col items-center justify-center pt-5 pb-6">
                     {uploadingImage ? (
-                      <Loader2 className="w-8 h-8 mb-2 text-gray-500 animate-spin" />
+                      <Loader2 className="w-8 h-8 mb-2  animate-spin" />
                     ) : (
-                      <Upload className="w-8 h-8 mb-2 text-gray-500" />
+                      <Upload className="w-8 h-8 mb-2 " />
                     )}
-                    <p className="mb-2 text-sm text-gray-500">
+                    <p className="mb-2 text-sm ">
                       {uploadingImage ? (
                         <span>Processing image...</span>
                       ) : (
                         <span>
-                          <span className="font-semibold">Click to upload</span> or drag and drop
+                          <span className="font-semibold">Click to upload</span>{' '}
+                          or drag and drop
                         </span>
                       )}
                     </p>
-                    <p className="text-xs text-gray-500">
+                    <p className="text-xs ">
                       PNG, JPG, WebP, or GIF (max 10MB)
                     </p>
                   </div>
@@ -383,7 +401,7 @@ export function CouponFormModal({
             ) : (
               /* Image Preview */
               <div className="relative">
-                <div className="relative w-full h-32 bg-gray-100 rounded-lg overflow-hidden">
+                <div className="relative w-full h-32  rounded-lg overflow-hidden">
                   <img
                     src={formData.imageUrl}
                     alt="Coupon preview"
@@ -399,13 +417,14 @@ export function CouponFormModal({
                   </button>
                 </div>
                 <div className="mt-2 flex items-center justify-between">
-                  <p className="text-sm text-gray-600 flex items-center">
+                  <p className="text-sm  flex items-center">
                     <ImageIcon className="w-4 h-4 mr-1" />
                     Image uploaded successfully
                   </p>
                   <label
                     htmlFor="image-replace"
-                    className="text-sm text-blue-600 hover:text-blue-800 cursor-pointer"
+                    className="text-sm dark:text-blue-400
+                    text-blue-600 hover:text-blue-800 cursor-pointer"
                   >
                     Replace image
                   </label>
@@ -420,7 +439,7 @@ export function CouponFormModal({
                 </div>
               </div>
             )}
-            
+
             {formErrors.imageUrl && (
               <p className="text-sm text-red-500">{formErrors.imageUrl}</p>
             )}
@@ -431,7 +450,7 @@ export function CouponFormModal({
             <Textarea
               id="description"
               value={formData.description}
-              onChange={(e) => handleChange("description", e.target.value)}
+              onChange={(e) => handleChange('description', e.target.value)}
               placeholder="Enter coupon description"
               disabled={isLoading}
               rows={3}
@@ -439,12 +458,12 @@ export function CouponFormModal({
           </div>
 
           {/* Coupon Configuration */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="space-y-2">
               <Label htmlFor="couponType">Coupon Type *</Label>
               <Select
                 value={formData.couponType}
-                onValueChange={(value) => handleChange("couponType", value)}
+                onValueChange={(value) => handleChange('couponType', value)}
                 disabled={isLoading}
               >
                 <SelectTrigger>
@@ -461,7 +480,7 @@ export function CouponFormModal({
               <Label htmlFor="dealType">Deal Type *</Label>
               <Select
                 value={formData.dealType}
-                onValueChange={(value) => handleChange("dealType", value)}
+                onValueChange={(value) => handleChange('dealType', value)}
                 disabled={isLoading}
               >
                 <SelectTrigger>
@@ -473,36 +492,41 @@ export function CouponFormModal({
                 </SelectContent>
               </Select>
             </div>
+          </div>
 
-            <div className="flex items-center space-x-2 pt-8">
-              <Switch
-                id="isFeatured"
-                checked={formData.isFeatured}
-                onCheckedChange={(checked) => handleChange("isFeatured", checked)}
-                disabled={isLoading}
-              />
-              <Label htmlFor="isFeatured">Featured Coupon</Label>
-            </div>
+          <div className="flex items-center ">
+            <Switch
+              id="isFeatured"
+              checked={formData.isFeatured}
+              onCheckedChange={(checked) => handleChange('isFeatured', checked)}
+              disabled={isLoading}
+            />
+            <Label htmlFor="isFeatured">Featured Coupon</Label>
           </div>
 
           {/* Discount and Points */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="space-y-2">
               <Label htmlFor="discountAmount">
-                Discount Amount * ({formData.couponType === "PERCENTAGE" ? "%" : "$"})
+                Discount Amount * (
+                {formData.couponType === 'PERCENTAGE' ? '%' : '$'})
               </Label>
               <Input
                 id="discountAmount"
                 type="number"
                 min="0"
-                max={formData.couponType === "PERCENTAGE" ? "100" : undefined}
+                max={formData.couponType === 'PERCENTAGE' ? '100' : undefined}
                 value={formData.discountAmount}
-                onChange={(e) => handleChange("discountAmount", Number(e.target.value))}
+                onChange={(e) =>
+                  handleChange('discountAmount', Number(e.target.value))
+                }
                 placeholder="0"
                 disabled={isLoading}
               />
               {formErrors.discountAmount && (
-                <p className="text-sm text-red-500">{formErrors.discountAmount}</p>
+                <p className="text-sm text-red-500">
+                  {formErrors.discountAmount}
+                </p>
               )}
             </div>
 
@@ -513,12 +537,16 @@ export function CouponFormModal({
                 type="number"
                 min="0"
                 value={formData.pointsToRedeem}
-                onChange={(e) => handleChange("pointsToRedeem", Number(e.target.value))}
+                onChange={(e) =>
+                  handleChange('pointsToRedeem', Number(e.target.value))
+                }
                 placeholder="0"
                 disabled={isLoading}
               />
               {formErrors.pointsToRedeem && (
-                <p className="text-sm text-red-500">{formErrors.pointsToRedeem}</p>
+                <p className="text-sm text-red-500">
+                  {formErrors.pointsToRedeem}
+                </p>
               )}
             </div>
           </div>
@@ -532,14 +560,14 @@ export function CouponFormModal({
                   <Button
                     variant="outline"
                     className={cn(
-                      "w-full justify-start text-left font-normal",
-                      !formData.startDate && "text-muted-foreground"
+                      'w-full justify-start text-left font-normal',
+                      !formData.startDate && 'text-muted-foreground'
                     )}
                     disabled={isLoading}
                   >
                     <CalendarIcon className="mr-2 h-4 w-4" />
                     {formData.startDate ? (
-                      format(formData.startDate, "PPP")
+                      format(formData.startDate, 'PPP')
                     ) : (
                       <span>Pick start date</span>
                     )}
@@ -549,7 +577,7 @@ export function CouponFormModal({
                   <Calendar
                     mode="single"
                     selected={formData.startDate}
-                    onSelect={(date) => handleChange("startDate", date)}
+                    onSelect={(date) => handleChange('startDate', date)}
                     initialFocus
                   />
                 </PopoverContent>
@@ -566,14 +594,14 @@ export function CouponFormModal({
                   <Button
                     variant="outline"
                     className={cn(
-                      "w-full justify-start text-left font-normal",
-                      !formData.endDate && "text-muted-foreground"
+                      'w-full justify-start text-left font-normal',
+                      !formData.endDate && 'text-muted-foreground'
                     )}
                     disabled={isLoading}
                   >
                     <CalendarIcon className="mr-2 h-4 w-4" />
                     {formData.endDate ? (
-                      format(formData.endDate, "PPP")
+                      format(formData.endDate, 'PPP')
                     ) : (
                       <span>Pick end date</span>
                     )}
@@ -583,7 +611,7 @@ export function CouponFormModal({
                   <Calendar
                     mode="single"
                     selected={formData.endDate}
-                    onSelect={(date) => handleChange("endDate", date)}
+                    onSelect={(date) => handleChange('endDate', date)}
                     initialFocus
                   />
                 </PopoverContent>
@@ -602,18 +630,21 @@ export function CouponFormModal({
           )}
 
           <DialogFooter>
-            <Button
+            <div className="mt-4 flex sm:flex-row flex-col items-center gap-2 ">
+           <Button
               type="button"
               variant="outline"
               onClick={handleClose}
               disabled={isLoading}
+              className="max-sm:w-full"
             >
               Cancel
             </Button>
-            <Button type="submit" disabled={isLoading}>
+            <Button type="submit" disabled={isLoading} className="max-sm:w-full">
               {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-              {coupon ? "Update Coupon" : "Create Coupon"}
+              {coupon ? 'Update Coupon' : 'Create Coupon'}
             </Button>
+           </div>
           </DialogFooter>
         </form>
       </DialogContent>

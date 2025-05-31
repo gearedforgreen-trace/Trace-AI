@@ -37,7 +37,6 @@ export default function MaterialsClient() {
     updateEntity,
     deleteEntity,
     changePage,
-    refetch,
   } = useApiCrud<IMaterial>(materialsApi);
 
   // Modal handlers

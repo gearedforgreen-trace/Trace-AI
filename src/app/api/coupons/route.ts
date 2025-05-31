@@ -4,6 +4,7 @@ import { createPaginator } from 'prisma-pagination';
 import type { Coupon, Prisma } from '@prisma-gen/client';
 import { couponCreateSchema } from '@/schemas/schema';
 import { validateSessionAndPermission } from '@/lib/servers/permissions';
+import { Organization } from "@prisma/client";
 
 const paginate = createPaginator({ perPage: 10, page: 1 });
 
@@ -89,6 +90,23 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    let organization: Organization | null = null;
+
+    if(validatedBody.data.organizationId){
+      organization = await prisma.organization.findUnique({
+        where: {
+          id: validatedBody.data.organizationId,
+        },
+      });
+  
+      if (!organization) {
+        return NextResponse.json(
+          { error: 'Organization not found' },
+          { status: 404 }
+        );
+      }
+    }
+
     // Make sure organizationId is a valid UUID or null
     const data = {
       ...validatedBody.data,
@@ -96,7 +114,10 @@ export async function POST(request: NextRequest) {
     };
 
     const coupon = await prisma.coupon.create({
-      data,
+      data: {
+        ...data,
+        organizationId: organization?.id || null,
+      },
       include: {
         organization: true,
       },

@@ -140,7 +140,8 @@ export default function BinsClient() {
 
     try {
       await deleteBin(binToDelete.id).unwrap();
-      toast({ title: "Success", description: "Bin deleted successfully" });
+      
+      // toast({ title: "Success", description: "Bin deleted successfully" });
       closeDeleteDialog();
     } catch (err: any) {
       const errorMessage = err?.data?.error || err?.message || "Failed to delete bin";
