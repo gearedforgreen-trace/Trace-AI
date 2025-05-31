@@ -213,7 +213,7 @@ export function QRCodeModal({
           <div className="flex justify-center">
             {isGenerating && (
               <div className="flex items-center justify-center w-[400px] h-[400px] bg-gray-50 border border-gray-200 rounded-lg">
-                <div className="text-sm text-gray-500">Generating QR code...</div>
+                <div className="text-sm ">Generating QR code...</div>
               </div>
             )}
             
@@ -235,7 +235,7 @@ export function QRCodeModal({
           {binNumber && (
             <div className="text-center">
               <div className="font-medium text-lg">Bin {binNumber}</div>
-              <div className="text-sm text-gray-500 break-all mt-1">{value}</div>
+              <div className="text-sm  break-all mt-1">{value}</div>
             </div>
           )}
           
