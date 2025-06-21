@@ -21,6 +21,7 @@ export const baseApi = createApi({
     'RewardRule',
     'Analytics',
     'Dashboard',
+    'UserTotalPoint',
   ],
   endpoints: () => ({}), // Empty endpoints - will be extended by injected endpoints
 });

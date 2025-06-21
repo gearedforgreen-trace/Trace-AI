@@ -9,6 +9,11 @@ import {
 // API parameters
 interface GetStoresParams extends PaginationParams {
   organizationId?: string;
+  name?: string;
+  materials?: string; // comma-separated material IDs
+  lat?: number;
+  lng?: number;
+  maxDistance?: number; // in kilometers
 }
 
 // Store API
@@ -17,11 +22,35 @@ export const storesApi = baseApi.injectEndpoints({
     // Get all stores with pagination and optional filtering
     getStores: builder.query<ApiPaginatedResponse<Store>, GetStoresParams | void>({
       query: (params: GetStoresParams = {}) => {
-        const { page = 1, perPage = 20, organizationId } = params;
+        const { 
+          page = 1, 
+          perPage = 20, 
+          organizationId, 
+          name, 
+          materials, 
+          lat, 
+          lng, 
+          maxDistance 
+        } = params;
+        
         let url = `stores?page=${page}&perPage=${perPage}`;
+        
         if (organizationId) {
           url += `&organizationId=${organizationId}`;
         }
+        if (name) {
+          url += `&name=${encodeURIComponent(name)}`;
+        }
+        if (materials) {
+          url += `&materials=${encodeURIComponent(materials)}`;
+        }
+        if (lat !== undefined && lng !== undefined) {
+          url += `&lat=${lat}&lng=${lng}`;
+        }
+        if (maxDistance !== undefined) {
+          url += `&maxDistance=${maxDistance}`;
+        }
+        
         return url;
       },
       providesTags: (result) => 

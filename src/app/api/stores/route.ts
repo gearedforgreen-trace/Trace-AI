@@ -6,6 +6,19 @@ import { createPaginator } from 'prisma-pagination';
 import type { Prisma, Store } from '@prisma-gen/client';
 import { storeSchema } from '@/schemas/schema';
 
+// Haversine formula to calculate distance between two coordinates
+function calculateDistance(lat1: number, lng1: number, lat2: number, lng2: number): number {
+  const R = 6371; // Earth's radius in kilometers
+  const dLat = (lat2 - lat1) * Math.PI / 180;
+  const dLng = (lng2 - lng1) * Math.PI / 180;
+  const a = 
+    Math.sin(dLat/2) * Math.sin(dLat/2) +
+    Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) * 
+    Math.sin(dLng/2) * Math.sin(dLng/2);
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+  return R * c;
+}
+
 const paginate = createPaginator({ perPage: 10, page: 1 });
 
 export async function GET(request: NextRequest) {
@@ -49,13 +62,38 @@ export async function GET(request: NextRequest) {
       50
     );
 
-    // Check for organizationId filter
+    // Extract query parameters
     const organizationId = request.nextUrl.searchParams.get('organizationId');
+    const name = request.nextUrl.searchParams.get('name');
+    const materials = request.nextUrl.searchParams.get('materials');
+    const lat = request.nextUrl.searchParams.get('lat');
+    const lng = request.nextUrl.searchParams.get('lng');
+    const maxDistance = request.nextUrl.searchParams.get('maxDistance');
     
     const where: Prisma.StoreWhereInput = {};
     
     if (organizationId) {
       where.organizationId = organizationId;
+    }
+
+    // Filter by store name
+    if (name) {
+      where.name = {
+        contains: name,
+        mode: 'insensitive'
+      };
+    }
+
+    // Filter by materials - stores that have bins with specified materials
+    if (materials) {
+      const materialIds = materials.split(',').map(id => id.trim());
+      where.bins = {
+        some: {
+          materialId: {
+            in: materialIds
+          }
+        }
+      };
     }
 
     console.log('Query parameters:', {
@@ -94,6 +132,11 @@ export async function GET(request: NextRequest) {
         },
         include: {
           organization: true,
+          bins: {
+            include: {
+              material: true
+            }
+          }
         },
       },
       {
@@ -102,13 +145,67 @@ export async function GET(request: NextRequest) {
       }
     );
     
-    // Add organization name to each store for easier access in frontend
+    // Process the stores to add calculated fields and format response
     if (storesResult.data) {
-      storesResult.data = storesResult.data.map(store => ({
-        ...store,
-        organizationName: store.organization?.name || null
-      }));
+      const userLat = lat ? parseFloat(lat) : null;
+      const userLng = lng ? parseFloat(lng) : null;
+      const maxDistanceKm = maxDistance ? parseFloat(maxDistance) : null;
+
+      let processedStores = storesResult.data.map(store => {
+        // Calculate distance if coordinates provided
+        let distance = null;
+        if (userLat !== null && userLng !== null) {
+          distance = calculateDistance(userLat, userLng, store.lat, store.lng);
+        }
+
+        // Extract unique materials from bins
+        const materials = store.bins.reduce((acc: any[], bin: any) => {
+          const existingMaterial = acc.find((m: any) => m.id === bin.material.id);
+          if (!existingMaterial) {
+            acc.push({
+              id: bin.material.id,
+              name: bin.material.name,
+              description: bin.material.description
+            });
+          }
+          return acc;
+        }, []);
+
+        return {
+          id: store.id,
+          name: store.name,
+          organizationName: store.organization?.name || null,
+          materials,
+          bins: store.bins.map((bin: any) => ({
+            id: bin.id,
+            number: bin.number,
+            material: {
+              id: bin.material.id,
+              name: bin.material.name
+            }
+          })),
+          distance,
+          lat: store.lat,
+          lng: store.lng,
+          address1: store.address1,
+          city: store.city,
+          state: store.state
+        };
+      });
+
+      // Filter by distance if coordinates and maxDistance provided
+      if (userLat !== null && userLng !== null && maxDistanceKm !== null) {
+        processedStores = processedStores.filter(store => 
+          store.distance !== null && store.distance <= maxDistanceKm
+        );
+      }
+
+      return NextResponse.json({
+        ...storesResult,
+        data: processedStores
+      }, { status: 200 });
     }
+    
     return NextResponse.json(storesResult, { status: 200 });
   } catch (error) {
     console.error(error);

@@ -80,6 +80,48 @@ export const binsApi = baseApi.injectEndpoints({
         { type: 'Bin', id: 'LIST' },
       ],
     }),
+
+    // Scan bin QR code
+    scanBin: builder.mutation<{
+      message: string;
+      data: {
+        bin: {
+          id: string;
+          number: string;
+          description?: string;
+          status: string;
+        };
+        material: {
+          id: string;
+          name: string;
+          description?: string;
+        };
+        store: {
+          id: string;
+          name: string;
+          address1: string;
+          city: string;
+          state: string;
+          organizationName?: string;
+        };
+        rewardRule?: {
+          id: string;
+          name: string;
+          description?: string;
+          unitType: string;
+          unit: number;
+          point: number;
+        };
+        instructions: string;
+      };
+    }, { binId: string }>({
+      query: ({ binId }) => ({
+        url: 'bins/scan',
+        method: 'POST',
+        body: { binId },
+      }),
+      invalidatesTags: [],
+    }),
   }),
 });
 
@@ -90,4 +132,5 @@ export const {
   useCreateBinMutation,
   useUpdateBinMutation,
   useDeleteBinMutation,
+  useScanBinMutation,
 } = binsApi;

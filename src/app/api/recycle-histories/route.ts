@@ -62,6 +62,13 @@ export async function GET(request: NextRequest) {
         where: {
           userId: session.user.id,
         },
+        include: {
+          bin: {
+            include: {
+              material: true
+            }
+          }
+        }
       },
       {
         page: page,
@@ -69,7 +76,27 @@ export async function GET(request: NextRequest) {
       }
     );
 
-    return NextResponse.json(recycleHistoriesResult, { status: 200 });
+    // Transform the response to match the expected format
+    const transformedData = recycleHistoriesResult.data?.map((history: any) => ({
+      id: history.id,
+      userId: history.userId,
+      binId: history.binId,
+      points: history.points,
+      materials: [{
+        id: history.bin.material.id,
+        name: history.bin.material.name,
+        description: history.bin.material.description
+      }],
+      mediaUrl: history.mediaUrl,
+      totalCount: history.totalCount,
+      createdAt: history.createdAt,
+      updatedAt: history.updatedAt
+    }));
+
+    return NextResponse.json({
+      data: transformedData,
+      meta: recycleHistoriesResult.meta
+    }, { status: 200 });
   } catch (error) {
     console.error(error);
     return NextResponse.json(

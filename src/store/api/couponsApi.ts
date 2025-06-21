@@ -76,6 +76,33 @@ export const couponsApi = baseApi.injectEndpoints({
         { type: 'Coupon', id: 'LIST' },
       ],
     }),
+
+    // Claim coupon
+    claimCoupon: builder.mutation<{
+      message: string;
+      data: {
+        id: string;
+        couponCode: string;
+        couponName: string;
+        pointsRedeemed: number;
+        organizationName?: string;
+        claimedAt: string;
+        discountAmount: number;
+        dealType: string;
+        couponType: string;
+      };
+    }, { couponId: string }>({
+      query: ({ couponId }) => ({
+        url: 'coupons/claim',
+        method: 'POST',
+        body: { couponId },
+      }),
+      invalidatesTags: [
+        { type: 'Coupon', id: 'LIST' },
+        'UserTotalPoint',
+        'RedeemHistory',
+      ],
+    }),
   }),
 });
 
@@ -86,4 +113,5 @@ export const {
   useCreateCouponMutation,
   useUpdateCouponMutation,
   useDeleteCouponMutation,
+  useClaimCouponMutation,
 } = couponsApi;
