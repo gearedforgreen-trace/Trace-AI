@@ -1,7 +1,6 @@
 import { betterAuth } from 'better-auth';
 import { prismaAdapter } from 'better-auth/adapters/prisma';
 
-import { z } from 'zod';
 import {
   admin as adminPlugin,
   organization,

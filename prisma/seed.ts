@@ -1,6 +1,5 @@
 import { PrismaClient } from '@prisma/client';
 import { hashPassword } from 'better-auth/crypto';
-import { ulid } from 'ulid';
 
 const prisma = new PrismaClient();
 
@@ -13,8 +12,8 @@ async function main() {
 
   // Create admin user with proper password hashing compatible with Better Auth
   const adminPassword = await hashPassword('admin123');
-  const adminUserId = ulid();
-  
+  const adminUserId = crypto.randomUUID();
+
   const adminUser = await prisma.user.create({
     data: {
       id: adminUserId,
@@ -31,7 +30,7 @@ async function main() {
   // Create the account record for password authentication
   await prisma.account.create({
     data: {
-      id: `${adminUserId}-account`,
+      id: crypto.randomUUID(),
       accountId: adminUserId,
       providerId: 'credential',
       userId: adminUser.id,
@@ -39,10 +38,10 @@ async function main() {
     },
   });
 
-  // Create test user 
+  // Create test user
   const testPassword = await hashPassword('test123');
-  const testUserId = ulid();
-  
+  const testUserId = crypto.randomUUID();
+
   const testUser = await prisma.user.create({
     data: {
       id: testUserId,
@@ -63,7 +62,7 @@ async function main() {
   // Create the account record for test user
   await prisma.account.create({
     data: {
-      id: `${testUserId}-account`,
+      id: crypto.randomUUID(),
       accountId: testUserId,
       providerId: 'credential',
       userId: testUser.id,
@@ -77,7 +76,7 @@ async function main() {
   console.log('   Role: admin');
   console.log('');
   console.log('✅ Created test user:');
-  console.log('   Email: test@yopmail.com'); 
+  console.log('   Email: test@yopmail.com');
   console.log('   Password: test123');
   console.log('   Role: user');
   console.log('');
@@ -96,7 +95,7 @@ async function main() {
   // Create reward rules
   const rewardRules = [
     {
-      id: ulid(),
+      id: crypto.randomUUID(),
       name: 'Plastic Bottle Points',
       description: 'Points for recycling plastic bottles',
       unitType: 'bottles',
@@ -104,7 +103,7 @@ async function main() {
       point: 10,
     },
     {
-      id: ulid(),
+      id: crypto.randomUUID(),
       name: 'Aluminum Can Points',
       description: 'Points for recycling aluminum cans',
       unitType: 'cans',
@@ -112,7 +111,7 @@ async function main() {
       point: 5,
     },
     {
-      id: ulid(),
+      id: crypto.randomUUID(),
       name: 'Paper Points',
       description: 'Points for recycling paper',
       unitType: 'pounds',
@@ -134,19 +133,19 @@ async function main() {
   // Create materials
   const materials = [
     {
-      id: ulid(),
+      id: crypto.randomUUID(),
       name: 'Plastic Bottles',
       description: 'PET plastic bottles and containers',
       rewardRuleId: createdRewardRules[0].id,
     },
     {
-      id: ulid(),
+      id: crypto.randomUUID(),
       name: 'Aluminum Cans',
       description: 'Aluminum beverage cans',
       rewardRuleId: createdRewardRules[1].id,
     },
     {
-      id: ulid(),
+      id: crypto.randomUUID(),
       name: 'Paper',
       description: 'Newspapers, magazines, and office paper',
       rewardRuleId: createdRewardRules[2].id,
@@ -166,7 +165,7 @@ async function main() {
   // Create test stores
   const stores = [
     {
-      id: ulid(),
+      id: crypto.randomUUID(),
       name: 'Downtown Recycling Center',
       description: 'Main recycling facility in downtown area',
       organizationId: organization.id,
@@ -180,7 +179,7 @@ async function main() {
       status: 'ACTIVE' as const,
     },
     {
-      id: ulid(),
+      id: crypto.randomUUID(),
       name: 'Westside Green Hub',
       description: 'Eco-friendly recycling station',
       organizationId: organization.id,
@@ -189,7 +188,7 @@ async function main() {
       state: 'OR',
       zip: '97205',
       country: 'US',
-      lat: 45.5230,
+      lat: 45.523,
       lng: -122.7015,
       status: 'ACTIVE' as const,
     },
@@ -210,11 +209,9 @@ async function main() {
     const store = createdStores[i];
     for (let j = 0; j < createdMaterials.length; j++) {
       const material = createdMaterials[j];
-      await prisma.bin.upsert({
-        where: { id: `${store.id}-${material.id}` },
-        update: {},
-        create: {
-          id: `${store.id}-${material.id}`,
+      await prisma.bin.create({
+        data: {
+          id: crypto.randomUUID(),
           number: `BIN-${i + 1}-${j + 1}`,
           storeId: store.id,
           materialId: material.id,
@@ -228,7 +225,7 @@ async function main() {
   // Create test coupons
   const coupons = [
     {
-      id: ulid(),
+      id: crypto.randomUUID(),
       name: 'Summer Sale',
       description: 'Get 20% off on all items',
       couponType: 'PERCENTAGE' as const,
@@ -242,7 +239,7 @@ async function main() {
       status: 'ACTIVE' as const,
     },
     {
-      id: ulid(),
+      id: crypto.randomUUID(),
       name: 'Fixed Discount',
       description: 'Get $10 off on your purchase',
       couponType: 'FIXED' as const,
@@ -256,7 +253,7 @@ async function main() {
       status: 'ACTIVE' as const,
     },
     {
-      id: ulid(),
+      id: crypto.randomUUID(),
       name: 'Eco Warrior Reward',
       description: 'Special discount for environmental champions',
       couponType: 'PERCENTAGE' as const,
@@ -298,4 +295,4 @@ main()
   })
   .finally(async () => {
     await prisma.$disconnect();
-  }); 
+  });

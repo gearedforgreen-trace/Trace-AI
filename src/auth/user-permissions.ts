@@ -40,7 +40,7 @@ export const statement = {
   member: [...organizationDefaults.member, 'list'],
   invitation: [...organizationDefaults.invitation, 'list'],
   team: [...organizationDefaults.team, 'list'],
-  store,
+  store: [...store],
   rewardRule,
   material,
   coupon,
@@ -79,3 +79,9 @@ export const user = ac.newRole({
   redeemHistory: [...statement.redeemHistory],
   recycleHistory: [...statement.recycleHistory],
 });
+
+
+export const roles = {
+  admin,
+  user,
+};
