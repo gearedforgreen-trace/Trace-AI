@@ -39,9 +39,22 @@ export async function GET(request: NextRequest) {
       return validation.response;
     }
 
-    const { page, perPage, isFeatured, dealType, dateRange } =
-      queryParamsSchema.parse(Object.fromEntries(request.nextUrl.searchParams));
+    const queryParamsResult = queryParamsSchema.safeParse(
+      Object.fromEntries(request.nextUrl.searchParams)
+    );
 
+    if (!queryParamsResult.success) {
+      return NextResponse.json(
+        {
+          error: 'Invalid query parameters',
+          details: queryParamsResult.error.flatten().fieldErrors,
+        },
+        { status: 400 }
+      );
+    }
+
+    const { page, perPage, isFeatured, dealType, dateRange } =
+      queryParamsResult.data;
     // Check for organizationId filter
     const organizationId = request.nextUrl.searchParams.get('organizationId');
 
