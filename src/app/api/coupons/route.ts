@@ -4,9 +4,30 @@ import { createPaginator } from 'prisma-pagination';
 import type { Coupon, Prisma } from '@prisma/client';
 import { couponCreateSchema } from '@/schemas/schema';
 import { validateSessionAndPermission } from '@/lib/servers/permissions';
-import { Organization } from "@prisma/client";
+import { DealType, Organization } from '@prisma/client';
+import { z } from 'zod';
 
 const paginate = createPaginator({ perPage: 10, page: 1 });
+
+export const queryParamsSchema = z.object({
+  page: z.coerce.number().min(1).default(1),
+  perPage: z.coerce.number().min(1).max(50).default(20),
+  isFeatured: z
+    .string()
+    .optional()
+    .transform((val) => {
+      if (val === undefined) return undefined;
+      return val.toLowerCase() === 'true' || val === '1' || val === 'yes';
+    }),
+  dealType: z.nativeEnum(DealType).optional(),
+  dateRange: z
+    .string()
+    .optional()
+    .transform((val) => {
+      if (val === undefined) return undefined;
+      return val.split('|').map((date) => new Date(date));
+    }),
+});
 
 export async function GET(request: NextRequest) {
   try {
@@ -18,21 +39,23 @@ export async function GET(request: NextRequest) {
       return validation.response;
     }
 
-    const page = Math.max(
-      parseInt(request.nextUrl.searchParams.get('page') || '1'),
-      1
-    );
-
-    const perPage = Math.min(
-      parseInt(request.nextUrl.searchParams.get('perPage') || '20'),
-      50
-    );
+    const { page, perPage, isFeatured, dealType, dateRange } =
+      queryParamsSchema.parse(Object.fromEntries(request.nextUrl.searchParams));
 
     // Check for organizationId filter
     const organizationId = request.nextUrl.searchParams.get('organizationId');
-    
-    const where: Prisma.CouponWhereInput = {};
-    
+
+    const where: Prisma.CouponWhereInput = {
+      isFeatured: isFeatured ?? undefined,
+      dealType: dealType ?? undefined,
+      createdAt: dateRange
+        ? {
+            gte: dateRange[0],
+            lte: dateRange[1],
+          }
+        : undefined,
+    };
+
     if (organizationId) {
       where.organizationId = organizationId;
     }
@@ -92,13 +115,13 @@ export async function POST(request: NextRequest) {
 
     let organization: Organization | null = null;
 
-    if(validatedBody.data.organizationId){
+    if (validatedBody.data.organizationId) {
       organization = await prisma.organization.findUnique({
         where: {
           id: validatedBody.data.organizationId,
         },
       });
-  
+
       if (!organization) {
         return NextResponse.json(
           { error: 'Organization not found' },
