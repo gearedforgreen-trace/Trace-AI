@@ -3,9 +3,10 @@ import prisma from '@/lib/prisma';
 import { getSession } from '@/lib/servers/sessions';
 import { NextResponse, NextRequest } from 'next/server';
 import { createPaginator } from 'prisma-pagination';
-import type { Prisma, RedeemHistory } from '@prisma-gen/client';
+import type { Prisma, RedeemHistory } from '@prisma/client';
 import { redeemHistorySchema } from '@/schemas/schema';
 import { generateSecureCouponCode } from '@/services/coupons.services';
+import { TRole } from '@/auth/user-permissions';
 
 const paginate = createPaginator({ perPage: 10, page: 1 });
 
@@ -24,7 +25,7 @@ export async function GET(request: NextRequest) {
 
     const hasListPermission = await auth.api.userHasPermission({
       body: {
-        role: session.user.role,
+        role: session.user.role as TRole,
         permission: {
           redeemHistory: ['list'],
         },
@@ -99,7 +100,7 @@ export async function POST(request: NextRequest) {
 
     const hasCreatePermission = await auth.api.userHasPermission({
       body: {
-        role: session.user.role,
+        role: session.user.role as TRole ,
         permission: {
           redeemHistory: ['create'],
         },

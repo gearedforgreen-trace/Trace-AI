@@ -2,6 +2,7 @@ import { auth } from '@/lib/auth';
 import prisma from '@/lib/prisma';
 import { getSession } from '@/lib/servers/sessions';
 import { rewardRuleUpdateSchema } from '@/schemas/schema';
+import { TRole } from '@/auth/user-permissions';
 import { NextRequest, NextResponse } from 'next/server';
 
 export async function GET(
@@ -31,7 +32,7 @@ export async function GET(
 
     const hasDetailPermission = await auth.api.userHasPermission({
       body: {
-        role: session.user.role,
+        role: session.user.role as TRole,
         permission: {
           rewardRule: ['detail'],
         },
@@ -95,7 +96,7 @@ export async function PUT(
 
     const hasUpdatePermission = await auth.api.userHasPermission({
       body: {
-        role: session.user.role,
+        role: session.user.role as TRole,
         permission: {
           rewardRule: ['update'],
         },
@@ -157,7 +158,7 @@ export async function DELETE(
 
     const hasDeletePermission = await auth.api.userHasPermission({
       body: {
-        role: session.user.role,
+        role: session.user.role as TRole,
         permission: {
           rewardRule: ['delete'],
         },

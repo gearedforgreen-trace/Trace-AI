@@ -2,6 +2,7 @@ import { auth } from '@/lib/auth';
 import prisma from '@/lib/prisma';
 import { getSession } from '@/lib/servers/sessions';
 import { materialUpdateSchema } from '@/schemas/schema';
+import { TRole } from '@/auth/user-permissions';
 import { NextRequest, NextResponse } from 'next/server';
 
 export async function GET(
@@ -31,8 +32,8 @@ export async function GET(
 
     const hasDetailPermission = await auth.api.userHasPermission({
       body: {
-        role: session.user.role,
-        permission: {
+        role: session.user.role as TRole,
+        permission: { 
           material: ['detail'],
         },
       },
@@ -107,7 +108,7 @@ export async function PUT(
 
     const hasUpdatePermission = await auth.api.userHasPermission({
       body: {
-        role: session.user.role,
+        role: session.user.role as TRole,
         permission: {
           material: ['update'],
         },
@@ -181,7 +182,7 @@ export async function PUT(
 
     const hasDeletePermission = await auth.api.userHasPermission({
       body: {
-        role: session.user.role,
+        role: session.user.role as TRole,
         permission: {
           material: ['delete'],
         },

@@ -81,6 +81,8 @@ export const user = ac.newRole({
 });
 
 
+export type TRole = 'admin' | 'user';
+
 export const roles = {
   admin,
   user,

@@ -3,7 +3,7 @@ import prisma from '@/lib/prisma';
 import { getSession } from '@/lib/servers/sessions';
 import { NextResponse, NextRequest } from 'next/server';
 import { createPaginator } from 'prisma-pagination';
-import type { Material, Prisma } from '@prisma-gen/client';
+import type { Material, Prisma } from '@prisma/client';
 import { materialSchema } from '@/schemas/schema';
 
 const paginate = createPaginator({ perPage: 10, page: 1 });

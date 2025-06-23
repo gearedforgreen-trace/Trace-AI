@@ -1,3 +1,4 @@
+import { TRole } from "@/auth/user-permissions";
 import { auth } from '@/lib/auth';
 import prisma from '@/lib/prisma';
 import { getSession } from '@/lib/servers/sessions';
@@ -32,7 +33,7 @@ export async function GET(
 
     const hasDetailPermission = await auth.api.userHasPermission({
       body: {
-        role: session.user.role,
+        role: session.user.role as TRole,
         permission: {
           store: ['detail'],
         },
@@ -93,7 +94,7 @@ export async function PUT(
 
     const hasUpdatePermission = await auth.api.userHasPermission({
       body: {
-        role: session.user.role,
+        role: session.user.role as TRole,
         permission: {
           store: ['update'],
         },
@@ -155,7 +156,7 @@ export async function DELETE(
 
     const hasDeletePermission = await auth.api.userHasPermission({
       body: {
-        role: session.user.role,
+        role: session.user.role as TRole,
         permission: {
           store: ['delete'],
         },

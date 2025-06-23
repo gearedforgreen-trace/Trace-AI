@@ -1,7 +1,7 @@
 import prisma from '@/lib/prisma';
 import { NextResponse, NextRequest } from 'next/server';
 import { createPaginator } from 'prisma-pagination';
-import type { Coupon, Prisma } from '@prisma-gen/client';
+import type { Coupon, Prisma } from '@prisma/client';
 import { couponCreateSchema } from '@/schemas/schema';
 import { validateSessionAndPermission } from '@/lib/servers/permissions';
 import { Organization } from "@prisma/client";

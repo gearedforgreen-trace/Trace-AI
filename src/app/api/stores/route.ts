@@ -3,8 +3,9 @@ import prisma from '@/lib/prisma';
 import { getSession } from '@/lib/servers/sessions';
 import { NextResponse, NextRequest } from 'next/server';
 import { createPaginator } from 'prisma-pagination';
-import type { Prisma, Store } from '@prisma-gen/client';
+import type { Prisma, Store } from '@prisma/client';
 import { storeSchema } from '@/schemas/schema';
+import { TRole } from "@/auth/user-permissions";
 
 // Haversine formula to calculate distance between two coordinates
 function calculateDistance(lat1: number, lng1: number, lat2: number, lng2: number): number {
@@ -36,7 +37,7 @@ export async function GET(request: NextRequest) {
 
     const hasListPermission = await auth.api.userHasPermission({
       body: {
-        role: session.user.role,
+        role: session.user.role as TRole,
         permission: {
           store: ['list'],
         },
@@ -151,7 +152,7 @@ export async function GET(request: NextRequest) {
       const userLng = lng ? parseFloat(lng) : null;
       const maxDistanceKm = maxDistance ? parseFloat(maxDistance) : null;
 
-      let processedStores = storesResult.data.map(store => {
+      let processedStores = storesResult.data.map((store: any) => {
         // Calculate distance if coordinates provided
         let distance = null;
         if (userLat !== null && userLng !== null) {
@@ -233,7 +234,7 @@ export async function POST(request: NextRequest) {
 
     const hasCreatePermission = await auth.api.userHasPermission({
       body: {
-        role: session.user.role,
+        role: session.user.role as TRole,
         permission: {
           store: ['create'],
         },

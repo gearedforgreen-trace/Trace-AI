@@ -2,6 +2,7 @@ import { auth } from '@/lib/auth';
 import prisma from '@/lib/prisma';
 import { getSession } from '@/lib/servers/sessions';
 import { NextRequest, NextResponse } from 'next/server';
+import { TRole } from '@/auth/user-permissions';
 
 export async function GET(
   _request: NextRequest,
@@ -30,7 +31,7 @@ export async function GET(
 
     const hasDetailPermission = await auth.api.userHasPermission({
       body: {
-        role: session.user.role,
+        role: session.user.role as TRole,
         permission: {
           favouriteCoupon: ['detail'],
         },
@@ -97,7 +98,7 @@ export async function DELETE(
 
     const hasDeletePermission = await auth.api.userHasPermission({
       body: {
-        role: session.user.role,
+        role: session.user.role as TRole,
         permission: {
           favouriteCoupon: ['delete'],
         },

@@ -3,6 +3,7 @@ import prisma from '@/lib/prisma';
 import { getSession } from '@/lib/servers/sessions';
 import { NextResponse, NextRequest } from 'next/server';
 import { organizationSchema } from '@/schemas/organization.schema';
+import { TRole } from "@/auth/user-permissions";
 
 export async function GET(
   request: NextRequest,
@@ -93,7 +94,7 @@ export async function PUT(
 
     const hasUpdatePermission = await auth.api.userHasPermission({
       body: {
-        role: session.user.role as 'admin' | 'user',
+        role: session.user.role as TRole,
         permission: {
           organization: ['update'],
         },
@@ -177,7 +178,7 @@ export async function DELETE(
 
     const hasDeletePermission = await auth.api.userHasPermission({
       body: {
-        role: session.user.role as 'admin' | 'user',
+        role: session.user.role as TRole,
         permission: {
           organization: ['delete'],
         },

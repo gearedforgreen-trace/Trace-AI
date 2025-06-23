@@ -1,7 +1,7 @@
 import { getSession } from '@/lib/servers/sessions';
 import { auth } from '@/lib/auth';
 import { NextResponse } from 'next/server';
-import { statement } from '@/auth/user-permissions';
+import { statement, TRole } from '@/auth/user-permissions';
 
 type Statement = typeof statement;
 type PermissionInput = {
@@ -22,7 +22,7 @@ export async function validateSessionAndPermission(
 
   const hasPermission = await auth.api.userHasPermission({
     body: {
-      role: session.user.role,
+      role: session.user.role as TRole,
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-expect-error
       permission,
