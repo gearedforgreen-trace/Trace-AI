@@ -117,7 +117,7 @@ export async function POST(request: NextRequest) {
 
     const hasCreatePermission = await auth.api.userHasPermission({
       body: {
-        role: session.user.role,
+        role: session.user.role as TRole,
         permission: {
           bin: ['create'],
         },

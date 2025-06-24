@@ -3,6 +3,7 @@ import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
 import { PrismaClient } from '@prisma/client';
+import { TRole } from "@/auth/user-permissions";
 const prisma = new PrismaClient();
 export async function GET(request: NextRequest) {
   const session = await auth.api.getSession({
@@ -13,6 +14,24 @@ export async function GET(request: NextRequest) {
     return new NextResponse(JSON.stringify({ message: "Unauthorized" }), {
       status: 401,
     });
+  }
+
+  const hasListPermission = await auth.api.userHasPermission({
+    body: {
+      role: session.user.role as TRole,
+      permission: {
+        user: ['list'],
+      },
+    },
+  });
+
+  if (!hasListPermission.success) {
+    return NextResponse.json(
+      {
+        error: 'Forbidden',
+      },
+      { status: 403 }
+    );
   }
 
   // Get query parameters
