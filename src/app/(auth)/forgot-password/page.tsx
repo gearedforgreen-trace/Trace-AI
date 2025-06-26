@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import ForgotPasswoword from "./_components/forgot-password";
+import { Suspense } from "react";
 
 
 export const metadata: Metadata = {
@@ -12,7 +13,9 @@ export default function ForgotPasswowordPage() {
 	return (
 		<>
 			<h3 className="text-center text-2xl font-semibold pt-3 pb-5 ">Forgot Password</h3>
-			<ForgotPasswoword />
+			<Suspense fallback={<></>}>
+				<ForgotPasswoword />
+			</Suspense>
 		</>
 	);
 }
