@@ -11,6 +11,7 @@ import {
 
 import { admin, ac, user } from '@/auth/user-permissions';
 import prisma from "./prisma";
+import { sendResetPasswordEmail } from "./emails";
 export const auth = betterAuth({
   database: prismaAdapter(prisma, {
     provider: 'postgresql',
@@ -63,6 +64,10 @@ export const auth = betterAuth({
   },
   emailAndPassword: {
     enabled: true,
+    resetPasswordTokenExpiresIn: 3600,
+    async sendResetPassword(data) {
+     sendResetPasswordEmail(data.user.email, data.url, data.user.name, "60 minutes");
+    }
   },
   plugins: [
     username(),

@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import type { ColumnDef } from "@tanstack/react-table";
 import { DataTable } from "@/components/ui/data-table/data-table";
 import { DataTableActions } from "@/components/ui/data-table/data-table-actions";
@@ -41,14 +41,12 @@ export function BinsTable({
   const [selectedBin, setSelectedBin] = useState<IBin | null>(null);
   const [selectedBinUrl, setSelectedBinUrl] = useState<string>("");
 
-  const openQrModal = (bin: IBin) => {
-    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || window.location.origin;
-    const binUrl = `${baseUrl}/bins/${bin.id}`;
-    console.log("Opening QR modal with URL:", binUrl);
+  const openQrModal = useCallback((bin: IBin) => {
+    console.log("Opening QR modal with URL:", bin.id);
     setSelectedBin(bin);
-    setSelectedBinUrl(binUrl);
+    setSelectedBinUrl(bin.id);
     setQrModalOpen(true);
-  };
+  }, []);
 
   const closeQrModal = () => {
     setQrModalOpen(false);
@@ -99,12 +97,10 @@ export function BinsTable({
         id: "qrCode",
         header: "QR Code",
         cell: ({ row }) => {
-          const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || (typeof window !== 'undefined' ? window.location.origin : 'http://localhost:3000');
-          const binUrl = `${baseUrl}/bins/${row.original.id}`;
           return (
             <div className="flex justify-center">
               <QRCodeComponent 
-                value={binUrl} 
+                value={row.original.id} 
                 size={64} 
                 clickable={true}
                 onClick={() => openQrModal(row.original)}

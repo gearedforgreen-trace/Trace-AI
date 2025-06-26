@@ -232,13 +232,6 @@ export function QRCodeModal({
             />
           </div>
           
-          {binNumber && (
-            <div className="text-center">
-              <div className="font-medium text-lg">Bin {binNumber}</div>
-              <div className="text-sm  break-all mt-1">{value}</div>
-            </div>
-          )}
-          
           <div className="flex justify-center gap-3">
             <Button 
               onClick={handleDownload} 

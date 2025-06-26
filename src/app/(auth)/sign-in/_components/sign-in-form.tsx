@@ -137,6 +137,15 @@ export default function SignInForm() {
           >
             {loading ? <Loader2 className="size-4 animate-spin" /> : 'Login'}
           </SiteButton>
+          
+          <div className="mt-3 text-center">
+            <a
+              href="/forgot-password"
+              className="text-sm text-muted-foreground hover:text-primary transition-colors"
+            >
+              Forgot your password?
+            </a>
+          </div>
         </div>
       </form>
     </Form>
