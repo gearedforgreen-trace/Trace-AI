@@ -17,7 +17,7 @@ export async function uploadCouponImageToCloudinary(
   original_url: string;
 }> {
   const options = {
-    folder: 'store/coupon-images',
+    folder: 'coupon-images',
     public_id: publicId,
     overwrite: true,
     use_filename: true,

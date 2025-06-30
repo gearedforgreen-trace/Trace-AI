@@ -6,6 +6,7 @@ import { couponCreateSchema } from '@/schemas/schema';
 import { validateSessionAndPermission } from '@/lib/servers/permissions';
 import { DealType, Organization } from '@prisma/client';
 import { z } from 'zod';
+import { uploadCouponImageToCloudinary } from "@/lib/cloudinary";
 
 const paginate = createPaginator({ perPage: 10, page: 1 });
 
@@ -63,9 +64,9 @@ export async function GET(request: NextRequest) {
       dealType: dealType ?? undefined,
       createdAt: dateRange
         ? {
-            gte: dateRange[0],
-            lte: dateRange[1],
-          }
+          gte: dateRange[0],
+          lte: dateRange[1],
+        }
         : undefined,
     };
 
@@ -158,6 +159,21 @@ export async function POST(request: NextRequest) {
         organization: true,
       },
     });
+
+    if (coupon.imageUrl) {
+      const publicId = 'coupon-' + coupon.id;
+      const imageUrl = await uploadCouponImageToCloudinary(
+        coupon.imageUrl,
+        publicId
+      );
+      await prisma.coupon.update({
+        where: { id: coupon.id },
+        data: {
+          imageUrl: imageUrl.original_url,
+        },
+      });
+      coupon.imageUrl = imageUrl.original_url;
+    }
 
     return NextResponse.json(
       {
