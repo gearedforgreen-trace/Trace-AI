@@ -190,7 +190,13 @@ export async function GET(request: NextRequest) {
           lng: store.lng,
           address1: store.address1,
           city: store.city,
-          state: store.state
+          state: store.state,
+          zip: store.zip,
+          country: store.country,
+          status: store.status,
+          description: store.description,
+          imageUrl: store.imageUrl,
+          createdAt: store.createdAt,
         };
       });
 

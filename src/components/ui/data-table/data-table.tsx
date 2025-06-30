@@ -42,7 +42,7 @@ export function DataTable<TData, TValue>({
   const filteredData =
     searchKey && searchValue
       ? (data ?? []).filter((item: any) =>
-          item[searchKey]?.toLowerCase().includes(searchValue.toLowerCase())
+          item[searchKey]?.toLowerCase().includes(searchValue?.toLowerCase())
         )
       : data ?? [];
 

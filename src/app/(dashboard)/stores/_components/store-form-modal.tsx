@@ -31,9 +31,9 @@ const storeFormSchema = z.object({
   description: z.string().nullable(),
   imageUrl: z.string().nullable(),
   status: z.string(),
-  organizationId: z.string().nullable(),
+  organizationId: z.string().nullable().optional(),
   address1: z.string().min(1, 'Address is required'),
-  address2: z.string().nullable(),
+  address2: z.string().nullable().optional(),
   city: z.string().min(1, 'City is required'),
   state: z.string().min(1, 'State is required'),
   zip: z
@@ -68,19 +68,19 @@ export function StoreFormModal({
 }: IStoreFormModalProps) {
   // Updated default values to match the API response structure
   const defaultValues: TStoreFormValues = {
-    name: '',
-    description: null,
-    imageUrl: null,
-    status: 'ACTIVE',
+    name: store?.name ?? '',
+    description: store?.description ?? null,
+    imageUrl: store?.imageUrl ?? null,
+    status: store?.status ? store.status.toUpperCase() : 'INACTIVE',
     organizationId: store?.organizationId || null,
-    address1: '',
-    address2: null,
-    city: '',
-    state: '',
-    zip: '',
-    country: '',
-    lat: 0,
-    lng: 0,
+    address1: store?.address1 ?? '',
+    address2: store?.address2 ?? null,
+    city: store?.city ?? '',
+    state: store?.state ?? '',
+    zip: store?.zip ?? '',
+    country: store?.country ?? '',
+    lat: store?.lat ?? 0,
+    lng: store?.lng ?? 0,
   };
 
   // RTK Query for organizations
