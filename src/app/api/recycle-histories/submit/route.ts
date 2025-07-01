@@ -6,7 +6,7 @@ import { z } from 'zod';
 const submitRecycleSchema = z.object({
   binId: z.string().uuid('Invalid bin ID'),
   totalCount: z.number().min(1, 'Total count must be at least 1'),
-  mediaUrl: z.string().url('Invalid media URL').optional(),
+  mediaUrl: z.string().url('Invalid media URL'),
 });
 
 export async function POST(request: NextRequest) {

@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { Nunito, Mulish } from 'next/font/google';
 import './globals.css';
-import { Toaster } from "@/components/ui/sonner"
+import { Toaster } from '@/components/ui/sonner';
 import { ThemeProvider } from '@/providers/theme-provider';
 import ProgressLoader from '@/providers/progress-loader';
 import ReduxProvider from '@/providers/redux-provider';
@@ -26,6 +26,8 @@ export const metadata: Metadata = {
     'Trace is a platform for tracking the carbon footprint of products and services.',
 };
 
+
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -41,9 +43,7 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
-            <ProgressLoader>
-              {children}
-            </ProgressLoader>
+            <ProgressLoader>{children}</ProgressLoader>
             <Toaster />
           </ThemeProvider>
         </ReduxProvider>
