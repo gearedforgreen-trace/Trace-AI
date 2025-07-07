@@ -1,7 +1,7 @@
-import { validateSessionAndPermission } from '@/lib/servers/permissions';
-import prisma from '@/lib/prisma';
-import { couponUpdateSchema } from '@/schemas/schema';
-import { NextRequest, NextResponse } from 'next/server';
+import { validateSessionAndPermission } from "@/lib/servers/permissions";
+import prisma from "@/lib/prisma";
+import { couponUpdateSchema } from "@/schemas/schema";
+import { NextRequest, NextResponse } from "next/server";
 import cloudinary, { uploadCouponImageToCloudinary } from "@/lib/cloudinary";
 
 export async function GET(
@@ -13,13 +13,13 @@ export async function GET(
 
     if (!couponId) {
       return NextResponse.json(
-        { error: 'Coupon ID is required' },
+        { error: "Coupon ID is required" },
         { status: 400 }
       );
     }
 
     const validation = await validateSessionAndPermission({
-      coupon: ['detail'],
+      coupon: ["detail"],
     });
 
     if (!validation.success) {
@@ -28,13 +28,25 @@ export async function GET(
 
     const coupon = await prisma.coupon.findUnique({
       where: { id: couponId },
+      include: {
+        favouriteCoupon: {
+          where: {
+            userId: validation.session?.user.id,
+          },
+          select: {
+            id: true,
+            couponId: true,
+            userId: true,
+            createdAt: true,
+          },
+          take: 1,
+        },
+        organization: true,
+      },
     });
 
     if (!coupon) {
-      return NextResponse.json(
-        { error: 'Coupon not found' },
-        { status: 404 }
-      );
+      return NextResponse.json({ error: "Coupon not found" }, { status: 404 });
     }
 
     return NextResponse.json(
@@ -46,7 +58,7 @@ export async function GET(
   } catch (error) {
     console.error(error);
     return NextResponse.json(
-      { error: 'Internal Server Error' },
+      { error: "Internal Server Error" },
       { status: 500 }
     );
   }
@@ -61,13 +73,13 @@ export async function PUT(
 
     if (!couponId) {
       return NextResponse.json(
-        { error: 'Coupon ID is required' },
+        { error: "Coupon ID is required" },
         { status: 400 }
       );
     }
 
     const validation = await validateSessionAndPermission({
-      coupon: ['update'],
+      coupon: ["update"],
     });
 
     if (!validation.success) {
@@ -81,18 +93,18 @@ export async function PUT(
     if (validatedBody.data?.imageUrl) {
       const imageUrl = await uploadCouponImageToCloudinary(
         validatedBody.data.imageUrl,
-        'coupon-' + couponId
+        "coupon-" + couponId
       );
       validatedBody.data.imageUrl = imageUrl.original_url;
     } else {
-      const publicId = 'coupon-' + couponId;
+      const publicId = "coupon-" + couponId;
       await cloudinary.uploader.destroy(publicId);
     }
 
     if (!validatedBody.success) {
       return NextResponse.json(
         {
-          error: 'Unprocessable Content',
+          error: "Unprocessable Content",
           details: validatedBody.error.flatten().fieldErrors,
         },
         { status: 422 }
@@ -108,7 +120,7 @@ export async function PUT(
   } catch (error) {
     console.error(error);
     return NextResponse.json(
-      { error: 'Internal Server Error' },
+      { error: "Internal Server Error" },
       { status: 500 }
     );
   }
@@ -123,13 +135,13 @@ export async function DELETE(
 
     if (!couponId) {
       return NextResponse.json(
-        { error: 'Material ID is required' },
+        { error: "Material ID is required" },
         { status: 400 }
       );
     }
 
     const validation = await validateSessionAndPermission({
-      coupon: ['delete'],
+      coupon: ["delete"],
     });
 
     if (!validation.success) {
@@ -141,12 +153,12 @@ export async function DELETE(
     });
 
     if (deletedCoupon.imageUrl) {
-      const publicId = 'coupon-' + deletedCoupon.id;
+      const publicId = "coupon-" + deletedCoupon.id;
       await cloudinary.uploader.destroy(publicId);
     }
 
     return NextResponse.json(
-      { data: deletedCoupon, message: 'Coupon deleted successfully' },
+      { data: deletedCoupon, message: "Coupon deleted successfully" },
       { status: 200 }
     );
 
@@ -154,7 +166,7 @@ export async function DELETE(
   } catch (error) {
     console.error(error);
     return NextResponse.json(
-      { error: 'Internal Server Error' },
+      { error: "Internal Server Error" },
       { status: 500 }
     );
   }

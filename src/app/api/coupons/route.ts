@@ -40,6 +40,10 @@ export async function GET(request: NextRequest) {
       return validation.response;
     }
 
+
+    const session = validation.session;
+    const user = session?.user;
+
     const queryParamsResult = queryParamsSchema.safeParse(
       Object.fromEntries(request.nextUrl.searchParams)
     );
@@ -83,6 +87,18 @@ export async function GET(request: NextRequest) {
         },
         include: {
           organization: true,
+          favouriteCoupon: {
+            where: {
+              userId: user?.id
+            },
+            select:{
+              id: true,
+              couponId: true,
+              userId: true,
+              createdAt: true,
+            },
+            take: 1,
+          },
         },
       },
       {
