@@ -1,11 +1,11 @@
-import prisma from '@/lib/prisma';
-import { NextResponse, NextRequest } from 'next/server';
-import { createPaginator } from 'prisma-pagination';
-import type { Coupon, Prisma } from '@prisma/client';
-import { couponCreateSchema } from '@/schemas/schema';
-import { validateSessionAndPermission } from '@/lib/servers/permissions';
-import { DealType, Organization } from '@prisma/client';
-import { z } from 'zod';
+import prisma from "@/lib/prisma";
+import { NextResponse, NextRequest } from "next/server";
+import { createPaginator } from "prisma-pagination";
+import type { Coupon, Prisma } from "@prisma/client";
+import { couponCreateSchema } from "@/schemas/schema";
+import { validateSessionAndPermission } from "@/lib/servers/permissions";
+import { DealType, Organization } from "@prisma/client";
+import { z } from "zod";
 import { uploadCouponImageToCloudinary } from "@/lib/cloudinary";
 
 const paginate = createPaginator({ perPage: 10, page: 1 });
@@ -18,7 +18,7 @@ export const queryParamsSchema = z.object({
     .optional()
     .transform((val) => {
       if (val === undefined) return undefined;
-      return val.toLowerCase() === 'true' || val === '1' || val === 'yes';
+      return val.toLowerCase() === "true" || val === "1" || val === "yes";
     }),
   dealType: z.nativeEnum(DealType).optional(),
   dateRange: z
@@ -26,20 +26,19 @@ export const queryParamsSchema = z.object({
     .optional()
     .transform((val) => {
       if (val === undefined) return undefined;
-      return val.split('|').map((date) => new Date(date));
+      return val.split("|").map((date) => new Date(date));
     }),
 });
 
 export async function GET(request: NextRequest) {
   try {
     const validation = await validateSessionAndPermission({
-      coupon: ['detail'],
+      coupon: ["detail"],
     });
 
     if (!validation.success) {
       return validation.response;
     }
-
 
     const session = validation.session;
     const user = session?.user;
@@ -51,7 +50,7 @@ export async function GET(request: NextRequest) {
     if (!queryParamsResult.success) {
       return NextResponse.json(
         {
-          error: 'Invalid query parameters',
+          error: "Invalid query parameters",
           details: queryParamsResult.error.flatten().fieldErrors,
         },
         { status: 400 }
@@ -61,16 +60,16 @@ export async function GET(request: NextRequest) {
     const { page, perPage, isFeatured, dealType, dateRange } =
       queryParamsResult.data;
     // Check for organizationId filter
-    const organizationId = request.nextUrl.searchParams.get('organizationId');
+    const organizationId = request.nextUrl.searchParams.get("organizationId");
 
     const where: Prisma.CouponWhereInput = {
       isFeatured: isFeatured ?? undefined,
       dealType: dealType ?? undefined,
       createdAt: dateRange
         ? {
-          gte: dateRange[0],
-          lte: dateRange[1],
-        }
+            gte: dateRange[0],
+            lte: dateRange[1],
+          }
         : undefined,
     };
 
@@ -78,20 +77,23 @@ export async function GET(request: NextRequest) {
       where.organizationId = organizationId;
     }
 
-    const coupons = await paginate<Coupon, Prisma.CouponFindManyArgs>(
+    const coupons = await paginate<
+      Coupon & { favouriteCoupon: object[] },
+      Prisma.CouponFindManyArgs
+    >(
       prisma.coupon,
       {
         where,
         orderBy: {
-          createdAt: 'desc',
+          createdAt: "desc",
         },
         include: {
           organization: true,
           favouriteCoupon: {
             where: {
-              userId: user?.id
+              userId: user?.id,
             },
-            select:{
+            select: {
               id: true,
               couponId: true,
               userId: true,
@@ -107,12 +109,22 @@ export async function GET(request: NextRequest) {
       }
     );
 
-    return NextResponse.json(coupons, { status: 200 });
+    return NextResponse.json(
+      {
+        data: coupons.data.map((coupon) => ({
+          ...coupon,
+          isFavouriteCoupon: coupon.favouriteCoupon?.length > 0 ? true : false,
+          favouriteCoupon: undefined,
+        })),
+        meta: coupons.meta,
+      },
+      { status: 200 }
+    );
   } catch (error) {
     console.error(error);
     return NextResponse.json(
       {
-        error: 'Internal Server Error',
+        error: "Internal Server Error",
       },
       { status: 500 }
     );
@@ -122,7 +134,7 @@ export async function GET(request: NextRequest) {
 export async function POST(request: NextRequest) {
   try {
     const validation = await validateSessionAndPermission({
-      coupon: ['create'],
+      coupon: ["create"],
     });
 
     if (!validation.success) {
@@ -136,7 +148,7 @@ export async function POST(request: NextRequest) {
     if (validatedBody.error) {
       return NextResponse.json(
         {
-          error: 'Unprocessable Content',
+          error: "Unprocessable Content",
           details: validatedBody.error.flatten().fieldErrors,
         },
         { status: 422 }
@@ -154,7 +166,7 @@ export async function POST(request: NextRequest) {
 
       if (!organization) {
         return NextResponse.json(
-          { error: 'Organization not found' },
+          { error: "Organization not found" },
           { status: 404 }
         );
       }
@@ -177,7 +189,7 @@ export async function POST(request: NextRequest) {
     });
 
     if (coupon.imageUrl) {
-      const publicId = 'coupon-' + coupon.id;
+      const publicId = "coupon-" + coupon.id;
       const imageUrl = await uploadCouponImageToCloudinary(
         coupon.imageUrl,
         publicId
@@ -200,7 +212,7 @@ export async function POST(request: NextRequest) {
   } catch (error) {
     console.error(error);
     return NextResponse.json(
-      { error: 'Internal Server Error' },
+      { error: "Internal Server Error" },
       { status: 500 }
     );
   }

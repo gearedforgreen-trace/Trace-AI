@@ -51,7 +51,11 @@ export async function GET(
 
     return NextResponse.json(
       {
-        data: coupon,
+        data: {
+          ...coupon,
+          isFavouriteCoupon: coupon.favouriteCoupon?.length > 0 ? true : false,
+          favouriteCoupon: undefined,
+        },
       },
       { status: 200 }
     );
