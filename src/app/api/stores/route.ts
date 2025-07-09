@@ -58,10 +58,7 @@ export async function GET(request: NextRequest) {
       1
     );
 
-    const perPage = Math.min(
-      parseInt(request.nextUrl.searchParams.get('perPage') || '20'),
-      50
-    );
+    const perPage = parseInt(request.nextUrl.searchParams.get('perPage') || '20');
 
     // Extract query parameters
     const organizationId = request.nextUrl.searchParams.get('organizationId');
