@@ -54,7 +54,7 @@ export async function GET(
         data: {
           ...coupon,
           isFavouriteCoupon: coupon.favouriteCoupon?.length > 0 ? true : false,
-          favouriteCoupon: undefined,
+          favouriteCoupon: coupon.favouriteCoupon?.[0] ?? null,
         },
       },
       { status: 200 }

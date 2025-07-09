@@ -114,7 +114,7 @@ export async function GET(request: NextRequest) {
         data: coupons.data.map((coupon) => ({
           ...coupon,
           isFavouriteCoupon: coupon.favouriteCoupon?.length > 0 ? true : false,
-          favouriteCoupon: undefined,
+          favouriteCoupon: coupon.favouriteCoupon?.[0] ?? null,
         })),
         meta: coupons.meta,
       },
