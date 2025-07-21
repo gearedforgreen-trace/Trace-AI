@@ -221,7 +221,6 @@ function RecycleTableData({ recycleHistory }: { recycleHistory: Recycle }) {
           <div className="flex gap-2 flex-col">
             <div className="flex flex-col">
               <div className="text-sm font-medium">
-                <span>Material: </span>
                 <span>{recycleHistory.bin.material.name}</span>
               </div>
             </div>
