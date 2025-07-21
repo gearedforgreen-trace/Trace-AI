@@ -18,7 +18,6 @@ import {
   UsersIcon,
   CouponsIcon,
   StoreIcon,
-  QRCodesBinsIcon,
   RewardPointsIcon,
   DashboardIcon,
   BinIcon,
@@ -27,6 +26,7 @@ import {
 } from "@/components/icons/sidebar-icons";
 import { cn } from "@/lib/utils";
 import { Separator } from "@/components/ui/separator";
+import { Recycle } from "lucide-react";
 
 // This is sample data.
 const data = {
@@ -55,6 +55,11 @@ const data = {
       title: "Users",
       url: "/users",
       icon: <UsersIcon />,
+    },
+    {
+      title: "Recycles",
+      url: "/recycles",
+      icon: <Recycle className="h-4 w-4" />,
     },
     {
       title: "Stores",

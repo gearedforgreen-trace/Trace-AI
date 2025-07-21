@@ -115,6 +115,11 @@ export async function GET(request: NextRequest) {
               totalPoints: true,
             },
           },
+          _count: {
+            select: {
+              recycleHistory: true,
+            }
+          }
         },
       }),
       prisma.user.count({ where }),
@@ -142,6 +147,7 @@ export async function GET(request: NextRequest) {
           role: member.role,
         })),
         totalPoints: user.UserTotalPoint?.totalPoints || 0,
+        recycleHistoryCount: user._count.recycleHistory || 0,
         createdAt: user.createdAt,
       };
     });

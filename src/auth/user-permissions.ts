@@ -32,6 +32,7 @@ export const bin = ['create', 'update', 'delete', 'list', 'detail'] as const;
 
 export const redeemHistory = ['create', 'list', 'detail'] as const;
 export const recycleHistory = ['create', 'list', 'detail'] as const;
+export const userRecycleHistory = ['list'] as const;
 
 export const statement = {
   user: adminDefaults.user,
@@ -48,6 +49,7 @@ export const statement = {
   favouriteCoupon,
   redeemHistory,
   recycleHistory,
+  userRecycleHistory,
 } as const;
 
 export const ac = createAccessControl(statement);
@@ -67,6 +69,7 @@ export const admin = ac.newRole({
   favouriteCoupon: [...statement.favouriteCoupon],
   redeemHistory: [...statement.redeemHistory],
   recycleHistory: [...statement.recycleHistory],
+  userRecycleHistory: [...statement.userRecycleHistory],
 });
 
 export const user = ac.newRole({

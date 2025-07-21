@@ -135,7 +135,6 @@ export function StoresTable({
                         ''
                       )}
                     </td>
-
                     <td className="p-4 align-middle">
                       <StatusBadge status={store.status ? store.status.toLowerCase() : ''} />
                     </td>

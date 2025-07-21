@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import {
   Table,
   TableBody,
@@ -8,22 +8,22 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table";
+} from '@/components/ui/table';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Card, CardContent } from "@/components/ui/card";
-import { useUsers } from "@/hooks/api/use-users";
-import { Skeleton } from "@/components/ui/skeleton";
-import { 
-  ChevronLeft, 
-  ChevronRight, 
+} from '@/components/ui/dropdown-menu';
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Card, CardContent } from '@/components/ui/card';
+import { useUsers } from '@/hooks/api/use-users';
+import { Skeleton } from '@/components/ui/skeleton';
+import {
+  ChevronLeft,
+  ChevronRight,
   ArrowUpDown,
   Search,
   X,
@@ -31,36 +31,54 @@ import {
   User,
   Building2,
   Eye,
-  Edit
-} from "lucide-react";
-import { UserFilterParams, UsersApiService, User as UserType } from "@/lib/api/services/users-api";
-import { ViewProfileModal } from "./view-profile-modal";
-import { EditProfileModal } from "./edit-profile-modal";
-import { UserStatusConfirmationDialog, UserStatusAction } from "./user-status-confirmation-dialog";
-import { useToast } from "@/components/ui/use-toast";
-import { Input } from "@/components/ui/input";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+  Edit,
+  Recycle,
+} from 'lucide-react';
+import {
+  UserFilterParams,
+  UsersApiService,
+  User as UserType,
+} from '@/lib/api/services/users-api';
+import { ViewProfileModal } from './view-profile-modal';
+import { EditProfileModal } from './edit-profile-modal';
+import {
+  UserStatusConfirmationDialog,
+  UserStatusAction,
+} from './user-status-confirmation-dialog';
+import { useToast } from '@/components/ui/use-toast';
+import { Input } from '@/components/ui/input';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from "@/components/ui/tooltip";
+} from '@/components/ui/tooltip';
+import Link from 'next/link';
 
 export default function UsersTable() {
-  const [searchValue, setSearchValue] = useState("");
+  const [searchValue, setSearchValue] = useState('');
   const [selectedUser, setSelectedUser] = useState<UserType | null>(null);
   const [isViewModalOpen, setIsViewModalOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [isUpdating, setIsUpdating] = useState(false);
-  const [isStatusConfirmationOpen, setIsStatusConfirmationOpen] = useState(false);
-  const [pendingStatusAction, setPendingStatusAction] = useState<UserStatusAction | null>(null);
-  const [userForStatusChange, setUserForStatusChange] = useState<UserType | null>(null);
+  const [isStatusConfirmationOpen, setIsStatusConfirmationOpen] =
+    useState(false);
+  const [pendingStatusAction, setPendingStatusAction] =
+    useState<UserStatusAction | null>(null);
+  const [userForStatusChange, setUserForStatusChange] =
+    useState<UserType | null>(null);
   const [isUpdatingStatus, setIsUpdatingStatus] = useState(false);
 
   const { toast } = useToast();
   const usersApi = new UsersApiService();
-  
+
   const {
     users,
     isLoading,
@@ -81,13 +99,13 @@ export default function UsersTable() {
 
   // Handle clear search
   const handleClearSearch = () => {
-    setSearchValue("");
-    updateFilters({ search: "" });
+    setSearchValue('');
+    updateFilters({ search: '' });
   };
 
   // Handle filter changes
   const handleFilterChange = (key: keyof UserFilterParams, value: any) => {
-    if (value === "all") {
+    if (value === 'all') {
       updateFilters({ [key]: undefined });
     } else {
       updateFilters({ [key]: value });
@@ -96,9 +114,9 @@ export default function UsersTable() {
 
   // Handle sorting
   const handleSort = (field: string) => {
-    const newSortOrder = 
-      filters.sortBy === field && filters.sortOrder === "asc" ? "desc" : "asc";
-    
+    const newSortOrder =
+      filters.sortBy === field && filters.sortOrder === 'asc' ? 'desc' : 'asc';
+
     updateFilters({
       sortBy: field,
       sortOrder: newSortOrder,
@@ -118,22 +136,25 @@ export default function UsersTable() {
   };
 
   // Handle save user changes
-  const handleSaveUser = async (userId: string, userData: Partial<UserType>) => {
+  const handleSaveUser = async (
+    userId: string,
+    userData: Partial<UserType>
+  ) => {
     setIsUpdating(true);
     try {
       await usersApi.updateUser(userId, userData);
       // Refresh the users list
       await refetch();
       toast({
-        title: "Success",
-        description: "User profile updated successfully.",
+        title: 'Success',
+        description: 'User profile updated successfully.',
       });
     } catch (error) {
-      console.error("Error updating user:", error);
+      console.error('Error updating user:', error);
       toast({
-        title: "Error",
-        description: "Failed to update user profile. Please try again.",
-        variant: "destructive",
+        title: 'Error',
+        description: 'Failed to update user profile. Please try again.',
+        variant: 'destructive',
       });
       throw error;
     } finally {
@@ -165,30 +186,40 @@ export default function UsersTable() {
 
     setIsUpdatingStatus(true);
     try {
-      const newStatus = pendingStatusAction === "activate" ? "active" : pendingStatusAction === "suspend" ? "suspended" : "banned";
-      
+      const newStatus =
+        pendingStatusAction === 'activate'
+          ? 'active'
+          : pendingStatusAction === 'suspend'
+            ? 'suspended'
+            : 'banned';
+
       await usersApi.updateUserStatus(userForStatusChange.id, newStatus);
-      
+
       // Refresh the users list
       await refetch();
-      
+
       // Close confirmation dialog
       setIsStatusConfirmationOpen(false);
       setUserForStatusChange(null);
       setPendingStatusAction(null);
-      
-      const actionText = pendingStatusAction === "activate" ? "activated" : pendingStatusAction === "suspend" ? "suspended" : "banned";
-      
+
+      const actionText =
+        pendingStatusAction === 'activate'
+          ? 'activated'
+          : pendingStatusAction === 'suspend'
+            ? 'suspended'
+            : 'banned';
+
       toast({
-        title: "Success",
+        title: 'Success',
         description: `User has been ${actionText} successfully.`,
       });
     } catch (error) {
-      console.error("Error updating user status:", error);
+      console.error('Error updating user status:', error);
       toast({
-        title: "Error",
-        description: "Failed to update user status. Please try again.",
-        variant: "destructive",
+        title: 'Error',
+        description: 'Failed to update user status. Please try again.',
+        variant: 'destructive',
       });
     } finally {
       setIsUpdatingStatus(false);
@@ -206,40 +237,50 @@ export default function UsersTable() {
 
   // Get initials for avatar
   const getInitials = (name: string) => {
-    if (!name) return "U";
+    if (!name) return 'U';
     return name
-      .split(" ")
+      .split(' ')
       .map((n) => n[0])
-      .join("")
+      .join('')
       .slice(0, 2)
       .toUpperCase();
   };
 
   // Format role for display
   const formatRole = (role: string) => {
-    if (!role) return "User";
+    if (!role) return 'User';
     return role
       .toLowerCase()
-      .split("_")
+      .split('_')
       .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-      .join(" ");
+      .join(' ');
   };
 
   // Render status badge
   const renderStatus = (status: string) => {
-    const statusMap: Record<string, { label: string; variant: "default" | "outline" | "secondary" | "destructive" | "success" }> = {
-      active: { label: "Active", variant: "success" },
-      banned: { label: "Banned", variant: "destructive" },
-      suspended: { label: "Suspended", variant: "secondary" },
+    const statusMap: Record<
+      string,
+      {
+        label: string;
+        variant:
+          | 'default'
+          | 'outline'
+          | 'secondary'
+          | 'destructive'
+          | 'success';
+      }
+    > = {
+      active: { label: 'Active', variant: 'success' },
+      banned: { label: 'Banned', variant: 'destructive' },
+      suspended: { label: 'Suspended', variant: 'secondary' },
     };
 
-    const statusInfo = statusMap[status.toLowerCase()] || { label: status, variant: "outline" };
+    const statusInfo = statusMap[status.toLowerCase()] || {
+      label: status,
+      variant: 'outline',
+    };
 
-    return (
-      <Badge variant={statusInfo.variant}>
-        {statusInfo.label}
-      </Badge>
-    );
+    return <Badge variant={statusInfo.variant}>{statusInfo.label}</Badge>;
   };
 
   // Show error state
@@ -284,8 +325,8 @@ export default function UsersTable() {
           {/* Status filter */}
           <div className="w-full sm:w-40">
             <Select
-              value={filters.status || "all"}
-              onValueChange={(value) => handleFilterChange("status", value)}
+              value={filters.status || 'all'}
+              onValueChange={(value) => handleFilterChange('status', value)}
             >
               <SelectTrigger>
                 <SelectValue placeholder="Status" />
@@ -304,8 +345,8 @@ export default function UsersTable() {
           {/* Role filter */}
           <div className="w-full sm:w-40">
             <Select
-              value={filters.role || "all"}
-              onValueChange={(value) => handleFilterChange("role", value)}
+              value={filters.role || 'all'}
+              onValueChange={(value) => handleFilterChange('role', value)}
             >
               <SelectTrigger>
                 <SelectValue placeholder="Role" />
@@ -324,8 +365,8 @@ export default function UsersTable() {
           {/* State filter */}
           <div className="w-full sm:w-40">
             <Select
-              value={filters.state || "all"}
-              onValueChange={(value) => handleFilterChange("state", value)}
+              value={filters.state || 'all'}
+              onValueChange={(value) => handleFilterChange('state', value)}
             >
               <SelectTrigger>
                 <SelectValue placeholder="State" />
@@ -348,40 +389,64 @@ export default function UsersTable() {
             <TableHeader>
               <TableRow>
                 <TableHead>
-                  <div className="flex items-center space-x-1 cursor-pointer" onClick={() => handleSort("name")}>
+                  <div
+                    className="flex items-center space-x-1 cursor-pointer"
+                    onClick={() => handleSort('name')}
+                  >
                     <span>User</span>
                     <ArrowUpDown className="h-4 w-4" />
                   </div>
                 </TableHead>
                 <TableHead>
-                  <div className="flex items-center space-x-1 cursor-pointer" onClick={() => handleSort("email")}>
+                  <div
+                    className="flex items-center space-x-1 cursor-pointer"
+                    onClick={() => handleSort('email')}
+                  >
                     <span>Email</span>
                     <ArrowUpDown className="h-4 w-4" />
                   </div>
                 </TableHead>
                 <TableHead>
-                  <div className="flex items-center space-x-1 cursor-pointer" onClick={() => handleSort("role")}>
+                  <div
+                    className="flex items-center space-x-1 cursor-pointer"
+                    onClick={() => handleSort('role')}
+                  >
                     <span>Role</span>
                     <ArrowUpDown className="h-4 w-4" />
                   </div>
                 </TableHead>
                 <TableHead>
-                  <div className="flex items-center space-x-1 cursor-pointer" onClick={() => handleSort("phoneNumber")}>
+                  <div
+                    className="flex items-center space-x-1 cursor-pointer"
+                    onClick={() => handleSort('phoneNumber')}
+                  >
                     <span>Phone</span>
                     <ArrowUpDown className="h-4 w-4" />
                   </div>
                 </TableHead>
                 <TableHead>
-                  <div className="flex items-center space-x-1 cursor-pointer" onClick={() => handleSort("state")}>
+                  <div
+                    className="flex items-center space-x-1 cursor-pointer"
+                    onClick={() => handleSort('state')}
+                  >
                     <span>State</span>
                     <ArrowUpDown className="h-4 w-4" />
                   </div>
                 </TableHead>
                 <TableHead>Organization</TableHead>
                 <TableHead>
-                  <div className="flex items-center space-x-1 cursor-pointer" onClick={() => handleSort("status")}>
+                  <div
+                    className="flex items-center space-x-1 cursor-pointer"
+                    onClick={() => handleSort('status')}
+                  >
                     <span>Status</span>
                     <ArrowUpDown className="h-4 w-4" />
+                  </div>
+                </TableHead>
+                <TableHead>
+                  <div className="flex items-center space-x-1">
+                    <span>Total Recycles</span>
+                    <Recycle className="h-4 w-4" />
                   </div>
                 </TableHead>
                 <TableHead className="text-right">Actions</TableHead>
@@ -398,13 +463,27 @@ export default function UsersTable() {
                         <Skeleton className="h-4 w-24" />
                       </div>
                     </TableCell>
-                    <TableCell><Skeleton className="h-4 w-32" /></TableCell>
-                    <TableCell><Skeleton className="h-4 w-20" /></TableCell>
-                    <TableCell><Skeleton className="h-4 w-24" /></TableCell>
-                    <TableCell><Skeleton className="h-4 w-10" /></TableCell>
-                    <TableCell><Skeleton className="h-4 w-24" /></TableCell>
-                    <TableCell><Skeleton className="h-6 w-16" /></TableCell>
-                    <TableCell><Skeleton className="h-8 w-8 ml-auto" /></TableCell>
+                    <TableCell>
+                      <Skeleton className="h-4 w-32" />
+                    </TableCell>
+                    <TableCell>
+                      <Skeleton className="h-4 w-20" />
+                    </TableCell>
+                    <TableCell>
+                      <Skeleton className="h-4 w-24" />
+                    </TableCell>
+                    <TableCell>
+                      <Skeleton className="h-4 w-10" />
+                    </TableCell>
+                    <TableCell>
+                      <Skeleton className="h-4 w-24" />
+                    </TableCell>
+                    <TableCell>
+                      <Skeleton className="h-6 w-16" />
+                    </TableCell>
+                    <TableCell>
+                      <Skeleton className="h-8 w-8 ml-auto" />
+                    </TableCell>
                   </TableRow>
                 ))
               ) : users.length === 0 ? (
@@ -412,15 +491,20 @@ export default function UsersTable() {
                   <TableCell colSpan={8} className="text-center py-8">
                     <div className="flex flex-col items-center justify-center space-y-2">
                       <User className="h-8 w-8 text-muted-foreground" />
-                      <div className="text-muted-foreground">No users found</div>
-                      {filters.search || filters.status || filters.role || filters.state ? (
+                      <div className="text-muted-foreground">
+                        No users found
+                      </div>
+                      {filters.search ||
+                      filters.status ||
+                      filters.role ||
+                      filters.state ? (
                         <Button
                           variant="outline"
                           size="sm"
                           onClick={() => {
-                            setSearchValue("");
+                            setSearchValue('');
                             updateFilters({
-                              search: "",
+                              search: '',
                               status: undefined,
                               role: undefined,
                               state: undefined,
@@ -440,7 +524,9 @@ export default function UsersTable() {
                       <div className="flex items-center space-x-3">
                         <Avatar>
                           <AvatarImage src={user.image} alt={user.name} />
-                          <AvatarFallback>{getInitials(user.name)}</AvatarFallback>
+                          <AvatarFallback>
+                            {getInitials(user.name)}
+                          </AvatarFallback>
                         </Avatar>
                         <div>
                           <div className="font-medium">{user.name}</div>
@@ -454,8 +540,8 @@ export default function UsersTable() {
                     </TableCell>
                     <TableCell>{user.email}</TableCell>
                     <TableCell>{formatRole(user.role)}</TableCell>
-                    <TableCell>{user.phoneNumber || "—"}</TableCell>
-                    <TableCell>{user.state || "—"}</TableCell>
+                    <TableCell>{user.phoneNumber || '—'}</TableCell>
+                    <TableCell>{user.state || '—'}</TableCell>
                     <TableCell>
                       {user.organizations.length > 0 ? (
                         <TooltipProvider>
@@ -470,8 +556,13 @@ export default function UsersTable() {
                               <div className="space-y-1.5">
                                 {user.organizations.map((org) => (
                                   <div key={org.id} className="text-xs">
-                                    <span className="font-medium">{org.name}</span>
-                                    <span className="text-muted-foreground"> ({org.role})</span>
+                                    <span className="font-medium">
+                                      {org.name}
+                                    </span>
+                                    <span className="text-muted-foreground">
+                                      {' '}
+                                      ({org.role})
+                                    </span>
                                   </div>
                                 ))}
                               </div>
@@ -479,10 +570,19 @@ export default function UsersTable() {
                           </Tooltip>
                         </TooltipProvider>
                       ) : (
-                        "—"
+                        '—'
                       )}
                     </TableCell>
                     <TableCell>{renderStatus(user.status)}</TableCell>
+                    <TableCell>
+                      <Link
+                        href={`/users/${user.id}/recycle-history`}
+                        className="flex items-center space-x-1 hover:text-primary hover:underline"
+                      >
+                        <span>{user.recycleHistoryCount || 0}</span>
+                        <Recycle className="h-4 w-4" />
+                      </Link>
+                    </TableCell>
                     <TableCell className="text-right">
                       <DropdownMenu>
                         <DropdownMenuTrigger asChild>
@@ -491,33 +591,42 @@ export default function UsersTable() {
                           </Button>
                         </DropdownMenuTrigger>
                         <DropdownMenuContent align="end">
-                          <DropdownMenuItem onClick={() => handleViewProfile(user)}>
+                          <DropdownMenuItem
+                            onClick={() => handleViewProfile(user)}
+                          >
                             <Eye className="mr-2 h-4 w-4" />
                             View Profile
                           </DropdownMenuItem>
-                          <DropdownMenuItem onClick={() => handleEditProfile(user)}>
+                          <DropdownMenuItem
+                            onClick={() => handleEditProfile(user)}
+                          >
                             <Edit className="mr-2 h-4 w-4" />
                             Edit User
                           </DropdownMenuItem>
-                          {user.status === "active" ? (
-                            <DropdownMenuItem 
+
+                          {user.status === 'active' ? (
+                            <DropdownMenuItem
                               className="text-amber-600"
-                              onClick={() => handleStatusChange(user, "suspend")}
+                              onClick={() =>
+                                handleStatusChange(user, 'suspend')
+                              }
                             >
                               Suspend User
                             </DropdownMenuItem>
-                          ) : user.status === "suspended" ? (
-                            <DropdownMenuItem 
+                          ) : user.status === 'suspended' ? (
+                            <DropdownMenuItem
                               className="text-green-600"
-                              onClick={() => handleStatusChange(user, "activate")}
+                              onClick={() =>
+                                handleStatusChange(user, 'activate')
+                              }
                             >
                               Activate User
                             </DropdownMenuItem>
                           ) : null}
-                          {user.status !== "banned" && (
-                            <DropdownMenuItem 
+                          {user.status !== 'banned' && (
+                            <DropdownMenuItem
                               className="text-red-600"
-                              onClick={() => handleStatusChange(user, "ban")}
+                              onClick={() => handleStatusChange(user, 'ban')}
                             >
                               Ban User
                             </DropdownMenuItem>
@@ -540,7 +649,7 @@ export default function UsersTable() {
                   pagination.currentPage * pagination.perPage,
                   pagination.total
                 )} of ${pagination.total} users`
-              : "No users found"}
+              : 'No users found'}
           </div>
           <div className="flex items-center space-x-6 lg:space-x-8">
             <div className="flex items-center space-x-2">
