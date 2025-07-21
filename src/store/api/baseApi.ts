@@ -22,6 +22,7 @@ export const baseApi = createApi({
     'Analytics',
     'Dashboard',
     'UserTotalPoint',
+    'UserRecycles',
   ],
   endpoints: () => ({}), // Empty endpoints - will be extended by injected endpoints
 });

@@ -6,6 +6,8 @@ import { ThemeProvider } from '@/providers/theme-provider';
 import ProgressLoader from '@/providers/progress-loader';
 import ReduxProvider from '@/providers/redux-provider';
 
+import { NuqsAdapter } from 'nuqs/adapters/next/app';
+
 const nunito = Nunito({
   variable: '--font-nunito',
   subsets: ['latin', 'latin-ext', 'vietnamese', 'cyrillic', 'cyrillic-ext'],
@@ -26,8 +28,6 @@ export const metadata: Metadata = {
     'Trace is a platform for tracking the carbon footprint of products and services.',
 };
 
-
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -37,15 +37,17 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={`${nunito.variable} ${mulish.variable} antialiased`}>
         <ReduxProvider>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="light"
-            enableSystem
-            disableTransitionOnChange
-          >
-            <ProgressLoader>{children}</ProgressLoader>
-            <Toaster />
-          </ThemeProvider>
+          <NuqsAdapter>
+            <ThemeProvider
+              attribute="class"
+              defaultTheme="light"
+              enableSystem
+              disableTransitionOnChange
+            >
+              <ProgressLoader>{children}</ProgressLoader>
+              <Toaster />
+            </ThemeProvider>
+          </NuqsAdapter>
         </ReduxProvider>
       </body>
     </html>

@@ -20,7 +20,8 @@ export interface User {
     name: string;
     role: string;
   }[];
-  totalPoints: number;
+  totalPoints: number;  
+  recycleHistoryCount: number;
   createdAt: Date;
 }
 

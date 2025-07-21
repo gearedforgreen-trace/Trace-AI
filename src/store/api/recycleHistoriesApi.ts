@@ -1,8 +1,9 @@
+import { Recycle, RecycleFilterParams } from "@/lib/api/services/recycles";
 import { baseApi } from './baseApi';
-import { 
-  ApiPaginatedResponse, 
+import {
+  ApiPaginatedResponse,
   ApiEntityResponse,
-  PaginationParams 
+  PaginationParams
 } from '@/types/api';
 
 // Define RecycleHistory type based on the API response
@@ -44,15 +45,15 @@ export const recycleHistoriesApi = baseApi.injectEndpoints({
         }
         return url;
       },
-      providesTags: (result) => 
-        result 
+      providesTags: (result) =>
+        result
           ? [
-              ...result.data.map(({ id }) => ({ type: 'RecycleHistory' as const, id })),
-              { type: 'RecycleHistory', id: 'LIST' },
-            ]
+            ...result.data.map(({ id }) => ({ type: 'RecycleHistory' as const, id })),
+            { type: 'RecycleHistory', id: 'LIST' },
+          ]
           : [{ type: 'RecycleHistory', id: 'LIST' }],
     }),
-    
+
     // Get single recycle history by ID
     getRecycleHistory: builder.query<RecycleHistory, string>({
       query: (id) => `recycle-histories/${id}`,
@@ -98,7 +99,7 @@ export const recycleHistoriesApi = baseApi.injectEndpoints({
         { type: 'Bin', id: 'LIST' },
       ],
     }),
-    
+
     // Delete recycle history
     deleteRecycleHistory: builder.mutation<void, string>({
       query: (id) => ({
@@ -110,6 +111,55 @@ export const recycleHistoriesApi = baseApi.injectEndpoints({
         { type: 'RecycleHistory', id: 'LIST' },
       ],
     }),
+
+    getUserRecycles: builder.query<ApiPaginatedResponse<Recycle>, RecycleFilterParams>({
+      query: (params: RecycleFilterParams = {}) => {
+
+        const { page = 1, perPage = 20, userId, binId, materialId, storeId, searchMaterial, sortBy, sortOrder } = params;
+
+        const searchParams = new URLSearchParams();
+
+        searchParams.set('page', page.toString());
+        searchParams.set('perPage', perPage.toString());
+
+        if (storeId) {
+          searchParams.set('storeId', storeId);
+        }
+
+        if (userId) {
+          searchParams.set('userId', userId);
+        }
+
+        if (binId) {
+          searchParams.set('binId', binId);
+        }
+
+        if (materialId) {
+          searchParams.set('materialId', materialId);
+        }
+
+        if (searchMaterial) {
+          searchParams.set('searchMaterial', searchMaterial);
+        }
+
+        if (sortBy) {
+          searchParams.set('sortBy', sortBy);
+        }
+
+        if (sortOrder) {
+          searchParams.set('sortOrder', sortOrder);
+        }
+
+        return `/user-recycle-histories?${searchParams.toString()}`;
+      },
+      providesTags: (result) =>
+        result
+          ? [
+            ...result.data.map(({ id }) => ({ type: 'UserRecycles' as const, id })),
+            { type: 'UserRecycles', id: 'LIST' },
+          ]
+          : [{ type: 'UserRecycles', id: 'LIST' }],
+    }),
   }),
 });
 
@@ -118,5 +168,6 @@ export const {
   useGetRecycleHistoriesQuery,
   useGetRecycleHistoryQuery,
   useSubmitRecycleMutation,
+  useGetUserRecyclesQuery,
   useDeleteRecycleHistoryMutation,
 } = recycleHistoriesApi;

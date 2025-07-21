@@ -45,3 +45,21 @@ export function formatDate(date: string | Date): string {
     return "Invalid Date";
   }
 }
+
+
+export function debounce<F extends (...args: any[]) => void>(
+  func: F,
+  delay: number /* milliseconds */
+): (...args: Parameters<F>) => void {
+  let timeoutId: ReturnType<typeof setTimeout>;
+
+  return (...args: Parameters<F>) => {
+    // If we have a pending call, cancel it
+    clearTimeout(timeoutId);
+
+    // Schedule a fresh one
+    timeoutId = setTimeout(() => {
+      func(...args);
+    }, delay);
+  };
+}
