@@ -91,7 +91,6 @@ export default function RecyclesTable() {
   }
 
   if (error) {
-    console.log(error);
     return (
       <div>
         <Alert variant="destructive">

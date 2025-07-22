@@ -131,6 +131,9 @@ importers:
       nuqs:
         specifier: ^2.4.3
         version: 2.4.3(next@15.2.2(@opentelemetry/api@1.4.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react@19.1.0)
+      openai:
+        specifier: ^5.10.1
+        version: 5.10.1(zod@3.25.4)
       prisma-extension-kysely:
         specifier: ^3.0.0
         version: 3.0.0(@prisma/client@5.21.1(prisma@5.21.1))
@@ -3414,6 +3417,18 @@ packages:
   open@7.4.2:
     resolution: {integrity: sha512-MVHddDVweXZF3awtlAS+6pgKLlm/JgxZ90+/NBurBoQctVOOB/zDdVjcyPzQ+0laDGbsWgrRkflI65sQeOgT9Q==}
     engines: {node: '>=8'}
+
+  openai@5.10.1:
+    resolution: {integrity: sha512-fq6xVfv1/gpLbsj8fArEt3b6B9jBxdhAK+VJ+bDvbUvNd+KTLlA3bnDeYZaBsGH9LUhJ1M1yXfp9sEyBLMx6eA==}
+    hasBin: true
+    peerDependencies:
+      ws: ^8.18.0
+      zod: ^3.23.8
+    peerDependenciesMeta:
+      ws:
+        optional: true
+      zod:
+        optional: true
 
   optionator@0.9.4:
     resolution: {integrity: sha512-6IpQ7mKUxRcZNLIObR0hz7lxsapSSIYNZJwXPGeF0mTVqGKFIXj1DQcMoT22S3ROcLyY/rz0PWaWZ9ayWmad9g==}
@@ -7690,6 +7705,10 @@ snapshots:
     dependencies:
       is-docker: 2.2.1
       is-wsl: 2.2.0
+
+  openai@5.10.1(zod@3.25.4):
+    optionalDependencies:
+      zod: 3.25.4
 
   optionator@0.9.4:
     dependencies:
