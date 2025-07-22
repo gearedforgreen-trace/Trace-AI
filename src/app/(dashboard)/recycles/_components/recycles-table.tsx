@@ -19,7 +19,7 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog';
 import { StatusBadge } from '@/components/ui/status-badge';
-import Link from "next/link";
+import Link from 'next/link';
 
 function useDebouncedCallback<F extends (...args: any[]) => void>(
   func: F,
@@ -122,8 +122,8 @@ export default function RecyclesTable() {
           </div>
         </div>
         <div className="grid">
-          <div className="rounded-md border overflow-y-hidden ">
-            <table className="w-full text-sm relative">
+          <div className="rounded-md border overflow-y-hidden relative">
+            <table className="w-full text-sm ">
               <thead className="border-b bg-muted/50">
                 <tr>
                   <th className="h-10 px-4 text-left font-medium whitespace-nowrap">
@@ -164,14 +164,13 @@ export default function RecyclesTable() {
                   </tr>
                 )}
               </tbody>
-
-              {isFetching && (
-                <div className="absolute h-full left-0 w-full top-0 bg-background/70 backdrop-blur-[1px] flex items-center justify-center gap-2">
-                  <Loader2Icon className="w-4 h-4 animate-spin" />
-                  <p className="text-sm text-muted-foreground">Loading...</p>
-                </div>
-              )}
             </table>
+            {isFetching && (
+              <div className="absolute h-full left-0 w-full top-0 bg-background/70 backdrop-blur-[1px] flex items-center justify-center gap-2">
+                <Loader2Icon className="w-4 h-4 animate-spin" />
+                <p className="text-sm text-muted-foreground">Loading...</p>
+              </div>
+            )}
           </div>
         </div>
         <DataTablePagination
@@ -201,20 +200,29 @@ function RecycleTableData({ recycleHistory }: { recycleHistory: Recycle }) {
             <div
               className="cursor-pointer w-20 h-20 rounded-md overflow-hidden"
               onClick={() => {
-                setOpenRecycleImageViewModal(true);
+                if (recycleHistory.mediaUrl) {
+                  setOpenRecycleImageViewModal(true);
+                }
               }}
             >
-              {recycleHistory.mediaUrl.endsWith('.mp4') &&
-              recycleHistory.mediaUrl.startsWith('https://') ? (
-                <Button variant="outline" className="w-20 h-20 cursor-pointer">
-                  <PlayIcon className="w-4 h-4" />
-                </Button>
+              {recycleHistory?.mediaUrl ? (
+                recycleHistory.mediaUrl.endsWith('.mp4') &&
+                recycleHistory.mediaUrl.startsWith('https://') ? (
+                  <Button
+                    variant="outline"
+                    className="w-20 h-20 cursor-pointer"
+                  >
+                    <PlayIcon className="w-4 h-4" />
+                  </Button>
+                ) : (
+                  <img
+                    src={recycleHistory.mediaUrl}
+                    alt={recycleHistory.bin.material.name}
+                    className="w-20 h-20 object-cover"
+                  />
+                )
               ) : (
-                <img
-                  src={recycleHistory.mediaUrl}
-                  alt={recycleHistory.bin.material.name}
-                  className="w-20 h-20 object-cover"
-                />
+                <div className="w-20 h-20 bg-muted rounded-md" />
               )}
             </div>
           </div>
@@ -293,58 +301,84 @@ function RecycleTableData({ recycleHistory }: { recycleHistory: Recycle }) {
             <span>{recycleHistory.bin.store.name}</span>
           </Link>
           <div className="text-xs font-medium text-muted-foreground flex gap-0.5">
-            <span>{recycleHistory.bin.store.address1 && recycleHistory.bin.store.address1},</span>
-            <span>{recycleHistory.bin.store.address2 && recycleHistory.bin.store.address2}</span>
-            <span>{recycleHistory.bin.store.city && recycleHistory.bin.store.city},</span>
-            <span>{recycleHistory.bin.store.state && recycleHistory.bin.store.state},</span>
-            <span>{recycleHistory.bin.store.country && recycleHistory.bin.store.country},</span>
-            <span>{recycleHistory.bin.store.postalCode && recycleHistory.bin.store.postalCode}</span>
+            <span>
+              {recycleHistory.bin.store.address1 &&
+                recycleHistory.bin.store.address1}
+              ,
+            </span>
+            <span>
+              {recycleHistory.bin.store.address2 &&
+                recycleHistory.bin.store.address2}
+            </span>
+            <span>
+              {recycleHistory.bin.store.city && recycleHistory.bin.store.city},
+            </span>
+            <span>
+              {recycleHistory.bin.store.state && recycleHistory.bin.store.state}
+              ,
+            </span>
+            <span>
+              {recycleHistory.bin.store.country &&
+                recycleHistory.bin.store.country}
+              ,
+            </span>
+            <span>
+              {recycleHistory.bin.store.postalCode &&
+                recycleHistory.bin.store.postalCode}
+            </span>
           </div>
         </td>
         <td className="p-4 align-middle text-left">
           <div className="flex gap-1 flex-col text-sm text-muted-foreground">
-          <span>{Intl.DateTimeFormat('en-US', {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric',
-          }).format(new Date(recycleHistory.createdAt))}</span>
-           <span>{Intl.DateTimeFormat('en-US', {
-            hour: '2-digit',
-            minute: '2-digit',
-          }).format(new Date(recycleHistory.createdAt))}</span>
+            <span>
+              {Intl.DateTimeFormat('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+              }).format(new Date(recycleHistory.createdAt))}
+            </span>
+            <span>
+              {Intl.DateTimeFormat('en-US', {
+                hour: '2-digit',
+                minute: '2-digit',
+              }).format(new Date(recycleHistory.createdAt))}
+            </span>
           </div>
         </td>
       </tr>
-      <Dialog
-        open={openRecycleImageViewModal}
-        onOpenChange={setOpenRecycleImageViewModal}
-      >
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle>Recycle Media</DialogTitle>
-          </DialogHeader>
-          <DialogDescription>
-            {recycleHistory.mediaUrl.endsWith('.mp4') &&
-            recycleHistory.mediaUrl.startsWith('https://') ? (
-              <video
-                src={recycleHistory.mediaUrl}
-                className="w-full h-[550px] object-contain"
-                controls
-                autoPlay
-                loop
-                muted
-                playsInline
-              />
-            ) : (
-              <img
-                src={recycleHistory.mediaUrl}
-                alt={recycleHistory.bin.material.name}
-                className="w-full h-full object-cover"
-              />
-            )}
-          </DialogDescription>
-        </DialogContent>
-      </Dialog>
+
+      {recycleHistory.mediaUrl && (
+        <Dialog
+          open={openRecycleImageViewModal}
+          onOpenChange={setOpenRecycleImageViewModal}
+        >
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle>Recycle Media</DialogTitle>
+            </DialogHeader>
+            <DialogDescription>
+              {recycleHistory.mediaUrl.endsWith('.mp4') &&
+              recycleHistory.mediaUrl.startsWith('https://') ? (
+                <video
+                  src={recycleHistory.mediaUrl}
+                  className="w-full h-[550px] object-contain"
+                  controls
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                />
+              ) : (
+                <img
+                  src={recycleHistory.mediaUrl}
+                  alt={recycleHistory.bin.material.name}
+                  className="w-full h-full object-cover"
+                />
+              )}
+            </DialogDescription>
+          </DialogContent>
+        </Dialog>
+      )}
     </>
   );
 }

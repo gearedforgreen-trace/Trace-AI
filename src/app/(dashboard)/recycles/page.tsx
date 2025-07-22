@@ -1,7 +1,6 @@
-import { Suspense } from "react";
+import { Suspense } from 'react';
 import RecyclesTable from './_components/recycles-table';
-import RecyclesTableSkeleton from './_components/recycles-table-skeletone';
-
+import { RecycleTableSkeleton } from './_components/recycles-table-skeletone';
 
 export default function RecyclesPage() {
   return (
@@ -9,9 +8,9 @@ export default function RecyclesPage() {
       <div className="flex items-center justify-between">
         <h2 className="text-3xl font-bold tracking-tight">Recycles</h2>
       </div>
-      <Suspense fallback={<RecyclesTableSkeleton />}>
+      <Suspense fallback={<RecycleTableSkeleton />}>
         <RecyclesTable />
       </Suspense>
     </div>
   );
-} 
+}
