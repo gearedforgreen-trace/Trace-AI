@@ -47,64 +47,71 @@ Since the API expects a URL, you'll need to:
 
 #### Example React Native Implementation:
 ```javascript
-import { Camera } from 'expo-camera';
+// 1. Pick or capture a photo using Expo ImagePicker
+import * as ImagePicker from 'expo-image-picker';
 import * as ImageManipulator from 'expo-image-manipulator';
 
-const captureAndSubmitRecycle = async () => {
-  try {
-    // 1. Capture image
-    const photo = await camera.takePictureAsync({
-      quality: 0.8,
-      base64: true,
-    });
-
-    // 2. Compress and resize image
-    const processedImage = await ImageManipulator.manipulateAsync(
-      photo.uri,
-      [{ resize: { width: 1024 } }],
-      { compress: 0.8, format: ImageManipulator.SaveFormat.JPEG, base64: true }
-    );
-
-    // 3. Upload to temporary storage (example with your own endpoint)
-    const uploadResponse = await fetch('YOUR_UPLOAD_ENDPOINT', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${sessionToken}`,
-      },
-      body: JSON.stringify({
-        image: processedImage.base64,
-        filename: `recycle-${Date.now()}.jpg`,
-      }),
-    });
-
-    const { imageUrl } = await uploadResponse.json();
-
-    // 4. Submit to recycle API
-    const submitResponse = await fetch('/api/recycle-histories/submit', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${sessionToken}`,
-      },
-      body: JSON.stringify({
-        binId: 'your-bin-uuid',
-        totalCount: 5,
-        mediaUrl: imageUrl,
-      }),
-    });
-
-    const result = await submitResponse.json();
-    
-    if (submitResponse.ok) {
-      console.log('Recycle submitted successfully:', result);
-    } else {
-      console.error('Submission failed:', result);
-    }
-  } catch (error) {
-    console.error('Error:', error);
+async function pickImageAsBase64() {
+  // Request permission
+  const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+  if (status !== 'granted') {
+    throw new Error('Permission to access camera roll is required!');
   }
-};
+
+  // Launch image picker
+  const result = await ImagePicker.launchImageLibraryAsync({
+    mediaTypes: ImagePicker.MediaTypeOptions.Images,
+    allowsEditing: false,
+    quality: 1,
+  });
+
+  if (result.cancelled) {
+    throw new Error('Image picking cancelled');
+  }
+
+  // 2. Compress, resize, and get base64
+  const processedImage = await ImageManipulator.manipulateAsync(
+    result.uri,
+    [{ resize: { width: 1024 } }],
+    {
+      compress: 0.8,
+      format: ImageManipulator.SaveFormat.JPEG,
+      base64: true,
+    }
+  );
+
+  // 3. Build data URI
+  const dataUri = `data:image/jpeg;base64,${processedImage.base64}`;
+  return dataUri;
+}
+
+// Usage example:
+async function submitRecycle() {
+  try {
+    const mediaUrl = await pickImageAsBase64();
+
+    const payload = {
+      binId: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
+      totalCount: 5,
+      mediaUrl, // <-- data URI directly here
+    };
+
+    const response = await fetch('https://<YOUR_BACKEND_HOST>/api/recycle', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${sessionToken}`,
+      },
+      body: JSON.stringify(payload),
+    });
+
+    const data = await response.json();
+    console.log('Result:', data);
+  } catch (err) {
+    console.error(err);
+  }
+}
+
 ```
 
 ## Response Format
