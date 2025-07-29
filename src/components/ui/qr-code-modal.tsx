@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import QRCode from "qrcode";
 import {
   Dialog,
@@ -9,7 +9,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { Download, Printer } from "lucide-react";
+import { Download, Printer, Copy, Check } from "lucide-react";
 import { toast } from "sonner";
 
 interface QRCodeModalProps {
@@ -30,6 +30,7 @@ export function QRCodeModal({
   const [error, setError] = useState<string | null>(null);
   const [isGenerating, setIsGenerating] = useState(false);
   const [qrGenerated, setQrGenerated] = useState(false);
+  const [copied, setCopied] = useState(false);
 
   const generateQR = useCallback(async (canvas: HTMLCanvasElement) => {
     if (!canvas || !value) {
@@ -84,10 +85,27 @@ export function QRCodeModal({
       setQrGenerated(false);
       setError(null);
       setIsGenerating(false);
+      setCopied(false);
     }
   }, [isOpen]);
 
   const [canvasElement, setCanvasElement] = useState<HTMLCanvasElement | null>(null);
+
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(value);
+      setCopied(true);
+      toast.success("URL copied to clipboard");
+      
+      // Reset copied state after 2 seconds
+      setTimeout(() => {
+        setCopied(false);
+      }, 2000);
+    } catch (err) {
+      console.error("Copy error:", err);
+      toast.error("Failed to copy URL");
+    }
+  };
 
   const handleDownload = () => {
     if (!canvasElement || !qrGenerated) {
@@ -230,6 +248,29 @@ export function QRCodeModal({
               className={`border border-gray-200 rounded-lg ${isGenerating || error ? 'hidden' : ''}`}
               style={{ width: 400, height: 400 }}
             />
+
+          </div>
+
+          {/* Improved URL display section */}
+          <div className="flex items-center gap-2 p-3 bg-muted border rounded-lg">
+            <div className="flex-1 min-w-0">
+              <div className="text-sm font-mono break-all text-foreground">
+                {value}
+              </div>
+            </div>
+            <Button
+              onClick={handleCopy}
+              variant="ghost"
+              size="sm"
+              className="flex-shrink-0 h-8 w-8 p-0"
+              title="Copy URL"
+            >
+              {copied ? (
+                <Check className="h-4 w-4 text-green-600" />
+              ) : (
+                <Copy className="h-4 w-4" />
+              )}
+            </Button>
           </div>
           
           <div className="flex justify-center gap-3">

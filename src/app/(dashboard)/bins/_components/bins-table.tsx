@@ -41,18 +41,24 @@ export function BinsTable({
   const [selectedBin, setSelectedBin] = useState<IBin | null>(null);
   const [selectedBinUrl, setSelectedBinUrl] = useState<string>("");
 
+  
+  const getBinUrl = (bin: IBin) => {
+    return `${window?.location.origin}/bin/${bin.id}`;
+  };
+
   const openQrModal = useCallback((bin: IBin) => {
     console.log("Opening QR modal with URL:", bin.id);
     setSelectedBin(bin);
-    setSelectedBinUrl(bin.id);
+    setSelectedBinUrl(getBinUrl(bin));
     setQrModalOpen(true);
   }, []);
 
   const closeQrModal = () => {
-    setQrModalOpen(false);
+    setQrModalOpen(false);  
     setSelectedBin(null);
     setSelectedBinUrl("");
   };
+
 
   const columns = useMemo<ColumnDef<IBin>[]>(
     () => [
@@ -100,7 +106,7 @@ export function BinsTable({
           return (
             <div className="flex justify-center">
               <QRCodeComponent 
-                value={row.original.id} 
+                value={getBinUrl(row.original)} 
                 size={64} 
                 clickable={true}
                 onClick={() => openQrModal(row.original)}
@@ -171,7 +177,7 @@ export function BinsTable({
                     </td>
                     <td className="p-4 align-middle text-center">
                       <QRCodeComponent 
-                        value={`${process.env.NEXT_PUBLIC_BASE_URL || (typeof window !== 'undefined' ? window.location.origin : 'http://localhost:3000')}/bins/${bin.id}`} 
+                        value={getBinUrl(bin)} 
                         size={64} 
                         clickable={true}
                         onClick={() => openQrModal(bin)}

@@ -9,7 +9,7 @@ import { useRouter } from 'next/navigation';
 import { LogOutIcon, Smartphone, Apple, Play } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
 
-export default function UnauthorizedDashboard() {
+export default function UnauthorizedDashboard({showLogout = true}: {showLogout?: boolean}) {
   const router = useRouter();
 
   const handleSignOut = async () => {
@@ -126,12 +126,14 @@ export default function UnauthorizedDashboard() {
             </CardContent>
           </Card>
 
-          <div className="flex justify-center pt-4">
-            <Button variant="destructive" onClick={handleSignOut}>
-              <LogOutIcon className="mr-2 h-4 w-4" />
-              Sign out
-            </Button>
-          </div>
+          {showLogout && (
+            <div className="flex justify-center pt-4">
+              <Button variant="destructive" onClick={handleSignOut}>
+                <LogOutIcon className="mr-2 h-4 w-4" />
+                Sign out
+              </Button>
+            </div>
+          )}
         </div>
       </div>
     </div>
