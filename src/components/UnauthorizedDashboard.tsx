@@ -18,8 +18,10 @@ import { useEffect, useRef, useState } from 'react';
 
 export default function UnauthorizedDashboard({
   showLogout = true,
+  binId,
 }: {
   showLogout?: boolean;
+  binId?: string;
 }) {
   const router = useRouter();
   const [checkingApp, setCheckingApp] = useState(true);
@@ -43,7 +45,7 @@ export default function UnauthorizedDashboard({
   };
 
   useEffect(() => {
-    const deeplinkUrl = 'gearforgreen://recycle/recycleScreen';
+    const deeplinkUrl = `gearforgreen://recycle/recycleScreen?binId=${binId}`;
 
     if (hasAttemptedRedirect.current) return;
     hasAttemptedRedirect.current = true;
