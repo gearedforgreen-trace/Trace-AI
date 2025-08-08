@@ -12,10 +12,7 @@ export async function POST(request: NextRequest) {
     const session = await getSession();
 
     if (!session?.user?.id) {
-      return NextResponse.json(
-        { error: 'Unauthorized' },
-        { status: 401 }
-      );
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
     const body = await request.json();
@@ -37,14 +34,11 @@ export async function POST(request: NextRequest) {
     // Check if coupon exists and is active
     const coupon = await prisma.coupon.findUnique({
       where: { id: couponId },
-      include: { organization: true }
+      include: { organization: true },
     });
 
     if (!coupon) {
-      return NextResponse.json(
-        { error: 'Coupon not found' },
-        { status: 404 }
-      );
+      return NextResponse.json({ error: 'Coupon not found' }, { status: 404 });
     }
 
     if (coupon.status !== 'ACTIVE') {
@@ -65,7 +59,7 @@ export async function POST(request: NextRequest) {
 
     // Get user's total points
     const userTotalPoints = await prisma.userTotalPoint.findUnique({
-      where: { userId }
+      where: { userId },
     });
 
     const availablePoints = userTotalPoints?.totalPoints || 0;
@@ -73,10 +67,10 @@ export async function POST(request: NextRequest) {
     // Check if user has enough points
     if (availablePoints < coupon.pointsToRedeem) {
       return NextResponse.json(
-        { 
+        {
           error: 'Insufficient points',
           required: coupon.pointsToRedeem,
-          available: availablePoints
+          available: availablePoints,
         },
         { status: 400 }
       );
@@ -98,11 +92,16 @@ export async function POST(request: NextRequest) {
         },
         include: {
           coupon: {
-            include: {
-              organization: true
+            select:{
+              name: true,
+              imageUrl: true,
+              organization: true,
+              discountAmount: true,
+              dealType: true,
+              couponType: true,
             }
-          }
-        }
+          },
+        },
       });
 
       // Update user's total points
@@ -110,32 +109,36 @@ export async function POST(request: NextRequest) {
         where: { userId },
         data: {
           totalPoints: {
-            decrement: coupon.pointsToRedeem
-          }
-        }
+            decrement: coupon.pointsToRedeem,
+          },
+        },
       });
 
       return redeemHistory;
     });
 
-    return NextResponse.json({
-      message: 'Coupon claimed successfully',
-      data: {
-        id: result.id,
-        couponCode: result.couponCode,
-        couponName: result.coupon.name,
-        pointsRedeemed: result.points,
-        organizationId: result.coupon.organization?.id,
-        organizationName: result.coupon.organization?.name,
-        organizationLogo: result.coupon.organization?.logo,
-        organizationSlug: result.coupon.organization?.slug,
-        claimedAt: result.createdAt,
-        discountAmount: result.coupon.discountAmount,
-        dealType: result.coupon.dealType,
-        couponType: result.coupon.couponType
-      }
-    }, { status: 201 });
-    
+    return NextResponse.json(
+      {
+        message: 'Coupon claimed successfully',
+        data: {
+          id: result.id,
+          couponCode: result.couponCode,
+          couponId: result.couponId,
+          couponName: result.coupon.name,
+          couponImage: result.coupon.imageUrl,
+          pointsRedeemed: result.points,
+          organizationId: result.coupon.organization?.id,
+          organizationName: result.coupon.organization?.name,
+          organizationLogo: result.coupon.organization?.logo,
+          organizationSlug: result.coupon.organization?.slug,
+          claimedAt: result.createdAt,
+          discountAmount: result.coupon.discountAmount,
+          dealType: result.coupon.dealType,
+          couponType: result.coupon.couponType,
+        },
+      },
+      { status: 201 }
+    );
   } catch (error) {
     console.error('Coupon claim error:', error);
     return NextResponse.json(
