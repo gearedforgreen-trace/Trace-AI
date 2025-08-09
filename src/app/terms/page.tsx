@@ -31,7 +31,7 @@ export default function Terms() {
         </div>
       </div>
 
-      <div className="container mx-auto px-4 max-w-4xl pt-10 pb-12">
+      <div className="container mx-auto px-3 sm:px-4 max-w-4xl pt-8 sm:pt-10 pb-12">
         {/* Brand Logo */}
         <div className="flex justify-center mb-8">
           <Link href="/" className="flex justify-center">
@@ -42,8 +42,8 @@ export default function Terms() {
         {/* Header */}
         <div className="text-center mb-8">
          
-          <h1 className="text-4xl font-bold bg-gradient-to-r from-green-600 to-teal-600 bg-clip-text text-transparent mb-4">
-            Trace AI Terms of Service
+          <h1 className="text-2xl sm:text-4xl font-bold bg-gradient-to-r from-green-600 to-teal-600 bg-clip-text text-transparent mb-4">
+            Trace AI – Terms of Service
           </h1>
           <Badge variant="secondary" className="bg-slate-100 text-slate-700 dark:bg-green-900/30 dark:text-green-300">
             <CheckCircle className="w-4 h-4 mr-2" />
@@ -52,25 +52,25 @@ export default function Terms() {
         </div>
 
         {/* Introduction */}
-        <Card className="mb-8 border-green-300 dark:border-green-600/80 bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-950/30 dark:to-emerald-950/20 shadow-lg">
-          <CardHeader className="text-center">
-            <div className="flex justify-center mb-4">
-              <div className="p-3 bg-green-100 dark:bg-green-900/50 rounded-full">
-                <Scale className="h-8 w-8 text-green-600 dark:text-green-400" />
+        <Card className="mb-6 sm:mb-8 border-0 sm:border sm:border-green-300 sm:dark:border-green-600/80 bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-950/30 dark:to-emerald-950/20 shadow-lg">
+          <CardHeader className="text-center px-4 sm:px-6">
+            <div className="flex justify-center mb-3 sm:mb-4">
+              <div className="p-2 sm:p-3 bg-green-100 dark:bg-green-900/50 rounded-full">
+                <Scale className="h-6 w-6 sm:h-8 sm:w-8 text-green-600 dark:text-green-400" />
               </div>
             </div>
-            <CardTitle className="text-2xl font-bold text-green-800 dark:text-green-200">
+            <CardTitle className="text-xl sm:text-2xl font-bold text-green-800 dark:text-green-200">
               Terms of Service
             </CardTitle>
           </CardHeader>
-          <CardContent>
-            <p className="text-lg text-green-700 dark:text-green-300 leading-relaxed mb-4">
+          <CardContent className="px-4 sm:px-6">
+            <p className="text-base sm:text-lg text-green-700 dark:text-green-300 leading-relaxed mb-4">
               These Terms of Service (&quot;Terms&quot;) govern your access to and use of the Trace AI mobile application (&quot;App&quot;), 
               website, and related services (collectively, the &quot;Services&quot;), operated by Geared for GREEN Data Technology, 
               LLC d/b/a Trace AI (&quot;Trace AI,&quot; &quot;we,&quot; &quot;us,&quot; or &quot;our&quot;).
             </p>
-            <div className="bg-green-100 dark:bg-green-950/40 border-l-4 border-green-500 dark:border-green-400 p-4 rounded-r-lg">
-              <p className="text-green-800 dark:text-green-200 ">
+            <div className="bg-green-100 dark:bg-green-950/40 border-l-4 border-green-500 dark:border-green-400 p-3 sm:p-4 rounded-r-lg">
+              <p className="text-sm sm:text-base text-green-800 dark:text-green-200">
                 <strong>By accessing or using the Services, you agree to be bound by these Terms. 
                 If you do not agree, do not use the Services.</strong>
               </p>
@@ -80,10 +80,10 @@ export default function Terms() {
 
         {/* Terms Sections */}
         <div className="space-y-6">
-          <Card className="border-slate-200 dark:border-green-800/80">
+          <Card className="border-0 sm:border sm:border-slate-200 sm:dark:border-green-800/80">
             <CardHeader>
-              <CardTitle className="text-slate-700 dark:text-green-300 flex items-center gap-3">
-                <UserCheck className="h-5 w-5" />
+              <CardTitle className="text-slate-700 dark:text-green-300 flex items-center gap-2 sm:gap-3 text-base sm:text-lg">
+                <UserCheck className="h-4 w-4 sm:h-5 sm:w-5" />
                 1. Eligibility
               </CardTitle>
             </CardHeader>
@@ -96,10 +96,10 @@ export default function Terms() {
             </CardContent>
           </Card>
 
-          <Card className="border-slate-200 dark:border-green-800/80">
+          <Card className="border-0 sm:border sm:border-slate-200 sm:dark:border-green-800/80">
             <CardHeader>
-              <CardTitle className="text-slate-700 dark:text-green-300 flex items-center gap-3">
-                <Settings className="h-5 w-5" />
+              <CardTitle className="text-slate-700 dark:text-green-300 flex items-center gap-2 sm:gap-3 text-base sm:text-lg">
+                <Settings className="h-4 w-4 sm:h-5 sm:w-5" />
                 2. Account Registration
               </CardTitle>
             </CardHeader>
@@ -128,10 +128,10 @@ export default function Terms() {
             </CardContent>
           </Card>
 
-          <Card className="border-slate-200 dark:border-green-800/80">
+          <Card className="border-0 sm:border sm:border-slate-200 sm:dark:border-green-800/80">
             <CardHeader>
-              <CardTitle className="text-slate-700 dark:text-green-300 flex items-center gap-3">
-                <Shield className="h-5 w-5" />
+              <CardTitle className="text-slate-700 dark:text-green-300 flex items-center gap-2 sm:gap-3 text-base sm:text-lg">
+                <Shield className="h-4 w-4 sm:h-5 sm:w-5" />
                 3. Use of the Services
               </CardTitle>
             </CardHeader>
@@ -183,10 +183,10 @@ export default function Terms() {
             </CardContent>
           </Card>
 
-          <Card className="border-slate-200 dark:border-green-800/80">
+          <Card className="border-0 sm:border sm:border-slate-200 sm:dark:border-green-800/80">
             <CardHeader>
-              <CardTitle className="text-slate-700 dark:text-green-300 flex items-center gap-3">
-                <Award className="h-5 w-5" />
+              <CardTitle className="text-slate-700 dark:text-green-300 flex items-center gap-2 sm:gap-3 text-base sm:text-lg">
+                <Award className="h-4 w-4 sm:h-5 sm:w-5" />
                 4. Rewards Program
               </CardTitle>
             </CardHeader>
@@ -200,10 +200,10 @@ export default function Terms() {
             </CardContent>
           </Card>
 
-          <Card className="border-slate-200 dark:border-green-800/80">
+          <Card className="border-0 sm:border sm:border-slate-200 sm:dark:border-green-800/80">
             <CardHeader>
-              <CardTitle className="text-slate-700 dark:text-green-300 flex items-center gap-3">
-                <Database className="h-5 w-5" />
+              <CardTitle className="text-slate-700 dark:text-green-300 flex items-center gap-2 sm:gap-3 text-base sm:text-lg">
+                <Database className="h-4 w-4 sm:h-5 sm:w-5" />
                 5. Data Accuracy
               </CardTitle>
             </CardHeader>
@@ -216,10 +216,10 @@ export default function Terms() {
             </CardContent>
           </Card>
 
-          <Card className="border-slate-200 dark:border-green-800/80">
+          <Card className="border-0 sm:border sm:border-slate-200 sm:dark:border-green-800/80">
             <CardHeader>
-              <CardTitle className="text-slate-700 dark:text-green-300 flex items-center gap-3">
-                <Copyright className="h-5 w-5" />
+              <CardTitle className="text-slate-700 dark:text-green-300 flex items-center gap-2 sm:gap-3 text-base sm:text-lg">
+                <Copyright className="h-4 w-4 sm:h-5 sm:w-5" />
                 6. Intellectual Property
               </CardTitle>
             </CardHeader>
@@ -232,10 +232,10 @@ export default function Terms() {
             </CardContent>
           </Card>
 
-          <Card className="border-slate-200 dark:border-green-800/80">
+          <Card className="border-0 sm:border sm:border-slate-200 sm:dark:border-green-800/80">
             <CardHeader>
-              <CardTitle className="text-slate-700 dark:text-green-300 flex items-center gap-3">
-                <XCircle className="h-5 w-5" />
+              <CardTitle className="text-slate-700 dark:text-green-300 flex items-center gap-2 sm:gap-3 text-base sm:text-lg">
+                <XCircle className="h-4 w-4 sm:h-5 sm:w-5" />
                 7. Termination
               </CardTitle>
             </CardHeader>
@@ -247,10 +247,10 @@ export default function Terms() {
             </CardContent>
           </Card>
 
-          <Card className="border-slate-200 dark:border-green-800/80">
+          <Card className="border-0 sm:border sm:border-slate-200 sm:dark:border-green-800/80">
             <CardHeader>
-              <CardTitle className="text-slate-700 dark:text-green-300 flex items-center gap-3">
-                <AlertTriangle className="h-5 w-5" />
+              <CardTitle className="text-slate-700 dark:text-green-300 flex items-center gap-2 sm:gap-3 text-base sm:text-lg">
+                <AlertTriangle className="h-4 w-4 sm:h-5 sm:w-5" />
                 8. Disclaimers
               </CardTitle>
             </CardHeader>
@@ -263,10 +263,10 @@ export default function Terms() {
             </CardContent>
           </Card>
 
-          <Card className="border-slate-200 dark:border-green-800/80">
+          <Card className="border-0 sm:border sm:border-slate-200 sm:dark:border-green-800/80">
             <CardHeader>
-              <CardTitle className="text-slate-700 dark:text-green-300 flex items-center gap-3">
-                <Shield className="h-5 w-5" />
+              <CardTitle className="text-slate-700 dark:text-green-300 flex items-center gap-2 sm:gap-3 text-base sm:text-lg">
+                <Shield className="h-4 w-4 sm:h-5 sm:w-5" />
                 9. Limitation of Liability
               </CardTitle>
             </CardHeader>
@@ -278,10 +278,10 @@ export default function Terms() {
             </CardContent>
           </Card>
 
-          <Card className="border-slate-200 dark:border-green-800/80">
+          <Card className="border-0 sm:border sm:border-slate-200 sm:dark:border-green-800/80">
             <CardHeader>
-              <CardTitle className="text-slate-700 dark:text-green-300 flex items-center gap-3">
-                <Shield className="h-5 w-5" />
+              <CardTitle className="text-slate-700 dark:text-green-300 flex items-center gap-2 sm:gap-3 text-base sm:text-lg">
+                <Shield className="h-4 w-4 sm:h-5 sm:w-5" />
                 10. Indemnification
               </CardTitle>
             </CardHeader>
@@ -294,10 +294,10 @@ export default function Terms() {
             </CardContent>
           </Card>
 
-          <Card className="border-slate-200 dark:border-green-800/80">
+          <Card className="border-0 sm:border sm:border-slate-200 sm:dark:border-green-800/80">
             <CardHeader>
-              <CardTitle className="text-slate-700 dark:text-green-300 flex items-center gap-3">
-                <Scale className="h-5 w-5" />
+              <CardTitle className="text-slate-700 dark:text-green-300 flex items-center gap-2 sm:gap-3 text-base sm:text-lg">
+                <Scale className="h-4 w-4 sm:h-5 sm:w-5" />
                 11. Governing Law
               </CardTitle>
             </CardHeader>
@@ -309,10 +309,10 @@ export default function Terms() {
             </CardContent>
           </Card>
 
-          <Card className="border-slate-200 dark:border-green-800/80">
+          <Card className="border-0 sm:border sm:border-slate-200 sm:dark:border-green-800/80">
             <CardHeader>
-              <CardTitle className="text-slate-700 dark:text-green-300 flex items-center gap-3">
-                <Gavel className="h-5 w-5" />
+              <CardTitle className="text-slate-700 dark:text-green-300 flex items-center gap-2 sm:gap-3 text-base sm:text-lg">
+                <Gavel className="h-4 w-4 sm:h-5 sm:w-5" />
                 12. Dispute Resolution
               </CardTitle>
             </CardHeader>
@@ -324,10 +324,10 @@ export default function Terms() {
             </CardContent>
           </Card>
 
-          <Card className="border-slate-200 dark:border-green-800/80">
+          <Card className="border-0 sm:border sm:border-slate-200 sm:dark:border-green-800/80">
             <CardHeader>
-              <CardTitle className="text-slate-700 dark:text-green-300 flex items-center gap-3">
-                <RefreshCw className="h-5 w-5" />
+              <CardTitle className="text-slate-700 dark:text-green-300 flex items-center gap-2 sm:gap-3 text-base sm:text-lg">
+                <RefreshCw className="h-4 w-4 sm:h-5 sm:w-5" />
                 13. Changes to the Terms
               </CardTitle>
             </CardHeader>
@@ -342,8 +342,8 @@ export default function Terms() {
           {/* Contact Section */}
           <Card className="border-slate-200 dark:border-green-800/80 bg-slate-50/50 dark:bg-green-950/20">
             <CardHeader>
-              <CardTitle className="text-slate-700 dark:text-green-300 flex items-center gap-3">
-                <Mail className="h-5 w-5" />
+              <CardTitle className="text-slate-700 dark:text-green-300 flex items-center gap-2 sm:gap-3 text-base sm:text-lg">
+                <Mail className="h-4 w-4 sm:h-5 sm:w-5" />
                 14. Contact
               </CardTitle>
             </CardHeader>
