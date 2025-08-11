@@ -60,7 +60,7 @@ export interface IOrganization {
   id: string;
   name: string;
   slug: string | null;
-  logo: string | null;
+  logo: string | null | undefined;
   createdAt: string;
   updatedAt: string;
   metadata: string | null;

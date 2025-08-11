@@ -79,7 +79,10 @@ export default function OrganizationsClient() {
     try {
       if (currentOrganization?.id) {
         // Update existing organization
-        const result = await updateEntity({ id: currentOrganization.id, data: organization });
+        const result = await updateEntity({ id: currentOrganization.id, data: {
+          ...organization,
+          logo: organization.logo == "" || organization.logo === null ? undefined : organization.logo
+        } });
         if (result) {
           toast({
             title: "Success",
@@ -89,7 +92,10 @@ export default function OrganizationsClient() {
         }
       } else {
         // Create new organization
-        const result = await createEntity(organization);
+        const result = await createEntity({
+          ...organization,
+          logo: organization.logo == "" || organization.logo === null ? undefined : organization.logo
+        });
         if (result) {
           toast({
             title: "Success",
