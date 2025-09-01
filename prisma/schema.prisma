@@ -233,6 +233,7 @@ model Coupon {
   name            String
   description     String?
   imageUrl        String?
+  couponUrl       String?
   status          Status            @default(ACTIVE)
   couponType      CouponType
   dealType        DealType

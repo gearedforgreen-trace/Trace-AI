@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import type { ColumnDef } from "@tanstack/react-table";
 import { DataTable } from "@/components/ui/data-table/data-table";
 import { DataTableActions } from "@/components/ui/data-table/data-table-actions";
@@ -10,7 +10,8 @@ import { Badge } from "@/components/ui/badge";
 import type { Coupon } from "@/types";
 import { DataTablePagination } from "@/components/ui/data-table/data-table-pagination";
 import { Button } from "@/components/ui/button";
-import { Edit, Trash2, Star, StarOff } from "lucide-react";
+import { Edit, Trash2, Star, StarOff, Copy, Check } from "lucide-react";
+import { toast } from "sonner";
 
 interface CouponsTableProps {
   coupons: Coupon[];
@@ -47,11 +48,11 @@ export function CouponsTable({
             <img 
               src={imageUrl} 
               alt={row.original.name}
-              className="w-12 h-12 object-cover rounded-lg"
+              className="w-8 h-8 object-cover rounded"
             />
           ) : (
-            <div className="w-12 h-12 bg-gray-200 rounded-lg flex items-center justify-center">
-              <span className="text-xs text-gray-500">No Image</span>
+            <div className="w-8 h-8 bg-gray-200 rounded flex items-center justify-center">
+              <span className="text-[10px] text-gray-500">No Image</span>
             </div>
           );
         },
@@ -60,14 +61,14 @@ export function CouponsTable({
         accessorKey: "name",
         header: "Name",
         cell: ({ row }) => (
-          <div className="font-medium">{row.getValue("name")}</div>
+          <div className="font-medium text-xs">{row.getValue("name")}</div>
         ),
       },
       {
         accessorKey: "couponType",
         header: "Type",
         cell: ({ row }) => (
-          <Badge variant="outline" className="capitalize">
+          <Badge variant="outline" className="capitalize text-xs px-1 py-0">
             {row.getValue("couponType")}
           </Badge>
         ),
@@ -76,7 +77,7 @@ export function CouponsTable({
         accessorKey: "dealType",
         header: "Deal Type",
         cell: ({ row }) => (
-          <Badge variant="secondary" className="capitalize">
+          <Badge variant="secondary" className="capitalize text-xs px-1 py-0">
             {row.getValue("dealType")}
           </Badge>
         ),
@@ -88,7 +89,7 @@ export function CouponsTable({
           const discount = row.getValue("discountAmount") as number;
           const dealType = row.original.dealType;
           return (
-            <div className="font-medium">
+            <div className="font-medium text-xs">
               {dealType === "percentage" ? `${discount}%` : `$${discount}`}
             </div>
           );
@@ -98,10 +99,33 @@ export function CouponsTable({
         accessorKey: "pointsToRedeem",
         header: "Points Required",
         cell: ({ row }) => (
-          <div className="font-medium text-green-600">
+          <div className="font-medium text-green-600 text-xs">
             {row.getValue("pointsToRedeem")} pts
           </div>
         ),
+      },
+      {
+        accessorKey: "couponUrl",
+        header: "Coupon URL",
+        cell: ({ row }) => {
+          const url = row.original.couponUrl as string | null | undefined;
+          return url ? (
+            <div className="flex items-center gap-1 max-w-[200px]">
+              <a
+                href={url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="truncate text-blue-600 hover:underline text-xs"
+                title={url}
+              >
+                {url}
+              </a>
+              <CopyButton url={url} />
+            </div>
+          ) : (
+            <span className="text-muted-foreground text-xs">No Url</span>
+          );
+        },
       },
       {
         accessorKey: "isFeatured",
@@ -109,9 +133,9 @@ export function CouponsTable({
         cell: ({ row }) => {
           const isFeatured = row.getValue("isFeatured") as boolean;
           return isFeatured ? (
-            <Star className="h-4 w-4 text-yellow-500 fill-current" />
+            <Star className="h-3 w-3 text-yellow-500 fill-current" />
           ) : (
-            <StarOff className="h-4 w-4 text-gray-400" />
+            <StarOff className="h-3 w-3 text-gray-400" />
           );
         },
       },
@@ -129,7 +153,7 @@ export function CouponsTable({
         cell: ({ row }) => {
           const org = row.original.organization;
           return (
-            <div className="text-sm">
+            <div className="text-xs">
               {org?.name || "No Organization"}
             </div>
           );
@@ -139,7 +163,7 @@ export function CouponsTable({
         accessorKey: "description",
         header: "Description",
         cell: ({ row }) => (
-          <div className="hidden lg:block max-w-[300px] truncate">
+          <div className="hidden lg:block max-w-[200px] truncate text-xs">
             {row.original.description || "No description"}
           </div>
         ),
@@ -169,95 +193,115 @@ export function CouponsTable({
   // If we have external pagination, use that instead of the built-in pagination
   if (pagination && onPageChange) {
     return (
-      <div className="space-y-4">
-        <div className="rounded-md border">
-          <table className="w-full text-sm">
+      <div className="space-y-4 overflow-x-auto">
+        <div className="rounded-md border min-w-[1200px]">
+          <table className="w-full text-xs">
             <thead className="border-b bg-muted/50">
               <tr>
-                <th className="h-10 px-4 text-left font-medium">Image</th>
-                <th className="h-10 px-4 text-left font-medium">Name</th>
-                <th className="h-10 px-4 text-left font-medium">Type</th>
-                <th className="h-10 px-4 text-left font-medium">Deal Type</th>
-                <th className="h-10 px-4 text-left font-medium">Discount</th>
-                <th className="h-10 px-4 text-left font-medium">Points Required</th>
-                <th className="h-10 px-4 text-center font-medium">Featured</th>
-                <th className="h-10 px-4 text-left font-medium">Status</th>
-                <th className="h-10 px-4 text-left font-medium">Organization</th>
-                <th className="h-10 px-4 text-left font-medium hidden lg:table-cell">
+                <th className="h-10 px-2 text-left font-medium">Image</th>
+                <th className="h-10 px-2 text-left font-medium">Name</th>
+                <th className="h-10 px-2 text-left font-medium">Type</th>
+                <th className="h-10 px-2 text-left font-medium">Deal Type</th>
+                <th className="h-10 px-2 text-left font-medium">Discount</th>
+                <th className="h-10 px-2 text-left font-medium">Points</th>
+                <th className="h-10 px-2 text-center font-medium">Featured</th>
+                <th className="h-10 px-2 text-left font-medium">Status</th>
+                <th className="h-10 px-2 text-left font-medium">Org</th>
+                <th className="h-10 px-2 text-left font-medium">URL</th>
+                <th className="h-10 px-2 text-left font-medium hidden lg:table-cell">
                   Description
                 </th>
-                <th className="h-10 px-4 text-right font-medium">Actions</th>
+                <th className="h-10 px-2 text-right font-medium">Actions</th>
               </tr>
             </thead>
             <tbody>
               {coupons.length > 0 ? (
                 coupons.map((coupon) => (
                   <tr key={coupon.id} className="border-b">
-                    <td className="p-4 align-middle">
+                    <td className="p-2 align-middle">
                       {coupon.imageUrl ? (
                         <img 
                           src={coupon.imageUrl} 
                           alt={coupon.name}
-                          className="w-12 h-12 object-cover rounded-lg"
+                          className="w-8 h-8 object-cover rounded"
                         />
                       ) : (
-                        <div className="w-12 h-12 bg-gray-200 rounded-lg flex items-center justify-center">
-                          <span className="text-xs text-gray-500">No Image</span>
+                        <div className="w-8 h-8 bg-gray-200 rounded flex items-center justify-center">
+                          <span className="text-[10px] text-gray-500">No Image</span>
                         </div>
                       )}
                     </td>
-                    <td className="p-4 align-middle font-medium">
+                    <td className="p-2 align-middle font-medium text-xs">
                       {coupon.name}
                     </td>
-                    <td className="p-4 align-middle">
-                      <Badge variant="outline" className="capitalize">
+                    <td className="p-2 align-middle">
+                      <Badge variant="outline" className="capitalize text-xs px-1 py-0">
                         {coupon.couponType}
                       </Badge>
                     </td>
-                    <td className="p-4 align-middle">
-                      <Badge variant="secondary" className="capitalize">
+                    <td className="p-2 align-middle">
+                      <Badge variant="secondary" className="capitalize text-xs px-1 py-0">
                         {coupon.dealType}
                       </Badge>
                     </td>
-                    <td className="p-4 align-middle font-medium">
+                    <td className="p-2 align-middle font-medium text-xs">
                       {coupon.dealType === "percentage" ? `${coupon.discountAmount}%` : `$${coupon.discountAmount}`}
                     </td>
-                    <td className="p-4 align-middle font-medium text-green-600">
+                    <td className="p-2 align-middle font-medium text-green-600 text-xs">
                       {coupon.pointsToRedeem} pts
                     </td>
-                    <td className="p-4 align-middle text-center">
+                    <td className="p-2 align-middle text-center">
                       {coupon.isFeatured ? (
-                        <Star className="h-4 w-4 text-yellow-500 fill-current mx-auto" />
+                        <Star className="h-3 w-3 text-yellow-500 fill-current mx-auto" />
                       ) : (
-                        <StarOff className="h-4 w-4 text-gray-400 mx-auto" />
+                        <StarOff className="h-3 w-3 text-gray-400 mx-auto" />
                       )}
                     </td>
-                    <td className="p-4 align-middle">
+                    <td className="p-2 align-middle">
                       <StatusBadge status={coupon.status.toLowerCase()} />
                     </td>
-                    <td className="p-4 align-middle text-sm">
+                    <td className="p-2 align-middle text-xs">
                       {coupon.organization?.name || "No Organization"}
                     </td>
-                    <td className="p-4 align-middle hidden lg:table-cell max-w-[300px] truncate">
+                    <td className="p-2 align-middle">
+                      {coupon.couponUrl ? (
+                        <div className="flex items-center gap-1 max-w-[200px]">
+                          <a
+                            href={coupon.couponUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="truncate text-blue-600 hover:underline text-xs"
+                            title={coupon.couponUrl}
+                          >
+                            {coupon.couponUrl}
+                          </a>
+                          <CopyButton url={coupon.couponUrl} />
+                        </div>
+                      ) : (
+                        <span className="text-muted-foreground text-xs">No Url</span>
+                      )}
+                    </td>
+                    <td className="p-2 align-middle hidden lg:table-cell max-w-[200px] truncate text-xs">
                       {coupon.description || "No description"}
                     </td>
-                    <td className="p-4 align-middle text-right">
-                      <div className="flex justify-end gap-2">
+                    <td className="p-2 align-middle text-right">
+                      <div className="flex justify-end gap-1">
                         <Button
                           variant="outline"
                           size="icon"
                           onClick={() => onEdit(coupon)}
+                          className="h-6 w-6"
                         >
-                          <Edit className="h-4 w-4" />
+                          <Edit className="h-3 w-3" />
                           <span className="sr-only">Edit</span>
                         </Button>
                         <Button
                           variant="outline"
                           size="icon"
-                          className="text-red-500 hover:text-red-600"
+                          className="text-red-500 hover:text-red-600 h-6 w-6"
                           onClick={() => onDelete(coupon)}
                         >
-                          <Trash2 className="h-4 w-4" />
+                          <Trash2 className="h-3 w-3" />
                           <span className="sr-only">Delete</span>
                         </Button>
                       </div>
@@ -266,7 +310,7 @@ export function CouponsTable({
                 ))
               ) : (
                 <tr>
-                  <td colSpan={11} className="h-24 text-center">
+                  <td colSpan={12} className="h-24 text-center text-xs">
                     No results found.
                   </td>
                 </tr>
@@ -288,8 +332,40 @@ export function CouponsTable({
 
   // Otherwise, use the built-in pagination
   return (
-    <div className="space-y-4">
+    <div className="space-y-4 overflow-x-auto">
       <DataTable columns={columns} data={coupons} pageSize={20} />
     </div>
+  );
+}
+
+// Separate component for copy button with state
+function CopyButton({ url }: { url: string }) {
+  const [copied, setCopied] = useState(false);
+
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(url);
+      setCopied(true);
+      toast.success("URL copied to clipboard!");
+      setTimeout(() => setCopied(false), 2000);
+    } catch (err) {
+      toast.error("Failed to copy URL");
+    }
+  };
+
+  return (
+    <Button
+      variant="outline"
+      size="icon"
+      onClick={handleCopy}
+      aria-label="Copy URL"
+      className="h-6 w-6"
+    >
+      {copied ? (
+        <Check className="h-3 w-3 text-green-600" />
+      ) : (
+        <Copy className="h-3 w-3" />
+      )}
+    </Button>
   );
 }
