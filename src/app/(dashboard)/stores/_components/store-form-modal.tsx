@@ -68,6 +68,7 @@ export function StoreFormModal({
   isLoading = false,
   error = null,
 }: IStoreFormModalProps) {
+  console.info("store", store)
   const [isGeocoding, setIsGeocoding] = useState(false);
   const [autoGeocoding, setAutoGeocoding] = useState(false);
   const [lastGeocodedAddress, setLastGeocodedAddress] = useState<string>('');
@@ -98,7 +99,7 @@ export function StoreFormModal({
 
   const organizations = organizationsResponse?.data || [];
 
-  // Geocoding function
+  // Mapbox Geocoding function
   const geocodeAddress = async (form: any) => {
     setIsGeocoding(true);
     
@@ -115,27 +116,31 @@ export function StoreFormModal({
     }
 
     const fullAddress = `${address1}, ${city}, ${state} ${zip}, ${country}`;
-    const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
+    const apiKey = process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN;
+
+    if (!apiKey) {
+      alert('❌ Mapbox access token is not configured. Please check your environment variables.');
+      setIsGeocoding(false);
+      return;
+    }
 
     try {
       const response = await fetch(
-        `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(fullAddress)}&key=${apiKey}`
+        `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(fullAddress)}.json?access_token=${apiKey}&limit=1&country=us`
       );
       
       const data = await response.json();
       
-      if (data.status === 'OK' && data.results.length > 0) {
-        const { lat, lng } = data.results[0].geometry.location;
-        const formattedAddress = data.results[0].formatted_address;
+      if (data.features && data.features.length > 0) {
+        const feature = data.features[0];
+        const [lng, lat] = feature.center; // Mapbox returns [lng, lat]
+        const formattedAddress = feature.place_name;
+        
         form.setValue('lat', lat);
         form.setValue('lng', lng);
-        alert(`✅ Address geocoded successfully!\nFound: ${formattedAddress}\nLatitude: ${lat}\nLongitude: ${lng}`);
-      } else if (data.status === 'ZERO_RESULTS') {
-        alert('❌ No results found for this address. Please check the address and try again.');
-      } else if (data.status === 'REQUEST_DENIED') {
-        alert('❌ Geocoding request denied. Please check your Google Maps API key permissions.');
+        
       } else {
-        alert('❌ Could not geocode address. Please enter coordinates manually or check the address.');
+        alert('❌ No results found for this address. Please check the address and try again.');
       }
     } catch (error) {
       console.error('Geocoding error:', error);
@@ -145,7 +150,7 @@ export function StoreFormModal({
     setIsGeocoding(false);
   };
 
-  // Automatic geocoding function (silent, no alerts)
+  // Automatic Mapbox geocoding function (silent, no alerts)
   const autoGeocodeAddress = useCallback(async (form: any) => {
     const address1 = form.getValues('address1');
     const city = form.getValues('city');
@@ -167,17 +172,24 @@ export function StoreFormModal({
     setAutoGeocoding(true);
     setLastGeocodedAddress(fullAddress);
     
-    const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
+    const apiKey = process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN;
+
+    if (!apiKey) {
+      console.warn('Mapbox access token not configured, skipping auto-geocoding');
+      setAutoGeocoding(false);
+      return;
+    }
 
     try {
       const response = await fetch(
-        `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(fullAddress)}&key=${apiKey}`
+        `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(fullAddress)}.json?access_token=${apiKey}&limit=1&country=us`
       );
       
       const data = await response.json();
       
-      if (data.status === 'OK' && data.results.length > 0) {
-        const { lat, lng } = data.results[0].geometry.location;
+      if (data.features && data.features.length > 0) {
+        const feature = data.features[0];
+        const [lng, lat] = feature.center; // Mapbox returns [lng, lat]
         form.setValue('lat', lat);
         form.setValue('lng', lng);
       }
@@ -192,7 +204,7 @@ export function StoreFormModal({
   useEffect(() => {
     if (!store || !formRef) return; // Only auto-geocode when editing existing stores
 
-    const subscription = formRef.watch((values: any, { name }: any) => {
+    const subscription = formRef.watch((_values: any, { name }: any) => {
       // Only geocode when address-related fields change
       if (['address1', 'city', 'state', 'zip', 'country'].includes(name || '')) {
         // Debounce the geocoding to avoid too many API calls
@@ -272,7 +284,7 @@ export function StoreFormModal({
               name="organizationId"
               render={({ field }) => (
                 <FormItem className="col-span-2">
-                  <FormLabel optional>Organization</FormLabel>
+                  <FormLabel>Organization (optional)</FormLabel>
                   <Select
                     onValueChange={(value) => {
                       // Convert "none" back to null for the form
@@ -308,7 +320,7 @@ export function StoreFormModal({
               name="description"
               render={({ field }) => (
                 <FormItem className="col-span-2">
-                  <FormLabel optional>Description</FormLabel>
+                  <FormLabel>Description (optional)</FormLabel>
                   <FormControl>
                     <Textarea
                       placeholder="Enter store description"

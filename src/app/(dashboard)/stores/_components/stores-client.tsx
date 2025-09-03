@@ -7,7 +7,7 @@ import { useToast } from "@/components/ui/use-toast";
 import type { IStore } from "@/types";
 import { StoreFormModal } from "./store-form-modal";
 import { StoresTable } from "./stores-table";
-import { StoresMap } from "./stores-map";
+import { StoresMapMapbox } from "./stores-map-mapbox";
 import { 
   Select, 
   SelectContent, 
@@ -225,7 +225,7 @@ export default function StoresClient() {
     
 
       {/* Map component */}
-      <StoresMap stores={stores} />
+      <StoresMapMapbox stores={stores} />
 
       <div className="flex items-center gap-4 mb-4">
       <Card className="w-full">

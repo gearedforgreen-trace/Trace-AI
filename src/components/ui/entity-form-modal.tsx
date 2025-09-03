@@ -116,11 +116,6 @@ export function EntityFormModal<TFormSchema extends FieldValues, TEntity>({
     prevOpenRef.current = isOpen
   }, [entity, form, defaultValues, isOpen])
 
-  useEffect(() => {
-    if (isOpen) {
-      form.reset(defaultValues)
-    }
-  }, [isOpen, form, defaultValues])
 
   const handleSubmit = async (data: TFormSchema) => {
     // Set submitting flag to prevent form reset during submission

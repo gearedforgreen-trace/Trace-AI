@@ -145,6 +145,7 @@ export async function GET(request: NextRequest) {
         return {
           id: store.id,
           name: store.name,
+          organizationId: store.organizationId,
           organizationName: store.organization?.name || null,
           materials,
           bins: store.bins.map((bin: any) => ({
@@ -159,6 +160,7 @@ export async function GET(request: NextRequest) {
           lat: store.lat,
           lng: store.lng,
           address1: store.address1,
+          address2: store.address2,
           city: store.city,
           state: store.state,
           zip: store.zip,
@@ -167,6 +169,7 @@ export async function GET(request: NextRequest) {
           description: store.description,
           imageUrl: store.imageUrl,
           createdAt: store.createdAt,
+          updatedAt: store.updatedAt,
         };
       });
 

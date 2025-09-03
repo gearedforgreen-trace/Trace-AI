@@ -162,65 +162,8 @@ async function main() {
     createdMaterials.push(mat);
   }
 
-  // Create test stores
-  const stores = [
-    {
-      id: crypto.randomUUID(),
-      name: 'Downtown Recycling Center',
-      description: 'Main recycling facility in downtown area',
-      organizationId: organization.id,
-      address1: '123 Main St',
-      city: 'Portland',
-      state: 'OR',
-      zip: '97201',
-      country: 'US',
-      lat: 45.5152,
-      lng: -122.6784,
-      status: 'ACTIVE' as const,
-    },
-    {
-      id: crypto.randomUUID(),
-      name: 'Westside Green Hub',
-      description: 'Eco-friendly recycling station',
-      organizationId: organization.id,
-      address1: '456 Oak Ave',
-      city: 'Portland',
-      state: 'OR',
-      zip: '97205',
-      country: 'US',
-      lat: 45.523,
-      lng: -122.7015,
-      status: 'ACTIVE' as const,
-    },
-  ];
-
-  const createdStores = [];
-  for (const store of stores) {
-    const st = await prisma.store.upsert({
-      where: { id: store.id },
-      update: {},
-      create: store,
-    });
-    createdStores.push(st);
-  }
-
-  // Create bins for each store and material combination
-  for (let i = 0; i < createdStores.length; i++) {
-    const store = createdStores[i];
-    for (let j = 0; j < createdMaterials.length; j++) {
-      const material = createdMaterials[j];
-      await prisma.bin.create({
-        data: {
-          id: crypto.randomUUID(),
-          number: `BIN-${i + 1}-${j + 1}`,
-          storeId: store.id,
-          materialId: material.id,
-          description: `${material.name} collection bin at ${store.name}`,
-          status: 'ACTIVE' as const,
-        },
-      });
-    }
-  }
+  // Note: Mock store data has been removed
+  // Stores should be created through the admin interface
 
   // Create test coupons
   const coupons = [
