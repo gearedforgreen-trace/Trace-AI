@@ -172,6 +172,13 @@ export const couponBaseSchema = z.object({
     )
     .optional()
     .nullable(),
+  couponUrl: z
+    .string()
+    .url('Please provide a valid coupon URL')
+    .max(2048, 'Coupon URL cannot exceed 2048 characters')
+    .trim()
+    .optional()
+    .nullable(),
   couponType: z.enum(['FIXED', 'PERCENTAGE']),
   dealType: z.enum(['NOPOINTS', 'POINTS']),
   isFeatured: z.boolean().default(false),

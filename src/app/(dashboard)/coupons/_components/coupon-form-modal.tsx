@@ -52,6 +52,7 @@ interface CouponFormModalProps {
 interface CouponFormData {
   name: string;
   description: string;
+  couponUrl: string | null;
   imageUrl: string;
   couponType: 'FIXED' | 'PERCENTAGE';
   dealType: 'NOPOINTS' | 'POINTS';
@@ -85,6 +86,7 @@ export function CouponFormModal({
     name: '',
     description: '',
     imageUrl: '',
+    couponUrl: null,
     couponType: 'FIXED',
     dealType: 'POINTS',
     isFeatured: false,
@@ -112,6 +114,7 @@ export function CouponFormModal({
         name: coupon.name || '',
         description: coupon.description || '',
         imageUrl: coupon.imageUrl || '',
+        couponUrl: coupon.couponUrl || null,
         couponType: coupon.couponType || 'FIXED',
         dealType: coupon.dealType || 'POINTS',
         isFeatured: coupon.isFeatured || false,
@@ -126,6 +129,7 @@ export function CouponFormModal({
         name: '',
         description: '',
         imageUrl: '',
+        couponUrl: null,
         couponType: 'FIXED',
         dealType: 'POINTS',
         isFeatured: false,
@@ -231,23 +235,24 @@ export function CouponFormModal({
     }
 
     if (formData.discountAmount < 0) {
-      errors.discountAmount = 'Discount amount cannot be negative';
+      errors.discountAmount = 'Discount amount cannot be negative' as any;
+      errors.discountAmount = 'Discount amount cannot be negative' as any;
     }
 
     if (formData.couponType === 'PERCENTAGE' && formData.discountAmount > 100) {
-      errors.discountAmount = 'Percentage discount cannot exceed 100%';
+      errors.discountAmount = 'Percentage discount cannot exceed 100%' as any;
     }
 
     if (formData.pointsToRedeem < 0) {
-      errors.pointsToRedeem = 'Points to redeem cannot be negative';
+      errors.pointsToRedeem = 'Points to redeem cannot be negative' as any;
     }
 
     if (!formData.startDate) {
-      errors.startDate = 'Start date is required';
+      errors.startDate = 'Start date is required' as any;
     }
 
     if (!formData.endDate) {
-      errors.endDate = 'End date is required';
+      errors.endDate = 'End date is required' as any;
     }
 
     if (
@@ -255,11 +260,11 @@ export function CouponFormModal({
       formData.endDate &&
       formData.startDate >= formData.endDate
     ) {
-      errors.endDate = 'End date must be after start date';
+      errors.endDate = 'End date must be after start date' as any;
     }
 
     if (formData.imageUrl && !formData.imageUrl.startsWith('data:image/')) {
-      errors.imageUrl = 'Please upload a valid image file';
+      errors.imageUrl = 'Please upload a valid image file' as any;
     }
 
     setFormErrors(errors);
@@ -280,6 +285,7 @@ export function CouponFormModal({
         name: formData.name.trim(),
         description: formData.description.trim() || null,
         imageUrl: formData.imageUrl.trim() || null,
+        couponUrl: formData.couponUrl || null,
         couponType: formData.couponType,
         dealType: formData.dealType,
         isFeatured: formData.isFeatured,
@@ -309,7 +315,7 @@ export function CouponFormModal({
       <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle>
-            {coupon ? 'Edit Coupon' : 'Create New Coupon'}
+            {coupon ? "Edit Coupon" : "Create New Coupon"}
           </DialogTitle>
         </DialogHeader>
 
@@ -321,7 +327,7 @@ export function CouponFormModal({
               <Input
                 id="name"
                 value={formData.name}
-                onChange={(e) => handleChange('name', e.target.value)}
+                onChange={(e) => handleChange("name", e.target.value)}
                 placeholder="Enter coupon name"
                 disabled={isLoading}
               />
@@ -334,7 +340,7 @@ export function CouponFormModal({
               <Label htmlFor="organizationId">Organization *</Label>
               <Select
                 value={formData.organizationId}
-                onValueChange={(value) => handleChange('organizationId', value)}
+                onValueChange={(value) => handleChange("organizationId", value)}
                 disabled={isLoading}
               >
                 <SelectTrigger>
@@ -373,7 +379,7 @@ export function CouponFormModal({
                 <label
                   htmlFor="image-upload"
                   className={cn(
-                    'flex flex-col items-center justify-center w-full h-32 border-2 border-dashed rounded-lg cursor-pointer transition-colors'
+                    "flex flex-col items-center justify-center w-full h-32 border-2 border-dashed rounded-lg cursor-pointer transition-colors"
                   )}
                 >
                   <div className="flex flex-col items-center justify-center pt-5 pb-6">
@@ -387,7 +393,7 @@ export function CouponFormModal({
                         <span>Processing image...</span>
                       ) : (
                         <span>
-                          <span className="font-semibold">Click to upload</span>{' '}
+                          <span className="font-semibold">Click to upload</span>{" "}
                           or drag and drop
                         </span>
                       )}
@@ -446,11 +452,25 @@ export function CouponFormModal({
           </div>
 
           <div className="space-y-2">
+            <Label htmlFor="couponUrl">Coupon URL</Label>
+            <Input
+              id="couponUrl"
+              value={formData.couponUrl || ''}
+              onChange={(e) => handleChange("couponUrl", e.target.value)}
+              placeholder="Enter coupon URL"
+              disabled={isLoading}
+            />
+            {formErrors.couponUrl && (
+              <p className="text-sm text-red-500">{formErrors.couponUrl}</p>
+            )}
+          </div>
+
+          <div className="space-y-2">
             <Label htmlFor="description">Description</Label>
             <Textarea
               id="description"
-              value={formData.description}
-              onChange={(e) => handleChange('description', e.target.value)}
+              value={formData.description || ''}
+              onChange={(e) => handleChange("description", e.target.value)}
               placeholder="Enter coupon description"
               disabled={isLoading}
               rows={3}
@@ -463,7 +483,7 @@ export function CouponFormModal({
               <Label htmlFor="couponType">Coupon Type *</Label>
               <Select
                 value={formData.couponType}
-                onValueChange={(value) => handleChange('couponType', value)}
+                onValueChange={(value) => handleChange("couponType", value)}
                 disabled={isLoading}
               >
                 <SelectTrigger>
@@ -480,7 +500,7 @@ export function CouponFormModal({
               <Label htmlFor="dealType">Deal Type *</Label>
               <Select
                 value={formData.dealType}
-                onValueChange={(value) => handleChange('dealType', value)}
+                onValueChange={(value) => handleChange("dealType", value)}
                 disabled={isLoading}
               >
                 <SelectTrigger>
@@ -498,7 +518,7 @@ export function CouponFormModal({
             <Switch
               id="isFeatured"
               checked={formData.isFeatured}
-              onCheckedChange={(checked) => handleChange('isFeatured', checked)}
+              onCheckedChange={(checked) => handleChange("isFeatured", checked)}
               disabled={isLoading}
             />
             <Label htmlFor="isFeatured">Featured Coupon</Label>
@@ -509,16 +529,16 @@ export function CouponFormModal({
             <div className="space-y-2">
               <Label htmlFor="discountAmount">
                 Discount Amount * (
-                {formData.couponType === 'PERCENTAGE' ? '%' : '$'})
+                {formData.couponType === "PERCENTAGE" ? "%" : "$"})
               </Label>
               <Input
                 id="discountAmount"
                 type="number"
                 min="0"
-                max={formData.couponType === 'PERCENTAGE' ? '100' : undefined}
+                max={formData.couponType === "PERCENTAGE" ? "100" : undefined}
                 value={formData.discountAmount}
                 onChange={(e) =>
-                  handleChange('discountAmount', Number(e.target.value))
+                  handleChange("discountAmount", Number(e.target.value))
                 }
                 placeholder="0"
                 disabled={isLoading}
@@ -538,7 +558,7 @@ export function CouponFormModal({
                 min="0"
                 value={formData.pointsToRedeem}
                 onChange={(e) =>
-                  handleChange('pointsToRedeem', Number(e.target.value))
+                  handleChange("pointsToRedeem", Number(e.target.value))
                 }
                 placeholder="0"
                 disabled={isLoading}
@@ -560,14 +580,14 @@ export function CouponFormModal({
                   <Button
                     variant="outline"
                     className={cn(
-                      'w-full justify-start text-left font-normal',
-                      !formData.startDate && 'text-muted-foreground'
+                      "w-full justify-start text-left font-normal",
+                      !formData.startDate && "text-muted-foreground"
                     )}
                     disabled={isLoading}
                   >
                     <CalendarIcon className="mr-2 h-4 w-4" />
                     {formData.startDate ? (
-                      format(formData.startDate, 'PPP')
+                      format(formData.startDate, "PPP")
                     ) : (
                       <span>Pick start date</span>
                     )}
@@ -577,7 +597,7 @@ export function CouponFormModal({
                   <Calendar
                     mode="single"
                     selected={formData.startDate}
-                    onSelect={(date) => handleChange('startDate', date)}
+                    onSelect={(date) => handleChange("startDate", date)}
                     initialFocus
                   />
                 </PopoverContent>
@@ -594,14 +614,14 @@ export function CouponFormModal({
                   <Button
                     variant="outline"
                     className={cn(
-                      'w-full justify-start text-left font-normal',
-                      !formData.endDate && 'text-muted-foreground'
+                      "w-full justify-start text-left font-normal",
+                      !formData.endDate && "text-muted-foreground"
                     )}
                     disabled={isLoading}
                   >
                     <CalendarIcon className="mr-2 h-4 w-4" />
                     {formData.endDate ? (
-                      format(formData.endDate, 'PPP')
+                      format(formData.endDate, "PPP")
                     ) : (
                       <span>Pick end date</span>
                     )}
@@ -611,7 +631,7 @@ export function CouponFormModal({
                   <Calendar
                     mode="single"
                     selected={formData.endDate}
-                    onSelect={(date) => handleChange('endDate', date)}
+                    onSelect={(date) => handleChange("endDate", date)}
                     initialFocus
                   />
                 </PopoverContent>
@@ -631,20 +651,24 @@ export function CouponFormModal({
 
           <DialogFooter>
             <div className="mt-4 flex sm:flex-row flex-col items-center gap-2 ">
-           <Button
-              type="button"
-              variant="outline"
-              onClick={handleClose}
-              disabled={isLoading}
-              className="max-sm:w-full"
-            >
-              Cancel
-            </Button>
-            <Button type="submit" disabled={isLoading} className="max-sm:w-full">
-              {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-              {coupon ? 'Update Coupon' : 'Create Coupon'}
-            </Button>
-           </div>
+              <Button
+                type="button"
+                variant="outline"
+                onClick={handleClose}
+                disabled={isLoading}
+                className="max-sm:w-full"
+              >
+                Cancel
+              </Button>
+              <Button
+                type="submit"
+                disabled={isLoading}
+                className="max-sm:w-full"
+              >
+                {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+                {coupon ? "Update Coupon" : "Create Coupon"}
+              </Button>
+            </div>
           </DialogFooter>
         </form>
       </DialogContent>

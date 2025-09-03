@@ -108,6 +108,7 @@ export interface ICoupon {
   name: string;
   description: string | null;
   imageUrl: string | null;
+  couponUrl: string | null;
   status: string;
   couponType: string;
   dealType: string;

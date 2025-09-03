@@ -33,15 +33,15 @@ export async function analyseMaterialAndCount({
   material: string;
 }): Promise<AnalyseMaterialAndCountResponse | null> {
   const response = await openai.chat.completions.create({
-    model: 'gpt-4o',
+    model: "gpt-4o",
     messages: [
       {
-        role: 'user',
+        role: "user",
         content: [
           {
-            type: 'text',
+            type: "text",
             text: `
-Analyze the image and count the number of plastic bottles.
+Analyze the image and count the number of items made of: ${material}.
 The user claims the item count is: ${claim_count}
 The minimum confidence required is: ${min_confidence}
 
@@ -56,7 +56,7 @@ Respond only in strict JSON format like this:
   "status_reason": 
   | "count_discrepancy"       // Item count differs too much from what you provided
   | "low_confidence"          // Confidence score below threshold
-  | "material_mismatch"       // Detected material is different from expected/plastic bottles
+  | "material_mismatch"       // Detected material is different from expected/${material}
   | "image_not_clear"         // Image quality too poor for reliable detection
   | "no_items_detected"       // No relevant items found in the image
   | null                      // No issues, status = accept
@@ -80,10 +80,11 @@ Or: "Confidence is too low to verify material"
 
 If "status" is "accept", set "status_reason" and "failure_message" to null.
 
-Do not include extra text, markdown, or code blocks. eg \`\`\`json \`\`\``,
+Do not include extra text, markdown, or code blocks. eg \`\`\`json \`\`\`
+`,
           },
           {
-            type: 'image_url',
+            type: "image_url",
             image_url: { url: image_url },
           },
         ],
