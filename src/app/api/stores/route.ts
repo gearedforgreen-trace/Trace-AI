@@ -9,7 +9,7 @@ import { TRole } from "@/auth/user-permissions";
 
 // Haversine formula to calculate distance between two coordinates
 function calculateDistance(lat1: number, lng1: number, lat2: number, lng2: number): number {
-  const R = 6371; // Earth's radius in kilometers
+  const R = 3959; // Earth's radius in miles (changed from kilometers for mobile compatibility)
   const dLat = (lat2 - lat1) * Math.PI / 180;
   const dLng = (lng2 - lng1) * Math.PI / 180;
   const a = 
@@ -64,6 +64,7 @@ export async function GET(request: NextRequest) {
     const organizationId = request.nextUrl.searchParams.get('organizationId');
     const name = request.nextUrl.searchParams.get('name');
     const materials = request.nextUrl.searchParams.get('materials');
+    const materialId = request.nextUrl.searchParams.get('materialId');
     const lat = request.nextUrl.searchParams.get('lat');
     const lng = request.nextUrl.searchParams.get('lng');
     const maxDistance = request.nextUrl.searchParams.get('radius');
@@ -83,15 +84,27 @@ export async function GET(request: NextRequest) {
     }
 
     // Filter by materials - stores that have bins with specified materials
-    if (materials) {
-      const materialIds = materials.split(',').map(id => id.trim());
-      where.bins = {
-        some: {
-          materialId: {
-            in: materialIds
+    // Support both 'materials' and 'materialId' parameters (both can be comma-separated)
+    if (materials || materialId) {
+      let materialIds: string[] = [];
+      
+      if (materials) {
+        // Handle comma-separated list of material IDs (existing web functionality)
+        materialIds = materials.split(',').map(id => id.trim());
+      } else if (materialId) {
+        // Handle materialId parameter (can be single ID or comma-separated for mobile compatibility)
+        materialIds = materialId.split(',').map(id => id.trim());
+      }
+      
+      if (materialIds.length > 0) {
+        where.bins = {
+          some: {
+            materialId: {
+              in: materialIds
+            }
           }
-        }
-      };
+        };
+      }
     }
     
     const storesResult = await paginate<Store, Prisma.StoreFindManyArgs>(
@@ -120,7 +133,7 @@ export async function GET(request: NextRequest) {
     if (storesResult.data) {
       const userLat = lat ? parseFloat(lat) : null;
       const userLng = lng ? parseFloat(lng) : null;
-      const maxDistanceKm = maxDistance ? parseFloat(maxDistance) : null;
+      const maxDistanceMiles = maxDistance ? parseFloat(maxDistance) : null;
 
       let processedStores = storesResult.data.map((store: any) => {
         // Calculate distance if coordinates provided
@@ -174,9 +187,9 @@ export async function GET(request: NextRequest) {
       });
 
       // Filter by distance if coordinates and maxDistance provided
-      if (userLat !== null && userLng !== null && maxDistanceKm !== null) {
+      if (userLat !== null && userLng !== null && maxDistanceMiles !== null) {
         processedStores = processedStores.filter(store => 
-          store.distance !== null && store.distance <= maxDistanceKm
+          store.distance !== null && store.distance <= maxDistanceMiles
         );
       }
 
