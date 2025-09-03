@@ -17,12 +17,14 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { Button } from "@/components/ui/button";
 import { EntityFormModal } from "@/components/ui/entity-form-modal";
-import { Loader2 } from "lucide-react";
+import { Loader2, MapPin } from "lucide-react";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { AlertCircle } from "lucide-react";
 import type { IStore } from "@/types";
 import { useGetOrganizationsQuery } from "@/store/api/organizationsApi";
+import { useState, useEffect, useCallback } from "react";
 
 // Updated schema to match the API response structure
 const storeFormSchema = z.object({
@@ -66,6 +68,10 @@ export function StoreFormModal({
   isLoading = false,
   error = null,
 }: IStoreFormModalProps) {
+  const [isGeocoding, setIsGeocoding] = useState(false);
+  const [autoGeocoding, setAutoGeocoding] = useState(false);
+  const [lastGeocodedAddress, setLastGeocodedAddress] = useState<string>('');
+  const [formRef, setFormRef] = useState<any>(null);
   // Updated default values to match the API response structure
   const defaultValues: TStoreFormValues = {
     name: store?.name ?? "",
@@ -91,6 +97,115 @@ export function StoreFormModal({
   } = useGetOrganizationsQuery({ perPage: 100 });
 
   const organizations = organizationsResponse?.data || [];
+
+  // Geocoding function
+  const geocodeAddress = async (form: any) => {
+    setIsGeocoding(true);
+    
+    const address1 = form.getValues('address1');
+    const city = form.getValues('city');
+    const state = form.getValues('state');
+    const zip = form.getValues('zip');
+    const country = form.getValues('country');
+
+    if (!address1 || !city || !state || !zip) {
+      alert('Please fill in address, city, state, and zip code before geocoding');
+      setIsGeocoding(false);
+      return;
+    }
+
+    const fullAddress = `${address1}, ${city}, ${state} ${zip}, ${country}`;
+    const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
+
+    try {
+      const response = await fetch(
+        `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(fullAddress)}&key=${apiKey}`
+      );
+      
+      const data = await response.json();
+      
+      if (data.status === 'OK' && data.results.length > 0) {
+        const { lat, lng } = data.results[0].geometry.location;
+        const formattedAddress = data.results[0].formatted_address;
+        form.setValue('lat', lat);
+        form.setValue('lng', lng);
+        alert(`✅ Address geocoded successfully!\nFound: ${formattedAddress}\nLatitude: ${lat}\nLongitude: ${lng}`);
+      } else if (data.status === 'ZERO_RESULTS') {
+        alert('❌ No results found for this address. Please check the address and try again.');
+      } else if (data.status === 'REQUEST_DENIED') {
+        alert('❌ Geocoding request denied. Please check your Google Maps API key permissions.');
+      } else {
+        alert('❌ Could not geocode address. Please enter coordinates manually or check the address.');
+      }
+    } catch (error) {
+      console.error('Geocoding error:', error);
+      alert('Error geocoding address. Please enter coordinates manually.');
+    }
+    
+    setIsGeocoding(false);
+  };
+
+  // Automatic geocoding function (silent, no alerts)
+  const autoGeocodeAddress = useCallback(async (form: any) => {
+    const address1 = form.getValues('address1');
+    const city = form.getValues('city');
+    const state = form.getValues('state');
+    const zip = form.getValues('zip');
+    const country = form.getValues('country');
+
+    if (!address1 || !city || !state || !zip) {
+      return; // Don't geocode if required fields are missing
+    }
+
+    const fullAddress = `${address1}, ${city}, ${state} ${zip}, ${country}`;
+    
+    // Don't geocode if address hasn't changed
+    if (fullAddress === lastGeocodedAddress) {
+      return;
+    }
+
+    setAutoGeocoding(true);
+    setLastGeocodedAddress(fullAddress);
+    
+    const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
+
+    try {
+      const response = await fetch(
+        `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(fullAddress)}&key=${apiKey}`
+      );
+      
+      const data = await response.json();
+      
+      if (data.status === 'OK' && data.results.length > 0) {
+        const { lat, lng } = data.results[0].geometry.location;
+        form.setValue('lat', lat);
+        form.setValue('lng', lng);
+      }
+    } catch (error) {
+      console.error('Auto-geocoding error:', error);
+    }
+    
+    setAutoGeocoding(false);
+  }, [lastGeocodedAddress]);
+
+  // Auto-geocode when address fields change (for editing stores)
+  useEffect(() => {
+    if (!store || !formRef) return; // Only auto-geocode when editing existing stores
+
+    const subscription = formRef.watch((values: any, { name }: any) => {
+      // Only geocode when address-related fields change
+      if (['address1', 'city', 'state', 'zip', 'country'].includes(name || '')) {
+        // Debounce the geocoding to avoid too many API calls
+        const timeoutId = setTimeout(() => {
+          autoGeocodeAddress(formRef);
+        }, 1000); // 1 second delay
+
+        return () => clearTimeout(timeoutId);
+      }
+    });
+
+    return () => subscription.unsubscribe();
+  }, [formRef, store, autoGeocodeAddress]);
 
   if (organizationsError) {
     return <div>Error: Something went wrong</div>;
@@ -118,14 +233,20 @@ export function StoreFormModal({
           "Create Store"
         )
       }
-      renderForm={(form) => (
-        <div className="space-y-6">
-          {error && (
-            <Alert variant="destructive">
-              <AlertCircle className="h-4 w-4" />
-              <AlertDescription>{error}</AlertDescription>
-            </Alert>
-          )}
+      renderForm={(form) => {
+        // Capture form reference for useEffect
+        if (form !== formRef) {
+          setFormRef(form);
+        }
+
+        return (
+          <div className="space-y-6">
+            {error && (
+              <Alert variant="destructive">
+                <AlertCircle className="h-4 w-4" />
+                <AlertDescription>{error}</AlertDescription>
+              </Alert>
+            )}
 
           <div className="sm:grid grid-cols-1 sm:grid-cols-2 gap-6 max-sm:space-y-6">
             <FormField
@@ -153,16 +274,20 @@ export function StoreFormModal({
                 <FormItem className="col-span-2">
                   <FormLabel optional>Organization</FormLabel>
                   <Select
-                    onValueChange={field.onChange}
+                    onValueChange={(value) => {
+                      // Convert "none" back to null for the form
+                      field.onChange(value === "none" ? null : value);
+                    }}
                     disabled={isLoading}
-                    defaultValue={store?.organizationId || undefined}
+                    value={field.value || "none"}
                   >
                     <FormControl>
                       <SelectTrigger>
-                        <SelectValue placeholder="Select organization" />
+                        <SelectValue placeholder="Select organization (optional)" />
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
+                      <SelectItem value="none">No Organization</SelectItem>
                       {organizations.map((organization) => (
                         <SelectItem
                           key={organization.id}
@@ -329,6 +454,29 @@ export function StoreFormModal({
                 </FormItem>
               )}
             />
+            {/* Geocoding section */}
+            <div className="col-span-2">
+              <div className="flex items-center gap-2 mb-4">
+                <Button 
+                  type="button" 
+                  variant="outline" 
+                  onClick={() => geocodeAddress(form)}
+                  disabled={isLoading || isGeocoding || autoGeocoding}
+                  className="flex items-center gap-2"
+                >
+                  {(isGeocoding || autoGeocoding) ? (
+                    <Loader2 className="h-4 w-4 animate-spin" />
+                  ) : (
+                    <MapPin className="h-4 w-4" />
+                  )}
+                  {isGeocoding ? 'Geocoding...' : autoGeocoding ? 'Auto-updating...' : 'Get Coordinates from Address'}
+                </Button>
+                <span className="text-sm text-muted-foreground">
+                  {store ? 'Coordinates auto-update when address changes, or click to manually update' : 'Click to automatically fill coordinates from address'}
+                </span>
+              </div>
+            </div>
+
             <FormField
               control={form.control}
               name="lat"
@@ -338,7 +486,8 @@ export function StoreFormModal({
                   <FormControl>
                     <Input
                       type="number"
-                      placeholder="Latitude"
+                      step="any"
+                      placeholder="Latitude (auto-filled or manual)"
                       {...field}
                       disabled={isLoading}
                     />
@@ -357,7 +506,8 @@ export function StoreFormModal({
                   <FormControl>
                     <Input
                       type="number"
-                      placeholder="Longitude"
+                      step="any"
+                      placeholder="Longitude (auto-filled or manual)"
                       {...field}
                       disabled={isLoading}
                     />
@@ -368,7 +518,8 @@ export function StoreFormModal({
             />
           </div>
         </div>
-      )}
+        );
+      }}
     />
   );
 }

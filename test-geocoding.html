@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Google Maps API Key Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; max-width: 800px; margin: 0 auto; }
+        .test-section { margin: 20px 0; padding: 15px; border: 1px solid #ddd; border-radius: 5px; }
+        .success { background-color: #e6ffe6; border-color: #00aa00; }
+        .error { background-color: #ffe6e6; border-color: #aa0000; }
+        .loading { background-color: #fff3cd; border-color: #ffc107; }
+        button { padding: 10px 15px; margin: 5px; cursor: pointer; }
+        pre { background: #f5f5f5; padding: 10px; border-radius: 3px; overflow-x: auto; }
+        .small { font-size: 0.9em; color: #666; }
+    </style>
+</head>
+<body>
+    <h1>Google Maps API Key Test</h1>
+    <p>Testing API Key: <code>AIzaSyD8xluL4B_QGSyDhImP7XtrvhdyGbIIFHo</code></p>
+
+    <div class="test-section" id="geocoding-test">
+        <h3>🗺️ Geocoding API Test</h3>
+        <button onclick="testGeocoding()">Test Geocoding API</button>
+        <div id="geocoding-result"></div>
+    </div>
+
+    <div class="test-section" id="maps-test">
+        <h3>🌍 Maps JavaScript API Test</h3>
+        <button onclick="testMapsAPI()">Test Maps JavaScript API</button>
+        <div id="map" style="height: 300px; width: 100%; margin-top: 10px;"></div>
+        <div id="maps-result"></div>
+    </div>
+
+    <div class="test-section">
+        <h3>📋 Common Issues & Solutions</h3>
+        <ul>
+            <li><strong>REQUEST_DENIED:</strong> API not enabled or key restricted</li>
+            <li><strong>OVER_QUERY_LIMIT:</strong> Quota exceeded</li>
+            <li><strong>INVALID_REQUEST:</strong> Bad request format</li>
+        </ul>
+        <p class="small">
+            <strong>Fix steps:</strong><br>
+            1. Go to <a href="https://console.cloud.google.com/apis/library" target="_blank">Google Cloud Console</a><br>
+            2. Enable "Geocoding API" and "Maps JavaScript API"<br>
+            3. Check API key restrictions in <a href="https://console.cloud.google.com/apis/credentials" target="_blank">Credentials</a><br>
+            4. Make sure billing is enabled (required even for free tier)
+        </p>
+    </div>
+
+    <script>
+        const API_KEY = 'AIzaSyD8xluL4B_QGSyDhImP7XtrvhdyGbIIFHo';
+
+        async function testGeocoding() {
+            const resultDiv = document.getElementById('geocoding-result');
+            resultDiv.innerHTML = '<div class="loading">🔄 Testing Geocoding API...</div>';
+            
+            const testAddress = '1600 Amphitheatre Parkway, Mountain View, CA';
+            const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(testAddress)}&key=${API_KEY}`;
+            
+            try {
+                const response = await fetch(url);
+                const data = await response.json();
+                
+                if (data.status === 'OK') {
+                    const location = data.results[0].geometry.location;
+                    resultDiv.innerHTML = `
+                        <div class="success">
+                            ✅ <strong>Geocoding API Working!</strong><br>
+                            <strong>Address:</strong> ${testAddress}<br>
+                            <strong>Coordinates:</strong> ${location.lat}, ${location.lng}<br>
+                            <strong>Formatted:</strong> ${data.results[0].formatted_address}
+                        </div>
+                    `;
+                } else {
+                    resultDiv.innerHTML = `
+                        <div class="error">
+                            ❌ <strong>Geocoding API Error</strong><br>
+                            <strong>Status:</strong> ${data.status}<br>
+                            <strong>Error:</strong> ${data.error_message || 'Unknown error'}<br>
+                            <details>
+                                <summary>Full Response</summary>
+                                <pre>${JSON.stringify(data, null, 2)}</pre>
+                            </details>
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                resultDiv.innerHTML = `
+                    <div class="error">
+                        ❌ <strong>Network Error</strong><br>
+                        ${error.message}
+                    </div>
+                `;
+            }
+        }
+
+        function testMapsAPI() {
+            const resultDiv = document.getElementById('maps-result');
+            resultDiv.innerHTML = '<div class="loading">🔄 Testing Maps JavaScript API...</div>';
+            
+            // Load Google Maps JavaScript API
+            const script = document.createElement('script');
+            script.src = `https://maps.googleapis.com/maps/api/js?key=${API_KEY}&callback=initMap`;
+            script.onerror = () => {
+                resultDiv.innerHTML = '<div class="error">❌ <strong>Failed to load Maps JavaScript API</strong></div>';
+            };
+            
+            window.initMap = function() {
+                try {
+                    const map = new google.maps.Map(document.getElementById('map'), {
+                        center: { lat: 37.4221, lng: -122.0841 },
+                        zoom: 13
+                    });
+                    
+                    new google.maps.Marker({
+                        position: { lat: 37.4221, lng: -122.0841 },
+                        map: map,
+                        title: 'Test Marker'
+                    });
+                    
+                    resultDiv.innerHTML = '<div class="success">✅ <strong>Maps JavaScript API Working!</strong></div>';
+                } catch (error) {
+                    resultDiv.innerHTML = `<div class="error">❌ <strong>Map Error:</strong> ${error.message}</div>`;
+                }
+            };
+            
+            document.head.appendChild(script);
+        }
+
+        // Auto-test geocoding on page load
+        window.onload = () => {
+            testGeocoding();
+        };
+    </script>
+</body>
+</html>

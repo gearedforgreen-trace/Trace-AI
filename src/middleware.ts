@@ -1,27 +1,40 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getSessionCookie } from 'better-auth/cookies';
 
-export const authRoutes = ['/sign-in'];
+export const authRoutes = ['/sign-in', '/sign-up', '/forgot-password', '/reset-password'];
+export const publicRoutes = ['/terms', '/privacy-policy'];
 
 export async function middleware(request: NextRequest) {
-  const sessionCookie = getSessionCookie(request);
-
-  // return NextResponse.json({
-  //   headers: Object.fromEntries(request.headers.entries()),
-  //   sessionCookie: sessionCookie,
-  //   vercelUrl: process.env.VERCEL_URL,
-  //   NEXT_PUBLIC_BASE_URL: process.env.NEXT_PUBLIC_BASE_URL,
-  // });
-
-  if (authRoutes.includes(request.nextUrl.pathname) && !sessionCookie) {
+  const pathname = request.nextUrl.pathname;
+  
+  // Allow public routes
+  if (publicRoutes.includes(pathname)) {
     return NextResponse.next();
   }
 
-  if (authRoutes.includes(request.nextUrl.pathname) && sessionCookie) {
+  // Check for session cookie - Better Auth typically uses these cookie names
+  const sessionToken = request.cookies.get('better-auth.session_token') || 
+                       request.cookies.get('authjs.session-token') ||
+                       request.cookies.get('session');
+  const hasSession = !!sessionToken;
+  
+  // Debug logging
+  if (process.env.NODE_ENV === 'development') {
+    console.log(`[Middleware] Path: ${pathname}, HasSession: ${hasSession}, Cookies:`, 
+      Object.fromEntries(request.cookies.getAll().map(c => [c.name, c.value.substring(0, 10) + '...'])));
+  }
+
+  // If on auth route and has session, redirect to dashboard
+  if (authRoutes.includes(pathname) && hasSession) {
     return NextResponse.redirect(new URL('/', request.url));
   }
 
-  if (!sessionCookie) {
+  // If on auth route and no session, allow access
+  if (authRoutes.includes(pathname) && !hasSession) {
+    return NextResponse.next();
+  }
+
+  // For protected routes, require session
+  if (!hasSession) {
     return NextResponse.redirect(new URL('/sign-in', request.url));
   }
 
@@ -32,7 +45,6 @@ export const config = {
   matcher: [
     '/sign-in',
     '/',
-    '/dashboard',
     '/analytics',
     '/coupons',
     '/qr-codes',
@@ -43,5 +55,10 @@ export const config = {
     '/organization/:path*',
     '/reward-rules',
     '/reward-rules/:path*',
+    '/bins',
+    '/materials',
+    '/stores',
+    '/organizations',
+    '/recycles',
   ],
 };

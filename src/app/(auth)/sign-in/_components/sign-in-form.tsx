@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Loader2 } from 'lucide-react';
 import { z } from 'zod';
+import { useRouter } from 'next/navigation';
 
 import Alert from '@/components/Alert';
 import {
@@ -39,6 +40,7 @@ export default function SignInForm() {
     type: 'error' | 'info' | 'warning' | 'success';
   } | null>(null);
   const [loading, setLoading] = useState(false);
+  const router = useRouter();
 
   const form = useForm<z.infer<typeof loginSchema>>({
     resolver: zodResolver(loginSchema),
@@ -53,12 +55,14 @@ export default function SignInForm() {
     console.log(values);
     setLoading(true);
 
-    const { error } = await authClient.signIn.email({
+    const { data, error } = await authClient.signIn.email({
       email: values.email,
       password: values.password,
       rememberMe: true,
       callbackURL: '/',
     });
+
+    setLoading(false);
 
     if (error) {
       setError({
@@ -66,9 +70,15 @@ export default function SignInForm() {
         description: error.message ?? 'Please try again.',
         type: 'error',
       });
+      return;
     }
 
-    setLoading(false);
+    // Better Auth should handle the redirect automatically
+    // If for some reason it doesn't, we can add manual redirect here
+    if (data) {
+      // Force a hard refresh to ensure session is properly set
+      window.location.href = '/';
+    }
   }
 
   return (

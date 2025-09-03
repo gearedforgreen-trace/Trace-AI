@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useMemo, useState, useCallback } from 'react';
-import { GoogleMap, LoadScript, MarkerF, InfoWindowF, useJsApiLoader } from '@react-google-maps/api';
+import React, { useMemo, useState, useCallback, useRef, useEffect } from 'react';
+import { GoogleMap, MarkerF, InfoWindowF, useJsApiLoader } from '@react-google-maps/api';
 import type { IStore } from "@/types";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
@@ -32,13 +32,50 @@ const DEFAULT_ICON_SIZE = 30;
 
 export function StoresMap({ stores }: StoresMapProps) {
   const [selectedStore, setSelectedStore] = useState<IStore | null>(null);
+  const mapRef = useRef<google.maps.Map | null>(null);
   
   // Load Google Maps API using the useJsApiLoader hook
   const { isLoaded, loadError } = useJsApiLoader({
     googleMapsApiKey: GOOGLE_MAPS_API_KEY,
   });
   
-  // Calculate map bounds and center based on all store locations
+  // Function to fit all markers within the map bounds
+  const fitBounds = useCallback(() => {
+    if (!mapRef.current || !stores.length || !isLoaded) return;
+
+    const bounds = new window.google.maps.LatLngBounds();
+    
+    // Add each store location to the bounds
+    stores.forEach(store => {
+      bounds.extend({ lat: store.lat, lng: store.lng });
+    });
+
+    // Fit the map to show all markers with proper padding
+    mapRef.current.fitBounds(bounds, {
+      top: 50,
+      right: 50,
+      bottom: 50,
+      left: 50
+    });
+
+    // If there's only one store, set a reasonable zoom level
+    if (stores.length === 1) {
+      setTimeout(() => {
+        if (mapRef.current) {
+          mapRef.current.setZoom(15);
+        }
+      }, 100);
+    }
+  }, [stores, isLoaded]);
+
+  // Effect to fit bounds when stores change
+  useEffect(() => {
+    if (isLoaded && stores.length > 0) {
+      fitBounds();
+    }
+  }, [stores, isLoaded, fitBounds]);
+
+  // Calculate initial center and zoom for when map loads
   const { center, zoom } = useMemo(() => {
     if (!stores.length) {
       return { center: defaultCenter, zoom: 10 };
@@ -53,26 +90,12 @@ export function StoresMap({ stores }: StoresMapProps) {
     const minLng = Math.min(...lngs);
     const maxLng = Math.max(...lngs);
     
-    // Determine appropriate zoom level based on the geographic spread
-    const latSpread = maxLat - minLat;
-    const lngSpread = maxLng - minLng;
-    const maxSpread = Math.max(latSpread, lngSpread);
-    
-    // Simple formula to determine zoom level based on coordinate spread
-    // Smaller spreads (nearby locations) get higher zoom levels
-    let zoom = 14;
-    if (maxSpread > 0.1) zoom = 12;
-    if (maxSpread > 0.5) zoom = 10;
-    if (maxSpread > 1) zoom = 9;
-    if (maxSpread > 5) zoom = 7;
-    if (maxSpread > 10) zoom = 6;
-    
     return {
       center: {
         lat: (minLat + maxLat) / 2,
         lng: (minLng + maxLng) / 2
       },
-      zoom
+      zoom: stores.length === 1 ? 15 : 10 // Use reasonable defaults
     };
   }, [stores]);
 
@@ -140,7 +163,7 @@ export function StoresMap({ stores }: StoresMapProps) {
           <CardTitle>Store Locations</CardTitle>
         </CardHeader>
         <CardContent>
-          <Alert variant="warning" className="mb-4">
+          <Alert className="mb-4 border-yellow-200 bg-yellow-50">
             <AlertCircle className="h-4 w-4" />
             <AlertTitle>Google Maps API Key Missing</AlertTitle>
             <AlertDescription>
@@ -182,6 +205,10 @@ export function StoresMap({ stores }: StoresMapProps) {
             mapContainerStyle={containerStyle}
             center={center}
             zoom={zoom}
+            onLoad={(map) => {
+              mapRef.current = map;
+              fitBounds();
+            }}
             options={{
               mapTypeControl: false,
               streetViewControl: false,

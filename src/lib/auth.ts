@@ -16,8 +16,8 @@ export const auth = betterAuth({
   database: prismaAdapter(prisma, {
     provider: 'postgresql',
   }),
-  baseURL: process.env.NEXT_PUBLIC_BASE_URL ?? 'http://localhost:3001',
-  trustedOrigins: [process.env.NEXT_PUBLIC_BASE_URL ?? 'http://localhost:3001'],
+  baseURL: process.env.NEXT_PUBLIC_BASE_URL ?? 'http://localhost:3015',
+  trustedOrigins: [process.env.NEXT_PUBLIC_BASE_URL ?? 'http://localhost:3015'],
   user: {
     additionalFields: {
       // phoneNumber: {
