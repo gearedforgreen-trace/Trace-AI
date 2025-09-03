@@ -160,10 +160,12 @@ export async function GET(request: NextRequest) {
           name: store.name,
           organizationId: store.organizationId,
           organizationName: store.organization?.name || null,
+          organizationLogo: store.organization?.logo || null,
           materials,
           bins: store.bins.map((bin: any) => ({
             id: bin.id,
             number: bin.number,
+            imageUrl: bin.imageUrl || null,
             material: {
               id: bin.material.id,
               name: bin.material.name
