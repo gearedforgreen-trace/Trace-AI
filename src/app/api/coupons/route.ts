@@ -21,6 +21,14 @@ export const queryParamsSchema = z.object({
       return val.toLowerCase() === "true" || val === "1" || val === "yes";
     }),
   dealType: z.nativeEnum(DealType).optional(),
+  includeExpired: z
+    .string()
+    .optional()
+    .transform((val) => {
+      if (val === undefined) return false;
+      return val.toLowerCase() === "true" || val === "1" || val === "yes";
+    })
+    .default(false),
   dateRange: z
     .string()
     .optional()
@@ -57,12 +65,16 @@ export async function GET(request: NextRequest) {
       );
     }
 
-    const { page, perPage, isFeatured, dealType, dateRange } =
+    const { page, perPage, isFeatured, dealType, includeExpired, dateRange } =
       queryParamsResult.data;
     // Check for organizationId filter
     const organizationId = request.nextUrl.searchParams.get("organizationId");
 
+    // Build where clause with date range filtering (unless includeExpired is true)
+    const now = new Date();
+    
     const where: Prisma.CouponWhereInput = {
+      status: 'ACTIVE', // Only active coupons
       isFeatured: isFeatured ?? undefined,
       dealType: dealType ?? undefined,
       createdAt: dateRange
@@ -72,6 +84,16 @@ export async function GET(request: NextRequest) {
           }
         : undefined,
     };
+
+    // Only filter by date range if includeExpired is false (default behavior)
+    if (!includeExpired) {
+      where.startDate = {
+        lte: now, // Start date must be in the past or now
+      };
+      where.endDate = {
+        gte: now, // End date must be in the future or now
+      };
+    }
 
     if (organizationId) {
       where.organizationId = organizationId;

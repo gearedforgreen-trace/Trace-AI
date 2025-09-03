@@ -50,9 +50,24 @@ export async function POST(request: NextRequest) {
 
     // Check if coupon is still valid (within date range)
     const now = new Date();
-    if (now < coupon.startDate || now > coupon.endDate) {
+    if (now < coupon.startDate) {
       return NextResponse.json(
-        { error: 'Coupon is not valid at this time' },
+        { 
+          error: 'Coupon is not yet available',
+          message: `This coupon will be available starting ${coupon.startDate.toLocaleDateString()}`,
+          startDate: coupon.startDate,
+        },
+        { status: 400 }
+      );
+    }
+    
+    if (now > coupon.endDate) {
+      return NextResponse.json(
+        { 
+          error: 'Coupon has expired',
+          message: `This coupon expired on ${coupon.endDate.toLocaleDateString()}`,
+          endDate: coupon.endDate,
+        },
         { status: 400 }
       );
     }
