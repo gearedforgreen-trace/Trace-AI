@@ -1,11 +1,19 @@
 import { ModeToggle } from '@/components/mode-toggle';
 import SiteBrandCentered from '@/components/site-brand-centerd';
+import { getSession } from '@/lib/servers/sessions';
+import { redirect } from 'next/navigation';
 
-export default function AuthLayout({
+export default async function AuthLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  // Check if user is already authenticated
+  const session = await getSession();
+  
+  if (session) {
+    redirect('/');
+  }
   return (
     <div className="relative flex min-h-screen flex-col bg-neutral-50 dark:bg-background">
       <div className="absolute right-0 flex h-[60px] w-full items-center justify-end sm:fixed">

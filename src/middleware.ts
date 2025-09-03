@@ -11,33 +11,13 @@ export async function middleware(request: NextRequest) {
     return NextResponse.next();
   }
 
-  // Check for session cookie - Better Auth typically uses these cookie names
-  const sessionToken = request.cookies.get('better-auth.session_token') || 
-                       request.cookies.get('authjs.session-token') ||
-                       request.cookies.get('session');
-  const hasSession = !!sessionToken;
-  
-  // Debug logging
-  if (process.env.NODE_ENV === 'development') {
-    console.log(`[Middleware] Path: ${pathname}, HasSession: ${hasSession}, Cookies:`, 
-      Object.fromEntries(request.cookies.getAll().map(c => [c.name, c.value.substring(0, 10) + '...'])));
-  }
-
-  // If on auth route and has session, redirect to dashboard
-  if (authRoutes.includes(pathname) && hasSession) {
-    return NextResponse.redirect(new URL('/', request.url));
-  }
-
-  // If on auth route and no session, allow access
-  if (authRoutes.includes(pathname) && !hasSession) {
+  // Allow auth routes - let them handle their own logic
+  if (authRoutes.includes(pathname)) {
     return NextResponse.next();
   }
 
-  // For protected routes, require session
-  if (!hasSession) {
-    return NextResponse.redirect(new URL('/sign-in', request.url));
-  }
-
+  // For all other routes (protected routes), let the server components handle authentication
+  // The dashboard layout will redirect to /sign-in if no session is found
   return NextResponse.next();
 }
 
