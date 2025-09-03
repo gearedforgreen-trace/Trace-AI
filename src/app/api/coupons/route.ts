@@ -27,8 +27,7 @@ export const queryParamsSchema = z.object({
     .transform((val) => {
       if (val === undefined) return false;
       return val.toLowerCase() === "true" || val === "1" || val === "yes";
-    })
-    .default(false),
+    }),
   dateRange: z
     .string()
     .optional()

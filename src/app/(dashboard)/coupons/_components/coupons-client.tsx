@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { useGetCouponsQuery, useCreateCouponMutation, useUpdateCouponMutation, useDeleteCouponMutation } from "@/store/api/couponsApi";
 import { useGetOrganizationsQuery } from "@/store/api/organizationsApi";
 import { EntityHeader } from "@/components/ui/entity-header";
@@ -8,6 +8,8 @@ import { ConfirmationDialog } from "@/components/ui/confirmation-dialog";
 import { useToast } from "@/components/ui/use-toast";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
+import { Switch } from "@/components/ui/switch";
+import { Label } from "@/components/ui/label";
 import { Plus } from "lucide-react";
 import type { Coupon } from "@/types";
 import { CouponsTable } from "./coupons-table";
@@ -22,6 +24,7 @@ export default function CouponsClient() {
   const [formError, setFormError] = useState<string | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedOrganizationId, setSelectedOrganizationId] = useState<string>("all");
+  const [includeExpired, setIncludeExpired] = useState(false);
   const perPage = 20;
 
   // RTK Query hooks
@@ -34,6 +37,7 @@ export default function CouponsClient() {
     page: currentPage,
     perPage,
     ...(selectedOrganizationId !== "all" && { organizationId: selectedOrganizationId }),
+    ...(includeExpired && { includeExpired: true }),
   });
 
   const {
@@ -162,14 +166,22 @@ export default function CouponsClient() {
     setCurrentPage(1); // Reset to first page when filter changes
   }, []);
 
+  // Handle includeExpired toggle change
+  const handleIncludeExpiredChange = useCallback((checked: boolean) => {
+    setIncludeExpired(checked);
+    setCurrentPage(1); // Reset to first page when filter changes
+  }, []);
+
   // Show error toast for fetch errors
-  if (couponsError) {
-    toast({
-      title: "Error",
-      description: "Failed to load coupons",
-      variant: "destructive",
-    });
-  }
+  useEffect(() => {
+    if (couponsError) {
+      toast({
+        title: "Error",
+        description: "Failed to load coupons",
+        variant: "destructive",
+      });
+    }
+  }, [couponsError, toast]);
 
   const isLoading = isLoadingCoupons || isFetchingCoupons;
 
@@ -181,7 +193,7 @@ export default function CouponsClient() {
           description={`Manage your reward coupons (${pagination.total} total)`}
         />
         
-        <div className="flex items-center space-x-2">
+        <div className="flex items-center space-x-4">
           <Select value={selectedOrganizationId} onValueChange={handleOrganizationChange}>
             <SelectTrigger className="w-[250px]">
               <SelectValue placeholder="Filter by organization" />
@@ -195,6 +207,17 @@ export default function CouponsClient() {
               ))}
             </SelectContent>
           </Select>
+          
+          <div className="flex items-center space-x-2">
+            <Switch
+              id="include-expired"
+              checked={includeExpired}
+              onCheckedChange={handleIncludeExpiredChange}
+            />
+            <Label htmlFor="include-expired" className="text-sm font-medium">
+              Show expired coupons
+            </Label>
+          </div>
           
           <Button onClick={openCreateModal} className="bg-green-600 hover:bg-green-700">
             <Plus className="mr-2 h-4 w-4" />

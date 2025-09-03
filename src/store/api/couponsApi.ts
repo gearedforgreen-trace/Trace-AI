@@ -9,6 +9,7 @@ import {
 // API parameters
 interface GetCouponsParams extends PaginationParams {
   organizationId?: string;
+  includeExpired?: boolean;
 }
 
 // Coupons API
@@ -17,10 +18,13 @@ export const couponsApi = baseApi.injectEndpoints({
     // Get all coupons with pagination and optional filtering
     getCoupons: builder.query<ApiPaginatedResponse<Coupon>, GetCouponsParams | void>({
       query: (params: GetCouponsParams = {}) => {
-        const { page = 1, perPage = 20, organizationId } = params;
+        const { page = 1, perPage = 20, organizationId, includeExpired } = params;
         let url = `coupons?page=${page}&perPage=${perPage}`;
         if (organizationId) {
           url += `&organizationId=${organizationId}`;
+        }
+        if (includeExpired) {
+          url += `&includeExpired=true`;
         }
         return url;
       },
