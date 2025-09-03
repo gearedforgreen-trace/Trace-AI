@@ -9,7 +9,7 @@ export async function GET(
   { params }: { params: { couponId: string } }
 ) {
   try {
-    const { couponId } = await params;
+    const { couponId } = params;
 
     if (!couponId) {
       return NextResponse.json(
@@ -73,7 +73,7 @@ export async function PUT(
   { params }: { params: { couponId: string } }
 ) {
   try {
-    const { couponId } = await params;
+    const { couponId } = params;
 
     if (!couponId) {
       return NextResponse.json(
@@ -94,17 +94,6 @@ export async function PUT(
 
     const validatedBody = couponUpdateSchema.safeParse(body);
 
-    if (validatedBody.data?.imageUrl) {
-      const imageUrl = await uploadCouponImageToCloudinary(
-        validatedBody.data.imageUrl,
-        "coupon-" + couponId
-      );
-      validatedBody.data.imageUrl = imageUrl.original_url;
-    } else {
-      const publicId = "coupon-" + couponId;
-      await cloudinary.uploader.destroy(publicId);
-    }
-
     if (!validatedBody.success) {
       return NextResponse.json(
         {
@@ -113,6 +102,32 @@ export async function PUT(
         },
         { status: 422 }
       );
+    }
+
+    // Handle image upload/deletion after validation passes
+    if (validatedBody.data.imageUrl) {
+      try {
+        const imageUrl = await uploadCouponImageToCloudinary(
+          validatedBody.data.imageUrl,
+          "coupon-" + couponId
+        );
+        validatedBody.data.imageUrl = imageUrl.original_url;
+      } catch (error) {
+        console.error("Image upload failed:", error);
+        return NextResponse.json(
+          { error: "Image upload failed. Please check Cloudinary configuration." },
+          { status: 500 }
+        );
+      }
+    } else if (validatedBody.data.imageUrl === null || validatedBody.data.imageUrl === "") {
+      // Only delete image if explicitly setting to null/empty
+      try {
+        const publicId = "coupon-images/coupon-" + couponId;
+        await cloudinary.uploader.destroy(publicId);
+      } catch (error) {
+        console.error("Image deletion failed:", error);
+        // Don't fail the entire request for image deletion failures
+      }
     }
 
     const updatedCoupon = await prisma.coupon.update({
@@ -135,7 +150,7 @@ export async function DELETE(
   { params }: { params: { couponId: string } }
 ) {
   try {
-    const { couponId } = await params;
+    const { couponId } = params;
 
     if (!couponId) {
       return NextResponse.json(
@@ -157,8 +172,13 @@ export async function DELETE(
     });
 
     if (deletedCoupon.imageUrl) {
-      const publicId = "coupon-" + deletedCoupon.id;
-      await cloudinary.uploader.destroy(publicId);
+      try {
+        const publicId = "coupon-images/coupon-" + deletedCoupon.id;
+        await cloudinary.uploader.destroy(publicId);
+      } catch (error) {
+        console.error("Image deletion failed:", error);
+        // Don't fail the entire request for image deletion failures
+      }
     }
 
     return NextResponse.json(
