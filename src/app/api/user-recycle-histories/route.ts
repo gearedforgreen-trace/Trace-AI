@@ -33,14 +33,6 @@ export async function GET(request: NextRequest) {
       },
     });
 
-    if (!hasListPermission.success) {
-      return NextResponse.json(
-        {
-          error: 'Forbidden',
-        },
-        { status: 403 }
-      );
-    }
 
     const page = Math.max(
       parseInt(request.nextUrl.searchParams.get('page') || '1'),
