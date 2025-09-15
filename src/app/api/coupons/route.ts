@@ -26,7 +26,7 @@ export const queryParamsSchema = z.object({
     .string()
     .optional()
     .transform((val) => {
-      if (val === undefined) return false;
+      if (val === undefined) return true;
       return val.toLowerCase() === "true" || val === "1" || val === "yes";
     }),
   dateRange: z
@@ -94,7 +94,7 @@ export async function GET(request: NextRequest) {
         : undefined,
     };
 
-    // Only filter by date range if includeExpired is false (default behavior)
+    // Only filter by date range if includeExpired is false
     if (!includeExpired) {
       where.startDate = {
         lte: now, // Start date must be in the past or now
