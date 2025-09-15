@@ -3,7 +3,8 @@ import { NextResponse, NextRequest } from "next/server";
 import { createPaginator } from "prisma-pagination";
 import type { Coupon, Prisma } from "@prisma/client";
 import { couponCreateSchema } from "@/schemas/schema";
-import { validateSessionAndPermission } from "@/lib/servers/permissions";
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
 import { DealType, Organization } from "@prisma/client";
 import { z } from "zod";
 import { uploadCouponImageToCloudinary } from "@/lib/cloudinary";
@@ -39,16 +40,25 @@ export const queryParamsSchema = z.object({
 
 export async function GET(request: NextRequest) {
   try {
-    const validation = await validateSessionAndPermission({
-      coupon: ["detail"],
+    const session = await auth.api.getSession({
+      headers: await headers(),
     });
 
-    if (!validation.success) {
-      return validation.response;
+    if (!session) {
+      return NextResponse.json(
+        { error: "Unauthorized" },
+        { status: 401 }
+      );
     }
 
-    const session = validation.session;
-    const user = session?.user;
+    if (session.user.role !== "admin") {
+      return NextResponse.json(
+        { error: "Forbidden - Admin access required" },
+        { status: 403 }
+      );
+    }
+
+    const user = session.user;
 
     const queryParamsResult = queryParamsSchema.safeParse(
       Object.fromEntries(request.nextUrl.searchParams)
@@ -154,12 +164,22 @@ export async function GET(request: NextRequest) {
 
 export async function POST(request: NextRequest) {
   try {
-    const validation = await validateSessionAndPermission({
-      coupon: ["create"],
+    const session = await auth.api.getSession({
+      headers: await headers(),
     });
 
-    if (!validation.success) {
-      return validation.response;
+    if (!session) {
+      return NextResponse.json(
+        { error: "Unauthorized" },
+        { status: 401 }
+      );
+    }
+
+    if (session.user.role !== "admin") {
+      return NextResponse.json(
+        { error: "Forbidden - Admin access required" },
+        { status: 403 }
+      );
     }
 
     const body = await request.json();

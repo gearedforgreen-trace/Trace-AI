@@ -1,15 +1,16 @@
-import { validateSessionAndPermission } from "@/lib/servers/permissions";
 import prisma from "@/lib/prisma";
 import { couponUpdateSchema } from "@/schemas/schema";
 import { NextRequest, NextResponse } from "next/server";
 import cloudinary, { uploadCouponImageToCloudinary } from "@/lib/cloudinary";
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
 
 export async function GET(
   _request: NextRequest,
   { params }: { params: { couponId: string } }
 ) {
   try {
-    const { couponId } = params;
+    const { couponId } = await params;
 
     if (!couponId) {
       return NextResponse.json(
@@ -18,12 +19,22 @@ export async function GET(
       );
     }
 
-    const validation = await validateSessionAndPermission({
-      coupon: ["detail"],
+    const session = await auth.api.getSession({
+      headers: await headers(),
     });
 
-    if (!validation.success) {
-      return validation.response;
+    if (!session) {
+      return NextResponse.json(
+        { error: "Unauthorized" },
+        { status: 401 }
+      );
+    }
+
+    if (session.user.role !== "admin") {
+      return NextResponse.json(
+        { error: "Forbidden - Admin access required" },
+        { status: 403 }
+      );
     }
 
     const coupon = await prisma.coupon.findUnique({
@@ -31,7 +42,7 @@ export async function GET(
       include: {
         favouriteCoupon: {
           where: {
-            userId: validation.session?.user.id,
+            userId: session.user.id,
           },
           select: {
             id: true,
@@ -73,7 +84,7 @@ export async function PUT(
   { params }: { params: { couponId: string } }
 ) {
   try {
-    const { couponId } = params;
+    const { couponId } = await params;
 
     if (!couponId) {
       return NextResponse.json(
@@ -82,12 +93,22 @@ export async function PUT(
       );
     }
 
-    const validation = await validateSessionAndPermission({
-      coupon: ["update"],
+    const session = await auth.api.getSession({
+      headers: await headers(),
     });
 
-    if (!validation.success) {
-      return validation.response;
+    if (!session) {
+      return NextResponse.json(
+        { error: "Unauthorized" },
+        { status: 401 }
+      );
+    }
+
+    if (session.user.role !== "admin") {
+      return NextResponse.json(
+        { error: "Forbidden - Admin access required" },
+        { status: 403 }
+      );
     }
 
     const body = await request.json();
@@ -150,21 +171,31 @@ export async function DELETE(
   { params }: { params: { couponId: string } }
 ) {
   try {
-    const { couponId } = params;
+    const { couponId } = await params;
 
     if (!couponId) {
       return NextResponse.json(
-        { error: "Material ID is required" },
+        { error: "Coupon ID is required" },
         { status: 400 }
       );
     }
 
-    const validation = await validateSessionAndPermission({
-      coupon: ["delete"],
+    const session = await auth.api.getSession({
+      headers: await headers(),
     });
 
-    if (!validation.success) {
-      return validation.response;
+    if (!session) {
+      return NextResponse.json(
+        { error: "Unauthorized" },
+        { status: 401 }
+      );
+    }
+
+    if (session.user.role !== "admin") {
+      return NextResponse.json(
+        { error: "Forbidden - Admin access required" },
+        { status: 403 }
+      );
     }
 
     const deletedCoupon = await prisma.coupon.delete({
