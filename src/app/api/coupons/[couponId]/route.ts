@@ -30,13 +30,6 @@ export async function GET(
       );
     }
 
-    if (session.user.role !== "admin") {
-      return NextResponse.json(
-        { error: "Forbidden - Admin access required" },
-        { status: 403 }
-      );
-    }
-
     const coupon = await prisma.coupon.findUnique({
       where: { id: couponId },
       include: {

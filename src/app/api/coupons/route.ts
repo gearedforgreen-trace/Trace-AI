@@ -51,12 +51,6 @@ export async function GET(request: NextRequest) {
       );
     }
 
-    if (session.user.role !== "admin") {
-      return NextResponse.json(
-        { error: "Forbidden - Admin access required" },
-        { status: 403 }
-      );
-    }
 
     const user = session.user;
 
