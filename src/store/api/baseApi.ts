@@ -11,9 +11,9 @@ export const baseApi = createApi({
     },
   }),
   tagTypes: [
-    'Organization', 
-    'Store', 
-    'Bin', 
+    'Organization',
+    'Store',
+    'Bin',
     'Material',
     'Coupon',
     'RecycleHistory',
@@ -23,6 +23,7 @@ export const baseApi = createApi({
     'Dashboard',
     'UserTotalPoint',
     'UserRecycles',
+    'User',
   ],
   endpoints: () => ({}), // Empty endpoints - will be extended by injected endpoints
 });

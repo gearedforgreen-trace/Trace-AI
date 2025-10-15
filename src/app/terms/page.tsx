@@ -352,7 +352,7 @@ export default function Terms() {
                 <p className="font-semibold text-slate-800 dark:text-green-200">Trace AI Legal Department</p>
                 <p className="text-muted-foreground flex items-center gap-2">
                   <Mail className="w-4 h-4 text-slate-600 dark:text-green-400" />
-                  <strong>Email:</strong> <a href="mailto:legal@gearedforgreen.com" className="text-green-600 dark:text-green-400 hover:underline">legal@gearedforgreen.com</a>
+                  <strong>Email:</strong> <a href="mailto:jimmyh@gearedforgreen.com" className="text-green-600 dark:text-green-400 hover:underline">jimmyh@gearedforgreen.com</a>
                 </p>
                 <p className="text-muted-foreground flex items-center gap-2">
                   <MapPin className="w-4 h-4 text-slate-600 dark:text-green-400" />

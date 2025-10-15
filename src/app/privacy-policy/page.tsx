@@ -208,7 +208,7 @@ export default function PrivacyPolicy() {
                 </li>
               </ul>
               <p className="text-muted-foreground leading-relaxed">
-                To exercise these rights, email us at [Insert Privacy Email] with the subject line &quot;Privacy Rights Request.&quot; We will verify your identity before fulfilling requests.
+                To exercise these rights, email us at <a href="mailto:jimmyh@gearedforgreen.com?subject=Privacy Rights Request" className="text-green-600 dark:text-green-400 hover:underline font-semibold">jimmyh@gearedforgreen.com</a> with the subject line &quot;Privacy Rights Request.&quot; We will verify your identity before fulfilling requests.
               </p>
             </CardContent>
           </Card>
@@ -227,7 +227,7 @@ export default function PrivacyPolicy() {
               <ul className="space-y-2 text-muted-foreground mb-4">
                 <li className="flex items-start">
                   <span className="inline-block w-2 h-2 bg-green-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                  <span>Emailing [Insert Privacy Email] with the subject &quot;Do Not Sell or Share My Personal Information,&quot; or</span>
+                  <span>Emailing <a href="mailto:jimmyh@gearedforgreen.com?subject=Do Not Sell or Share My Personal Information" className="text-green-600 dark:text-green-400 hover:underline font-semibold">jimmyh@gearedforgreen.com</a> with the subject &quot;Do Not Sell or Share My Personal Information,&quot; or</span>
                 </li>
                 <li className="flex items-start">
                   <span className="inline-block w-2 h-2 bg-green-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
@@ -309,7 +309,7 @@ export default function PrivacyPolicy() {
                 <p className="font-semibold text-slate-800 dark:text-green-200">Trace AI Privacy Officer</p>
                 <p className="text-muted-foreground flex items-center gap-2">
                   <Mail className="w-4 h-4 text-slate-600 dark:text-green-400" />
-                  <strong>Email:</strong> <a href="mailto:legal@gearedforgreen.com" className="text-green-600 dark:text-green-400 hover:underline">legal@gearedforgreen.com</a>
+                  <strong>Email:</strong> <a href="mailto:jimmyh@gearedforgreen.com" className="text-green-600 dark:text-green-400 hover:underline">jimmyh@gearedforgreen.com</a>
                 </p>
                 <p className="text-muted-foreground flex items-center gap-2">
                   <MapPin className="w-4 h-4 text-slate-600 dark:text-green-400" />
